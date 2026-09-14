@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="Chat" format=3 uid="uid://g2cmcn1gk5ud"]
+
+[ext_resource type="Texture2D" uid="uid://bx1v5xuwotgyx" path="res://casos/caso1/chats/ftos-perfil/tomas.jpg" id="1_kixte"]
+[ext_resource type="Script" uid="uid://gdiumfglcp6n" path="res://mensaje.gd" id="2_7j066"]
+[ext_resource type="Script" uid="uid://by8r7fs8syfyj" path="res://chat.gd" id="3_tl1c6"]
+
+[sub_resource type="Resource" id="Resource_bbufl"]
+script = ExtResource("2_7j066")
+text = "Che, lo del cliente de la revista fue una cagada de tu parte."
+time = "11/10 21:40"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_7wfx3"]
+script = ExtResource("2_7j066")
+text = "Tomás, el cliente me eligió a mí. No es mi problema."
+time = "11/10 21:52"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_85aaz"]
+script = ExtResource("2_7j066")
+text = "Me lo robaste, Lucas. Sabés bien lo que hiciste."
+time = "11/10 21:55"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_8jpll"]
+script = ExtResource("2_7j066")
+text = "No te robé nada. Presenté mi trabajo y gustó más. Eso es todo."
+time = "11/10 22:01"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_vedkj"]
+script = ExtResource("2_7j066")
+text = "Ojalá te vaya bien. En serio."
+time = "11/10 22:03"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[resource]
+script = ExtResource("3_tl1c6")
+nombre = "Tomás"
+avatar = ExtResource("1_kixte")
+mensajes = Array[ExtResource("2_7j066")]([SubResource("Resource_bbufl"), SubResource("Resource_7wfx3"), SubResource("Resource_85aaz"), SubResource("Resource_8jpll"), SubResource("Resource_vedkj")])
+mensajes_enviables = ["Soy la agente a cargo del caso de Lucas. Necesito hablar con usted.", "¿Dónde estaba el viernes a la noche?", "¿Conocía a la novia de Lucas, Camila Rossi?"]
+respuestas = ["...¿Qué pasó? ¿Está bien?", "En casa, solo. Estaba editando fotos. No tengo coartada si eso es lo que pregunta, pero no le hice nada.", "La vi un par de veces. No la conocía bien. ¿Por qué me pregunta por ella?"]
+metadata/_custom_type_script = "uid://by8r7fs8syfyj"

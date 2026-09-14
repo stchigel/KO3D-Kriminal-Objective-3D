@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://df1d55wmbav2b"]
+
+[ext_resource type="Texture2D" uid="uid://d2tnrh7xrrftl" path="res://assets/K.O..svg" id="1_10pl1"]
+[ext_resource type="Script" uid="uid://b13sd2axo8vo1" path="res://src/Seleccion/seleccion.gd" id="1_ryw00"]
+[ext_resource type="Texture2D" uid="uid://dhfkpsix2en6l" path="res://assets/icon.svg" id="3_0e2wq"]
+
+[node name="Seleccion" type="Control" unique_id=1080608487]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ryw00")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1355761533]
+layout_mode = 0
+offset_right = 1162.0
+offset_bottom = 662.0
+color = Color(0.051970966, 0.05197096, 0.05197095, 1)
+
+[node name="K_o_" type="TextureRect" parent="." unique_id=1553679459]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 23.0
+offset_right = 186.0
+offset_bottom = 228.0
+texture = ExtResource("1_10pl1")
+expand_mode = 1
+
+[node name="1" type="TextureButton" parent="." unique_id=174640419]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 240.0
+offset_right = 448.0
+offset_bottom = 368.0
+texture_normal = ExtResource("3_0e2wq")
+texture_pressed = ExtResource("3_0e2wq")
+texture_hover = ExtResource("3_0e2wq")
+texture_disabled = ExtResource("3_0e2wq")
+texture_focused = ExtResource("3_0e2wq")
+
+[node name="Label" type="Label" parent="1" unique_id=75835322]
+layout_mode = 0
+offset_left = -24.0
+offset_top = 136.0
+offset_right = 153.0
+offset_bottom = 159.0
+text = "Caso 1 - La Ultima Foto"
+
+[node name="2" type="TextureButton" parent="." unique_id=1195426718]
+layout_mode = 0
+offset_left = 704.0
+offset_top = 240.0
+offset_right = 832.0
+offset_bottom = 368.0
+texture_normal = ExtResource("3_0e2wq")
+texture_pressed = ExtResource("3_0e2wq")
+texture_hover = ExtResource("3_0e2wq")
+texture_disabled = ExtResource("3_0e2wq")
+texture_focused = ExtResource("3_0e2wq")
+
+[node name="Label" type="Label" parent="2" unique_id=1874851686]
+layout_mode = 0
+offset_top = 134.0
+offset_right = 128.0
+offset_bottom = 157.0
+text = "Caso 2 - La Obra"
+
+[connection signal="pressed" from="1" to="." method="_on__pressed"]
+[connection signal="pressed" from="2" to="." method="_on_2_pressed"]

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Mail" format=3 uid="uid://clf3lmhj12j4c"]
+
+[ext_resource type="Script" uid="uid://b341mvssqe4vw" path="res://mail.gd" id="1_0co7v"]
+
+[resource]
+script = ExtResource("1_0co7v")
+nombre = "Remitente"
+asunto = "Asunto"
+mensaje = "Mensaje"
+metadata/_custom_type_script = "uid://b341mvssqe4vw"

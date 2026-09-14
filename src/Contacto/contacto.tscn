@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://d34bwkgdh85v6"]
+
+[ext_resource type="Script" uid="uid://bvexpy0nrh6iv" path="res://src/Contacto/contacto.gd" id="1_bu4ir"]
+[ext_resource type="Texture2D" uid="uid://dhfkpsix2en6l" path="res://assets/icon.svg" id="1_ojjwu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bu4ir"]
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="Contacto" type="Button" unique_id=523193422]
+offset_right = 268.0
+offset_bottom = 63.0
+script = ExtResource("1_bu4ir")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1361852284]
+clip_children = 2
+layout_mode = 0
+offset_left = 10.0
+offset_top = 11.0
+offset_right = 50.0
+offset_bottom = 51.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bu4ir")
+
+[node name="Icon" type="TextureRect" parent="PanelContainer" unique_id=447595546]
+layout_mode = 2
+texture = ExtResource("1_ojjwu")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Nombre" type="Label" parent="." unique_id=2121924593]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 12.0
+offset_right = 175.0
+offset_bottom = 35.0
+theme_override_font_sizes/font_size = 15
+text = "CARLOS GODOT"
+
+[node name="Mensaje" type="Label" parent="." unique_id=1614667176]
+layout_mode = 0
+offset_left = 61.0
+offset_top = 34.0
+offset_right = 176.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 9
+text = "Ultimo mensaje"
+autowrap_mode = 2
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

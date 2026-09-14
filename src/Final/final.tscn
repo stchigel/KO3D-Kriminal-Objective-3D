@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://babks80sydwcp"]
+
+[ext_resource type="Texture2D" uid="uid://d2tnrh7xrrftl" path="res://assets/K.O..svg" id="1_8mmc3"]
+[ext_resource type="Script" uid="uid://bbxf1yodepkng" path="res://src/Final/final.gd" id="1_lscmd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lscmd"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0.13184452, 0.017275944, 0.6)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.6572198, 0.8929993, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ebyq"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.20332563, 0.039509743, 0, 0.6)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8150675, 0, 0.008386495, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 10
+
+[node name="Final" type="Control" unique_id=276048457]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lscmd")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=851264893]
+layout_mode = 0
+offset_right = 1162.0
+offset_bottom = 662.0
+color = Color(0.051970966, 0.05197096, 0.05197095, 1)
+
+[node name="K_o_" type="TextureRect" parent="." unique_id=1265929462]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 23.0
+offset_right = 186.0
+offset_bottom = 228.0
+texture = ExtResource("1_8mmc3")
+expand_mode = 1
+
+[node name="Bien" type="Panel" parent="." unique_id=1519454130]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 216.0
+offset_right = 912.0
+offset_bottom = 432.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_lscmd")
+
+[node name="Mal" type="Panel" parent="." unique_id=1996379339]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 216.0
+offset_right = 912.0
+offset_bottom = 432.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0ebyq")
+
+[node name="Texto" type="RichTextLabel" parent="." unique_id=1370593401]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 232.0
+offset_right = 896.0
+offset_bottom = 416.0
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "Camila Rossi fue detenida 48 horas después. La cámara apareció en su departamento, con las fotos de la zona de cajas borradas, pero recuperadas por el equipo forense. Fue imputada por homicidio y hurto agravado. En su declaración dijo que 'no era su intención'. Lucas nunca iba a denunciarla.
+
+[i]Buen trabajo, agente.[/i]"
+
+[node name="Button" type="Button" parent="." unique_id=1153566892]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 512.0
+offset_right = 704.0
+offset_bottom = 576.0
+text = "Cerrar caso"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

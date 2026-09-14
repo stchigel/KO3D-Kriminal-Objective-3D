@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://ce2bmtq16mg1v"]
+
+[ext_resource type="Script" uid="uid://85214qa38or0" path="res://src/Camara/camara.gd" id="1_ysl2s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahdgd"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.84313726)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="Camara" type="Panel" unique_id=1796508400]
+offset_right = 832.0
+offset_bottom = 448.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ahdgd")
+script = ExtResource("1_ysl2s")
+
+[node name="Panel" type="Panel" parent="." unique_id=1060858633]
+layout_mode = 0
+offset_right = 832.0
+offset_bottom = 32.0
+
+[node name="Label" type="Label" parent="." unique_id=1381323080]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 320.0
+offset_bottom = 32.0
+text = "Camara"
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=1655886696]
+layout_mode = 0
+offset_left = 800.0
+offset_right = 832.0
+offset_bottom = 32.0
+text = "X"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1109747807]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 40.0
+offset_right = 824.0
+offset_bottom = 440.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1902807633]
+handle_input_locally = false
+size = Vector2i(816, 400)
+render_target_update_mode = 4
+
+[node name="Left" type="Button" parent="." unique_id=991618348]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 384.0
+offset_right = 48.0
+offset_bottom = 408.0
+
+[node name="Down" type="Button" parent="." unique_id=795884840]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 408.0
+offset_right = 72.0
+offset_bottom = 432.0
+
+[node name="Up" type="Button" parent="." unique_id=1270738426]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 360.0
+offset_right = 72.0
+offset_bottom = 384.0
+
+[node name="Right" type="Button" parent="." unique_id=948683682]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 384.0
+offset_right = 96.0
+offset_bottom = 408.0
+
+[node name="Reset" type="Button" parent="." unique_id=1331481393]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 384.0
+offset_right = 72.0
+offset_bottom = 408.0
+
+[connection signal="gui_input" from="Panel" to="." method="_on_panel_gui_input"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="button_down" from="Left" to="." method="_on_left_button_down"]
+[connection signal="button_up" from="Left" to="." method="_on_left_button_up"]
+[connection signal="button_down" from="Down" to="." method="_on_down_button_down"]
+[connection signal="button_up" from="Down" to="." method="_on_down_button_up"]
+[connection signal="button_down" from="Up" to="." method="_on_up_button_down"]
+[connection signal="button_up" from="Up" to="." method="_on_up_button_up"]
+[connection signal="button_down" from="Right" to="." method="_on_right_button_down"]
+[connection signal="button_up" from="Right" to="." method="_on_right_button_up"]
+[connection signal="pressed" from="Reset" to="." method="_on_reset_pressed"]

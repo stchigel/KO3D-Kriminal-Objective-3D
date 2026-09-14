@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="Chat" format=3 uid="uid://d2v5wu1lkhv6"]
+
+[ext_resource type="Texture2D" uid="uid://b65a7nyjfr22a" path="res://casos/caso1/chats/ftos-perfil/vecino.jpg" id="1_f0mg6"]
+[ext_resource type="Script" uid="uid://gdiumfglcp6n" path="res://mensaje.gd" id="2_7j066"]
+[ext_resource type="Script" uid="uid://by8r7fs8syfyj" path="res://chat.gd" id="3_tl1c6"]
+
+[sub_resource type="Resource" id="Resource_kriha"]
+script = ExtResource("2_7j066")
+text = "Lucas, el agua caliente del edificio no anda, ¿avisaste al encargado?"
+time = "08/10 19:04"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_ss4fv"]
+script = ExtResource("2_7j066")
+text = "Sí, dijo que viene mañana a revisar."
+time = "08/10 19:15"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_vzeiv"]
+script = ExtResource("2_7j066")
+text = "Gracias, sos un crack."
+time = "08/10 19:16"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[resource]
+script = ExtResource("3_tl1c6")
+nombre = "Jorge (vecino)"
+avatar = ExtResource("1_f0mg6")
+mensajes = Array[ExtResource("2_7j066")]([SubResource("Resource_kriha"), SubResource("Resource_ss4fv"), SubResource("Resource_vzeiv")])
+mensajes_enviables = ["Hola, soy la agente a cargo del caso de Lucas. ¿Puedo hacerle algunas preguntas?", "¿Qué escuchó exactamente la noche del viernes?", "¿Vio entrar o salir a alguien del departamento de Lucas ese viernes?"]
+respuestas = ["Claro, lo que necesite. Todavía no puedo creer lo que pasó.", "Un golpe fuerte, como algo cayendo. Pensé que había roto algo. No le di importancia hasta la mañana siguiente.", "Vi a una mujer entrar como a las 21. No la vi salir, pero me fui a dormir temprano. Pelo oscuro, joven."]
+metadata/_custom_type_script = "uid://by8r7fs8syfyj"

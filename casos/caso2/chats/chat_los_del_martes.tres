@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="Chat" format=3 uid="uid://dwv3i1ja36rfe"]
+
+[ext_resource type="Script" uid="uid://gdiumfglcp6n" path="res://mensaje.gd" id="2_7j066"]
+[ext_resource type="Script" uid="uid://by8r7fs8syfyj" path="res://chat.gd" id="3_tl1c6"]
+
+[sub_resource type="Resource" id="Resource_4qg8f"]
+metadata/__load_path__ = "res://assets/grupo_martes.jpg"
+
+[sub_resource type="Resource" id="Resource_ma001"]
+script = ExtResource("2_7j066")
+text = "¿Alguien va mañana al gimnasio? Llueve"
+time = "05/11 19:14"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_ma002"]
+script = ExtResource("2_7j066")
+text = "Yo paso esta semana, tengo mil cosas"
+time = "05/11 19:22"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_ma003"]
+script = ExtResource("2_7j066")
+text = "Otra vez? Cada vez vas menos"
+time = "05/11 19:23"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_ma004"]
+script = ExtResource("2_7j066")
+text = "Trabajo, Horacio. Cosa que vos no conocés"
+time = "05/11 19:25"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_ma005"]
+script = ExtResource("2_7j066")
+text = "😂😂😂"
+time = "05/11 19:26"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[resource]
+script = ExtResource("3_tl1c6")
+nombre = "Los del martes"
+avatar = SubResource("Resource_4qg8f")
+mensajes = Array[ExtResource("2_7j066")]([SubResource("Resource_ma001"), SubResource("Resource_ma002"), SubResource("Resource_ma003"), SubResource("Resource_ma004"), SubResource("Resource_ma005")])
+mensajes_enviables = Array[String](["Hola, soy investigadora del caso de Marcelo. ¿Alguien habló con él últimamente?", "¿Marcelo mencionó tener problemas con algún cliente o colega?", "¿Saben si conocía a alguien llamado Lorenzo Machi?"])
+respuestas = Array[String](["Horacio: No lo veíamos hace semanas. Decía que tenía mucho trabajo, pero parecía otra cosa.", "Roberto: Una vez dijo algo de 'un cliente que lo metía en un lío'. No quiso decir más. Pensamos que era drama de siempre.", "Horacio: No. Nunca nombró a nadie con ese nombre que yo recuerde."])
+metadata/_custom_type_script = "uid://by8r7fs8syfyj"

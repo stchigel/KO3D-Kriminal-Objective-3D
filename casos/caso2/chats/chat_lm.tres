@@ -1,0 +1,93 @@
+[gd_resource type="Resource" script_class="Chat" format=3 uid="uid://bx1lmali00006"]
+
+[ext_resource type="Script" uid="uid://gdiumfglcp6n" path="res://mensaje.gd" id="2_7j066"]
+[ext_resource type="Script" uid="uid://by8r7fs8syfyj" path="res://chat.gd" id="3_tl1c6"]
+
+[sub_resource type="Resource" id="Resource_83aey"]
+metadata/__load_path__ = "res://assets/lm.jpg"
+
+[sub_resource type="Resource" id="Resource_al001"]
+script = ExtResource("2_7j066")
+text = "¿Pudiste hacer la copia?"
+time = "11/11 20:10"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_al002"]
+script = ExtResource("2_7j066")
+text = "Sí. Está guardada donde acordamos"
+time = "11/11 20:15"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_al003"]
+script = ExtResource("2_7j066")
+text = "Bien. No la muevas. No hables con nadie todavía"
+time = "11/11 20:16"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_al004"]
+script = ExtResource("2_7j066")
+text = "LM, si algo me pasa, hay instrucciones con el abogado"
+time = "11/11 20:20"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_al005"]
+script = ExtResource("2_7j066")
+text = "Nada te va a pasar. Pero bien hecho"
+time = "11/11 20:22"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_al006"]
+script = ExtResource("2_7j066")
+text = "Creo que alguien estuvo en el departamento. No sé si es paranoia"
+time = "11/11 22:51"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_al007"]
+script = ExtResource("2_7j066")
+text = "¿Qué viste?"
+time = "11/11 22:52"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_al008"]
+script = ExtResource("2_7j066")
+text = "La notebook estaba en otro lugar. Rosa no vino hoy"
+time = "11/11 22:53"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_al009"]
+script = ExtResource("2_7j066")
+text = "Salí del departamento ahora. Andá a lo de alguien"
+time = "11/11 22:54"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_al010"]
+script = ExtResource("2_7j066")
+text = "Estoy cansado. Mañana hablo con Saenz y le entrego todo"
+time = "11/11 22:56"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_al011"]
+script = ExtResource("2_7j066")
+text = "Marcelo, salí"
+time = "11/11 22:57"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_al012"]
+script = ExtResource("2_7j066")
+text = "MARCELO"
+time = "11/11 22:59"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[resource]
+script = ExtResource("3_tl1c6")
+nombre = "LM"
+avatar = SubResource("Resource_83aey")
+mensajes = Array[ExtResource("2_7j066")]([SubResource("Resource_al001"), SubResource("Resource_al002"), SubResource("Resource_al003"), SubResource("Resource_al004"), SubResource("Resource_al005"), SubResource("Resource_al006"), SubResource("Resource_al007"), SubResource("Resource_al008"), SubResource("Resource_al009"), SubResource("Resource_al010"), SubResource("Resource_al011"), SubResource("Resource_al012")])
+mensajes_enviables = Array[String](["Soy la agente a cargo del caso Vidal. ¿Quién es usted exactamente?", "¿Qué era la 'copia' que Vidal guardó y dónde está?", "¿Sabe quién organizó la muerte de Vidal?"])
+respuestas = Array[String](["Me llamo Lucas Mirabal. Fui asesor de procedencia para la galería de Ferreyra. Descubrí el fraude hace seis meses y contacté a Marcelo para reunir pruebas desde adentro.", "Es un archivo con los certificados falsos, el análisis del Quinquela y capturas de los chats con Machi. Marcelo lo dejó guardado en su computadora. Hay una carpeta oculta. La contraseña tiene que ver con Giotto.", "Machi. Sin dudas. Ferreyra es cómplice económico pero no tiene capacidad para esto. Machi tenía los contactos y el motivo. Y alguien desactivó esas cámaras desde adentro."])
+metadata/_custom_type_script = "uid://by8r7fs8syfyj"

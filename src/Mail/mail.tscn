@@ -1,0 +1,194 @@
+[gd_scene format=3 uid="uid://dyinmj2mlclit"]
+
+[ext_resource type="Script" uid="uid://bheoyol1646r5" path="res://src/Mail/mail.gd" id="1_e6cog"]
+[ext_resource type="Texture2D" uid="uid://cwm5n30whta10" path="res://assets/iconos/gmail.png" id="3_e6cog"]
+[ext_resource type="PackedScene" uid="uid://d34bwkgdh85v6" path="res://src/Contacto/contacto.tscn" id="4_cm2f5"]
+[ext_resource type="Texture2D" uid="uid://um2untrpxqpo" path="res://assets/iconos/pregunta.png" id="4_u5qv7"]
+[ext_resource type="Texture2D" uid="uid://co5x308u0rn8v" path="res://assets/iconos/recibidos.png" id="5_gntkc"]
+[ext_resource type="Texture2D" uid="uid://d2cvfb4f3nbf1" path="res://assets/iconos/enviado.png" id="6_kcqcq"]
+[ext_resource type="Texture2D" uid="uid://bikjg1l4rc8jn" path="res://assets/iconos/borrador.png" id="7_u66u2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahdgd"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.84313726)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mirj"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="Mail" type="Panel" unique_id=1796508400]
+z_index = 2
+offset_right = 704.0
+offset_bottom = 448.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ahdgd")
+script = ExtResource("1_e6cog")
+contacto_scene = ExtResource("4_cm2f5")
+
+[node name="Panel" type="Panel" parent="." unique_id=1060858633]
+layout_mode = 0
+offset_right = 704.0
+offset_bottom = 34.0
+
+[node name="icono" type="TextureRect" parent="Panel" unique_id=1704934145]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 4.0
+offset_right = 34.0
+offset_bottom = 29.0
+texture = ExtResource("3_e6cog")
+expand_mode = 1
+
+[node name="icono2" type="TextureRect" parent="Panel" unique_id=2042487474]
+layout_mode = 0
+offset_left = 647.0
+offset_top = 8.0
+offset_right = 664.0
+offset_bottom = 25.0
+texture = ExtResource("4_u5qv7")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Panel" unique_id=1381323080]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 1.0
+offset_right = 362.0
+offset_bottom = 33.0
+text = "Gmail"
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Panel" unique_id=1655886696]
+layout_mode = 0
+offset_left = 672.0
+offset_right = 704.0
+offset_bottom = 32.0
+text = "X"
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="." unique_id=1030605551]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 32.0
+offset_right = 704.0
+offset_bottom = 448.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer2" unique_id=1054487447]
+layout_mode = 2
+
+[node name="Inbox" type="Button" parent="." unique_id=1126517586]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 40.0
+offset_right = 184.0
+offset_bottom = 72.0
+theme_override_font_sizes/font_size = 13
+text = "         Recibidos"
+alignment = 0
+
+[node name="icono2" type="TextureRect" parent="Inbox" unique_id=1660823509]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 25.0
+offset_bottom = 25.0
+texture = ExtResource("5_gntkc")
+expand_mode = 1
+
+[node name="Enviados" type="Button" parent="." unique_id=383281318]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 72.0
+offset_right = 184.0
+offset_bottom = 104.0
+theme_override_font_sizes/font_size = 13
+text = "         Enviados"
+alignment = 0
+
+[node name="icono2" type="TextureRect" parent="Enviados" unique_id=1757334734]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 25.0
+offset_bottom = 25.0
+texture = ExtResource("6_kcqcq")
+expand_mode = 1
+
+[node name="Borradores" type="Button" parent="." unique_id=442736594]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 104.0
+offset_right = 185.0
+offset_bottom = 136.0
+theme_override_font_sizes/font_size = 13
+text = "         Borradores"
+alignment = 0
+
+[node name="icono2" type="TextureRect" parent="Borradores" unique_id=1648569345]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 25.0
+offset_bottom = 25.0
+texture = ExtResource("7_u66u2")
+expand_mode = 1
+
+[node name="MailData" type="Panel" parent="." unique_id=361329672]
+visible = false
+layout_mode = 0
+offset_top = 32.0
+offset_right = 704.0
+offset_bottom = 448.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7mirj")
+
+[node name="Volver" type="Button" parent="MailData" unique_id=1576926818]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+text = "<"
+
+[node name="Asunto" type="Label" parent="MailData" unique_id=2054350965]
+layout_mode = 0
+offset_left = 32.0
+offset_right = 704.0
+offset_bottom = 32.0
+text = "ASUNTO"
+vertical_alignment = 1
+
+[node name="Remitente" type="Label" parent="MailData" unique_id=388922644]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 24.0
+offset_right = 128.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 10
+text = "Remitente"
+vertical_alignment = 1
+
+[node name="Cuerpo" type="RichTextLabel" parent="MailData" unique_id=56236870]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 48.0
+offset_right = 688.0
+offset_bottom = 408.0
+theme_override_font_sizes/normal_font_size = 14
+text = "LOREM IPSUM"
+
+[connection signal="gui_input" from="Panel" to="." method="_on_panel_gui_input"]
+[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Inbox" to="." method="_on_inbox_pressed"]
+[connection signal="pressed" from="Borradores" to="." method="_on_borradores_pressed"]
+[connection signal="pressed" from="MailData/Volver" to="." method="_on_volver_pressed"]

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Mail" format=3 uid="uid://mail_halac00004"]
+
+[ext_resource type="Script" uid="uid://b341mvssqe4vw" path="res://mail.gd" id="1_0co7v"]
+
+[resource]
+script = ExtResource("1_0co7v")
+nombre = "vhalac@museobbaarrosario.gob.ar"
+asunto = "Documentación obra Soldi — solicitud urgente"
+mensaje = "Marcelo, te reenvío el contrato de cesión de la obra \"Tarde en el parque\" (atrib. Soldi, 1947) que recibimos a través de Artes del Sur SRL en 2023. El firmante fue un tal Rodrigo Iturbe. La empresa fue disuelta en agosto de 2024. Te adjunto todo, esperamos tu análisis."
+metadata/_custom_type_script = "uid://b341mvssqe4vw"

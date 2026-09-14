@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Mail" format=3 uid="uid://bmxaxvw5xbd7h"]
+
+[ext_resource type="Script" uid="uid://b341mvssqe4vw" path="res://mail.gd" id="1_0co7v"]
+
+[resource]
+script = ExtResource("1_0co7v")
+nombre = "camilarossi.ok@gmail.com"
+asunto = "Re: Las fotos del jueves"
+mensaje = "Sí claro, hablamos el viernes cuando vengo.\nNo hace falta que hagas nada con esas fotos, son mías igual, yo las encargué.\nBeso"
+metadata/_custom_type_script = "uid://b341mvssqe4vw"

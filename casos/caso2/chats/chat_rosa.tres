@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Chat" format=3 uid="uid://bx1rosa000002"]
+
+[ext_resource type="Script" uid="uid://gdiumfglcp6n" path="res://mensaje.gd" id="2_7j066"]
+[ext_resource type="Script" uid="uid://by8r7fs8syfyj" path="res://chat.gd" id="3_tl1c6"]
+
+[sub_resource type="Resource" id="Resource_4vqbg"]
+metadata/__load_path__ = "res://assets/rosa.jpg"
+
+[sub_resource type="Resource" id="Resource_ro001"]
+script = ExtResource("2_7j066")
+text = "Don Marcelo dejé lasaña en la heladera para el miércoles"
+time = "04/11 08:15"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_ro002"]
+script = ExtResource("2_7j066")
+text = "Rosa sos un ángel"
+time = "04/11 09:30"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_ro003"]
+script = ExtResource("2_7j066")
+text = "El jueves no vengo porque tengo turno médico"
+time = "04/11 09:32"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_ro004"]
+script = ExtResource("2_7j066")
+text = "Sin problema, aviseme si necesita algo"
+time = "04/11 09:33"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[resource]
+script = ExtResource("3_tl1c6")
+nombre = "Rosa"
+avatar = SubResource("Resource_4vqbg")
+mensajes = Array[ExtResource("2_7j066")]([SubResource("Resource_ro001"), SubResource("Resource_ro002"), SubResource("Resource_ro003"), SubResource("Resource_ro004")])
+mensajes_enviables = Array[String](["Rosa, soy la agente a cargo del caso. ¿Puedo hacerle algunas preguntas?", "¿Notó algo inusual en el departamento el lunes, el día antes de encontrarlo?", "¿El señor Vidal usaba la escalera interna habitualmente?"])
+respuestas = Array[String](["Sí, faltante. Me lo dijeron esta mañana y todavía no puedo creer. Pregunte lo que quiera.", "El lunes no fui, tenía turno médico. Pero el viernes anterior sí noté algo raro: la notebook no estaba en su lugar de siempre, y había una taza de café sin lavar, cosa que él nunca dejaba.", "Nunca. Con la rodilla que tenía, siempre usaba el ascensor. Siempre. Por eso me llamó tanto la atención."])
+metadata/_custom_type_script = "uid://by8r7fs8syfyj"

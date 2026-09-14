@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://gvdkmy35w8vf"]
+
+[ext_resource type="Script" uid="uid://buy1ugambk5yu" path="res://src/Icono/icono.gd" id="1_0w0qf"]
+[ext_resource type="Texture2D" uid="uid://dhfkpsix2en6l" path="res://assets/icon.svg" id="2_tlf67"]
+
+[node name="Icono" type="Button" unique_id=1751381297 groups=["archivo"]]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_type_variation = &"FlatButton"
+script = ExtResource("1_0w0qf")
+
+[node name="caja" type="ColorRect" parent="." unique_id=1011495547]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.14117648, 0.14117648, 0.14117648, 0.5882353)
+
+[node name="icono" type="TextureRect" parent="." unique_id=1852487687]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("2_tlf67")
+expand_mode = 1
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

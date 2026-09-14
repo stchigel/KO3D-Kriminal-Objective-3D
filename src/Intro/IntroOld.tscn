@@ -1,0 +1,122 @@
+[gd_scene format=3 uid="uid://csyqb0wdw8ewi"]
+
+[ext_resource type="Script" uid="uid://8fhxicdrlphq" path="res://src/Intro/intro.gd" id="1_jod2y"]
+[ext_resource type="Texture2D" uid="uid://d2tnrh7xrrftl" path="res://assets/K.O..svg" id="2_m6wub"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4vfs6"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.84313726)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="Intro" type="Control" unique_id=1581055040]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jod2y")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=863699788]
+layout_mode = 0
+offset_right = 1162.0
+offset_bottom = 662.0
+color = Color(0.051970966, 0.05197096, 0.05197095, 1)
+
+[node name="Mail" type="Panel" parent="." unique_id=1393977526]
+layout_mode = 0
+offset_left = 380.0
+offset_top = 78.0
+offset_right = 1084.0
+offset_bottom = 526.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4vfs6")
+
+[node name="Panel" type="Panel" parent="Mail" unique_id=2023464825]
+layout_mode = 0
+offset_right = 704.0
+offset_bottom = 32.0
+
+[node name="Label" type="Label" parent="Mail" unique_id=1059465538]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 320.0
+offset_bottom = 32.0
+text = "Gmail"
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Mail" unique_id=1891417420]
+layout_mode = 0
+offset_left = 672.0
+offset_right = 704.0
+offset_bottom = 32.0
+text = "X"
+
+[node name="MailData" type="Panel" parent="Mail" unique_id=1793133585]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 704.0
+offset_bottom = 448.0
+
+[node name="Volver" type="Button" parent="Mail/MailData" unique_id=1469383163]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+text = "<"
+
+[node name="Asunto" type="Label" parent="Mail/MailData" unique_id=879500865]
+layout_mode = 0
+offset_left = 32.0
+offset_right = 704.0
+offset_bottom = 32.0
+text = "ASUNTO"
+vertical_alignment = 1
+
+[node name="Remitente" type="Label" parent="Mail/MailData" unique_id=2049468720]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 24.0
+offset_right = 128.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 10
+text = "Remitente"
+vertical_alignment = 1
+
+[node name="Cuerpo" type="RichTextLabel" parent="Mail/MailData" unique_id=541549091]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 48.0
+offset_right = 688.0
+offset_bottom = 408.0
+theme_override_font_sizes/normal_font_size = 14
+text = "Hola, agente, te tengo un nuevo caso
+tuntungtung sahur fue encontrado sin vida esta mañana en su departamento de puerto madero
+al lado encontramos fragmentos de una botella de whisky y una zapatilla azul"
+
+[node name="K_o_" type="TextureRect" parent="." unique_id=239437778]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 23.0
+offset_right = 186.0
+offset_bottom = 228.0
+texture = ExtResource("2_m6wub")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="." unique_id=1608764180]
+layout_mode = 0
+offset_left = 403.0
+offset_top = 535.0
+offset_right = 674.0
+offset_bottom = 641.0
+text = "Entrar"
+
+[connection signal="gui_input" from="Mail/Panel" to="Mail" method="_on_panel_gui_input"]
+[connection signal="pressed" from="Mail/Button" to="Mail" method="_on_button_pressed"]
+[connection signal="pressed" from="Mail/MailData/Volver" to="Mail" method="_on_volver_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="Chat" format=3 uid="uid://bx1lucia00001"]
+
+[ext_resource type="Script" uid="uid://gdiumfglcp6n" path="res://mensaje.gd" id="2_7j066"]
+[ext_resource type="Script" uid="uid://by8r7fs8syfyj" path="res://chat.gd" id="3_tl1c6"]
+
+[sub_resource type="Resource" id="Resource_q2t0e"]
+metadata/__load_path__ = "res://assets/lucia.jpg"
+
+[sub_resource type="Resource" id="Resource_lu001"]
+script = ExtResource("2_7j066")
+text = "Papá acordate que el cumple de Tomás es el 20"
+time = "01/11 10:23"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_lu002"]
+script = ExtResource("2_7j066")
+text = "Anotado. ¿Van a hacer algo o festejan tranqui?"
+time = "01/11 10:45"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_lu003"]
+script = ExtResource("2_7j066")
+text = "Tranqui en casa de mamá. Si querés venir avisá antes"
+time = "01/11 10:46"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_lu004"]
+script = ExtResource("2_7j066")
+text = "Veo cómo estoy con el trabajo. Últimamente no paro"
+time = "01/11 11:02"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_lu005"]
+script = ExtResource("2_7j066")
+text = "Siempre lo mismo jaja. Bueno, avisá"
+time = "01/11 11:05"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_lu006"]
+script = ExtResource("2_7j066")
+text = "Prometido. Mando algo para el chico igual 😄"
+time = "01/11 11:07"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[resource]
+script = ExtResource("3_tl1c6")
+nombre = "Lucía"
+avatar = SubResource("Resource_q2t0e")
+mensajes = Array[ExtResource("2_7j066")]([SubResource("Resource_lu001"), SubResource("Resource_lu002"), SubResource("Resource_lu003"), SubResource("Resource_lu004"), SubResource("Resource_lu005"), SubResource("Resource_lu006")])
+mensajes_enviables = Array[String](["Lucía, soy la agente a cargo del caso de su padre. ¿Puede responderme unas preguntas?", "¿Notó algo raro en él en las últimas semanas?", "¿Su padre le mencionó a alguien llamado Lorenzo Machi?"])
+respuestas = Array[String](["Sí, claro. Lo que sea para ayudar.", "Andaba muy estresado. Me decía que tenía 'un tema de trabajo serio', pero no quiso darme detalles. Lo noté asustado la última vez que hablamos.", "No, ese nombre no me suena. Papá no hablaba mucho de sus clientes."])
+metadata/_custom_type_script = "uid://by8r7fs8syfyj"

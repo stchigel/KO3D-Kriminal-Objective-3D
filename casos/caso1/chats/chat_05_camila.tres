@@ -1,0 +1,66 @@
+[gd_resource type="Resource" script_class="Chat" format=3 uid="uid://bs5u5ar733vdx"]
+
+[ext_resource type="Texture2D" uid="uid://ci0qreqvmvvlb" path="res://casos/caso1/chats/ftos-perfil/camila.png" id="1_kt4v4"]
+[ext_resource type="Script" uid="uid://gdiumfglcp6n" path="res://mensaje.gd" id="2_7j066"]
+[ext_resource type="Script" uid="uid://by8r7fs8syfyj" path="res://chat.gd" id="3_tl1c6"]
+
+[sub_resource type="Resource" id="Resource_2naej"]
+script = ExtResource("2_7j066")
+text = "Hola amor, ¿las fotos del evento del jueves ya las procesaste?"
+time = "17/10 18:20"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_p0ocz"]
+script = ExtResource("2_7j066")
+text = "Sí, casi listas. Mañana te mando."
+time = "17/10 18:25"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_x0uql"]
+script = ExtResource("2_7j066")
+text = "Perfecto. Oye, ¿también sacaste fotos de la zona de cajas?"
+time = "17/10 18:27"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_0zzow"]
+script = ExtResource("2_7j066")
+text = "Sí, ¿por qué?"
+time = "17/10 18:30"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_a1932"]
+script = ExtResource("2_7j066")
+text = "Por nada, curiosidad. ¿Las tenés todas en la cámara todavía?"
+time = "17/10 18:33"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_72d19"]
+script = ExtResource("2_7j066")
+text = "Algunas sí, otras ya las pasé a la compu. ¿Por qué me preguntás eso?"
+time = "17/10 18:36"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_ac6a5"]
+script = ExtResource("2_7j066")
+text = "Nada amor, tranquilo. ¿Nos vemos el viernes?"
+time = "17/10 18:40"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_6e85a"]
+script = ExtResource("2_7j066")
+text = "Sí, pasá por casa."
+time = "17/10 18:42"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[resource]
+script = ExtResource("3_tl1c6")
+nombre = "Camila"
+avatar = ExtResource("1_kt4v4")
+mensajes = Array[ExtResource("2_7j066")]([SubResource("Resource_2naej"), SubResource("Resource_p0ocz"), SubResource("Resource_x0uql"), SubResource("Resource_0zzow"), SubResource("Resource_a1932"), SubResource("Resource_72d19"), SubResource("Resource_ac6a5"), SubResource("Resource_6e85a")])
+mensajes_enviables = ["Soy investigadora a cargo del caso de Lucas. Necesito hacerle algunas preguntas.", "¿Estuvo con Lucas el viernes a la noche?", "¿De qué eran las fotos que Lucas quería mostrarle en persona?", "¿Dónde está la cámara de Lucas?"]
+respuestas = ["...¿Qué le pasó a Lucas?", "Sí, fui a su departamento. Estuvimos un rato y me fui. Estaba bien cuando lo dejé.", "No sé de qué habla. Solo me mandó un link con fotos del evento, nada raro.", "No sé. Yo no toqué ninguna cámara."]
+metadata/_custom_type_script = "uid://by8r7fs8syfyj"

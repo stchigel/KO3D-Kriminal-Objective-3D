@@ -1,0 +1,80 @@
+[gd_resource type="Resource" script_class="Chat" format=3 uid="uid://bx1machi00005"]
+
+[ext_resource type="Script" uid="uid://gdiumfglcp6n" path="res://mensaje.gd" id="2_7j066"]
+[ext_resource type="Script" uid="uid://by8r7fs8syfyj" path="res://chat.gd" id="3_tl1c6"]
+
+[sub_resource type="Resource" id="Resource_nwg20"]
+metadata/__load_path__ = "res://assets/lorenzo_machi.jpg"
+
+[sub_resource type="Resource" id="Resource_lm001"]
+script = ExtResource("2_7j066")
+text = "Vidal, el certificado del Quinquela debe estar listo para el viernes"
+time = "01/11 11:30"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_lm002"]
+script = ExtResource("2_7j066")
+text = "Necesito ver la obra en persona una vez más. Es mi firma la que va abajo"
+time = "01/11 12:00"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_lm003"]
+script = ExtResource("2_7j066")
+text = "Tu firma ya fue en 2022 y 2023 sin tanto drama"
+time = "01/11 12:02"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_lm004"]
+script = ExtResource("2_7j066")
+text = "En 2022 y 2023 no tenía las dudas que tengo ahora"
+time = "01/11 12:10"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_lm005"]
+script = ExtResource("2_7j066")
+text = "Vos firmás, yo te transfiero lo acordado, todos contentos"
+time = "05/11 16:20"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_lm006"]
+script = ExtResource("2_7j066")
+text = "No es una cuestión de plata"
+time = "05/11 16:35"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_lm007"]
+script = ExtResource("2_7j066")
+text = "Todo es una cuestión de plata. Pensalo bien. Tenés mucho que perder si esto se complica"
+time = "05/11 16:36"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_lm008"]
+script = ExtResource("2_7j066")
+text = "Lorenzo, mañana hablo con mi abogado. Necesito dejar esto documentado"
+time = "05/11 16:40"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_lm009"]
+script = ExtResource("2_7j066")
+text = "Marcelo no hagas pavadas"
+time = "05/11 16:41"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_lm010"]
+script = ExtResource("2_7j066")
+text = "Marcelo. Contestame"
+time = "05/11 16:55"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[resource]
+script = ExtResource("3_tl1c6")
+nombre = "Lorenzo Machi"
+avatar = SubResource("Resource_nwg20")
+mensajes = Array[ExtResource("2_7j066")]([SubResource("Resource_lm001"), SubResource("Resource_lm002"), SubResource("Resource_lm003"), SubResource("Resource_lm004"), SubResource("Resource_lm005"), SubResource("Resource_lm006"), SubResource("Resource_lm007"), SubResource("Resource_lm008"), SubResource("Resource_lm009"), SubResource("Resource_lm010")])
+mensajes_enviables = Array[String](["Machi, soy la agente a cargo de la muerte de Marcelo Vidal. Necesito su declaración.", "¿Cuándo fue el último contacto que tuvo con Vidal?", "¿Qué significa 'no voy a poder controlar lo que pase' en sus mensajes?", "¿Dónde estaba la noche del martes 12 de noviembre?"])
+respuestas = Array[String](["No tengo nada que decirle. Hable con mi abogado.", "No recuerdo exactamente. Tuvimos intercambios profesionales, como con cualquier tasador.", "Fue una expresión de frustración. No tiene ninguna connotación que usted pueda usar.", "En casa. Cené temprano y me fui a dormir. No tengo que justificar nada más."])
+metadata/_custom_type_script = "uid://by8r7fs8syfyj"

@@ -1,0 +1,234 @@
+[gd_scene format=3 uid="uid://dxsrgyhyuujw1"]
+
+[ext_resource type="Script" uid="uid://botiew3pa4beb" path="res://src/Desktop/desktop.gd" id="1_p6cdx"]
+[ext_resource type="PackedScene" uid="uid://c6loc4d14ok78" path="res://src/Archivo/archivo.tscn" id="2_52vt5"]
+[ext_resource type="Texture2D" uid="uid://x75t1fd57l1c" path="res://assets/kali-linux-wallpaper-v7.png" id="2_cbipd"]
+[ext_resource type="Texture2D" uid="uid://dfroqy6y156fx" path="res://assets/iconos/folder-blue-home.svg" id="3_xgjrc"]
+[ext_resource type="Texture2D" uid="uid://j3eejcb1nswt" path="res://assets/iconos/user-trash-full.svg" id="4_wemud"]
+[ext_resource type="PackedScene" uid="uid://cbmwtnvtuplp2" path="res://src/Texto/texto.tscn" id="5_jq181"]
+[ext_resource type="Texture2D" uid="uid://kp85ey737l1i" path="res://assets/iconos/folder-blue.svg" id="6_c8d7w"]
+[ext_resource type="PackedScene" uid="uid://b1if5ttacl8hp" path="res://src/Carpeta/carpeta.tscn" id="6_jq181"]
+[ext_resource type="PackedScene" uid="uid://c6nqi43hdw1yj" path="res://src/Chat/chat.tscn" id="7_ag723"]
+[ext_resource type="Texture2D" uid="uid://d1vp2wcuoctwv" path="res://assets/iconos/text.svg" id="8_40vof"]
+[ext_resource type="Script" uid="uid://by8r7fs8syfyj" path="res://chat.gd" id="8_cbipd"]
+[ext_resource type="Resource" uid="uid://cocb0gxevofpn" path="res://chatTest.tres" id="9_3gr61"]
+[ext_resource type="PackedScene" uid="uid://gvdkmy35w8vf" path="res://src/Icono/icono.tscn" id="11_3gr61"]
+[ext_resource type="PackedScene" uid="uid://dyinmj2mlclit" path="res://src/Mail/mail.tscn" id="13_w8gr4"]
+[ext_resource type="Script" uid="uid://b341mvssqe4vw" path="res://mail.gd" id="14_40vof"]
+[ext_resource type="PackedScene" uid="uid://dir6afeorbba6" path="res://src/Mail/contactoMail.tscn" id="15_kaepd"]
+[ext_resource type="Resource" uid="uid://cvnqnhriwih4p" path="res://casos/caso1/mails/mail_01_revista_urban.tres" id="15_ljj6e"]
+[ext_resource type="Resource" uid="uid://e7457pno2q8x" path="res://casos/caso1/mails/mail_02_sofi_portfolio.tres" id="16_fktsi"]
+[ext_resource type="Resource" uid="uid://crfiahwo26b61" path="res://casos/caso1/mails/mail_03_expensas.tres" id="17_vkhbb"]
+[ext_resource type="Resource" uid="uid://qhmgfsj52ytl" path="res://casos/caso1/mails/mail_04_lucas_a_camila.tres" id="18_hafc4"]
+[ext_resource type="Texture2D" uid="uid://c46xmycnus7oy" path="res://assets/iconos/system-shutdown.svg" id="19_8knyr"]
+[ext_resource type="Resource" uid="uid://bmxaxvw5xbd7h" path="res://casos/caso1/mails/mail_05_camila_a_lucas.tres" id="19_le2re"]
+[ext_resource type="Resource" uid="uid://c6qcxgd3lqn66" path="res://casos/caso1/mails/mail_06_lucas_a_tomas.tres" id="20_c71qu"]
+[ext_resource type="Texture2D" uid="uid://dd1fkqvw3jhuh" path="res://assets/iconos/whatsapp.png" id="23_vkhbb"]
+[ext_resource type="Texture2D" uid="uid://cwm5n30whta10" path="res://assets/iconos/gmail.png" id="24_vkhbb"]
+[ext_resource type="PackedScene" uid="uid://b20v5hqb4w2fp" path="res://src/Imagen/imagen.tscn" id="26_vkhbb"]
+[ext_resource type="Texture2D" uid="uid://b0eysjn7s5kwv" path="res://assets/Kali-Linux.jpg" id="27_hafc4"]
+
+[node name="Desktop" type="Control" unique_id=1349076015 node_paths=PackedStringArray("ventanas")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p6cdx")
+ventanas = [null, NodePath("Texto"), NodePath("Carpeta"), NodePath("Texto2"), NodePath("Chat"), NodePath("Mail"), NodePath("Imagen")]
+
+[node name="KaliLinux" type="TextureRect" parent="." unique_id=619088530]
+show_behind_parent = true
+layout_mode = 0
+offset_top = -36.0
+offset_right = 784.0756
+offset_bottom = 454.04727
+scale = Vector2(1.4692461, 1.469246)
+mouse_filter = 2
+texture = ExtResource("2_cbipd")
+expand_mode = 1
+
+[node name="Archivo" parent="." unique_id=1751381297 instance=ExtResource("2_52vt5")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 40.0
+offset_right = 96.0
+offset_bottom = 120.0
+nom = "Trash"
+icono = ExtResource("4_wemud")
+
+[node name="HomeIco" parent="." unique_id=1718851107 node_paths=PackedStringArray("abrir") instance=ExtResource("2_52vt5")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 128.0
+offset_right = 96.0
+offset_bottom = 208.0
+nom = "Home"
+icono = ExtResource("3_xgjrc")
+abrir = NodePath("../Carpeta")
+
+[node name="Archivo3" parent="." unique_id=1981723697 instance=ExtResource("2_52vt5")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 216.0
+offset_right = 96.0
+offset_bottom = 296.0
+nom = "Nada"
+icono = ExtResource("6_c8d7w")
+
+[node name="Archivo4" parent="." unique_id=831364882 node_paths=PackedStringArray("abrir") instance=ExtResource("2_52vt5")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 304.0
+offset_right = 96.0
+offset_bottom = 384.0
+nom = "Imagenwow"
+icono = ExtResource("6_c8d7w")
+abrir = NodePath("../Imagen")
+
+[node name="Oculto" parent="." unique_id=828514605 node_paths=PackedStringArray("abrir") instance=ExtResource("2_52vt5")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 392.0
+offset_right = 96.0
+offset_bottom = 472.0
+nom = "\"tarea\""
+icono = ExtResource("8_40vof")
+oculto = true
+abrir = NodePath("../Texto")
+
+[node name="Texto" parent="." unique_id=1796508400 instance=ExtResource("5_jq181")]
+visible = false
+layout_mode = 0
+offset_left = 640.0
+offset_top = 24.0
+offset_right = 960.0
+offset_bottom = 472.0
+nombre = "TEST.txt"
+
+[node name="Carpeta" parent="." unique_id=294069202 instance=ExtResource("6_jq181")]
+visible = false
+layout_mode = 0
+offset_left = 128.0
+offset_top = 104.0
+offset_right = 960.0
+offset_bottom = 552.0
+
+[node name="Archivo2" parent="Carpeta" unique_id=2028014369 node_paths=PackedStringArray("abrir") instance=ExtResource("2_52vt5")]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 176.0
+offset_right = 416.0
+offset_bottom = 256.0
+icono = ExtResource("8_40vof")
+abrir = NodePath("../../Texto2")
+
+[node name="Texto2" parent="." unique_id=1570221707 instance=ExtResource("5_jq181")]
+visible = false
+layout_mode = 0
+offset_left = 808.0
+offset_top = 168.0
+offset_right = 1128.0
+offset_bottom = 616.0
+nombre = "archivoencarpeta"
+
+[node name="Chat" parent="." unique_id=1345496942 instance=ExtResource("7_ag723")]
+visible = false
+layout_mode = 0
+offset_left = 192.0
+offset_top = 56.0
+offset_right = 1024.0
+offset_bottom = 504.0
+chats = Array[ExtResource("8_cbipd")]([ExtResource("9_3gr61")])
+
+[node name="Mail" parent="." unique_id=917862470 instance=ExtResource("13_w8gr4")]
+visible = false
+layout_mode = 0
+offset_left = 224.0
+offset_top = 80.0
+offset_right = 928.0
+offset_bottom = 528.0
+mails = Array[ExtResource("14_40vof")]([ExtResource("15_ljj6e"), ExtResource("16_fktsi"), ExtResource("17_vkhbb"), ExtResource("18_hafc4"), ExtResource("19_le2re"), ExtResource("20_c71qu")])
+contacto_scene = ExtResource("15_kaepd")
+
+[node name="Taskbar" type="ColorRect" parent="." unique_id=819574114]
+layout_mode = 0
+offset_top = 608.0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="Icono" parent="Taskbar" unique_id=1569392046 node_paths=PackedStringArray("abrir") instance=ExtResource("11_3gr61")]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 48.0
+icono = ExtResource("23_vkhbb")
+abrir = NodePath("../../Chat")
+
+[node name="Icono2" parent="Taskbar" unique_id=212309803 node_paths=PackedStringArray("abrir") instance=ExtResource("11_3gr61")]
+layout_mode = 0
+offset_left = 56.0
+offset_right = 96.0
+icono = ExtResource("24_vkhbb")
+abrir = NodePath("../../Mail")
+
+[node name="Linea" type="ColorRect" parent="Taskbar" unique_id=1724619204]
+layout_mode = 0
+offset_top = -1.0
+offset_right = 1152.0
+
+[node name="Topbar" type="ColorRect" parent="." unique_id=612272436]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 24.0
+color = Color(0, 0, 0, 1)
+
+[node name="Linea" type="ColorRect" parent="Topbar" unique_id=1230854663]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 1152.0
+offset_bottom = 25.0
+
+[node name="Label" type="Label" parent="Topbar" unique_id=579693379]
+layout_mode = 0
+offset_left = 1080.0
+offset_right = 1144.0
+offset_bottom = 24.0
+text = "12:00"
+
+[node name="Apagar" type="Button" parent="Topbar" unique_id=983567400]
+layout_mode = 0
+offset_left = 1128.0
+offset_right = 1152.0
+offset_bottom = 24.0
+icon = ExtResource("19_8knyr")
+expand_icon = true
+
+[node name="Panel" type="Panel" parent="Topbar" unique_id=1573607627]
+visible = false
+layout_mode = 0
+offset_left = 992.0
+offset_top = 24.0
+offset_right = 1152.0
+offset_bottom = 80.0
+
+[node name="Desconectar" type="Button" parent="Topbar/Panel" unique_id=1057732773]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 160.0
+offset_bottom = 55.0
+text = "Desconectar"
+alignment = 0
+
+[node name="Imagen" parent="." unique_id=929851698 instance=ExtResource("26_vkhbb")]
+visible = false
+layout_mode = 0
+offset_left = 288.0
+offset_top = 64.0
+offset_right = 736.0
+offset_bottom = 512.0
+imagen = ExtResource("27_hafc4")
+
+[connection signal="pressed" from="Topbar/Apagar" to="." method="_on_apagar_pressed"]
+[connection signal="pressed" from="Topbar/Panel/Desconectar" to="." method="_on_desconectar_pressed"]

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Mail" format=3 uid="uid://qhmgfsj52ytl"]
+
+[ext_resource type="Script" uid="uid://b341mvssqe4vw" path="res://mail.gd" id="1_0co7v"]
+
+[resource]
+script = ExtResource("1_0co7v")
+nombre = "lucasmendez.foto@gmail.com"
+asunto = "Las fotos del jueves"
+mensaje = "Cami,\nTe mando el link con las fotos del evento. Son todas las que pediste.\nIgual te quería preguntar algo en persona. Hay unas fotos de la zona de cajas donde se ve algo raro. No sé si fue sin querer o qué, pero prefiero que lo veamos juntos antes de que yo haga nada.\nNo te preocupes, seguro tiene explicación.\nLucas"
+metadata/_custom_type_script = "uid://b341mvssqe4vw"

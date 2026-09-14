@@ -1,0 +1,531 @@
+[gd_scene format=3 uid="uid://0i3xlwtgpqxp"]
+
+[sub_resource type="GDScript" id="GDScript_chat"]
+script/source = "extends Control
+
+const SENT_COLOR = Color(0.082, 0.290, 0.169, 1.0)
+const RECV_COLOR = Color(0.122, 0.161, 0.188, 1.0)
+const TEXT_COLOR = Color(0.878, 0.906, 0.922, 1.0)
+const TIME_COLOR = Color(0.500, 0.580, 0.620, 1.0)
+const GREEN     = Color(0.043, 0.675, 0.424, 1.0)
+
+var contacts := [
+	{\"name\": \"Sofía Ramírez\", \"preview\": \"Perfecto, nos vemos ahí 👍\", \"time\": \"10:42\", \"unread\": 0, \"color\": Color(0.20,0.40,0.49,1)},
+	{\"name\": \"Martín López\", \"preview\": \"¿Viste el partido anoche?\", \"time\": \"09:15\", \"unread\": 3, \"color\": Color(0.55,0.27,0.07,1)},
+	{\"name\": \"Equipo Dev 🚀\", \"preview\": \"Nicolás: PR aprobado ✅\", \"time\": \"Ayer\", \"unread\": 0, \"color\": Color(0.40,0.20,0.60,1)},
+	{\"name\": \"Mamá ❤️\", \"preview\": \"Cuídate mucho!\", \"time\": \"Ayer\", \"unread\": 0, \"color\": Color(0.75,0.22,0.17,1)},
+	{\"name\": \"Lucas Fernández\", \"preview\": \"jajaja che 😂\", \"time\": \"Mar\", \"unread\": 0, \"color\": Color(0.13,0.55,0.13,1)},
+	{\"name\": \"Florencia Díaz\", \"preview\": \"Mandame el link cuando puedas\", \"time\": \"Lun\", \"unread\": 0, \"color\": Color(0.60,0.20,0.40,1)},
+]
+
+var messages := [
+	{\"text\": \"Hola! ¿Cómo estás?\", \"sent\": false, \"time\": \"10:30\"},
+	{\"text\": \"Todo bien, gracias! Y vos?\", \"sent\": true, \"time\": \"10:31\"},
+	{\"text\": \"Re bien, recién salí del trabajo. ¿Quedamos para el finde?\", \"sent\": false, \"time\": \"10:33\"},
+	{\"text\": \"Dale, me parece perfecto. ¿El sábado a la tarde?\", \"sent\": true, \"time\": \"10:35\"},
+	{\"text\": \"Sí! A las 17:00 en el centro. Te mando la ubicación ahora.\", \"sent\": false, \"time\": \"10:37\"},
+	{\"text\": \"Perfecto, ahí estaré 🎉\", \"sent\": true, \"time\": \"10:40\"},
+	{\"text\": \"Perfecto, nos vemos ahí 👍\", \"sent\": false, \"time\": \"10:42\"},
+]
+
+var active_contact := 0
+var message_input: LineEdit
+var scroll_container: ScrollContainer
+var messages_container: VBoxContainer
+
+func _ready() -> void:
+	_build_ui()
+	_populate_messages()
+
+func _build_ui() -> void:
+	# Root
+	var root = self
+	root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+
+	# Main HBox
+	var main_hbox := HBoxContainer.new()
+	main_hbox.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	root.add_child(main_hbox)
+
+	# ── LEFT SIDEBAR ──────────────────────────────────────
+	var sidebar := PanelContainer.new()
+	sidebar.custom_minimum_size = Vector2(320, 0)
+	var sb_style := StyleBoxFlat.new()
+	sb_style.bg_color = Color(0.082, 0.110, 0.129, 1.0)
+	sidebar.add_theme_stylebox_override(\"panel\", sb_style)
+	main_hbox.add_child(sidebar)
+
+	var sidebar_vbox := VBoxContainer.new()
+	sidebar_vbox.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	sidebar.add_child(sidebar_vbox)
+
+	# Sidebar header
+	var s_header := PanelContainer.new()
+	s_header.custom_minimum_size = Vector2(0, 60)
+	var s_head_style := StyleBoxFlat.new()
+	s_head_style.bg_color = Color(0.100, 0.137, 0.161, 1.0)
+	s_header.add_theme_stylebox_override(\"panel\", s_head_style)
+	sidebar_vbox.add_child(s_header)
+
+	var s_head_hbox := HBoxContainer.new()
+	s_head_hbox.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	s_head_hbox.add_theme_constant_override(\"separation\", 12)
+	s_header.add_child(s_head_hbox)
+	var s_head_margin := MarginContainer.new()
+	s_head_margin.add_theme_constant_override(\"margin_left\", 16)
+	s_head_margin.add_theme_constant_override(\"margin_right\", 16)
+	s_head_margin.add_theme_constant_override(\"margin_top\", 10)
+	s_head_margin.add_theme_constant_override(\"margin_bottom\", 10)
+	s_head_margin.set_h_size_flags(Control.SIZE_EXPAND_FILL)
+	s_header.add_child(s_head_margin)
+
+	var my_avatar := _make_avatar(\"N\", Color(0.043, 0.675, 0.424, 1.0), 40)
+	s_head_margin.add_child(my_avatar)
+
+	# Spacer
+	var s_spacer := Control.new()
+	s_spacer.set_h_size_flags(Control.SIZE_EXPAND_FILL)
+	s_head_margin.add_child(s_spacer)
+
+	# Icons area (placeholder dots)
+	var icons_hbox := HBoxContainer.new()
+	icons_hbox.add_theme_constant_override(\"separation\", 4)
+	s_head_margin.add_child(icons_hbox)
+	for icon_label in [\"⊕\", \"💬\", \"⋮\"]:
+		var btn := _make_icon_button(icon_label)
+		icons_hbox.add_child(btn)
+
+	# Search bar
+	var search_margin := MarginContainer.new()
+	search_margin.add_theme_constant_override(\"margin_left\", 12)
+	search_margin.add_theme_constant_override(\"margin_right\", 12)
+	search_margin.add_theme_constant_override(\"margin_top\", 8)
+	search_margin.add_theme_constant_override(\"margin_bottom\", 8)
+	sidebar_vbox.add_child(search_margin)
+
+	var search_hbox := HBoxContainer.new()
+	var search_style := StyleBoxFlat.new()
+	search_style.bg_color = Color(0.055, 0.075, 0.090, 1.0)
+	search_style.corner_radius_top_left = 8
+	search_style.corner_radius_top_right = 8
+	search_style.corner_radius_bottom_left = 8
+	search_style.corner_radius_bottom_right = 8
+	search_style.content_margin_left = 12
+	search_style.content_margin_right = 12
+	search_style.content_margin_top = 6
+	search_style.content_margin_bottom = 6
+	var search_panel := PanelContainer.new()
+	search_panel.add_theme_stylebox_override(\"panel\", search_style)
+	search_panel.set_h_size_flags(Control.SIZE_EXPAND_FILL)
+	search_margin.add_child(search_panel)
+
+	var search_inner := HBoxContainer.new()
+	search_inner.add_theme_constant_override(\"separation\", 8)
+	search_panel.add_child(search_inner)
+	var search_icon := Label.new()
+	search_icon.text = \"🔍\"
+	search_icon.add_theme_color_override(\"font_color\", TIME_COLOR)
+	search_inner.add_child(search_icon)
+	var search_label := Label.new()
+	search_label.text = \"Buscar o empezar un chat\"
+	search_label.add_theme_color_override(\"font_color\", TIME_COLOR)
+	search_label.add_theme_font_size_override(\"font_size\", 13)
+	search_inner.add_child(search_label)
+
+	# Contact list (ScrollContainer)
+	var contact_scroll := ScrollContainer.new()
+	contact_scroll.set_v_size_flags(Control.SIZE_EXPAND_FILL)
+	contact_scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
+	contact_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	sidebar_vbox.add_child(contact_scroll)
+
+	var contact_list := VBoxContainer.new()
+	contact_list.set_h_size_flags(Control.SIZE_EXPAND_FILL)
+	contact_list.add_theme_constant_override(\"separation\", 0)
+	contact_scroll.add_child(contact_list)
+
+	for i in contacts.size():
+		var c = contacts[i]
+		contact_list.add_child(_make_contact_row(c, i == active_contact))
+
+	# ── MAIN CHAT AREA ────────────────────────────────────
+	var chat_area := VBoxContainer.new()
+	chat_area.set_h_size_flags(Control.SIZE_EXPAND_FILL)
+	chat_area.add_theme_constant_override(\"separation\", 0)
+	main_hbox.add_child(chat_area)
+
+	# Chat header
+	var chat_header := PanelContainer.new()
+	chat_header.custom_minimum_size = Vector2(0, 60)
+	var ch_style := StyleBoxFlat.new()
+	ch_style.bg_color = Color(0.100, 0.137, 0.161, 1.0)
+	chat_header.add_theme_stylebox_override(\"panel\", ch_style)
+	chat_area.add_child(chat_header)
+
+	var ch_margin := MarginContainer.new()
+	ch_margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	ch_margin.add_theme_constant_override(\"margin_left\", 16)
+	ch_margin.add_theme_constant_override(\"margin_right\", 16)
+	ch_margin.add_theme_constant_override(\"margin_top\", 10)
+	ch_margin.add_theme_constant_override(\"margin_bottom\", 10)
+	chat_header.add_child(ch_margin)
+
+	var ch_hbox := HBoxContainer.new()
+	ch_hbox.add_theme_constant_override(\"separation\", 12)
+	ch_margin.add_child(ch_hbox)
+
+	var ch_avatar := _make_avatar(\"S\", contacts[active_contact].color, 40)
+	ch_hbox.add_child(ch_avatar)
+
+	var ch_info := VBoxContainer.new()
+	ch_info.add_theme_constant_override(\"separation\", 2)
+	ch_hbox.add_child(ch_info)
+	var ch_name := Label.new()
+	ch_name.text = contacts[active_contact].name
+	ch_name.add_theme_color_override(\"font_color\", TEXT_COLOR)
+	ch_name.add_theme_font_size_override(\"font_size\", 15)
+	ch_info.add_child(ch_name)
+	var ch_status := Label.new()
+	ch_status.text = \"en línea\"
+	ch_status.add_theme_color_override(\"font_color\", GREEN)
+	ch_status.add_theme_font_size_override(\"font_size\", 12)
+	ch_info.add_child(ch_status)
+
+	var ch_spacer := Control.new()
+	ch_spacer.set_h_size_flags(Control.SIZE_EXPAND_FILL)
+	ch_hbox.add_child(ch_spacer)
+
+	for lbl_text in [\"🔍\", \"⋮\"]:
+		var btn := _make_icon_button(lbl_text)
+		ch_hbox.add_child(btn)
+
+	# Chat background + messages
+	var chat_bg := PanelContainer.new()
+	chat_bg.set_v_size_flags(Control.SIZE_EXPAND_FILL)
+	var bg_style := StyleBoxFlat.new()
+	bg_style.bg_color = Color(0.043, 0.055, 0.067, 1.0)
+	chat_bg.add_theme_stylebox_override(\"panel\", bg_style)
+	chat_area.add_child(chat_bg)
+
+	scroll_container = ScrollContainer.new()
+	scroll_container.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	scroll_container.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
+	scroll_container.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	chat_bg.add_child(scroll_container)
+
+	var msg_margin := MarginContainer.new()
+	msg_margin.add_theme_constant_override(\"margin_left\", 60)
+	msg_margin.add_theme_constant_override(\"margin_right\", 60)
+	msg_margin.add_theme_constant_override(\"margin_top\", 12)
+	msg_margin.add_theme_constant_override(\"margin_bottom\", 12)
+	msg_margin.set_h_size_flags(Control.SIZE_EXPAND_FILL)
+	scroll_container.add_child(msg_margin)
+
+	messages_container = VBoxContainer.new()
+	messages_container.add_theme_constant_override(\"separation\", 6)
+	messages_container.set_h_size_flags(Control.SIZE_EXPAND_FILL)
+	msg_margin.add_child(messages_container)
+
+	# Input bar
+	var input_container := PanelContainer.new()
+	var inp_style := StyleBoxFlat.new()
+	inp_style.bg_color = Color(0.082, 0.110, 0.129, 1.0)
+	inp_style.content_margin_left = 16
+	inp_style.content_margin_right = 16
+	inp_style.content_margin_top = 10
+	inp_style.content_margin_bottom = 10
+	input_container.add_theme_stylebox_override(\"panel\", inp_style)
+	chat_area.add_child(input_container)
+
+	var input_hbox := HBoxContainer.new()
+	input_hbox.add_theme_constant_override(\"separation\", 10)
+	input_container.add_child(input_hbox)
+
+	# Emoji + attach
+	for icon_txt in [\"😊\", \"📎\"]:
+		var btn := _make_icon_button(icon_txt)
+		input_hbox.add_child(btn)
+
+	# Text input pill
+	var input_pill_style := StyleBoxFlat.new()
+	input_pill_style.bg_color = Color(0.122, 0.161, 0.188, 1.0)
+	input_pill_style.corner_radius_top_left = 24
+	input_pill_style.corner_radius_top_right = 24
+	input_pill_style.corner_radius_bottom_left = 24
+	input_pill_style.corner_radius_bottom_right = 24
+	input_pill_style.content_margin_left = 16
+	input_pill_style.content_margin_right = 16
+	input_pill_style.content_margin_top = 6
+	input_pill_style.content_margin_bottom = 6
+	var input_pill := PanelContainer.new()
+	input_pill.add_theme_stylebox_override(\"panel\", input_pill_style)
+	input_pill.set_h_size_flags(Control.SIZE_EXPAND_FILL)
+	input_hbox.add_child(input_pill)
+
+	message_input = LineEdit.new()
+	message_input.placeholder_text = \"Escribe un mensaje\"
+	message_input.add_theme_color_override(\"font_color\", TEXT_COLOR)
+	message_input.add_theme_color_override(\"font_placeholder_color\", TIME_COLOR)
+	message_input.add_theme_color_override(\"caret_color\", GREEN)
+	message_input.add_theme_font_size_override(\"font_size\", 14)
+	# Remove default LineEdit background
+	var transparent_style := StyleBoxFlat.new()
+	transparent_style.bg_color = Color(0, 0, 0, 0)
+	transparent_style.border_width_left = 0
+	transparent_style.border_width_right = 0
+	transparent_style.border_width_top = 0
+	transparent_style.border_width_bottom = 0
+	message_input.add_theme_stylebox_override(\"normal\", transparent_style)
+	message_input.add_theme_stylebox_override(\"focus\", transparent_style)
+	message_input.add_theme_stylebox_override(\"read_only\", transparent_style)
+	message_input.set_h_size_flags(Control.SIZE_EXPAND_FILL)
+	message_input.connect(\"text_submitted\", _on_message_submitted)
+	input_pill.add_child(message_input)
+
+	# Send button
+	var send_btn := Button.new()
+	send_btn.text = \"➤\"
+	send_btn.custom_minimum_size = Vector2(44, 44)
+	var send_style := StyleBoxFlat.new()
+	send_style.bg_color = Color(0.043, 0.675, 0.424, 1.0)
+	send_style.corner_radius_top_left = 22
+	send_style.corner_radius_top_right = 22
+	send_style.corner_radius_bottom_left = 22
+	send_style.corner_radius_bottom_right = 22
+	send_btn.add_theme_stylebox_override(\"normal\", send_style)
+	var send_hover := send_style.duplicate()
+	send_hover.bg_color = Color(0.060, 0.780, 0.490, 1.0)
+	send_btn.add_theme_stylebox_override(\"hover\", send_hover)
+	send_btn.add_theme_stylebox_override(\"pressed\", send_style)
+	send_btn.add_theme_color_override(\"font_color\", Color.WHITE)
+	send_btn.add_theme_font_size_override(\"font_size\", 16)
+	send_btn.flat = false
+	send_btn.connect(\"pressed\", _on_send_pressed)
+	input_hbox.add_child(send_btn)
+
+func _make_avatar(initials: String, color: Color, size: int) -> Control:
+	var panel := PanelContainer.new()
+	panel.custom_minimum_size = Vector2(size, size)
+	var av_style := StyleBoxFlat.new()
+	av_style.bg_color = color
+	av_style.corner_radius_top_left = size / 2
+	av_style.corner_radius_top_right = size / 2
+	av_style.corner_radius_bottom_left = size / 2
+	av_style.corner_radius_bottom_right = size / 2
+	panel.add_theme_stylebox_override(\"panel\", av_style)
+	var lbl := Label.new()
+	lbl.text = initials
+	lbl.add_theme_color_override(\"font_color\", Color.WHITE)
+	lbl.add_theme_font_size_override(\"font_size\", size / 2 - 2)
+	lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	lbl.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	lbl.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	panel.add_child(lbl)
+	return panel
+
+func _make_icon_button(icon: String) -> Button:
+	var btn := Button.new()
+	btn.text = icon
+	btn.flat = true
+	btn.custom_minimum_size = Vector2(36, 36)
+	btn.add_theme_color_override(\"font_color\", TIME_COLOR)
+	btn.add_theme_font_size_override(\"font_size\", 18)
+	return btn
+
+func _make_contact_row(contact: Dictionary, active: bool) -> Control:
+	var row_style := StyleBoxFlat.new()
+	row_style.bg_color = Color(0.100, 0.137, 0.161, 1.0) if active else Color(0.082, 0.110, 0.129, 1.0)
+	var panel := PanelContainer.new()
+	panel.add_theme_stylebox_override(\"panel\", row_style)
+	panel.custom_minimum_size = Vector2(0, 72)
+
+	var margin := MarginContainer.new()
+	margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	margin.add_theme_constant_override(\"margin_left\", 16)
+	margin.add_theme_constant_override(\"margin_right\", 16)
+	margin.add_theme_constant_override(\"margin_top\", 10)
+	margin.add_theme_constant_override(\"margin_bottom\", 10)
+	panel.add_child(margin)
+
+	var hbox := HBoxContainer.new()
+	hbox.add_theme_constant_override(\"separation\", 12)
+	margin.add_child(hbox)
+
+	var initial = contact.name.substr(0, 1)
+	var avatar := _make_avatar(initial, contact.color, 48)
+	hbox.add_child(avatar)
+
+	var info_vbox := VBoxContainer.new()
+	info_vbox.set_h_size_flags(Control.SIZE_EXPAND_FILL)
+	info_vbox.add_theme_constant_override(\"separation\", 3)
+	hbox.add_child(info_vbox)
+
+	var top_hbox := HBoxContainer.new()
+	info_vbox.add_child(top_hbox)
+	var name_lbl := Label.new()
+	name_lbl.text = contact.name
+	name_lbl.add_theme_color_override(\"font_color\", TEXT_COLOR)
+	name_lbl.add_theme_font_size_override(\"font_size\", 14)
+	name_lbl.set_h_size_flags(Control.SIZE_EXPAND_FILL)
+	top_hbox.add_child(name_lbl)
+	var time_lbl := Label.new()
+	time_lbl.text = contact.time
+	time_lbl.add_theme_color_override(\"font_color\", TIME_COLOR)
+	time_lbl.add_theme_font_size_override(\"font_size\", 11)
+	top_hbox.add_child(time_lbl)
+
+	var bot_hbox := HBoxContainer.new()
+	bot_hbox.add_theme_constant_override(\"separation\", 4)
+	info_vbox.add_child(bot_hbox)
+	var prev_lbl := Label.new()
+	prev_lbl.text = contact.preview
+	prev_lbl.add_theme_color_override(\"font_color\", TIME_COLOR)
+	prev_lbl.add_theme_font_size_override(\"font_size\", 12)
+	prev_lbl.clip_text = true
+	prev_lbl.set_h_size_flags(Control.SIZE_EXPAND_FILL)
+	bot_hbox.add_child(prev_lbl)
+
+	if contact.unread > 0:
+		var badge_style := StyleBoxFlat.new()
+		badge_style.bg_color = Color(0.043, 0.675, 0.424, 1.0)
+		badge_style.corner_radius_top_left = 10
+		badge_style.corner_radius_top_right = 10
+		badge_style.corner_radius_bottom_left = 10
+		badge_style.corner_radius_bottom_right = 10
+		badge_style.content_margin_left = 6
+		badge_style.content_margin_right = 6
+		badge_style.content_margin_top = 2
+		badge_style.content_margin_bottom = 2
+		var badge := PanelContainer.new()
+		badge.add_theme_stylebox_override(\"panel\", badge_style)
+		var badge_lbl := Label.new()
+		badge_lbl.text = str(contact.unread)
+		badge_lbl.add_theme_color_override(\"font_color\", Color.WHITE)
+		badge_lbl.add_theme_font_size_override(\"font_size\", 11)
+		badge.add_child(badge_lbl)
+		bot_hbox.add_child(badge)
+
+	# Separator line
+	var sep := HSeparator.new()
+	sep.modulate = Color(1, 1, 1, 0.07)
+
+	var wrapper := VBoxContainer.new()
+	wrapper.add_theme_constant_override(\"separation\", 0)
+	wrapper.add_child(panel)
+	wrapper.add_child(sep)
+	return wrapper
+
+func _populate_messages() -> void:
+	for child in messages_container.get_children():
+		child.queue_free()
+
+	# Date separator
+	var date_label := Label.new()
+	date_label.text = \"HOY\"
+	date_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	date_label.add_theme_color_override(\"font_color\", TIME_COLOR)
+	date_label.add_theme_font_size_override(\"font_size\", 11)
+	messages_container.add_child(date_label)
+
+	for msg in messages:
+		messages_container.add_child(_make_bubble(msg))
+
+	# Scroll to bottom after layout
+	await get_tree().process_frame
+	await get_tree().process_frame
+	scroll_container.scroll_vertical = scroll_container.get_v_scroll_bar().max_value
+
+func _make_bubble(msg: Dictionary) -> Control:
+	var outer := HBoxContainer.new()
+	outer.set_h_size_flags(Control.SIZE_EXPAND_FILL)
+
+	var spacer := Control.new()
+	spacer.set_h_size_flags(Control.SIZE_EXPAND_FILL)
+
+	var bubble_style := StyleBoxFlat.new()
+	if msg.sent:
+		bubble_style.bg_color = Color(0.082, 0.290, 0.169, 1.0)
+		bubble_style.corner_radius_top_left = 8
+		bubble_style.corner_radius_top_right = 8
+		bubble_style.corner_radius_bottom_left = 8
+		bubble_style.corner_radius_bottom_right = 2
+	else:
+		bubble_style.bg_color = Color(0.122, 0.161, 0.188, 1.0)
+		bubble_style.corner_radius_top_left = 8
+		bubble_style.corner_radius_top_right = 8
+		bubble_style.corner_radius_bottom_left = 2
+		bubble_style.corner_radius_bottom_right = 8
+	bubble_style.content_margin_left = 10
+	bubble_style.content_margin_right = 10
+	bubble_style.content_margin_top = 6
+	bubble_style.content_margin_bottom = 6
+
+	var bubble := PanelContainer.new()
+	bubble.add_theme_stylebox_override(\"panel\", bubble_style)
+
+	var inner_vbox := VBoxContainer.new()
+	inner_vbox.add_theme_constant_override(\"separation\", 2)
+	bubble.add_child(inner_vbox)
+
+	var text_lbl := Label.new()
+	text_lbl.text = msg.text
+	text_lbl.add_theme_color_override(\"font_color\", TEXT_COLOR)
+	text_lbl.add_theme_font_size_override(\"font_size\", 14)
+	text_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	text_lbl.custom_minimum_size = Vector2(0, 0)
+	inner_vbox.add_child(text_lbl)
+
+	var meta_hbox := HBoxContainer.new()
+	meta_hbox.alignment = BoxContainer.ALIGNMENT_END
+	inner_vbox.add_child(meta_hbox)
+
+	var time_lbl := Label.new()
+	time_lbl.text = msg.time
+	time_lbl.add_theme_color_override(\"font_color\", TIME_COLOR)
+	time_lbl.add_theme_font_size_override(\"font_size\", 10)
+	meta_hbox.add_child(time_lbl)
+
+	if msg.sent:
+		var check_lbl := Label.new()
+		check_lbl.text = \" ✓✓\"
+		check_lbl.add_theme_color_override(\"font_color\", Color(0.043, 0.675, 0.424, 1.0))
+		check_lbl.add_theme_font_size_override(\"font_size\", 10)
+		meta_hbox.add_child(check_lbl)
+
+	if msg.sent:
+		outer.add_child(spacer)
+		outer.add_child(bubble)
+	else:
+		outer.add_child(bubble)
+		outer.add_child(spacer)
+
+	return outer
+
+func _on_message_submitted(text: String) -> void:
+	_send_message(text)
+
+func _on_send_pressed() -> void:
+	_send_message(message_input.text)
+
+func _send_message(text: String) -> void:
+	text = text.strip_edges()
+	if text.is_empty():
+		return
+	var now := Time.get_time_string_from_system().substr(0, 5)
+	var new_msg := {\"text\": text, \"sent\": true, \"time\": now}
+	messages.append(new_msg)
+	messages_container.add_child(_make_bubble(new_msg))
+	message_input.text = \"\"
+	await get_tree().process_frame
+	await get_tree().process_frame
+	scroll_container.scroll_vertical = scroll_container.get_v_scroll_bar().max_value
+"
+
+[node name="WhatsAppChat" type="Control" unique_id=1671062595]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_chat")

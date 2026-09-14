@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="Chat" format=3 uid="uid://5igo287afggi"]
+
+[ext_resource type="Texture2D" uid="uid://bccd21nph3n6j" path="res://casos/caso1/chats/ftos-perfil/mama.jpg" id="1_x6ur5"]
+[ext_resource type="Script" uid="uid://gdiumfglcp6n" path="res://mensaje.gd" id="2_7j066"]
+[ext_resource type="Script" uid="uid://by8r7fs8syfyj" path="res://chat.gd" id="3_tl1c6"]
+
+[sub_resource type="Resource" id="Resource_8cns3"]
+script = ExtResource("2_7j066")
+text = "Luchito, ¿venís el domingo a comer?"
+time = "05/10 10:12"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_5445h"]
+script = ExtResource("2_7j066")
+text = "Sí ma, ahí estoy. ¿Querés que lleve algo?"
+time = "05/10 10:20"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_2erq3"]
+script = ExtResource("2_7j066")
+text = "Nada, solo vení. Hace dos semanas que no te veo."
+time = "05/10 10:22"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_0c2py"]
+script = ExtResource("2_7j066")
+text = "Jaja ya sé, estuve con mucho laburo. El domingo sin falta."
+time = "05/10 10:30"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[resource]
+script = ExtResource("3_tl1c6")
+nombre = "Mamá"
+avatar = ExtResource("1_x6ur5")
+mensajes = Array[ExtResource("2_7j066")]([SubResource("Resource_8cns3"), SubResource("Resource_5445h"), SubResource("Resource_2erq3"), SubResource("Resource_0c2py")])
+mensajes_enviables = ["Buenas, soy la agente a cargo del caso de Lucas. ¿Podría hacerle unas preguntas?", "¿Lucas le mencionó que tuviera algún problema con alguien?", "¿Sabe si Lucas tenía novia o alguien cercano que lo visitara seguido?"]
+respuestas = ["Sí, por supuesto. Haga lo que sea necesario, por favor.", "No me dijo nada raro... aunque últimamente lo notaba medio distraído. Pensé que era el laburo.", "Sí, Camila. Una chica muy linda. Venía bastante seguido. No sé si siguen juntos, hace un tiempo no la nombra."]
+metadata/_custom_type_script = "uid://by8r7fs8syfyj"

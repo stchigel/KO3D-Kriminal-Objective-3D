@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Mail" format=3 uid="uid://e7457pno2q8x"]
+
+[ext_resource type="Script" uid="uid://b341mvssqe4vw" path="res://mail.gd" id="1_0co7v"]
+
+[resource]
+script = ExtResource("1_0co7v")
+nombre = "lucasmendez.foto@gmail.com"
+asunto = "Portfolio festival"
+mensaje = "Sofi, te mando las fotos que seleccioné para el portfolio del festival. Avisame cuáles te gustan y armamos algo juntos. Creo que tenemos chances reales este año."
+metadata/_custom_type_script = "uid://b341mvssqe4vw"

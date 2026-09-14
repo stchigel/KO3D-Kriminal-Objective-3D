@@ -1,0 +1,156 @@
+[gd_scene format=3 uid="uid://dea7s1q17ayd5"]
+
+[ext_resource type="Script" uid="uid://bb7ssue1e4g31" path="res://src/Intro/intro2.gd" id="1_jod2y"]
+[ext_resource type="Texture2D" uid="uid://d2tnrh7xrrftl" path="res://assets/K.O..svg" id="2_m6wub"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4vfs6"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.84313726)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kxwl4"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="Intro" type="Control" unique_id=1581055040]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jod2y")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=863699788]
+layout_mode = 0
+offset_right = 1162.0
+offset_bottom = 662.0
+color = Color(0.051970966, 0.05197096, 0.05197095, 1)
+
+[node name="Mail" type="Panel" parent="." unique_id=1393977526]
+layout_mode = 0
+offset_left = 380.0
+offset_top = 78.0
+offset_right = 1084.0
+offset_bottom = 608.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4vfs6")
+
+[node name="Panel" type="Panel" parent="Mail" unique_id=2023464825]
+layout_mode = 0
+offset_right = 704.0
+offset_bottom = 32.0
+
+[node name="Label" type="Label" parent="Mail" unique_id=1059465538]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 320.0
+offset_bottom = 32.0
+text = "Gmail"
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Mail" unique_id=1891417420]
+layout_mode = 0
+offset_left = 672.0
+offset_right = 704.0
+offset_bottom = 32.0
+text = "X"
+
+[node name="MailData" type="Panel" parent="Mail" unique_id=1793133585]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 704.0
+offset_bottom = 448.0
+
+[node name="Volver" type="Button" parent="Mail/MailData" unique_id=1469383163]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+text = "<"
+
+[node name="Asunto" type="Label" parent="Mail/MailData" unique_id=879500865]
+layout_mode = 0
+offset_left = 32.0
+offset_right = 704.0
+offset_bottom = 32.0
+text = "Caso 1114-V — Acceso remoto autorizado | Vidal, Marcelo A."
+vertical_alignment = 1
+
+[node name="Remitente" type="Label" parent="Mail/MailData" unique_id=2049468720]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 24.0
+offset_right = 128.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 10
+text = "crim.invest@pjn.gob.ar"
+vertical_alignment = 1
+
+[node name="Cuerpo" type="RichTextLabel" parent="Mail/MailData" unique_id=541549091]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 48.0
+offset_right = 688.0
+offset_bottom = 408.0
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 15
+theme_override_font_sizes/bold_italics_font_size = 14
+theme_override_font_sizes/italics_font_size = 14
+theme_override_font_sizes/mono_font_size = 14
+bbcode_enabled = true
+text = "Agente, [br]Se le concede acceso forense al dispositivo digital de Lucas Rodrigo Mendez, DNI 29.441.872, fotógrafo, 34 años. Hallado sin vida el sábado 19 de octubre en su domicilio de Palermo por el vecino del piso de abajo, Sr. Jorge Pinto, quien reportó un golpe fuerte la noche anterior y fue a verificar al día siguiente. [br] [br][b]Lo que ya sabemos[/b] [br]Causa de muerte: traumatismo craneal. Objeto contundente no encontrado en la escena. No hay signos de robo: billetera, notebook y equipos de fotografía siguen en el departamento. La puerta no fue forzada. [br]La cámara principal de Lucas, una Canon EOS R5, no está en el departamento. Es el único objeto que falta. [br] [br][b]Lo que necesitamos[/b] [br]Reconstruir con quién tuvo contacto Lucas en los últimos 15 días y establecer quién tenía motivo para llevarse esa cámara. [br] [br][b]Sospechosos preliminares[/b] [br] [br][table=3] [br][cell][i]Nombre[/i][/cell] [br][cell][i]Vínculo[/i][/cell] [br][cell][i]Motivo posible[/i][/cell] [br][cell]Tomás Herrera[/cell] [br][cell]Ex amigo, rival laboral[/cell] [br][cell]Pelea reciente, celos profesionales[/cell] [br][cell]Camila Rossi[/cell] [br][cell]Novia[/cell] [br][cell]Sin motivo aparente por ahora[/cell] [br][/table] [br] [br]El acceso está habilitado. [br] [br]Lic. Lorena Casás [br][i]Coordinadora — Unidad de Criminalística Digital[/i]"
+
+[node name="Remitente2" type="Label" parent="." unique_id=1623992214]
+layout_mode = 0
+offset_left = 392.0
+offset_top = 528.0
+offset_right = 504.0
+offset_bottom = 544.0
+theme_override_font_sizes/font_size = 10
+text = "Adjuntos"
+vertical_alignment = 1
+
+[node name="K_o_" type="TextureRect" parent="." unique_id=239437778]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 23.0
+offset_right = 186.0
+offset_bottom = 228.0
+texture = ExtResource("2_m6wub")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="." unique_id=1608764180]
+layout_mode = 0
+offset_left = 392.0
+offset_top = 544.0
+offset_right = 592.0
+offset_bottom = 600.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_kxwl4")
+
+[node name="Remitente3" type="Label" parent="Button" unique_id=1713648418]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 120.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 10
+text = "Acceso a pc"
+vertical_alignment = 1
+
+[connection signal="pressed" from="Mail/Button" to="." method="_on_buttonclose_pressed"]
+[connection signal="pressed" from="Mail/MailData/Volver" to="." method="_on_volver_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="Chat" format=3 uid="uid://c1jogxw15pfwd"]
+
+[ext_resource type="Texture2D" uid="uid://luxeb2m1b6rm" path="res://casos/caso1/chats/ftos-perfil/fotografos.jpg" id="1_xgpb5"]
+[ext_resource type="Script" uid="uid://gdiumfglcp6n" path="res://mensaje.gd" id="2_7j066"]
+[ext_resource type="Script" uid="uid://by8r7fs8syfyj" path="res://chat.gd" id="3_tl1c6"]
+
+[sub_resource type="Resource" id="Resource_p6cc1"]
+script = ExtResource("2_7j066")
+text = "Rulo: Gente, hay una convocatoria para el festival de la ciudad, ¿mandan info?"
+time = "06/10 20:01"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_299h1"]
+script = ExtResource("2_7j066")
+text = "Ya la vi, yo me anoto. Pagan bien."
+time = "06/10 20:05"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_ueu68"]
+script = ExtResource("2_7j066")
+text = "Sofi: Yo también. Lucas, ¿armamos portfolio juntos?"
+time = "06/10 20:07"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_jgqqg"]
+script = ExtResource("2_7j066")
+text = "Dale, esta semana te llamo."
+time = "06/10 20:10"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[resource]
+script = ExtResource("3_tl1c6")
+nombre = "Fotógrafos Palermo"
+avatar = ExtResource("1_xgpb5")
+mensajes = Array[ExtResource("2_7j066")]([SubResource("Resource_p6cc1"), SubResource("Resource_299h1"), SubResource("Resource_ueu68"), SubResource("Resource_jgqqg")])
+mensajes_enviables = ["Hola, soy investigadora del caso de Lucas. ¿Alguien lo vio o habló con él en los últimos días?", "¿Saben si Lucas tuvo algún conflicto con alguien recientemente?", "¿Conocen a una persona llamada Camila Rossi?"]
+respuestas = ["Sofi: Dios mío... no, el último mensaje que le mandé fue para lo del festival. No respondió.", "Rulo: Con Tomás andaban mal, pero Lucas no parecía preocupado. Decía que era drama de Tomás.", "Sofi: Sí, es la novia. La vi en una muestra de Lucas hace unos meses. No la conozco mucho."]
+metadata/_custom_type_script = "uid://by8r7fs8syfyj"

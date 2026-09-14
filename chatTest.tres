@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="Chat" format=3 uid="uid://cocb0gxevofpn"]
+
+[ext_resource type="Texture2D" uid="uid://b0eysjn7s5kwv" path="res://assets/Kali-Linux.jpg" id="1_pxflv"]
+[ext_resource type="Script" uid="uid://gdiumfglcp6n" path="res://mensaje.gd" id="2_7j066"]
+[ext_resource type="Script" uid="uid://by8r7fs8syfyj" path="res://chat.gd" id="3_tl1c6"]
+
+[sub_resource type="Resource" id="Resource_cw773"]
+script = ExtResource("2_7j066")
+text = "Hola"
+time = "12/06 11:04"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_xm1kq"]
+script = ExtResource("2_7j066")
+text = "Hola?"
+time = "12/06 15:10"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_smdgg"]
+script = ExtResource("2_7j066")
+text = "TE VOY A MATARRRRRR"
+time = "12/06 15:10"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_d6e2e"]
+script = ExtResource("2_7j066")
+text = "Responde pete"
+time = "12/06 15:32"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_bu4ir"]
+script = ExtResource("2_7j066")
+text = "Upsis lo lei tarde jiji"
+time = "13/06 06:54"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[resource]
+script = ExtResource("3_tl1c6")
+nombre = "Uno"
+avatar = ExtResource("1_pxflv")
+mensajes = Array[ExtResource("2_7j066")]([SubResource("Resource_cw773"), SubResource("Resource_xm1kq"), SubResource("Resource_smdgg"), SubResource("Resource_d6e2e"), SubResource("Resource_bu4ir")])
+metadata/_custom_type_script = "uid://by8r7fs8syfyj"

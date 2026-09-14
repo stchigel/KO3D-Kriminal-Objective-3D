@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Mail" format=3 uid="uid://cvnqnhriwih4p"]
+
+[ext_resource type="Script" uid="uid://b341mvssqe4vw" path="res://mail.gd" id="1_0co7v"]
+
+[resource]
+script = ExtResource("1_0co7v")
+nombre = "revistaurban@gmail.com"
+asunto = "Confirmación de trabajo — Edición Noviembre"
+mensaje = "Lucas, confirmamos tu participación para la cobertura del evento cultural del 25. Honorarios acordados: $180.000. Mandanos factura cuando puedas."
+metadata/_custom_type_script = "uid://b341mvssqe4vw"

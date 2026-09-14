@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://c6loc4d14ok78"]
+
+[ext_resource type="Script" uid="uid://cr6k2dmfwvcq3" path="res://src/Archivo/archivo.gd" id="1_6vgqb"]
+[ext_resource type="Texture2D" uid="uid://dhfkpsix2en6l" path="res://assets/icon.svg" id="1_85qj8"]
+
+[node name="Archivo" type="Button" unique_id=1751381297 groups=["archivo"]]
+offset_right = 80.0
+offset_bottom = 80.0
+theme_type_variation = &"FlatButton"
+script = ExtResource("1_6vgqb")
+
+[node name="caja" type="ColorRect" parent="." unique_id=1011495547]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 72.0
+offset_bottom = 80.0
+color = Color(0.14117648, 0.14117648, 0.14117648, 0.5882353)
+
+[node name="icono" type="TextureRect" parent="." unique_id=1852487687]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 4.0
+offset_right = 68.0
+offset_bottom = 60.0
+texture = ExtResource("1_85qj8")
+expand_mode = 1
+
+[node name="name" type="Label" parent="." unique_id=162385494]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 80.0
+offset_bottom = 80.0
+theme_override_font_sizes/font_size = 10
+text = "default.txt"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="Panel" type="Panel" parent="." unique_id=840617257]
+visible = false
+layout_mode = 0
+offset_left = 80.0
+offset_top = 32.0
+offset_right = 216.0
+offset_bottom = 96.0
+
+[node name="Label" type="Label" parent="Panel" unique_id=1507760306]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 128.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 10
+text = "Introduzca la contraseña"
+
+[node name="LineEdit" type="LineEdit" parent="Panel" unique_id=550173363]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 24.0
+offset_right = 128.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 14
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="text_submitted" from="Panel/LineEdit" to="." method="_on_line_edit_text_submitted"]

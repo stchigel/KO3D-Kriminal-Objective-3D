@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://cbmwtnvtuplp2"]
+
+[ext_resource type="Script" uid="uid://bggse4dp5lm1v" path="res://src/Texto/texto.gd" id="1_x7gcj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahdgd"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.84313726)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="Texto" type="Panel" unique_id=1796508400]
+offset_right = 320.0
+offset_bottom = 448.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ahdgd")
+script = ExtResource("1_x7gcj")
+
+[node name="Panel" type="Panel" parent="." unique_id=1060858633]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 32.0
+
+[node name="Button" type="Button" parent="." unique_id=1655886696]
+layout_mode = 0
+offset_left = 288.0
+offset_right = 320.0
+offset_bottom = 32.0
+text = "X"
+
+[node name="Label" type="Label" parent="." unique_id=1381323080]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 320.0
+offset_bottom = 32.0
+text = "filename.txt"
+vertical_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1172735446]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 32.0
+offset_right = 304.0
+offset_bottom = 432.0
+focus_mode = 2
+bbcode_enabled = true
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pulvinar felis sed scelerisque tempor. Curabitur purus nulla, congue non dolor ac, suscipit tempus tellus. Ut auctor nibh vel nibh fermentum condimentum eget vitae risus. Phasellus leo augue, rhoncus placerat ex vitae, consectetur maximus sem. Mauris eu consectetur urna. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Quisque pulvinar justo vitae velit condimentum lacinia. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam non consectetur lectus. Aenean feugiat quam et aliquam ultricies. Nulla porttitor quis lacus ut aliquam. Integer orci mi, tempus non lectus nec, egestas ornare eros. Duis vitae tincidunt lorem. Aliquam sed risus ac lacus malesuada pulvinar. Sed arcu ipsum, congue non nisi ac, tempor fringilla erat. Quisque eu augue porta, blandit nibh ut, interdum ipsum.
+
+Aliquam faucibus, lectus eu viverra auctor, odio urna dictum justo, sit amet bibendum diam quam nec est. Sed consectetur tincidunt diam eget congue. Sed vehicula consectetur risus sed efficitur. Phasellus vulputate urna vitae lobortis consectetur. Aenean risus urna, dapibus quis ex nec, vulputate dapibus felis. Pellentesque faucibus feugiat sem, ut volutpat nisl posuere quis. Curabitur nisi ipsum, semper sit amet lacinia ac, iaculis id mi. Donec fermentum viverra convallis. Aliquam hendrerit nulla vitae bibendum tincidunt. Integer id libero molestie, molestie justo et, blandit mauris. Morbi rutrum metus ipsum. "
+selection_enabled = true
+drag_and_drop_selection_enabled = false
+
+[connection signal="gui_input" from="Panel" to="." method="_on_panel_gui_input"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Mail" format=3 uid="uid://c6qcxgd3lqn66"]
+
+[ext_resource type="Script" uid="uid://b341mvssqe4vw" path="res://mail.gd" id="1_0co7v"]
+
+[resource]
+script = ExtResource("1_0co7v")
+nombre = "lucasmendez.foto@gmail.com"
+asunto = "Che, lo del cliente"
+mensaje = "Tomás, entiendo que estés enojado pero las cosas no fueron como decís. Si querés hablarlo en persona, dale, pero no me mandes más mensajes así.\nLucas"
+metadata/_custom_type_script = "uid://b341mvssqe4vw"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Mail" format=3 uid="uid://mail_machi00006"]
+
+[ext_resource type="Script" uid="uid://b341mvssqe4vw" path="res://mail.gd" id="1_0co7v"]
+
+[resource]
+script = ExtResource("1_0co7v")
+nombre = "lmachi@grupomachi.com"
+asunto = "Certificado pendiente — última comunicación formal"
+mensaje = "Vidal, el certificado de \"Puerto al amanecer\" (atrib. Quinquela, c.1938) lleva cuatro semanas de demora. Le recuerdo que el acuerdo incluye cláusulas de confidencialidad. El incumplimiento tiene consecuencias legales y de otra índole que preferiría no detallar. Espero su respuesta antes del lunes 11.\n\n[Respuesta de Vidal]: La obra no va a ser certificada. El análisis de pigmentos indica materiales no disponibles antes de 1958, imposible que sea de 1938. No voy a firmar un documento falso.\n\n[Machi]: Usted no entiende con quién está hablando. Le doy hasta el miércoles. Después de eso no voy a poder controlar lo que pase."
+metadata/_custom_type_script = "uid://b341mvssqe4vw"

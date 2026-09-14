@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Mail" format=3 uid="uid://mail_ferreyra005"]
+
+[ext_resource type="Script" uid="uid://b341mvssqe4vw" path="res://mail.gd" id="1_0co7v"]
+
+[resource]
+script = ExtResource("1_0co7v")
+nombre = "dferreyra@estudiomeridiano.com.ar"
+asunto = "Re: Reunión miércoles"
+mensaje = "Marcelo, estás viendo solo una parte del cuadro. Hay personas involucradas que no van a esperar tranquilas a que vos \"hagas lo correcto\". Yo también estoy entre la espada y la pared. Las obras ya están colocadas, el dinero ya circuló. Remover esto ahora no salva a nadie, solo nos hunde a todos."
+metadata/_custom_type_script = "uid://b341mvssqe4vw"

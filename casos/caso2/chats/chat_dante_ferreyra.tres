@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="Chat" format=3 uid="uid://bx1dante00004"]
+
+[ext_resource type="Script" uid="uid://gdiumfglcp6n" path="res://mensaje.gd" id="2_7j066"]
+[ext_resource type="Script" uid="uid://by8r7fs8syfyj" path="res://chat.gd" id="3_tl1c6"]
+
+[sub_resource type="Resource" id="Resource_vw3sx"]
+metadata/__load_path__ = "res://assets/dante_ferreyra.jpg"
+
+[sub_resource type="Resource" id="Resource_da001"]
+script = ExtResource("2_7j066")
+text = "Marcelo necesito hablar con vos en persona. Esta semana"
+time = "06/11 14:30"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_da002"]
+script = ExtResource("2_7j066")
+text = "¿Todo bien?"
+time = "06/11 14:45"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_da003"]
+script = ExtResource("2_7j066")
+text = "Sí sí. Mejor en persona nomás"
+time = "06/11 14:47"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_da004"]
+script = ExtResource("2_7j066")
+text = "¿Llegaste a revisar lo que te mandé?"
+time = "10/11 09:15"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_da005"]
+script = ExtResource("2_7j066")
+text = "Sí. Necesito un par de días más"
+time = "10/11 10:02"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_da006"]
+script = ExtResource("2_7j066")
+text = "Marcelo, hay gente que está incómoda con los tiempos"
+time = "10/11 10:04"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_da007"]
+script = ExtResource("2_7j066")
+text = "Entiendo. Pero necesito estar seguro antes de decir cualquier cosa"
+time = "10/11 10:10"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_da008"]
+script = ExtResource("2_7j066")
+text = "Seguro de qué, si ya está todo cerrado"
+time = "10/11 10:11"
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[sub_resource type="Resource" id="Resource_da009"]
+script = ExtResource("2_7j066")
+text = "Precisamente por eso necesito tiempo. No sigas por acá"
+time = "10/11 10:15"
+sent = true
+metadata/_custom_type_script = "uid://gdiumfglcp6n"
+
+[resource]
+script = ExtResource("3_tl1c6")
+nombre = "Dante Ferreyra"
+avatar = SubResource("Resource_vw3sx")
+mensajes = Array[ExtResource("2_7j066")]([SubResource("Resource_da001"), SubResource("Resource_da002"), SubResource("Resource_da003"), SubResource("Resource_da004"), SubResource("Resource_da005"), SubResource("Resource_da006"), SubResource("Resource_da007"), SubResource("Resource_da008"), SubResource("Resource_da009")])
+mensajes_enviables = Array[String](["Ferreyra, soy la agente a cargo de la muerte de Vidal. Necesito hablar.", "¿Qué quería decirle Vidal que 'era mejor en persona'?", "¿Quién es la 'gente incómoda' que mencionó en estos mensajes?", "¿Conoce a Lorenzo Machi?"])
+respuestas = Array[String](["...Vidal está muerto.", "Marcelo había encontrado inconsistencias en algunas certificaciones. Quería que lo ayudara a manejar el tema internamente. Yo le dije que no era posible.", "No voy a responder eso sin mi abogado presente.", "...Sí. Lo conozco. Pero no voy a decir nada más acá."])
+metadata/_custom_type_script = "uid://by8r7fs8syfyj"

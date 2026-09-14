@@ -1,0 +1,34 @@
+extends Panel
+@export var nombre: String = "imagen"
+@export var pags: Array[Texture]
+var dragging: bool = false
+var drag_offset: Vector2 = Vector2.ZERO
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	$Label.text = nombre
+	if pags:
+		if pags[0]:
+			$"ScrollContainer/VBoxContainer/1".texture = pags[0]
+		if pags.size() > 1 && pags[1]:
+			$"ScrollContainer/VBoxContainer/2".texture = pags[1]
+		else:
+			$"ScrollContainer/VBoxContainer/2".queue_free()
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_button_pressed() -> void:
+	hide()
+
+func _on_panel_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed:
+			dragging = true
+			drag_offset = get_global_mouse_position() - global_position
+		else:
+			dragging = false
+	if event is InputEventMouseMotion and dragging:
+		global_position = get_global_mouse_position() - drag_offset

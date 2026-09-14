@@ -1,0 +1,1693 @@
+[gd_scene format=3]
+
+[sub_resource type="GDScript" id="GDScript_chat"]
+script/source = "extends Control
+
+const SENT_COLOR = Color(0.082, 0.290, 0.169, 1.0)
+const RECV_COLOR = Color(0.122, 0.161, 0.188, 1.0)
+const TEXT_COLOR = Color(0.878, 0.906, 0.922, 1.0)
+const TIME_COLOR = Color(0.500, 0.580, 0.620, 1.0)
+const GREEN     = Color(0.043, 0.675, 0.424, 1.0)
+
+var contacts := [
+	{\"name\": \"Sofía Ramírez\", \"preview\": \"Perfecto, nos vemos ahí 👍\", \"time\": \"10:42\", \"unread\": 0, \"color\": Color(0.20,0.40,0.49,1)},
+	{\"name\": \"Martín López\", \"preview\": \"¿Viste el partido anoche?\", \"time\": \"09:15\", \"unread\": 3, \"color\": Color(0.55,0.27,0.07,1)},
+	{\"name\": \"Equipo Dev 🚀\", \"preview\": \"Nicolás: PR aprobado ✅\", \"time\": \"Ayer\", \"unread\": 0, \"color\": Color(0.40,0.20,0.60,1)},
+	{\"name\": \"Mamá ❤️\", \"preview\": \"Cuídate mucho!\", \"time\": \"Ayer\", \"unread\": 0, \"color\": Color(0.75,0.22,0.17,1)},
+	{\"name\": \"Lucas Fernández\", \"preview\": \"jajaja che 😂\", \"time\": \"Mar\", \"unread\": 0, \"color\": Color(0.13,0.55,0.13,1)},
+	{\"name\": \"Florencia Díaz\", \"preview\": \"Mandame el link cuando puedas\", \"time\": \"Lun\", \"unread\": 0, \"color\": Color(0.60,0.20,0.40,1)},
+]
+
+var messages := [
+	{\"text\": \"Hola! ¿Cómo estás?\", \"sent\": false, \"time\": \"10:30\"},
+	{\"text\": \"Todo bien, gracias! Y vos?\", \"sent\": true, \"time\": \"10:31\"},
+	{\"text\": \"Re bien, recién salí del trabajo. ¿Quedamos para el finde?\", \"sent\": false, \"time\": \"10:33\"},
+	{\"text\": \"Dale, me parece perfecto. ¿El sábado a la tarde?\", \"sent\": true, \"time\": \"10:35\"},
+	{\"text\": \"Sí! A las 17:00 en el centro. Te mando la ubicación ahora.\", \"sent\": false, \"time\": \"10:37\"},
+	{\"text\": \"Perfecto, ahí estaré 🎉\", \"sent\": true, \"time\": \"10:40\"},
+	{\"text\": \"Perfecto, nos vemos ahí 👍\", \"sent\": false, \"time\": \"10:42\"},
+]
+
+var active_contact := 0
+var message_input: LineEdit
+var scroll_container: ScrollContainer
+var messages_container: VBoxContainer
+
+func _ready() -> void:
+	_build_ui()
+	_populate_messages()
+
+func _build_ui() -> void:
+	# Root
+	var root = self
+	root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+
+	# Main HBox
+	var main_hbox := HBoxContainer.new()
+	main_hbox.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	root.add_child(main_hbox)
+
+	# ── LEFT SIDEBAR ──────────────────────────────────────
+	var sidebar := PanelContainer.new()
+	sidebar.custom_minimum_size = Vector2(320, 0)
+	var sb_style := StyleBoxFlat.new()
+	sb_style.bg_color = Color(0.082, 0.110, 0.129, 1.0)
+	sidebar.add_theme_stylebox_override(\"panel\", sb_style)
+	main_hbox.add_child(sidebar)
+
+	var sidebar_vbox := VBoxContainer.new()
+	sidebar_vbox.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	sidebar.add_child(sidebar_vbox)
+
+	# Sidebar header
+	var s_header := PanelContainer.new()
+	s_header.custom_minimum_size = Vector2(0, 60)
+	var s_head_style := StyleBoxFlat.new()
+	s_head_style.bg_color = Color(0.100, 0.137, 0.161, 1.0)
+	s_header.add_theme_stylebox_override(\"panel\", s_head_style)
+	sidebar_vbox.add_child(s_header)
+
+	var s_head_hbox := HBoxContainer.new()
+	s_head_hbox.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	s_head_hbox.add_theme_constant_override(\"separation\", 12)
+	s_header.add_child(s_head_hbox)
+	var s_head_margin := MarginContainer.new()
+	s_head_margin.add_theme_constant_override(\"margin_left\", 16)
+	s_head_margin.add_theme_constant_override(\"margin_right\", 16)
+	s_head_margin.add_theme_constant_override(\"margin_top\", 10)
+	s_head_margin.add_theme_constant_override(\"margin_bottom\", 10)
+	s_head_margin.set_h_size_flags(Control.SIZE_EXPAND_FILL)
+	s_header.add_child(s_head_margin)
+
+	var my_avatar := _make_avatar(\"N\", Color(0.043, 0.675, 0.424, 1.0), 40)
+	s_head_margin.add_child(my_avatar)
+
+	# Spacer
+	var s_spacer := Control.new()
+	s_spacer.set_h_size_flags(Control.SIZE_EXPAND_FILL)
+	s_head_margin.add_child(s_spacer)
+
+	# Icons area (placeholder dots)
+	var icons_hbox := HBoxContainer.new()
+	icons_hbox.add_theme_constant_override(\"separation\", 4)
+	s_head_margin.add_child(icons_hbox)
+	for icon_label in [\"⊕\", \"💬\", \"⋮\"]:
+		var btn := _make_icon_button(icon_label)
+		icons_hbox.add_child(btn)
+
+	# Search bar
+	var search_margin := MarginContainer.new()
+	search_margin.add_theme_constant_override(\"margin_left\", 12)
+	search_margin.add_theme_constant_override(\"margin_right\", 12)
+	search_margin.add_theme_constant_override(\"margin_top\", 8)
+	search_margin.add_theme_constant_override(\"margin_bottom\", 8)
+	sidebar_vbox.add_child(search_margin)
+
+	var search_hbox := HBoxContainer.new()
+	var search_style := StyleBoxFlat.new()
+	search_style.bg_color = Color(0.055, 0.075, 0.090, 1.0)
+	search_style.corner_radius_top_left = 8
+	search_style.corner_radius_top_right = 8
+	search_style.corner_radius_bottom_left = 8
+	search_style.corner_radius_bottom_right = 8
+	search_style.content_margin_left = 12
+	search_style.content_margin_right = 12
+	search_style.content_margin_top = 6
+	search_style.content_margin_bottom = 6
+	var search_panel := PanelContainer.new()
+	search_panel.add_theme_stylebox_override(\"panel\", search_style)
+	search_panel.set_h_size_flags(Control.SIZE_EXPAND_FILL)
+	search_margin.add_child(search_panel)
+
+	var search_inner := HBoxContainer.new()
+	search_inner.add_theme_constant_override(\"separation\", 8)
+	search_panel.add_child(search_inner)
+	var search_icon := Label.new()
+	search_icon.text = \"🔍\"
+	search_icon.add_theme_color_override(\"font_color\", TIME_COLOR)
+	search_inner.add_child(search_icon)
+	var search_label := Label.new()
+	search_label.text = \"Buscar o empezar un chat\"
+	search_label.add_theme_color_override(\"font_color\", TIME_COLOR)
+	search_label.add_theme_font_size_override(\"font_size\", 13)
+	search_inner.add_child(search_label)
+
+	# Contact list (ScrollContainer)
+	var contact_scroll := ScrollContainer.new()
+	contact_scroll.set_v_size_flags(Control.SIZE_EXPAND_FILL)
+	contact_scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
+	contact_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	sidebar_vbox.add_child(contact_scroll)
+
+	var contact_list := VBoxContainer.new()
+	contact_list.set_h_size_flags(Control.SIZE_EXPAND_FILL)
+	contact_list.add_theme_constant_override(\"separation\", 0)
+	contact_scroll.add_child(contact_list)
+
+	for i in contacts.size():
+		var c = contacts[i]
+		contact_list.add_child(_make_contact_row(c, i == active_contact))
+
+	# ── MAIN CHAT AREA ────────────────────────────────────
+	var chat_area := VBoxContainer.new()
+	chat_area.set_h_size_flags(Control.SIZE_EXPAND_FILL)
+	chat_area.add_theme_constant_override(\"separation\", 0)
+	main_hbox.add_child(chat_area)
+
+	# Chat header
+	var chat_header := PanelContainer.new()
+	chat_header.custom_minimum_size = Vector2(0, 60)
+	var ch_style := StyleBoxFlat.new()
+	ch_style.bg_color = Color(0.100, 0.137, 0.161, 1.0)
+	chat_header.add_theme_stylebox_override(\"panel\", ch_style)
+	chat_area.add_child(chat_header)
+
+	var ch_margin := MarginContainer.new()
+	ch_margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	ch_margin.add_theme_constant_override(\"margin_left\", 16)
+	ch_margin.add_theme_constant_override(\"margin_right\", 16)
+	ch_margin.add_theme_constant_override(\"margin_top\", 10)
+	ch_margin.add_theme_constant_override(\"margin_bottom\", 10)
+	chat_header.add_child(ch_margin)
+
+	var ch_hbox := HBoxContainer.new()
+	ch_hbox.add_theme_constant_override(\"separation\", 12)
+	ch_margin.add_child(ch_hbox)
+
+	var ch_avatar := _make_avatar(\"S\", contacts[active_contact].color, 40)
+	ch_hbox.add_child(ch_avatar)
+
+	var ch_info := VBoxContainer.new()
+	ch_info.add_theme_constant_override(\"separation\", 2)
+	ch_hbox.add_child(ch_info)
+	var ch_name := Label.new()
+	ch_name.text = contacts[active_contact].name
+	ch_name.add_theme_color_override(\"font_color\", TEXT_COLOR)
+	ch_name.add_theme_font_size_override(\"font_size\", 15)
+	ch_info.add_child(ch_name)
+	var ch_status := Label.new()
+	ch_status.text = \"en línea\"
+	ch_status.add_theme_color_override(\"font_color\", GREEN)
+	ch_status.add_theme_font_size_override(\"font_size\", 12)
+	ch_info.add_child(ch_status)
+
+	var ch_spacer := Control.new()
+	ch_spacer.set_h_size_flags(Control.SIZE_EXPAND_FILL)
+	ch_hbox.add_child(ch_spacer)
+
+	for lbl_text in [\"🔍\", \"⋮\"]:
+		var btn := _make_icon_button(lbl_text)
+		ch_hbox.add_child(btn)
+
+	# Chat background + messages
+	var chat_bg := PanelContainer.new()
+	chat_bg.set_v_size_flags(Control.SIZE_EXPAND_FILL)
+	var bg_style := StyleBoxFlat.new()
+	bg_style.bg_color = Color(0.043, 0.055, 0.067, 1.0)
+	chat_bg.add_theme_stylebox_override(\"panel\", bg_style)
+	chat_area.add_child(chat_bg)
+
+	scroll_container = ScrollContainer.new()
+	scroll_container.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	scroll_container.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
+	scroll_container.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	chat_bg.add_child(scroll_container)
+
+	var msg_margin := MarginContainer.new()
+	msg_margin.add_theme_constant_override(\"margin_left\", 60)
+	msg_margin.add_theme_constant_override(\"margin_right\", 60)
+	msg_margin.add_theme_constant_override(\"margin_top\", 12)
+	msg_margin.add_theme_constant_override(\"margin_bottom\", 12)
+	msg_margin.set_h_size_flags(Control.SIZE_EXPAND_FILL)
+	scroll_container.add_child(msg_margin)
+
+	messages_container = VBoxContainer.new()
+	messages_container.add_theme_constant_override(\"separation\", 6)
+	messages_container.set_h_size_flags(Control.SIZE_EXPAND_FILL)
+	msg_margin.add_child(messages_container)
+
+	# Input bar
+	var input_container := PanelContainer.new()
+	var inp_style := StyleBoxFlat.new()
+	inp_style.bg_color = Color(0.082, 0.110, 0.129, 1.0)
+	inp_style.content_margin_left = 16
+	inp_style.content_margin_right = 16
+	inp_style.content_margin_top = 10
+	inp_style.content_margin_bottom = 10
+	input_container.add_theme_stylebox_override(\"panel\", inp_style)
+	chat_area.add_child(input_container)
+
+	var input_hbox := HBoxContainer.new()
+	input_hbox.add_theme_constant_override(\"separation\", 10)
+	input_container.add_child(input_hbox)
+
+	# Emoji + attach
+	for icon_txt in [\"😊\", \"📎\"]:
+		var btn := _make_icon_button(icon_txt)
+		input_hbox.add_child(btn)
+
+	# Text input pill
+	var input_pill_style := StyleBoxFlat.new()
+	input_pill_style.bg_color = Color(0.122, 0.161, 0.188, 1.0)
+	input_pill_style.corner_radius_top_left = 24
+	input_pill_style.corner_radius_top_right = 24
+	input_pill_style.corner_radius_bottom_left = 24
+	input_pill_style.corner_radius_bottom_right = 24
+	input_pill_style.content_margin_left = 16
+	input_pill_style.content_margin_right = 16
+	input_pill_style.content_margin_top = 6
+	input_pill_style.content_margin_bottom = 6
+	var input_pill := PanelContainer.new()
+	input_pill.add_theme_stylebox_override(\"panel\", input_pill_style)
+	input_pill.set_h_size_flags(Control.SIZE_EXPAND_FILL)
+	input_hbox.add_child(input_pill)
+
+	message_input = LineEdit.new()
+	message_input.placeholder_text = \"Escribe un mensaje\"
+	message_input.add_theme_color_override(\"font_color\", TEXT_COLOR)
+	message_input.add_theme_color_override(\"font_placeholder_color\", TIME_COLOR)
+	message_input.add_theme_color_override(\"caret_color\", GREEN)
+	message_input.add_theme_font_size_override(\"font_size\", 14)
+	# Remove default LineEdit background
+	var transparent_style := StyleBoxFlat.new()
+	transparent_style.bg_color = Color(0, 0, 0, 0)
+	transparent_style.border_width_left = 0
+	transparent_style.border_width_right = 0
+	transparent_style.border_width_top = 0
+	transparent_style.border_width_bottom = 0
+	message_input.add_theme_stylebox_override(\"normal\", transparent_style)
+	message_input.add_theme_stylebox_override(\"focus\", transparent_style)
+	message_input.add_theme_stylebox_override(\"read_only\", transparent_style)
+	message_input.set_h_size_flags(Control.SIZE_EXPAND_FILL)
+	message_input.connect(\"text_submitted\", _on_message_submitted)
+	input_pill.add_child(message_input)
+
+	# Send button
+	var send_btn := Button.new()
+	send_btn.text = \"➤\"
+	send_btn.custom_minimum_size = Vector2(44, 44)
+	var send_style := StyleBoxFlat.new()
+	send_style.bg_color = Color(0.043, 0.675, 0.424, 1.0)
+	send_style.corner_radius_top_left = 22
+	send_style.corner_radius_top_right = 22
+	send_style.corner_radius_bottom_left = 22
+	send_style.corner_radius_bottom_right = 22
+	send_btn.add_theme_stylebox_override(\"normal\", send_style)
+	var send_hover := send_style.duplicate()
+	send_hover.bg_color = Color(0.060, 0.780, 0.490, 1.0)
+	send_btn.add_theme_stylebox_override(\"hover\", send_hover)
+	send_btn.add_theme_stylebox_override(\"pressed\", send_style)
+	send_btn.add_theme_color_override(\"font_color\", Color.WHITE)
+	send_btn.add_theme_font_size_override(\"font_size\", 16)
+	send_btn.flat = false
+	send_btn.connect(\"pressed\", _on_send_pressed)
+	input_hbox.add_child(send_btn)
+
+func _make_avatar(initials: String, color: Color, size: int) -> Control:
+	var panel := PanelContainer.new()
+	panel.custom_minimum_size = Vector2(size, size)
+	var av_style := StyleBoxFlat.new()
+	av_style.bg_color = color
+	av_style.corner_radius_top_left = size / 2
+	av_style.corner_radius_top_right = size / 2
+	av_style.corner_radius_bottom_left = size / 2
+	av_style.corner_radius_bottom_right = size / 2
+	panel.add_theme_stylebox_override(\"panel\", av_style)
+	var lbl := Label.new()
+	lbl.text = initials
+	lbl.add_theme_color_override(\"font_color\", Color.WHITE)
+	lbl.add_theme_font_size_override(\"font_size\", size / 2 - 2)
+	lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	lbl.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	lbl.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	panel.add_child(lbl)
+	return panel
+
+func _make_icon_button(icon: String) -> Button:
+	var btn := Button.new()
+	btn.text = icon
+	btn.flat = true
+	btn.custom_minimum_size = Vector2(36, 36)
+	btn.add_theme_color_override(\"font_color\", TIME_COLOR)
+	btn.add_theme_font_size_override(\"font_size\", 18)
+	return btn
+
+func _make_contact_row(contact: Dictionary, active: bool) -> Control:
+	var row_style := StyleBoxFlat.new()
+	row_style.bg_color = Color(0.100, 0.137, 0.161, 1.0) if active else Color(0.082, 0.110, 0.129, 1.0)
+	var panel := PanelContainer.new()
+	panel.add_theme_stylebox_override(\"panel\", row_style)
+	panel.custom_minimum_size = Vector2(0, 72)
+
+	var margin := MarginContainer.new()
+	margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	margin.add_theme_constant_override(\"margin_left\", 16)
+	margin.add_theme_constant_override(\"margin_right\", 16)
+	margin.add_theme_constant_override(\"margin_top\", 10)
+	margin.add_theme_constant_override(\"margin_bottom\", 10)
+	panel.add_child(margin)
+
+	var hbox := HBoxContainer.new()
+	hbox.add_theme_constant_override(\"separation\", 12)
+	margin.add_child(hbox)
+
+	var initial = contact.name.substr(0, 1)
+	var avatar := _make_avatar(initial, contact.color, 48)
+	hbox.add_child(avatar)
+
+	var info_vbox := VBoxContainer.new()
+	info_vbox.set_h_size_flags(Control.SIZE_EXPAND_FILL)
+	info_vbox.add_theme_constant_override(\"separation\", 3)
+	hbox.add_child(info_vbox)
+
+	var top_hbox := HBoxContainer.new()
+	info_vbox.add_child(top_hbox)
+	var name_lbl := Label.new()
+	name_lbl.text = contact.name
+	name_lbl.add_theme_color_override(\"font_color\", TEXT_COLOR)
+	name_lbl.add_theme_font_size_override(\"font_size\", 14)
+	name_lbl.set_h_size_flags(Control.SIZE_EXPAND_FILL)
+	top_hbox.add_child(name_lbl)
+	var time_lbl := Label.new()
+	time_lbl.text = contact.time
+	time_lbl.add_theme_color_override(\"font_color\", TIME_COLOR)
+	time_lbl.add_theme_font_size_override(\"font_size\", 11)
+	top_hbox.add_child(time_lbl)
+
+	var bot_hbox := HBoxContainer.new()
+	bot_hbox.add_theme_constant_override(\"separation\", 4)
+	info_vbox.add_child(bot_hbox)
+	var prev_lbl := Label.new()
+	prev_lbl.text = contact.preview
+	prev_lbl.add_theme_color_override(\"font_color\", TIME_COLOR)
+	prev_lbl.add_theme_font_size_override(\"font_size\", 12)
+	prev_lbl.clip_text = true
+	prev_lbl.set_h_size_flags(Control.SIZE_EXPAND_FILL)
+	bot_hbox.add_child(prev_lbl)
+
+	if contact.unread > 0:
+		var badge_style := StyleBoxFlat.new()
+		badge_style.bg_color = Color(0.043, 0.675, 0.424, 1.0)
+		badge_style.corner_radius_top_left = 10
+		badge_style.corner_radius_top_right = 10
+		badge_style.corner_radius_bottom_left = 10
+		badge_style.corner_radius_bottom_right = 10
+		badge_style.content_margin_left = 6
+		badge_style.content_margin_right = 6
+		badge_style.content_margin_top = 2
+		badge_style.content_margin_bottom = 2
+		var badge := PanelContainer.new()
+		badge.add_theme_stylebox_override(\"panel\", badge_style)
+		var badge_lbl := Label.new()
+		badge_lbl.text = str(contact.unread)
+		badge_lbl.add_theme_color_override(\"font_color\", Color.WHITE)
+		badge_lbl.add_theme_font_size_override(\"font_size\", 11)
+		badge.add_child(badge_lbl)
+		bot_hbox.add_child(badge)
+
+	# Separator line
+	var sep := HSeparator.new()
+	sep.modulate = Color(1, 1, 1, 0.07)
+
+	var wrapper := VBoxContainer.new()
+	wrapper.add_theme_constant_override(\"separation\", 0)
+	wrapper.add_child(panel)
+	wrapper.add_child(sep)
+	return wrapper
+
+func _populate_messages() -> void:
+	for child in messages_container.get_children():
+		child.queue_free()
+
+	# Date separator
+	var date_label := Label.new()
+	date_label.text = \"HOY\"
+	date_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	date_label.add_theme_color_override(\"font_color\", TIME_COLOR)
+	date_label.add_theme_font_size_override(\"font_size\", 11)
+	messages_container.add_child(date_label)
+
+	for msg in messages:
+		messages_container.add_child(_make_bubble(msg))
+
+	# Scroll to bottom after layout
+	await get_tree().process_frame
+	await get_tree().process_frame
+	scroll_container.scroll_vertical = scroll_container.get_v_scroll_bar().max_value
+
+func _make_bubble(msg: Dictionary) -> Control:
+	var outer := HBoxContainer.new()
+	outer.set_h_size_flags(Control.SIZE_EXPAND_FILL)
+
+	var spacer := Control.new()
+	spacer.set_h_size_flags(Control.SIZE_EXPAND_FILL)
+
+	var bubble_style := StyleBoxFlat.new()
+	if msg.sent:
+		bubble_style.bg_color = Color(0.082, 0.290, 0.169, 1.0)
+		bubble_style.corner_radius_top_left = 8
+		bubble_style.corner_radius_top_right = 8
+		bubble_style.corner_radius_bottom_left = 8
+		bubble_style.corner_radius_bottom_right = 2
+	else:
+		bubble_style.bg_color = Color(0.122, 0.161, 0.188, 1.0)
+		bubble_style.corner_radius_top_left = 8
+		bubble_style.corner_radius_top_right = 8
+		bubble_style.corner_radius_bottom_left = 2
+		bubble_style.corner_radius_bottom_right = 8
+	bubble_style.content_margin_left = 10
+	bubble_style.content_margin_right = 10
+	bubble_style.content_margin_top = 6
+	bubble_style.content_margin_bottom = 6
+
+	var bubble := PanelContainer.new()
+	bubble.add_theme_stylebox_override(\"panel\", bubble_style)
+
+	var inner_vbox := VBoxContainer.new()
+	inner_vbox.add_theme_constant_override(\"separation\", 2)
+	bubble.add_child(inner_vbox)
+
+	var text_lbl := Label.new()
+	text_lbl.text = msg.text
+	text_lbl.add_theme_color_override(\"font_color\", TEXT_COLOR)
+	text_lbl.add_theme_font_size_override(\"font_size\", 14)
+	text_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	text_lbl.custom_minimum_size = Vector2(0, 0)
+	inner_vbox.add_child(text_lbl)
+
+	var meta_hbox := HBoxContainer.new()
+	meta_hbox.alignment = BoxContainer.ALIGNMENT_END
+	inner_vbox.add_child(meta_hbox)
+
+	var time_lbl := Label.new()
+	time_lbl.text = msg.time
+	time_lbl.add_theme_color_override(\"font_color\", TIME_COLOR)
+	time_lbl.add_theme_font_size_override(\"font_size\", 10)
+	meta_hbox.add_child(time_lbl)
+
+	if msg.sent:
+		var check_lbl := Label.new()
+		check_lbl.text = \" ✓✓\"
+		check_lbl.add_theme_color_override(\"font_color\", Color(0.043, 0.675, 0.424, 1.0))
+		check_lbl.add_theme_font_size_override(\"font_size\", 10)
+		meta_hbox.add_child(check_lbl)
+
+	if msg.sent:
+		outer.add_child(spacer)
+		outer.add_child(bubble)
+	else:
+		outer.add_child(bubble)
+		outer.add_child(spacer)
+
+	return outer
+
+func _on_message_submitted(text: String) -> void:
+	_send_message(text)
+
+func _on_send_pressed() -> void:
+	_send_message(message_input.text)
+
+func _send_message(text: String) -> void:
+	text = text.strip_edges()
+	if text.is_empty():
+		return
+	var now := Time.get_time_string_from_system().substr(0, 5)
+	var new_msg := {\"text\": text, \"sent\": true, \"time\": now}
+	messages.append(new_msg)
+	messages_container.add_child(_make_bubble(new_msg))
+	message_input.text = \"\"
+	await get_tree().process_frame
+	await get_tree().process_frame
+	scroll_container.scroll_vertical = scroll_container.get_v_scroll_bar().max_value
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iodoy"]
+bg_color = Color(0.082, 0.11, 0.129, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_66ddp"]
+bg_color = Color(0.1, 0.137, 0.161, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ury1"]
+bg_color = Color(0.043, 0.675, 0.424, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6yvou"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0.055, 0.075, 0.09, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0p4rv"]
+bg_color = Color(0.1, 0.137, 0.161, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cxgt4"]
+bg_color = Color(0.2, 0.4, 0.49, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yvnmq"]
+bg_color = Color(0.082, 0.11, 0.129, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3pvhl"]
+bg_color = Color(0.55, 0.27, 0.07, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8rpih"]
+content_margin_left = 6.0
+content_margin_top = 2.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.043, 0.675, 0.424, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y8hj5"]
+bg_color = Color(0.082, 0.11, 0.129, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_787sl"]
+bg_color = Color(0.4, 0.2, 0.6, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mmso"]
+bg_color = Color(0.082, 0.11, 0.129, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ndfcq"]
+bg_color = Color(0.75, 0.22, 0.17, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bkldl"]
+bg_color = Color(0.082, 0.11, 0.129, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vl5dw"]
+bg_color = Color(0.13, 0.55, 0.13, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4bb1e"]
+bg_color = Color(0.082, 0.11, 0.129, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aaxo8"]
+bg_color = Color(0.6, 0.2, 0.4, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cmvqh"]
+bg_color = Color(0.1, 0.137, 0.161, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qnwcn"]
+bg_color = Color(0.2, 0.4, 0.49, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nd8ry"]
+bg_color = Color(0.043, 0.055, 0.067, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x2qux"]
+content_margin_left = 10.0
+content_margin_top = 6.0
+content_margin_right = 10.0
+content_margin_bottom = 6.0
+bg_color = Color(0.122, 0.161, 0.188, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_duwut"]
+content_margin_left = 10.0
+content_margin_top = 6.0
+content_margin_right = 10.0
+content_margin_bottom = 6.0
+bg_color = Color(0.082, 0.29, 0.169, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3nved"]
+content_margin_left = 10.0
+content_margin_top = 6.0
+content_margin_right = 10.0
+content_margin_bottom = 6.0
+bg_color = Color(0.122, 0.161, 0.188, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fncwg"]
+content_margin_left = 10.0
+content_margin_top = 6.0
+content_margin_right = 10.0
+content_margin_bottom = 6.0
+bg_color = Color(0.082, 0.29, 0.169, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e44uk"]
+content_margin_left = 10.0
+content_margin_top = 6.0
+content_margin_right = 10.0
+content_margin_bottom = 6.0
+bg_color = Color(0.122, 0.161, 0.188, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_odwye"]
+content_margin_left = 10.0
+content_margin_top = 6.0
+content_margin_right = 10.0
+content_margin_bottom = 6.0
+bg_color = Color(0.082, 0.29, 0.169, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u8h36"]
+content_margin_left = 10.0
+content_margin_top = 6.0
+content_margin_right = 10.0
+content_margin_bottom = 6.0
+bg_color = Color(0.122, 0.161, 0.188, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o4btj"]
+content_margin_left = 16.0
+content_margin_top = 10.0
+content_margin_right = 16.0
+content_margin_bottom = 10.0
+bg_color = Color(0.082, 0.11, 0.129, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4yylo"]
+content_margin_left = 16.0
+content_margin_top = 6.0
+content_margin_right = 16.0
+content_margin_bottom = 6.0
+bg_color = Color(0.122, 0.161, 0.188, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sn3p2"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rtqsc"]
+bg_color = Color(0.043, 0.675, 0.424, 1)
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_right = 22
+corner_radius_bottom_left = 22
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7rbd6"]
+bg_color = Color(0.06, 0.78, 0.49, 1)
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_right = 22
+corner_radius_bottom_left = 22
+
+[node name="WhatsAppChat" type="Control" unique_id=1671062595]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_chat")
+
+[node name="_HBoxContainer_2" type="HBoxContainer" parent="." unique_id=1883387166]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="_PanelContainer_3" type="PanelContainer" parent="_HBoxContainer_2" unique_id=1397252912]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_iodoy")
+
+[node name="_VBoxContainer_4" type="VBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3" unique_id=860504114]
+layout_mode = 2
+
+[node name="_PanelContainer_5" type="PanelContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4" unique_id=1481694895]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_66ddp")
+
+[node name="_HBoxContainer_6" type="HBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_PanelContainer_5" unique_id=1410315757]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="_MarginContainer_7" type="MarginContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_PanelContainer_5" unique_id=1163351951]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 10
+
+[node name="_PanelContainer_9" type="PanelContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_PanelContainer_5/_MarginContainer_7" unique_id=903892184]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1ury1")
+
+[node name="_Label_8" type="Label" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_PanelContainer_5/_MarginContainer_7/_PanelContainer_9" unique_id=1259749278]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "N"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="_Control_10" type="Control" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_PanelContainer_5/_MarginContainer_7" unique_id=766600152]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="_HBoxContainer_11" type="HBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_PanelContainer_5/_MarginContainer_7" unique_id=86584318]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="_Button_12" type="Button" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_PanelContainer_5/_MarginContainer_7/_HBoxContainer_11" unique_id=1625966097]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 18
+text = "⊕"
+flat = true
+
+[node name="_Button_13" type="Button" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_PanelContainer_5/_MarginContainer_7/_HBoxContainer_11" unique_id=1678759011]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 18
+text = "💬"
+flat = true
+
+[node name="_Button_14" type="Button" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_PanelContainer_5/_MarginContainer_7/_HBoxContainer_11" unique_id=322896741]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 18
+text = "⋮"
+flat = true
+
+[node name="_MarginContainer_15" type="MarginContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4" unique_id=850547434]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="_PanelContainer_16" type="PanelContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_MarginContainer_15" unique_id=2128631331]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_6yvou")
+
+[node name="_HBoxContainer_17" type="HBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_MarginContainer_15/_PanelContainer_16" unique_id=731787149]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="_Label_18" type="Label" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_MarginContainer_15/_PanelContainer_16/_HBoxContainer_17" unique_id=1785496552]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.58, 0.62, 1)
+text = "🔍"
+
+[node name="_Label_19" type="Label" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_MarginContainer_15/_PanelContainer_16/_HBoxContainer_17" unique_id=1864751308]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 13
+text = "Buscar o empezar un chat"
+
+[node name="_ScrollContainer_22" type="ScrollContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4" unique_id=1278522425]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="_VBoxContainer_23" type="VBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22" unique_id=1068879217]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="_VBoxContainer_36" type="VBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23" unique_id=1346250404]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="_PanelContainer_34" type="PanelContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_36" unique_id=875420]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0p4rv")
+
+[node name="_MarginContainer_24" type="MarginContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_36/_PanelContainer_34" unique_id=1320674936]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 10
+
+[node name="_HBoxContainer_25" type="HBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_36/_PanelContainer_34/_MarginContainer_24" unique_id=765016888]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="_PanelContainer_27" type="PanelContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_36/_PanelContainer_34/_MarginContainer_24/_HBoxContainer_25" unique_id=473453124]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cxgt4")
+
+[node name="_Label_26" type="Label" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_36/_PanelContainer_34/_MarginContainer_24/_HBoxContainer_25/_PanelContainer_27" unique_id=1097204268]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="_VBoxContainer_28" type="VBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_36/_PanelContainer_34/_MarginContainer_24/_HBoxContainer_25" unique_id=356306487]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 3
+
+[node name="_HBoxContainer_29" type="HBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_36/_PanelContainer_34/_MarginContainer_24/_HBoxContainer_25/_VBoxContainer_28" unique_id=730122076]
+layout_mode = 2
+
+[node name="_Label_30" type="Label" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_36/_PanelContainer_34/_MarginContainer_24/_HBoxContainer_25/_VBoxContainer_28/_HBoxContainer_29" unique_id=1428252362]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.878, 0.906, 0.922, 1)
+theme_override_font_sizes/font_size = 14
+text = "Sofía Ramírez"
+
+[node name="_Label_31" type="Label" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_36/_PanelContainer_34/_MarginContainer_24/_HBoxContainer_25/_VBoxContainer_28/_HBoxContainer_29" unique_id=640264224]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 11
+text = "10:42"
+
+[node name="_HBoxContainer_32" type="HBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_36/_PanelContainer_34/_MarginContainer_24/_HBoxContainer_25/_VBoxContainer_28" unique_id=2034089790]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="_Label_33" type="Label" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_36/_PanelContainer_34/_MarginContainer_24/_HBoxContainer_25/_VBoxContainer_28/_HBoxContainer_32" unique_id=1351581263]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.5, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "Perfecto, nos vemos ahí 👍"
+clip_text = true
+
+[node name="_HSeparator_35" type="HSeparator" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_36" unique_id=543190538]
+modulate = Color(1, 1, 1, 0.07)
+layout_mode = 2
+
+[node name="_VBoxContainer_51" type="VBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23" unique_id=224175157]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="_PanelContainer_49" type="PanelContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_51" unique_id=766108309]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yvnmq")
+
+[node name="_MarginContainer_37" type="MarginContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_51/_PanelContainer_49" unique_id=683265121]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 10
+
+[node name="_HBoxContainer_38" type="HBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_51/_PanelContainer_49/_MarginContainer_37" unique_id=1589765031]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="_PanelContainer_40" type="PanelContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_51/_PanelContainer_49/_MarginContainer_37/_HBoxContainer_38" unique_id=1181154989]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3pvhl")
+
+[node name="_Label_39" type="Label" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_51/_PanelContainer_49/_MarginContainer_37/_HBoxContainer_38/_PanelContainer_40" unique_id=2110893869]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "M"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="_VBoxContainer_41" type="VBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_51/_PanelContainer_49/_MarginContainer_37/_HBoxContainer_38" unique_id=2010451448]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 3
+
+[node name="_HBoxContainer_42" type="HBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_51/_PanelContainer_49/_MarginContainer_37/_HBoxContainer_38/_VBoxContainer_41" unique_id=1887362165]
+layout_mode = 2
+
+[node name="_Label_43" type="Label" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_51/_PanelContainer_49/_MarginContainer_37/_HBoxContainer_38/_VBoxContainer_41/_HBoxContainer_42" unique_id=1425729498]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.878, 0.906, 0.922, 1)
+theme_override_font_sizes/font_size = 14
+text = "Martín López"
+
+[node name="_Label_44" type="Label" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_51/_PanelContainer_49/_MarginContainer_37/_HBoxContainer_38/_VBoxContainer_41/_HBoxContainer_42" unique_id=17721408]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 11
+text = "09:15"
+
+[node name="_HBoxContainer_45" type="HBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_51/_PanelContainer_49/_MarginContainer_37/_HBoxContainer_38/_VBoxContainer_41" unique_id=2059850960]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="_Label_46" type="Label" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_51/_PanelContainer_49/_MarginContainer_37/_HBoxContainer_38/_VBoxContainer_41/_HBoxContainer_45" unique_id=1635629918]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.5, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "¿Viste el partido anoche?"
+clip_text = true
+
+[node name="_PanelContainer_48" type="PanelContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_51/_PanelContainer_49/_MarginContainer_37/_HBoxContainer_38/_VBoxContainer_41/_HBoxContainer_45" unique_id=803336732]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8rpih")
+
+[node name="_Label_47" type="Label" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_51/_PanelContainer_49/_MarginContainer_37/_HBoxContainer_38/_VBoxContainer_41/_HBoxContainer_45/_PanelContainer_48" unique_id=508645308]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 11
+text = "3"
+
+[node name="_HSeparator_50" type="HSeparator" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_51" unique_id=2098569003]
+modulate = Color(1, 1, 1, 0.07)
+layout_mode = 2
+
+[node name="_VBoxContainer_64" type="VBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23" unique_id=917983833]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="_PanelContainer_62" type="PanelContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_64" unique_id=1768848536]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y8hj5")
+
+[node name="_MarginContainer_52" type="MarginContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_64/_PanelContainer_62" unique_id=1347129383]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 10
+
+[node name="_HBoxContainer_53" type="HBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_64/_PanelContainer_62/_MarginContainer_52" unique_id=1263517411]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="_PanelContainer_55" type="PanelContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_64/_PanelContainer_62/_MarginContainer_52/_HBoxContainer_53" unique_id=2131612506]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_787sl")
+
+[node name="_Label_54" type="Label" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_64/_PanelContainer_62/_MarginContainer_52/_HBoxContainer_53/_PanelContainer_55" unique_id=1854690167]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="_VBoxContainer_56" type="VBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_64/_PanelContainer_62/_MarginContainer_52/_HBoxContainer_53" unique_id=1072354769]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 3
+
+[node name="_HBoxContainer_57" type="HBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_64/_PanelContainer_62/_MarginContainer_52/_HBoxContainer_53/_VBoxContainer_56" unique_id=1898166459]
+layout_mode = 2
+
+[node name="_Label_58" type="Label" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_64/_PanelContainer_62/_MarginContainer_52/_HBoxContainer_53/_VBoxContainer_56/_HBoxContainer_57" unique_id=2119177424]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.878, 0.906, 0.922, 1)
+theme_override_font_sizes/font_size = 14
+text = "Equipo Dev 🚀"
+
+[node name="_Label_59" type="Label" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_64/_PanelContainer_62/_MarginContainer_52/_HBoxContainer_53/_VBoxContainer_56/_HBoxContainer_57" unique_id=983985304]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 11
+text = "Ayer"
+
+[node name="_HBoxContainer_60" type="HBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_64/_PanelContainer_62/_MarginContainer_52/_HBoxContainer_53/_VBoxContainer_56" unique_id=1171451607]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="_Label_61" type="Label" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_64/_PanelContainer_62/_MarginContainer_52/_HBoxContainer_53/_VBoxContainer_56/_HBoxContainer_60" unique_id=1762433991]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.5, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "Nicolás: PR aprobado ✅"
+clip_text = true
+
+[node name="_HSeparator_63" type="HSeparator" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_64" unique_id=363632176]
+modulate = Color(1, 1, 1, 0.07)
+layout_mode = 2
+
+[node name="_VBoxContainer_77" type="VBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23" unique_id=857076052]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="_PanelContainer_75" type="PanelContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_77" unique_id=1465877699]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8mmso")
+
+[node name="_MarginContainer_65" type="MarginContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_77/_PanelContainer_75" unique_id=1477670470]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 10
+
+[node name="_HBoxContainer_66" type="HBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_77/_PanelContainer_75/_MarginContainer_65" unique_id=316050769]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="_PanelContainer_68" type="PanelContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_77/_PanelContainer_75/_MarginContainer_65/_HBoxContainer_66" unique_id=303508403]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ndfcq")
+
+[node name="_Label_67" type="Label" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_77/_PanelContainer_75/_MarginContainer_65/_HBoxContainer_66/_PanelContainer_68" unique_id=1518992228]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "M"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="_VBoxContainer_69" type="VBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_77/_PanelContainer_75/_MarginContainer_65/_HBoxContainer_66" unique_id=793476180]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 3
+
+[node name="_HBoxContainer_70" type="HBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_77/_PanelContainer_75/_MarginContainer_65/_HBoxContainer_66/_VBoxContainer_69" unique_id=1983289366]
+layout_mode = 2
+
+[node name="_Label_71" type="Label" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_77/_PanelContainer_75/_MarginContainer_65/_HBoxContainer_66/_VBoxContainer_69/_HBoxContainer_70" unique_id=1576495542]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.878, 0.906, 0.922, 1)
+theme_override_font_sizes/font_size = 14
+text = "Mamá ❤️"
+
+[node name="_Label_72" type="Label" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_77/_PanelContainer_75/_MarginContainer_65/_HBoxContainer_66/_VBoxContainer_69/_HBoxContainer_70" unique_id=1749114628]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 11
+text = "Ayer"
+
+[node name="_HBoxContainer_73" type="HBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_77/_PanelContainer_75/_MarginContainer_65/_HBoxContainer_66/_VBoxContainer_69" unique_id=1581454563]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="_Label_74" type="Label" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_77/_PanelContainer_75/_MarginContainer_65/_HBoxContainer_66/_VBoxContainer_69/_HBoxContainer_73" unique_id=1384258336]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.5, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "Cuídate mucho!"
+clip_text = true
+
+[node name="_HSeparator_76" type="HSeparator" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_77" unique_id=1276595233]
+modulate = Color(1, 1, 1, 0.07)
+layout_mode = 2
+
+[node name="_VBoxContainer_90" type="VBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23" unique_id=467654948]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="_PanelContainer_88" type="PanelContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_90" unique_id=1561368477]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bkldl")
+
+[node name="_MarginContainer_78" type="MarginContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_90/_PanelContainer_88" unique_id=464411042]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 10
+
+[node name="_HBoxContainer_79" type="HBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_90/_PanelContainer_88/_MarginContainer_78" unique_id=1429281671]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="_PanelContainer_81" type="PanelContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_90/_PanelContainer_88/_MarginContainer_78/_HBoxContainer_79" unique_id=1277017551]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vl5dw")
+
+[node name="_Label_80" type="Label" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_90/_PanelContainer_88/_MarginContainer_78/_HBoxContainer_79/_PanelContainer_81" unique_id=159815458]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "L"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="_VBoxContainer_82" type="VBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_90/_PanelContainer_88/_MarginContainer_78/_HBoxContainer_79" unique_id=759605462]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 3
+
+[node name="_HBoxContainer_83" type="HBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_90/_PanelContainer_88/_MarginContainer_78/_HBoxContainer_79/_VBoxContainer_82" unique_id=867115004]
+layout_mode = 2
+
+[node name="_Label_84" type="Label" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_90/_PanelContainer_88/_MarginContainer_78/_HBoxContainer_79/_VBoxContainer_82/_HBoxContainer_83" unique_id=875367512]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.878, 0.906, 0.922, 1)
+theme_override_font_sizes/font_size = 14
+text = "Lucas Fernández"
+
+[node name="_Label_85" type="Label" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_90/_PanelContainer_88/_MarginContainer_78/_HBoxContainer_79/_VBoxContainer_82/_HBoxContainer_83" unique_id=1222078895]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 11
+text = "Mar"
+
+[node name="_HBoxContainer_86" type="HBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_90/_PanelContainer_88/_MarginContainer_78/_HBoxContainer_79/_VBoxContainer_82" unique_id=1310457807]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="_Label_87" type="Label" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_90/_PanelContainer_88/_MarginContainer_78/_HBoxContainer_79/_VBoxContainer_82/_HBoxContainer_86" unique_id=764347103]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.5, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "jajaja che 😂"
+clip_text = true
+
+[node name="_HSeparator_89" type="HSeparator" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_90" unique_id=1673081346]
+modulate = Color(1, 1, 1, 0.07)
+layout_mode = 2
+
+[node name="_VBoxContainer_103" type="VBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23" unique_id=198418617]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="_PanelContainer_101" type="PanelContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_103" unique_id=1139348223]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4bb1e")
+
+[node name="_MarginContainer_91" type="MarginContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_103/_PanelContainer_101" unique_id=1448906975]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 10
+
+[node name="_HBoxContainer_92" type="HBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_103/_PanelContainer_101/_MarginContainer_91" unique_id=2065827879]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="_PanelContainer_94" type="PanelContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_103/_PanelContainer_101/_MarginContainer_91/_HBoxContainer_92" unique_id=1353277700]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_aaxo8")
+
+[node name="_Label_93" type="Label" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_103/_PanelContainer_101/_MarginContainer_91/_HBoxContainer_92/_PanelContainer_94" unique_id=2071351142]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "F"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="_VBoxContainer_95" type="VBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_103/_PanelContainer_101/_MarginContainer_91/_HBoxContainer_92" unique_id=186987920]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 3
+
+[node name="_HBoxContainer_96" type="HBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_103/_PanelContainer_101/_MarginContainer_91/_HBoxContainer_92/_VBoxContainer_95" unique_id=736034655]
+layout_mode = 2
+
+[node name="_Label_97" type="Label" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_103/_PanelContainer_101/_MarginContainer_91/_HBoxContainer_92/_VBoxContainer_95/_HBoxContainer_96" unique_id=779484885]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.878, 0.906, 0.922, 1)
+theme_override_font_sizes/font_size = 14
+text = "Florencia Díaz"
+
+[node name="_Label_98" type="Label" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_103/_PanelContainer_101/_MarginContainer_91/_HBoxContainer_92/_VBoxContainer_95/_HBoxContainer_96" unique_id=1917014682]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 11
+text = "Lun"
+
+[node name="_HBoxContainer_99" type="HBoxContainer" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_103/_PanelContainer_101/_MarginContainer_91/_HBoxContainer_92/_VBoxContainer_95" unique_id=2086762941]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="_Label_100" type="Label" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_103/_PanelContainer_101/_MarginContainer_91/_HBoxContainer_92/_VBoxContainer_95/_HBoxContainer_99" unique_id=1098192087]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.5, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "Mandame el link cuando puedas"
+clip_text = true
+
+[node name="_HSeparator_102" type="HSeparator" parent="_HBoxContainer_2/_PanelContainer_3/_VBoxContainer_4/_ScrollContainer_22/_VBoxContainer_23/_VBoxContainer_103" unique_id=1442369394]
+modulate = Color(1, 1, 1, 0.07)
+layout_mode = 2
+
+[node name="_VBoxContainer_104" type="VBoxContainer" parent="_HBoxContainer_2" unique_id=1853145187]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="_PanelContainer_105" type="PanelContainer" parent="_HBoxContainer_2/_VBoxContainer_104" unique_id=537744305]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cmvqh")
+
+[node name="_MarginContainer_106" type="MarginContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_105" unique_id=780153588]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 10
+
+[node name="_HBoxContainer_107" type="HBoxContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_105/_MarginContainer_106" unique_id=680064342]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="_PanelContainer_109" type="PanelContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_105/_MarginContainer_106/_HBoxContainer_107" unique_id=607757748]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qnwcn")
+
+[node name="_Label_108" type="Label" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_105/_MarginContainer_106/_HBoxContainer_107/_PanelContainer_109" unique_id=265935957]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="_VBoxContainer_110" type="VBoxContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_105/_MarginContainer_106/_HBoxContainer_107" unique_id=706280183]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="_Label_111" type="Label" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_105/_MarginContainer_106/_HBoxContainer_107/_VBoxContainer_110" unique_id=1485036175]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.878, 0.906, 0.922, 1)
+theme_override_font_sizes/font_size = 15
+text = "Sofía Ramírez"
+
+[node name="_Label_112" type="Label" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_105/_MarginContainer_106/_HBoxContainer_107/_VBoxContainer_110" unique_id=1201662942]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.043, 0.675, 0.424, 1)
+theme_override_font_sizes/font_size = 12
+text = "en línea"
+
+[node name="_Control_113" type="Control" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_105/_MarginContainer_106/_HBoxContainer_107" unique_id=1790317794]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="_Button_114" type="Button" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_105/_MarginContainer_106/_HBoxContainer_107" unique_id=1804377055]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 18
+text = "🔍"
+flat = true
+
+[node name="_Button_115" type="Button" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_105/_MarginContainer_106/_HBoxContainer_107" unique_id=806785577]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 18
+text = "⋮"
+flat = true
+
+[node name="_PanelContainer_116" type="PanelContainer" parent="_HBoxContainer_2/_VBoxContainer_104" unique_id=1525866104]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_nd8ry")
+
+[node name="_ScrollContainer_119" type="ScrollContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116" unique_id=1075982920]
+layout_mode = 2
+scroll_vertical = 100
+horizontal_scroll_mode = 0
+
+[node name="_MarginContainer_120" type="MarginContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119" unique_id=1614068976]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 12
+
+[node name="_VBoxContainer_121" type="VBoxContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120" unique_id=2126220838]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="_Label_129" type="Label" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121" unique_id=343075925]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 11
+text = "HOY"
+horizontal_alignment = 1
+
+[node name="_HBoxContainer_136" type="HBoxContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121" unique_id=693909347]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="_PanelContainer_134" type="PanelContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_136" unique_id=283847484]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_x2qux")
+
+[node name="_VBoxContainer_130" type="VBoxContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_136/_PanelContainer_134" unique_id=1463614966]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="_Label_131" type="Label" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_136/_PanelContainer_134/_VBoxContainer_130" unique_id=1713668219]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.878, 0.906, 0.922, 1)
+theme_override_font_sizes/font_size = 14
+text = "Hola! ¿Cómo estás?"
+autowrap_mode = 3
+
+[node name="_HBoxContainer_132" type="HBoxContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_136/_PanelContainer_134/_VBoxContainer_130" unique_id=1317956143]
+layout_mode = 2
+alignment = 2
+
+[node name="_Label_133" type="Label" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_136/_PanelContainer_134/_VBoxContainer_130/_HBoxContainer_132" unique_id=881550599]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 10
+text = "10:30"
+
+[node name="_Control_135" type="Control" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_136" unique_id=1531824768]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="_HBoxContainer_144" type="HBoxContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121" unique_id=192395409]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="_Control_142" type="Control" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_144" unique_id=1513374587]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="_PanelContainer_143" type="PanelContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_144" unique_id=416475481]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_duwut")
+
+[node name="_VBoxContainer_137" type="VBoxContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_144/_PanelContainer_143" unique_id=407148842]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="_Label_138" type="Label" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_144/_PanelContainer_143/_VBoxContainer_137" unique_id=679455609]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.878, 0.906, 0.922, 1)
+theme_override_font_sizes/font_size = 14
+text = "Todo bien, gracias! Y vos?"
+autowrap_mode = 3
+
+[node name="_HBoxContainer_139" type="HBoxContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_144/_PanelContainer_143/_VBoxContainer_137" unique_id=244295287]
+layout_mode = 2
+alignment = 2
+
+[node name="_Label_140" type="Label" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_144/_PanelContainer_143/_VBoxContainer_137/_HBoxContainer_139" unique_id=1097231823]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 10
+text = "10:31"
+
+[node name="_Label_141" type="Label" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_144/_PanelContainer_143/_VBoxContainer_137/_HBoxContainer_139" unique_id=1574938625]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.043, 0.675, 0.424, 1)
+theme_override_font_sizes/font_size = 10
+text = " ✓✓"
+
+[node name="_HBoxContainer_151" type="HBoxContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121" unique_id=490129204]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="_PanelContainer_149" type="PanelContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_151" unique_id=1640768716]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3nved")
+
+[node name="_VBoxContainer_145" type="VBoxContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_151/_PanelContainer_149" unique_id=187133099]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="_Label_146" type="Label" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_151/_PanelContainer_149/_VBoxContainer_145" unique_id=370696974]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.878, 0.906, 0.922, 1)
+theme_override_font_sizes/font_size = 14
+text = "Re bien, recién salí del trabajo. ¿Quedamos para el finde?"
+autowrap_mode = 3
+
+[node name="_HBoxContainer_147" type="HBoxContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_151/_PanelContainer_149/_VBoxContainer_145" unique_id=1573691581]
+layout_mode = 2
+alignment = 2
+
+[node name="_Label_148" type="Label" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_151/_PanelContainer_149/_VBoxContainer_145/_HBoxContainer_147" unique_id=695627893]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 10
+text = "10:33"
+
+[node name="_Control_150" type="Control" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_151" unique_id=408459813]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="_HBoxContainer_159" type="HBoxContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121" unique_id=969703254]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="_Control_157" type="Control" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_159" unique_id=654898265]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="_PanelContainer_158" type="PanelContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_159" unique_id=1338960987]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fncwg")
+
+[node name="_VBoxContainer_152" type="VBoxContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_159/_PanelContainer_158" unique_id=1720708644]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="_Label_153" type="Label" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_159/_PanelContainer_158/_VBoxContainer_152" unique_id=1165969557]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.878, 0.906, 0.922, 1)
+theme_override_font_sizes/font_size = 14
+text = "Dale, me parece perfecto. ¿El sábado a la tarde?"
+autowrap_mode = 3
+
+[node name="_HBoxContainer_154" type="HBoxContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_159/_PanelContainer_158/_VBoxContainer_152" unique_id=263530076]
+layout_mode = 2
+alignment = 2
+
+[node name="_Label_155" type="Label" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_159/_PanelContainer_158/_VBoxContainer_152/_HBoxContainer_154" unique_id=1477062894]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 10
+text = "10:35"
+
+[node name="_Label_156" type="Label" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_159/_PanelContainer_158/_VBoxContainer_152/_HBoxContainer_154" unique_id=686984730]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.043, 0.675, 0.424, 1)
+theme_override_font_sizes/font_size = 10
+text = " ✓✓"
+
+[node name="_HBoxContainer_166" type="HBoxContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121" unique_id=2051908813]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="_PanelContainer_164" type="PanelContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_166" unique_id=1244337934]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_e44uk")
+
+[node name="_VBoxContainer_160" type="VBoxContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_166/_PanelContainer_164" unique_id=899190667]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="_Label_161" type="Label" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_166/_PanelContainer_164/_VBoxContainer_160" unique_id=568199543]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.878, 0.906, 0.922, 1)
+theme_override_font_sizes/font_size = 14
+text = "Sí! A las 17:00 en el centro. Te mando la ubicación ahora."
+autowrap_mode = 3
+
+[node name="_HBoxContainer_162" type="HBoxContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_166/_PanelContainer_164/_VBoxContainer_160" unique_id=77810915]
+layout_mode = 2
+alignment = 2
+
+[node name="_Label_163" type="Label" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_166/_PanelContainer_164/_VBoxContainer_160/_HBoxContainer_162" unique_id=1441335493]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 10
+text = "10:37"
+
+[node name="_Control_165" type="Control" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_166" unique_id=734604918]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="_HBoxContainer_174" type="HBoxContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121" unique_id=23887609]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="_Control_172" type="Control" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_174" unique_id=1081975908]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="_PanelContainer_173" type="PanelContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_174" unique_id=1690779434]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_odwye")
+
+[node name="_VBoxContainer_167" type="VBoxContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_174/_PanelContainer_173" unique_id=114199754]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="_Label_168" type="Label" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_174/_PanelContainer_173/_VBoxContainer_167" unique_id=1783347620]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.878, 0.906, 0.922, 1)
+theme_override_font_sizes/font_size = 14
+text = "Perfecto, ahí estaré 🎉"
+autowrap_mode = 3
+
+[node name="_HBoxContainer_169" type="HBoxContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_174/_PanelContainer_173/_VBoxContainer_167" unique_id=425799286]
+layout_mode = 2
+alignment = 2
+
+[node name="_Label_170" type="Label" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_174/_PanelContainer_173/_VBoxContainer_167/_HBoxContainer_169" unique_id=1715342030]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 10
+text = "10:40"
+
+[node name="_Label_171" type="Label" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_174/_PanelContainer_173/_VBoxContainer_167/_HBoxContainer_169" unique_id=1477869507]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.043, 0.675, 0.424, 1)
+theme_override_font_sizes/font_size = 10
+text = " ✓✓"
+
+[node name="_HBoxContainer_181" type="HBoxContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121" unique_id=1779847080]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="_PanelContainer_179" type="PanelContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_181" unique_id=1369286024]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_u8h36")
+
+[node name="_VBoxContainer_175" type="VBoxContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_181/_PanelContainer_179" unique_id=336398322]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="_Label_176" type="Label" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_181/_PanelContainer_179/_VBoxContainer_175" unique_id=940764115]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.878, 0.906, 0.922, 1)
+theme_override_font_sizes/font_size = 14
+text = "Perfecto, nos vemos ahí 👍"
+autowrap_mode = 3
+
+[node name="_HBoxContainer_177" type="HBoxContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_181/_PanelContainer_179/_VBoxContainer_175" unique_id=1332788030]
+layout_mode = 2
+alignment = 2
+
+[node name="_Label_178" type="Label" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_181/_PanelContainer_179/_VBoxContainer_175/_HBoxContainer_177" unique_id=427208794]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 10
+text = "10:42"
+
+[node name="_Control_180" type="Control" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_116/_ScrollContainer_119/_MarginContainer_120/_VBoxContainer_121/_HBoxContainer_181" unique_id=1316731046]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="_PanelContainer_122" type="PanelContainer" parent="_HBoxContainer_2/_VBoxContainer_104" unique_id=72090434]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o4btj")
+
+[node name="_HBoxContainer_123" type="HBoxContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_122" unique_id=1393193327]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="_Button_124" type="Button" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_122/_HBoxContainer_123" unique_id=1622141431]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 18
+text = "😊"
+flat = true
+
+[node name="_Button_125" type="Button" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_122/_HBoxContainer_123" unique_id=88694557]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.58, 0.62, 1)
+theme_override_font_sizes/font_size = 18
+text = "📎"
+flat = true
+
+[node name="_PanelContainer_126" type="PanelContainer" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_122/_HBoxContainer_123" unique_id=1391117784]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_4yylo")
+
+[node name="_LineEdit_127" type="LineEdit" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_122/_HBoxContainer_123/_PanelContainer_126" unique_id=1462155696]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.878, 0.906, 0.922, 1)
+theme_override_colors/font_placeholder_color = Color(0.5, 0.58, 0.62, 1)
+theme_override_colors/caret_color = Color(0.043, 0.675, 0.424, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_sn3p2")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_sn3p2")
+theme_override_styles/focus = SubResource("StyleBoxFlat_sn3p2")
+placeholder_text = "Escribe un mensaje"
+
+[node name="_Button_128" type="Button" parent="_HBoxContainer_2/_VBoxContainer_104/_PanelContainer_122/_HBoxContainer_123" unique_id=705348664]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_rtqsc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rtqsc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7rbd6")
+text = "➤"

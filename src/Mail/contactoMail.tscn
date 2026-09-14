@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://dir6afeorbba6"]
+
+[ext_resource type="Script" uid="uid://b8d2qsipb6tuh" path="res://src/Mail/contactoMail.gd" id="1_6ydek"]
+
+[node name="ContactoMail" type="Button" unique_id=523193422]
+offset_right = 512.0
+offset_bottom = 64.0
+script = ExtResource("1_6ydek")
+
+[node name="Nombre" type="Label" parent="." unique_id=2121924593]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 248.0
+offset_bottom = 35.0
+text = "Google"
+
+[node name="Asunto" type="Label" parent="." unique_id=1614667176]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 36.0
+offset_right = 472.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 10
+text = "Su cuenta ha sido eliminada correctamente, si necesita volver a acceder a ella solo tiene que..."
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

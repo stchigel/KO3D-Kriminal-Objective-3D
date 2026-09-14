@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bhcomka7hwoi1"]
+
+[ext_resource type="Script" uid="uid://bfrjbfplq5ri5" path="res://src/Menu/menu.gd" id="1_vbyo6"]
+[ext_resource type="Texture2D" uid="uid://d2tnrh7xrrftl" path="res://assets/K.O..svg" id="2_mqewp"]
+
+[node name="Menu" type="Control" unique_id=1524986336]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vbyo6")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=451955899]
+layout_mode = 0
+offset_right = 1162.0
+offset_bottom = 662.0
+color = Color(0.051970966, 0.05197096, 0.05197095, 1)
+
+[node name="K_o_" type="TextureRect" parent="." unique_id=1209658488]
+layout_mode = 0
+offset_left = 337.0
+offset_top = 23.0
+offset_right = 777.0
+offset_bottom = 573.0
+texture = ExtResource("2_mqewp")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="." unique_id=854736668]
+layout_mode = 0
+offset_left = 520.0
+offset_top = 461.0
+offset_right = 619.0
+offset_bottom = 534.0
+text = "Play"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://dc40rllqxwshx"]
+
+[ext_resource type="StyleBox" uid="uid://c024it7l3dfwn" path="res://src/Burbuja/burbuja_style.tres" id="1_igdvr"]
+[ext_resource type="Script" uid="uid://bd3x5fdcebrd2" path="res://src/Burbuja/burbuja.gd" id="2_1nh1b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_igdvr"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.3254902, 0.3529412, 0.36862746, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 5
+
+[node name="Burbuja" type="Panel" unique_id=1435166161]
+z_index = 1
+offset_right = 312.0
+offset_bottom = 60.0
+theme_override_styles/panel = ExtResource("1_igdvr")
+script = ExtResource("2_1nh1b")
+
+[node name="Panel" type="Panel" parent="." unique_id=878744674]
+custom_minimum_size = Vector2(312, 60)
+layout_mode = 0
+offset_right = 312.0
+offset_bottom = 60.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_igdvr")
+
+[node name="Texto" type="RichTextLabel" parent="." unique_id=456977106]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 10.0
+offset_right = 304.0
+offset_bottom = 64.0
+theme_override_font_sizes/normal_font_size = 15
+text = "Bien y vos "
+fit_content = true
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=981333470]
+position = Vector2(-1464, -276.00003)
+scale = Vector2(4.8, 4.1684775)
+color = Color(0.3254902, 0.3529412, 0.36862746, 1)
+polygon = PackedVector2Array(309.99997, 78.92307, 307.37677, 82.70026, 305, 86.122574, 304.99997, 78.92307, 307.56146, 78.92307)
+
+[node name="Texto2" type="RichTextLabel" parent="." unique_id=1346602150]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 36.0
+offset_right = 306.0
+offset_bottom = 52.0
+theme_override_font_sizes/normal_font_size = 7
+theme_override_font_sizes/italics_font_size = 8
+bbcode_enabled = true
+text = "[i]12:45[/i]"
+fit_content = true
+vertical_alignment = 1

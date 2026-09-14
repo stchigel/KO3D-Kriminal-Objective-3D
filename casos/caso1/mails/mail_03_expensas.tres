@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Mail" format=3 uid="uid://crfiahwo26b61"]
+
+[ext_resource type="Script" uid="uid://b341mvssqe4vw" path="res://mail.gd" id="1_0co7v"]
+
+[resource]
+script = ExtResource("1_0co7v")
+nombre = "administracion@edificiopalermo.com.ar"
+asunto = "Expensas octubre"
+mensaje = "Estimado propietario, las expensas del mes ascienden a $97.400. Vencimiento 15 de octubre."
+metadata/_custom_type_script = "uid://b341mvssqe4vw"
