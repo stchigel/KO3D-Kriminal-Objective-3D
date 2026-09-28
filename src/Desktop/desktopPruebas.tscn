@@ -49,6 +49,7 @@
 [ext_resource type="PackedScene" uid="uid://b7okxvy0ncvb2" path="res://src/Expediente/expediente.tscn" id="47_3pbp2"]
 [ext_resource type="PackedScene" uid="uid://ce2bmtq16mg1v" path="res://src/Camara/camara.tscn" id="48_17yhs"]
 [ext_resource type="Script" uid="uid://nlvei2uev0na" path="res://src/Desktop/pistatest.gd" id="49_sqtin"]
+[ext_resource type="PackedScene" path="res://src/Camara/escenas/oficina.tscn" id="50_oficina"]
 
 [node name="Desktop" type="Control" unique_id=1349076015 node_paths=PackedStringArray("ventanas")]
 layout_mode = 3
@@ -548,19 +549,20 @@ offset_bottom = 608.0
 nombre = "carta_para_fiscalia.pdf"
 pags = Array[Texture]([ExtResource("23_58127"), ExtResource("46_rlp43")])
 
-[node name="Expediente" parent="." unique_id=510146378 instance=ExtResource("47_3pbp2")]
-offset_left = 577.0
-offset_top = 563.0
-offset_right = 1165.0
-offset_bottom = 1211.0
-
 [node name="Camara" parent="." unique_id=1417676538 instance=ExtResource("48_17yhs")]
-visible = false
 layout_mode = 0
 offset_left = 173.0
 offset_top = 66.0
 offset_right = 1005.0
 offset_bottom = 514.0
+nombre = "Camara oficina"
+escena = ExtResource("50_oficina")
+
+[node name="Expediente" parent="." unique_id=510146378 instance=ExtResource("47_3pbp2")]
+offset_left = 577.0
+offset_top = 563.0
+offset_right = 1165.0
+offset_bottom = 1211.0
 
 [node name="PistaGratis" type="Button" parent="." unique_id=606532526]
 layout_mode = 0

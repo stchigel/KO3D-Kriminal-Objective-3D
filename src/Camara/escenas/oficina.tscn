@@ -1,0 +1,209 @@
+[gd_scene format=3 uid="uid://bfyv1y2v0kdsl"]
+
+[ext_resource type="Script" uid="uid://d3q6xuhubko4x" path="res://node_3d.gd" id="1_camara"]
+[ext_resource type="Script" uid="uid://0j0n5aumv2a0" path="res://src/Camara/pista_clickeable.gd" id="2_pista"]
+
+[sub_resource type="Environment" id="Environment_ofi"]
+background_mode = 1
+background_color = Color(0.04, 0.04, 0.05, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.6, 0.62, 0.66, 1)
+ambient_light_energy = 0.5
+tonemap_mode = 2
+adjustment_enabled = true
+adjustment_saturation = 0.6
+
+[sub_resource type="StandardMaterial3D" id="Mat_piso"]
+albedo_color = Color(0.32, 0.3, 0.28, 1)
+
+[sub_resource type="BoxMesh" id="Mesh_piso"]
+material = SubResource("Mat_piso")
+size = Vector3(6, 0.1, 5)
+
+[sub_resource type="StandardMaterial3D" id="Mat_pared"]
+albedo_color = Color(0.72, 0.69, 0.62, 1)
+
+[sub_resource type="BoxMesh" id="Mesh_pared_fondo"]
+material = SubResource("Mat_pared")
+size = Vector3(6, 3, 0.1)
+
+[sub_resource type="BoxMesh" id="Mesh_pared_lado"]
+material = SubResource("Mat_pared")
+size = Vector3(0.1, 3, 5)
+
+[sub_resource type="StandardMaterial3D" id="Mat_madera_oscura"]
+albedo_color = Color(0.2, 0.13, 0.08, 1)
+
+[sub_resource type="BoxMesh" id="Mesh_puerta"]
+material = SubResource("Mat_madera_oscura")
+size = Vector3(0.06, 2.1, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_madera"]
+albedo_color = Color(0.4, 0.26, 0.15, 1)
+
+[sub_resource type="BoxMesh" id="Mesh_escritorio"]
+material = SubResource("Mat_madera")
+size = Vector3(1.8, 0.75, 0.9)
+
+[sub_resource type="StandardMaterial3D" id="Mat_oscuro"]
+albedo_color = Color(0.08, 0.08, 0.09, 1)
+roughness = 0.3
+
+[sub_resource type="BoxMesh" id="Mesh_silla_asiento"]
+material = SubResource("Mat_oscuro")
+size = Vector3(0.5, 0.45, 0.5)
+
+[sub_resource type="BoxMesh" id="Mesh_silla_respaldo"]
+material = SubResource("Mat_oscuro")
+size = Vector3(0.5, 0.5, 0.06)
+
+[sub_resource type="StandardMaterial3D" id="Mat_metal"]
+albedo_color = Color(0.45, 0.45, 0.48, 1)
+metallic = 0.6
+roughness = 0.4
+
+[sub_resource type="CylinderMesh" id="Mesh_papelera"]
+material = SubResource("Mat_metal")
+top_radius = 0.18
+bottom_radius = 0.15
+height = 0.4
+
+[sub_resource type="BoxMesh" id="Mesh_celular"]
+material = SubResource("Mat_oscuro")
+size = Vector3(0.14, 0.015, 0.26)
+
+[sub_resource type="BoxShape3D" id="Shape_celular"]
+size = Vector3(0.45, 0.3, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="Mat_papel"]
+albedo_color = Color(0.92, 0.92, 0.88, 1)
+
+[sub_resource type="SphereMesh" id="Mesh_papel"]
+material = SubResource("Mat_papel")
+radius = 0.09
+height = 0.16
+
+[sub_resource type="SphereShape3D" id="Shape_papel"]
+radius = 0.25
+
+[sub_resource type="BoxMesh" id="Mesh_marco"]
+material = SubResource("Mat_madera_oscura")
+size = Vector3(0.9, 0.65, 0.04)
+
+[sub_resource type="StandardMaterial3D" id="Mat_lienzo"]
+albedo_color = Color(0.25, 0.4, 0.55, 1)
+
+[sub_resource type="BoxMesh" id="Mesh_lienzo"]
+material = SubResource("Mat_lienzo")
+size = Vector3(0.8, 0.55, 0.02)
+
+[sub_resource type="BoxShape3D" id="Shape_cuadro"]
+size = Vector3(1, 0.75, 0.15)
+
+[node name="Oficina" type="Node3D" unique_id=11432621]
+script = ExtResource("1_camara")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1149390879]
+environment = SubResource("Environment_ofi")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1120102237]
+transform = Transform3D(1, 0, 0, 0, 0.573576, 0.819152, 0, -0.819152, 0.573576, 0, 3, 2)
+light_energy = 0.6
+shadow_enabled = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1416823905]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7, -0.5)
+light_energy = 0.8
+shadow_enabled = true
+omni_range = 7.0
+
+[node name="Habitacion" type="Node3D" parent="." unique_id=1838149808]
+
+[node name="Piso" type="MeshInstance3D" parent="Habitacion" unique_id=724423091]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+mesh = SubResource("Mesh_piso")
+
+[node name="ParedFondo" type="MeshInstance3D" parent="Habitacion" unique_id=949734565]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -2.55)
+mesh = SubResource("Mesh_pared_fondo")
+
+[node name="ParedIzquierda" type="MeshInstance3D" parent="Habitacion" unique_id=1262414184]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.05, 1.5, 0)
+mesh = SubResource("Mesh_pared_lado")
+
+[node name="ParedDerecha" type="MeshInstance3D" parent="Habitacion" unique_id=2016029290]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.05, 1.5, 0)
+mesh = SubResource("Mesh_pared_lado")
+
+[node name="Puerta" type="MeshInstance3D" parent="Habitacion" unique_id=1790010686]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.98, 1.05, 1)
+mesh = SubResource("Mesh_puerta")
+
+[node name="Escritorio" type="MeshInstance3D" parent="Habitacion" unique_id=634576974]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4, 0.375, -1.9)
+mesh = SubResource("Mesh_escritorio")
+
+[node name="SillaAsiento" type="MeshInstance3D" parent="Habitacion" unique_id=730954822]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4, 0.225, -1.05)
+mesh = SubResource("Mesh_silla_asiento")
+
+[node name="SillaRespaldo" type="MeshInstance3D" parent="Habitacion" unique_id=2124091382]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4, 0.7, -0.83)
+mesh = SubResource("Mesh_silla_respaldo")
+
+[node name="Papelera" type="MeshInstance3D" parent="Habitacion" unique_id=1248661365]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 0.2, -2.2)
+mesh = SubResource("Mesh_papelera")
+
+[node name="Pistas" type="Node3D" parent="." unique_id=1772810350]
+
+[node name="Celular" type="Area3D" parent="Pistas" unique_id=1705716563]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05, 0.76, -1.8)
+script = ExtResource("2_pista")
+id = "cam_oficina_celular"
+titulo = "Celular sobre el escritorio"
+texto = "La camara muestra un celular olvidado sobre el escritorio, con la pantalla prendida."
+fuente = "Camara oficina"
+
+[node name="Mesh" type="MeshInstance3D" parent="Pistas/Celular" unique_id=636707272]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0075, 0)
+mesh = SubResource("Mesh_celular")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistas/Celular" unique_id=419306360]
+shape = SubResource("Shape_celular")
+
+[node name="Papel" type="Area3D" parent="Pistas" unique_id=144502540]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.95, 0.08, -2)
+script = ExtResource("2_pista")
+id = "cam_oficina_papel"
+titulo = "Papel arrugado en el piso"
+texto = "Hay un papel arrugado al lado de la papelera, como si alguien hubiera errado el tiro."
+fuente = "Camara oficina"
+
+[node name="Mesh" type="MeshInstance3D" parent="Pistas/Papel" unique_id=1700647182]
+mesh = SubResource("Mesh_papel")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistas/Papel" unique_id=1409267778]
+shape = SubResource("Shape_papel")
+
+[node name="Cuadro" type="Area3D" parent="Pistas" unique_id=611707513]
+transform = Transform3D(0.990268, -0.139173, 0, 0.139173, 0.990268, 0, 0, 0, 1, 1.3, 1.7, -2.47)
+script = ExtResource("2_pista")
+id = "cam_oficina_cuadro"
+titulo = "Cuadro torcido"
+texto = "El cuadro de la pared esta torcido, como si alguien lo hubiera descolgado y vuelto a colgar."
+fuente = "Camara oficina"
+
+[node name="Marco" type="MeshInstance3D" parent="Pistas/Cuadro" unique_id=891746182]
+mesh = SubResource("Mesh_marco")
+
+[node name="Lienzo" type="MeshInstance3D" parent="Pistas/Cuadro" unique_id=849971921]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.012)
+mesh = SubResource("Mesh_lienzo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistas/Cuadro" unique_id=202707278]
+shape = SubResource("Shape_cuadro")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1617877075]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 2.5, 2.3)
+fov = 60.0

@@ -1,0 +1,10 @@
+res://src/Desktop/desktopPruebas.tscn
+res://casos/caso2/chats/chat_dante_ferreyra.tres
+res://casos/caso2/chats/chat_lm.tres
+res://casos/caso2/chats/chat_lorenzo_machi.tres
+res://casos/caso2/chats/chat_los_del_martes.tres
+res://casos/caso2/chats/chat_lucia.tres
+res://casos/caso2/chats/chat_rosa.tres
+res://src/Camara/camara.gd
+res://src/Camara/escenas/oficina.tscn
+res://src/Camara/pista_clickeable.gd
