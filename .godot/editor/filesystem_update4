@@ -5,6 +5,10 @@ res://casos/caso2/chats/chat_lorenzo_machi.tres
 res://casos/caso2/chats/chat_los_del_martes.tres
 res://casos/caso2/chats/chat_lucia.tres
 res://casos/caso2/chats/chat_rosa.tres
-res://src/Camara/camara.gd
-res://src/Camara/escenas/oficina.tscn
-res://src/Camara/pista_clickeable.gd
+res://src/Texto/texto.gd
+res://src/Texto/texto.tscn
+res://src/Expediente/entrada.tscn
+res://src/Expediente/entrada.gd
+res://src/Expediente/expediente.tscn
+res://src/Expediente/expediente.gd
+res://src/Expediente/pista.gd

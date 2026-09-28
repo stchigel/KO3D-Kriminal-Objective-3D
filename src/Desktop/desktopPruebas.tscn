@@ -49,7 +49,17 @@
 [ext_resource type="PackedScene" uid="uid://b7okxvy0ncvb2" path="res://src/Expediente/expediente.tscn" id="47_3pbp2"]
 [ext_resource type="PackedScene" uid="uid://ce2bmtq16mg1v" path="res://src/Camara/camara.tscn" id="48_17yhs"]
 [ext_resource type="Script" uid="uid://nlvei2uev0na" path="res://src/Desktop/pistatest.gd" id="49_sqtin"]
-[ext_resource type="PackedScene" path="res://src/Camara/escenas/oficina.tscn" id="50_oficina"]
+[ext_resource type="PackedScene" uid="uid://bfyv1y2v0kdsl" path="res://src/Camara/escenas/oficina.tscn" id="50_oficina"]
+[ext_resource type="Script" uid="uid://b3ag2k8d33jul" path="res://src/Expediente/pista.gd" id="51_n7dhy"]
+
+[sub_resource type="Resource" id="Resource_x7gcj"]
+script = ExtResource("51_n7dhy")
+id = "auto_rojo"
+titulo = "Auto Rojo"
+texto = "El auto rojo estaba en la esquina"
+fuente = "archivo.txt"
+hora = "4 AM"
+metadata/_custom_type_script = "uid://b3ag2k8d33jul"
 
 [node name="Desktop" type="Control" unique_id=1349076015 node_paths=PackedStringArray("ventanas")]
 layout_mode = 3
@@ -572,6 +582,15 @@ offset_right = 1062.0
 offset_bottom = 144.0
 text = "TOCAME PARA PISTA"
 script = ExtResource("49_sqtin")
+
+[node name="Texto" parent="." unique_id=1571447390 instance=ExtResource("24_msndh")]
+layout_mode = 0
+offset_left = 139.0
+offset_top = 117.0
+offset_right = 459.0
+offset_bottom = 565.0
+texto = "Esa noche vi [url=auto_rojo]un auto rojo estacionado[/url] en la esquina."
+pistas = Array[ExtResource("51_n7dhy")]([SubResource("Resource_x7gcj")])
 
 [connection signal="pressed" from="Topbar/Apagar" to="." method="_on_apagar_pressed"]
 [connection signal="pressed" from="Topbar/Panel/Desconectar" to="." method="_on_desconectar_pressed"]
