@@ -7,6 +7,9 @@ var current_pos := Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Los autoload sobreviven al cambio de escena: si no limpiamos, el
+	# expediente arranca con las pistas del caso anterior.
+	Global.limpiar_pistas()
 	for ventana in ventanas:
 		if ventana:
 			ventana.hide()

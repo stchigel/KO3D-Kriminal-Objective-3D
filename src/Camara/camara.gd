@@ -3,7 +3,7 @@ extends Panel
 @export var rotation_speed: float = 1.5
 var dragging: bool = false
 var drag_offset: Vector2 = Vector2.ZERO
-var escena: PackedScene = preload("res://node_3d.tscn")
+@export var escena: PackedScene = preload("res://node_3d.tscn")
 var escena_instancia: Node3D
 
 var moving_left: bool = false

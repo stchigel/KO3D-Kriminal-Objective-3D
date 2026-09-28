@@ -46,6 +46,7 @@
 [ext_resource type="PackedScene" uid="uid://dir6afeorbba6" path="res://src/Mail/contactoMail.tscn" id="51_gfwg6"]
 [ext_resource type="Resource" path="res://casos/caso2/mails/mail_turno_medico.tres" id="52_cflyj"]
 [ext_resource type="PackedScene" uid="uid://b20v5hqb4w2fp" path="res://src/Imagen/imagen.tscn" id="52_wgoci"]
+[ext_resource type="PackedScene" path="res://src/Expediente/expediente.tscn" id="expediente_ko"]
 
 [node name="Desktop" type="Control" unique_id=1349076015 node_paths=PackedStringArray("ventanas")]
 layout_mode = 3
@@ -544,6 +545,14 @@ offset_right = 1024.0
 offset_bottom = 608.0
 nombre = "carta_para_fiscalia.pdf"
 pags = Array[Texture]([ExtResource("45_k2ypf"), ExtResource("46_ar010")])
+
+
+[node name="Expediente" parent="." instance=ExtResource("expediente_ko")]
+layout_mode = 0
+offset_left = 282.0
+offset_top = 548.0
+offset_right = 870.0
+offset_bottom = 1196.0
 
 [connection signal="pressed" from="Topbar/Apagar" to="." method="_on_apagar_pressed"]
 [connection signal="pressed" from="Topbar/Panel/Desconectar" to="." method="_on_desconectar_pressed"]

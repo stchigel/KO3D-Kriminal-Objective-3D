@@ -54,6 +54,7 @@
 [ext_resource type="Texture2D" uid="uid://cuyfw2iuavf6j" path="res://casos/caso1/archivos/evento_jueves/foto_14(robando).jpeg" id="51_em1yl"]
 [ext_resource type="Texture2D" uid="uid://sdfekye6kul2" path="res://casos/caso1/archivos/evento_jueves/foto_15(robando).jpeg" id="52_g7jtt"]
 [ext_resource type="PackedScene" uid="uid://bwvp6h7loaqt5" path="res://src/Pdf/pdf.tscn" id="52_p6eux"]
+[ext_resource type="PackedScene" path="res://src/Expediente/expediente.tscn" id="expediente_ko"]
 
 [node name="Desktop" type="Control" unique_id=1349076015 node_paths=PackedStringArray("ventanas")]
 layout_mode = 3
@@ -841,6 +842,14 @@ offset_right = 960.0
 offset_bottom = 576.0
 imagen = ExtResource("52_g7jtt")
 nombre = "15.png"
+
+
+[node name="Expediente" parent="." instance=ExtResource("expediente_ko")]
+layout_mode = 0
+offset_left = 282.0
+offset_top = 548.0
+offset_right = 870.0
+offset_bottom = 1196.0
 
 [connection signal="pressed" from="Topbar/Apagar" to="." method="_on_apagar_pressed"]
 [connection signal="pressed" from="Topbar/Panel/Desconectar" to="." method="_on_desconectar_pressed"]
