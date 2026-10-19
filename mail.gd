@@ -3,4 +3,5 @@ extends Resource
 
 @export var nombre: String = ""
 @export var asunto: String
-@export var mensaje: String
+@export_multiline var mensaje: String
+@export var pistas: Array[Pista] = []

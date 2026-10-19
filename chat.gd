@@ -6,3 +6,4 @@ extends Resource
 @export var mensajes: Array[Mensaje] = []
 @export var mensajes_enviables: Array[String] = []
 @export var respuestas: Array[String] = []
+@export var pistas: Array[Pista] = []

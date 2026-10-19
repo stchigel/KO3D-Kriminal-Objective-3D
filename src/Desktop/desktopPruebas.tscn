@@ -34,7 +34,6 @@
 [ext_resource type="Resource" uid="uid://bx1rosa000002" path="res://casos/caso2/chats/chat_rosa.tres" id="32_i87gg"]
 [ext_resource type="PackedScene" uid="uid://dyinmj2mlclit" path="res://src/Mail/mail.tscn" id="33_jyk6h"]
 [ext_resource type="Script" uid="uid://b341mvssqe4vw" path="res://mail.gd" id="34_53yei"]
-[ext_resource type="Resource" path="res://casos/caso2/mails/mail_catalogo_subastas.tres" id="35_2vps5"]
 [ext_resource type="Resource" path="res://casos/caso2/mails/mail_expensas.tres" id="36_8y1ud"]
 [ext_resource type="Resource" path="res://casos/caso2/mails/mail_ferreyra_reunion.tres" id="37_3cyp0"]
 [ext_resource type="Resource" path="res://casos/caso2/mails/mail_halac_soldi.tres" id="38_derdp"]
@@ -51,6 +50,22 @@
 [ext_resource type="Script" uid="uid://nlvei2uev0na" path="res://src/Desktop/pistatest.gd" id="49_sqtin"]
 [ext_resource type="PackedScene" uid="uid://bfyv1y2v0kdsl" path="res://src/Camara/escenas/oficina.tscn" id="50_oficina"]
 [ext_resource type="Script" uid="uid://b3ag2k8d33jul" path="res://src/Expediente/pista.gd" id="51_n7dhy"]
+
+[sub_resource type="Resource" id="Resource_mo0rj"]
+script = ExtResource("51_n7dhy")
+id = "subasta_anual"
+titulo = "Subasta Anual"
+texto = "Hubo una subasta anual"
+fuente = "Mail"
+metadata/_custom_type_script = "uid://b3ag2k8d33jul"
+
+[sub_resource type="Resource" id="Resource_howq7"]
+script = ExtResource("34_53yei")
+nombre = "newsletter@subastas-ocampo.com.ar"
+asunto = "Catálogo Noviembre 2024"
+mensaje = "Le acercamos el catálogo completo de [url=subasta_anual]nuestra subasta anual[/url]. Más de 140 lotes entre pintura, escultura y obra sobre papel. Para inspección previa escriba a este correo."
+pistas = Array[ExtResource("51_n7dhy")]([SubResource("Resource_mo0rj")])
+metadata/_custom_type_script = "uid://b341mvssqe4vw"
 
 [sub_resource type="Resource" id="Resource_x7gcj"]
 script = ExtResource("51_n7dhy")
@@ -460,13 +475,12 @@ offset_bottom = 504.0
 chats = Array[ExtResource("26_lh81a")]([ExtResource("27_d6snw"), ExtResource("28_oag1d"), ExtResource("29_esgcc"), ExtResource("30_2jbii"), ExtResource("31_3qwg6"), ExtResource("32_i87gg")])
 
 [node name="Mail" parent="." unique_id=979190687 instance=ExtResource("33_jyk6h")]
-visible = false
 layout_mode = 0
 offset_left = 224.0
 offset_top = 80.0
 offset_right = 928.0
 offset_bottom = 528.0
-mails = Array[ExtResource("34_53yei")]([ExtResource("35_2vps5"), ExtResource("36_8y1ud"), ExtResource("37_3cyp0"), ExtResource("38_derdp"), ExtResource("39_st1l6"), ExtResource("40_dl0d5"), ExtResource("41_ptbus")])
+mails = Array[ExtResource("34_53yei")]([SubResource("Resource_howq7"), ExtResource("36_8y1ud"), ExtResource("37_3cyp0"), ExtResource("38_derdp"), ExtResource("39_st1l6"), ExtResource("40_dl0d5"), ExtResource("41_ptbus")])
 contacto_scene = ExtResource("42_uhn5u")
 
 [node name="Diario" parent="." unique_id=226651584 instance=ExtResource("24_msndh")]
@@ -560,6 +574,7 @@ nombre = "carta_para_fiscalia.pdf"
 pags = Array[Texture]([ExtResource("23_58127"), ExtResource("46_rlp43")])
 
 [node name="Camara" parent="." unique_id=1417676538 instance=ExtResource("48_17yhs")]
+visible = false
 layout_mode = 0
 offset_left = 173.0
 offset_top = 66.0
