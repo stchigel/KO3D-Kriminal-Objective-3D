@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Perfil" format=3]
+
+[ext_resource type="Script" path="res://src/Perfiles/perfil.gd" id="1_perfil"]
+
+[resource]
+script = ExtResource("1_perfil")
+nombre = "Camila Rossi"
+rol = "Sospechosa"
+vinculo = "Novia de Lucas"
+notas = "Sin motivo aparente por ahora. Mail: camilarossi.ok@gmail.com"

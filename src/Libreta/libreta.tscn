@@ -10,20 +10,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_libreta")
-
-[node name="Fondo" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.105882354, 0.11764706, 0.14901961, 0.88)
 
 [node name="Expediente" parent="." instance=ExtResource("2_expediente")]
 layout_mode = 0
-offset_left = 282.0
-offset_top = 548.0
-offset_right = 870.0
-offset_bottom = 1196.0
+offset_left = 732.0
+offset_top = 664.0
+offset_right = 1132.0
+offset_bottom = 1224.0
+subida = 548.0

@@ -3,8 +3,8 @@ extends Control
 
 signal contrasena_aceptada
 
-@export var nombre_de_usuario: String = "lucas.m"
-@export var contrasena_correcta: String = "lucas123"
+@export var nombre_de_usuario: String = "Usuario"
+@export var contrasena_correcta: String = "admin123"
 @export var texto_de_la_ayuda: String = "Ayuda: está anotada en un post-it del monitor."
 @export var intentos_para_mostrar_la_ayuda: int = 3
 @export var duracion_del_temblor: float = 0.35

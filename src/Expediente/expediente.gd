@@ -21,7 +21,7 @@ func _ready() -> void:
 	Global.pista_agregada.connect(_on_pista_agregada)
 	Global.pistas_limpiadas.connect(_on_pistas_limpiadas)
 	for pista in Global.pistas:
-		_crear_entrada(pista)
+		_crear_entrada(pista, false)
 	_actualizar_estado()
 	
 
@@ -47,28 +47,32 @@ func alternar() -> void:
 
 
 func _on_pista_agregada(pista: Pista) -> void:
-	_crear_entrada(pista)
+	var entrada := _crear_entrada(pista, true)
 	_actualizar_estado()
 	if abierto:
 		return
-	await _asomarse()
+	await _asomarse(entrada.duracion_de_impresion())
 
 
-func _asomarse() -> void:
+func _asomarse(tiempo_de_impresion: float) -> void:
 	_asomada_id += 1
 	var id := _asomada_id
 	_animar(_y_cerrado - subida)
-	await get_tree().create_timer(duracion + tiempo_visible_auto).timeout
+	await get_tree().create_timer(duracion + tiempo_de_impresion + tiempo_visible_auto).timeout
 	if not is_inside_tree() or id != _asomada_id or abierto:
 		return
 	_animar(_y_cerrado)
 
 
-func _crear_entrada(pista: Pista) -> void:
+func _crear_entrada(pista: Pista, imprimir: bool) -> Node:
 	var entrada := entrada_scene.instantiate()
 	lista.add_child(entrada)
-	if entrada.has_method("setup"):
-		entrada.setup(pista)
+	entrada.setup(pista, Global.pistas.find(pista) + 1, imprimir)
+	_bajar_al_final()
+	return entrada
+
+
+func _bajar_al_final() -> void:
 	await get_tree().process_frame
 	if not is_inside_tree():
 		return

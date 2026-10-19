@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Perfil" format=3]
+
+[ext_resource type="Script" path="res://src/Perfiles/perfil.gd" id="1_perfil"]
+
+[resource]
+script = ExtResource("1_perfil")
+nombre = "Lorenzo Machi"
+rol = "Sospechoso"
+ocupacion = "Grupo Machi"
+vinculo = "Cliente de Vidal"
+notas = "Le reclamaba a Vidal un certificado de autenticidad demorado (\"Puerto al amanecer\", atrib. Quinquela). Mail: lmachi@grupomachi.com"

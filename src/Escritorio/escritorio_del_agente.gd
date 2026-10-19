@@ -1,11 +1,13 @@
 extends Control
 
+const FONDO_LUCES_ENCENDIDAS := preload("res://assets/fondos/LucesEncendidas.jpg")
+const FONDO_LUCES_APAGADAS := preload("res://assets/fondos/LucesApagadas.jpg")
+const FONDO_SOLO_LAMPARA := preload("res://assets/fondos/LuzEscritorioEncendida.jpg")
+const FONDO_SOLO_TUBO := preload("res://assets/fondos/LuzParedEncendida.jpg")
 
-@export_group("Zoom al monitor")
-@export var centro_de_la_pantalla_del_monitor: Vector2 = Vector2(0.281, 0.378)
-@export_range(1.0, 6.0, 0.05) var escala_del_zoom: float = 2.4
-@export var duracion_del_zoom: float = 0.8
-
+@export_group("Luces")
+@export var lampara_encendida: bool = false
+@export var intervalo_del_titileo: float = 1.0
 
 @export_group("Destello CRT")
 @export var duracion_del_destello: float = 0.35
@@ -15,15 +17,21 @@ extends Control
 @export var duracion_del_apagado: float = 0.2
 
 var pantalla_activa: Control = null
+var _tubo_encendido: bool = true
+var _timer_del_titileo: Timer
 
 @onready var fondo_escritorio: TextureRect = $FondoEscritorio
 @onready var boton_monitor: Button = $FondoEscritorio/BotonMonitor
+@onready var boton_lampara: Button = $FondoEscritorio/BotonLampara
 @onready var boton_libreta: Button = $FondoEscritorio/BotonLibreta
-@onready var pantalla_computadora: Control = $PantallaComputadora
+@onready var boton_perfiles: Button = $FondoEscritorio/BotonPerfiles
+@onready var monitor: Control = $Monitor
+@onready var pantalla_computadora: Control = $Monitor/PantallaComputadora
+@onready var pantalla_de_bloqueo: PantallaDeBloqueo = $Monitor/PantallaDeBloqueo
+@onready var destello_crt: ColorRect = $Monitor/DestelloCrt
 @onready var pantalla_libreta: Control = $PantallaLibreta
-@onready var pantalla_de_bloqueo: PantallaDeBloqueo = $PantallaDeBloqueo
+@onready var cuaderno_perfiles: Control = $CuadernoPerfiles
 @onready var boton_volver: Button = $BotonVolver
-@onready var destello_crt: ColorRect = $DestelloCrt
 @onready var bloqueo_de_input: Control = $BloqueoDeInput
 
 
@@ -31,51 +39,88 @@ func _ready() -> void:
 	Global.computadora_desbloqueada = false
 	boton_monitor.pressed.connect(al_tocar_el_monitor)
 	boton_libreta.pressed.connect(al_tocar_la_libreta)
+	boton_perfiles.pressed.connect(cuaderno_perfiles.alternar)
 	boton_volver.pressed.connect(al_tocar_levantarse)
 	pantalla_de_bloqueo.contrasena_aceptada.connect(al_aceptar_la_contrasena)
 	pantalla_computadora.connect("desconexion_solicitada", al_tocar_levantarse)
-	mostrar_solo_el_escritorio()
-	
+	boton_lampara.pressed.connect(al_tocar_la_lampara)
+	_timer_del_titileo = Timer.new()
+	_timer_del_titileo.one_shot = true
+	_timer_del_titileo.timeout.connect(_titilar_el_tubo)
+	add_child(_timer_del_titileo)
+	_actualizar_el_fondo()
+	_programar_el_titileo()
+	_apagar_el_monitor()
 
 
-func mostrar_solo_el_escritorio() -> void:
-	for pantalla in [pantalla_computadora, pantalla_libreta, pantalla_de_bloqueo]:
+func al_tocar_la_lampara() -> void:
+	lampara_encendida = not lampara_encendida
+	_actualizar_el_fondo()
+
+
+func _programar_el_titileo() -> void:
+	_timer_del_titileo.start(intervalo_del_titileo * randf_range(0.7, 1.3))
+
+
+func _titilar_el_tubo() -> void:
+	var tween := create_tween()
+	for i in randi_range(1, 3):
+		tween.tween_callback(_fijar_el_tubo.bind(false))
+		tween.tween_interval(randf_range(0.04, 0.12))
+		tween.tween_callback(_fijar_el_tubo.bind(true))
+		tween.tween_interval(randf_range(0.03, 0.08))
+	tween.tween_callback(_programar_el_titileo)
+
+
+func _fijar_el_tubo(encendido: bool) -> void:
+	_tubo_encendido = encendido
+	_actualizar_el_fondo()
+
+
+func _actualizar_el_fondo() -> void:
+	if lampara_encendida:
+		fondo_escritorio.texture = FONDO_LUCES_ENCENDIDAS if _tubo_encendido else FONDO_SOLO_LAMPARA
+	else:
+		fondo_escritorio.texture = FONDO_SOLO_TUBO if _tubo_encendido else FONDO_LUCES_APAGADAS
+
+
+func _apagar_el_monitor() -> void:
+	for pantalla in [pantalla_computadora, pantalla_de_bloqueo]:
 		pantalla.hide()
 		pantalla.modulate.a = 1.0
+	monitor.hide()
+	monitor.modulate.a = 1.0
 	pantalla_activa = null
 	boton_volver.hide()
 	destello_crt.hide()
-	fondo_escritorio.show()
-	fondo_escritorio.scale = Vector2.ONE
-	fondo_escritorio.position = Vector2.ZERO
 	_bloquear_input(false)
 
+
 func al_tocar_el_monitor() -> void:
+	if monitor.visible:
+		return
 	var destino: Control = pantalla_computadora if Global.computadora_desbloqueada else pantalla_de_bloqueo
 	_bloquear_input(true)
-	await _hacer_zoom(true)
+	monitor.show()
 	await _encender_la_pantalla(destino)
 	boton_volver.visible = destino != pantalla_computadora
 	_bloquear_input(false)
-	
+
 
 func al_tocar_la_libreta() -> void:
-	await mostrar_pantalla_con_fundido(pantalla_libreta)
-	boton_volver.show()
-	
+	pantalla_libreta.alternar()
+
 
 func al_tocar_levantarse() -> void:
+	if not monitor.visible:
+		return
 	_bloquear_input(true)
 	boton_volver.hide()
-	var estaba_en_el_monitor := pantalla_activa != pantalla_libreta
-	if estaba_en_el_monitor:
-		_ajustar_el_zoom_al_tamano_actual()
-		fondo_escritorio.show()
-	await _apagar_la_pantalla_activa()
-	if estaba_en_el_monitor:
-		await _hacer_zoom(false)
-	_bloquear_input(false)
-	
+	var tween := create_tween()
+	tween.tween_property(monitor, "modulate:a", 0.0, duracion_del_apagado)
+	await tween.finished
+	_apagar_el_monitor()
+
 
 
 func al_aceptar_la_contrasena() -> void:
@@ -103,23 +148,6 @@ func mostrar_pantalla_con_fundido(pantalla: Control) -> void:
 	_bloquear_input(false)
 
 
-func _hacer_zoom(acercando: bool) -> void:
-	var punto := centro_de_la_pantalla_del_monitor * fondo_escritorio.size
-	fondo_escritorio.pivot_offset = punto
-	var escala_final := Vector2.ONE * (escala_del_zoom if acercando else 1.0)
-	var posicion_final := fondo_escritorio.size / 2.0 - punto if acercando else Vector2.ZERO
-	var tween := create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(fondo_escritorio, "scale", escala_final, duracion_del_zoom)
-	tween.tween_property(fondo_escritorio, "position", posicion_final, duracion_del_zoom)
-	await tween.finished
-	
-
-func _ajustar_el_zoom_al_tamano_actual() -> void:
-	var punto := centro_de_la_pantalla_del_monitor * fondo_escritorio.size
-	fondo_escritorio.pivot_offset = punto
-	fondo_escritorio.scale = Vector2.ONE * escala_del_zoom
-	fondo_escritorio.position = fondo_escritorio.size / 2.0 - punto
-
 func _encender_la_pantalla(destino: Control) -> void:
 	_fijar_apertura_del_destello(0.0)
 	_fijar_brillo_del_destello(1.0)
@@ -133,22 +161,9 @@ func _encender_la_pantalla(destino: Control) -> void:
 	destello_crt.hide()
 
 func _mostrar_pantalla_sin_fundido(pantalla: Control) -> void:
-	fondo_escritorio.hide()
 	pantalla.modulate.a = 1.0
 	pantalla.show()
 	pantalla_activa = pantalla
-
-
-func _apagar_la_pantalla_activa() -> void:
-	var pantalla := pantalla_activa
-	if pantalla != null:
-		var tween := create_tween()
-		tween.tween_property(pantalla, "modulate:a", 0.0, duracion_del_apagado)
-		await tween.finished
-		pantalla.hide()
-		pantalla.modulate.a = 1.0
-	pantalla_activa = null
-	
 
 
 func _fijar_apertura_del_destello(valor: float) -> void:

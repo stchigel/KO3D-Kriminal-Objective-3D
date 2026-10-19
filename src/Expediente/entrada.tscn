@@ -2,63 +2,14 @@
 
 [ext_resource type="Script" uid="uid://jwl6h2u218hk" path="res://src/Expediente/entrada.gd" id="1_entrada"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_entrada"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
-bg_color = Color(0.99215686, 0.9843137, 0.9607843, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.7529412, 0.7137255, 0.6392157, 1)
-shadow_color = Color(0, 0, 0, 0.18039216)
-shadow_size = 3
-shadow_offset = Vector2(1, 2)
-
-[node name="Entrada" type="PanelContainer" unique_id=148844677]
-theme_override_styles/panel = SubResource("StyleBoxFlat_entrada")
-script = ExtResource("1_entrada")
-
-[node name="HBox" type="HBoxContainer" parent="." unique_id=1008623177]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="Margen" type="ColorRect" parent="HBox" unique_id=135491859]
-custom_minimum_size = Vector2(3, 0)
-layout_mode = 2
-mouse_filter = 2
-color = Color(0.61960787, 0.27843136, 0.23529412, 1)
-
-[node name="Contenido" type="MarginContainer" parent="HBox" unique_id=101546267]
-layout_mode = 2
+[node name="Entrada" type="Label" unique_id=148844677]
+custom_minimum_size = Vector2(1, 0)
 size_flags_horizontal = 3
-theme_override_constants/margin_left = 14
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 14
-theme_override_constants/margin_bottom = 10
-
-[node name="VBox" type="VBoxContainer" parent="HBox/Contenido" unique_id=737138926]
-layout_mode = 2
-theme_override_constants/separation = 4
-
-[node name="Titulo" type="Label" parent="HBox/Contenido/VBox" unique_id=1381732173]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.09411765, 0.08235294, 0.0627451, 1)
-theme_override_font_sizes/font_size = 18
-text = "Titulo de la pista"
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.12941177, 0.11764706, 0.105882354, 0.92)
+theme_override_constants/line_spacing = 2
+theme_override_font_sizes/font_size = 14
+text = "01. Titulo de la pista: cuerpo de la pista."
 autowrap_mode = 3
-
-[node name="Texto" type="Label" parent="HBox/Contenido/VBox" unique_id=130697369]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.21960784, 0.19607843, 0.1607843, 1)
-text = "Cuerpo de la pista."
-autowrap_mode = 3
-
-[node name="Pie" type="Label" parent="HBox/Contenido/VBox" unique_id=1318521984]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.43137255, 0.3764706, 0.29411766, 1)
-theme_override_font_sizes/font_size = 12
-text = "Fuente"
-autowrap_mode = 3
+visible_characters_behavior = 1
+script = ExtResource("1_entrada")

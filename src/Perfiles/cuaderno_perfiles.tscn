@@ -1,0 +1,290 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/Perfiles/cuaderno_perfiles.gd" id="1_cuaderno"]
+
+[sub_resource type="SystemFont" id="SystemFont_maquina"]
+font_names = PackedStringArray("Courier New", "Courier Prime", "Courier", "Monospace")
+
+[sub_resource type="SystemFont" id="SystemFont_maquina_negrita"]
+font_names = PackedStringArray("Courier New", "Courier Prime", "Courier", "Monospace")
+font_weight = 700
+
+[sub_resource type="Theme" id="Theme_cuaderno"]
+default_font = SubResource("SystemFont_maquina")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tapa"]
+bg_color = Color(0.29, 0.25, 0.2, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0, 0.4)
+shadow_size = 12
+shadow_offset = Vector2(0, -3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hoja"]
+bg_color = Color(0.93, 0.9, 0.82, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.75, 0.71, 0.61, 1)
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_anillo"]
+bg_color = Color(0.16, 0.16, 0.17, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.45, 0.45, 0.47, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_plano"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hover"]
+bg_color = Color(0.4, 0.34, 0.22, 0.1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_foto"]
+bg_color = Color(0.78, 0.75, 0.68, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.98, 0.97, 0.94, 1)
+shadow_color = Color(0, 0, 0, 0.2)
+shadow_size = 2
+shadow_offset = Vector2(1, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sello"]
+content_margin_left = 8.0
+content_margin_top = 2.0
+content_margin_right = 8.0
+content_margin_bottom = 2.0
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.7, 0.13, 0.11, 1)
+
+[node name="CuadernoPerfiles" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 360.0
+offset_bottom = 500.0
+mouse_filter = 2
+script = ExtResource("1_cuaderno")
+
+[node name="Tapa" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -6.0
+offset_top = -4.0
+offset_right = 366.0
+offset_bottom = 506.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tapa")
+
+[node name="Hoja" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 360.0
+offset_bottom = 500.0
+theme = SubResource("Theme_cuaderno")
+theme_override_styles/panel = SubResource("StyleBoxFlat_hoja")
+
+[node name="Encabezado" type="Button" parent="Hoja"]
+layout_mode = 0
+offset_right = 360.0
+offset_bottom = 62.0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_plano")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_plano")
+
+[node name="Titulo" type="Label" parent="Hoja"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 20.0
+offset_right = 220.0
+offset_bottom = 48.0
+theme_override_colors/font_color = Color(0.13, 0.12, 0.1, 1)
+theme_override_fonts/font = SubResource("SystemFont_maquina_negrita")
+theme_override_font_sizes/font_size = 22
+text = "PERFILES"
+vertical_alignment = 1
+
+[node name="Paginacion" type="Label" parent="Hoja"]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 20.0
+offset_right = 336.0
+offset_bottom = 48.0
+theme_override_colors/font_color = Color(0.41, 0.35, 0.27, 1)
+theme_override_font_sizes/font_size = 14
+text = "1 / 1"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Linea" type="ColorRect" parent="Hoja"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 56.0
+offset_right = 336.0
+offset_bottom = 58.0
+mouse_filter = 2
+color = Color(0.2, 0.18, 0.15, 1)
+
+[node name="Contenido" type="Control" parent="Hoja"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarcoFoto" type="Panel" parent="Hoja/Contenido"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 74.0
+offset_right = 124.0
+offset_bottom = 194.0
+rotation = -0.03
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_foto")
+
+[node name="Foto" type="TextureRect" parent="Hoja/Contenido"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 78.0
+offset_right = 120.0
+offset_bottom = 190.0
+rotation = -0.03
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Iniciales" type="Label" parent="Hoja/Contenido"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 78.0
+offset_right = 120.0
+offset_bottom = 190.0
+rotation = -0.03
+theme_override_colors/font_color = Color(0.45, 0.42, 0.37, 1)
+theme_override_fonts/font = SubResource("SystemFont_maquina_negrita")
+theme_override_font_sizes/font_size = 34
+text = "?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Rol" type="Label" parent="Hoja/Contenido"]
+layout_mode = 0
+offset_left = 142.0
+offset_top = 78.0
+offset_right = 260.0
+offset_bottom = 104.0
+rotation = -0.04
+theme_override_colors/font_color = Color(0.7, 0.13, 0.11, 1)
+theme_override_fonts/font = SubResource("SystemFont_maquina_negrita")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_sello")
+text = "SOSPECHOSO"
+vertical_alignment = 1
+
+[node name="Nombre" type="Label" parent="Hoja/Contenido"]
+layout_mode = 0
+offset_left = 142.0
+offset_top = 114.0
+offset_right = 340.0
+offset_bottom = 190.0
+theme_override_colors/font_color = Color(0.1, 0.09, 0.07, 1)
+theme_override_fonts/font = SubResource("SystemFont_maquina_negrita")
+theme_override_font_sizes/font_size = 18
+text = "Nombre Apellido"
+autowrap_mode = 3
+
+[node name="Datos" type="RichTextLabel" parent="Hoja/Contenido"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 210.0
+offset_right = 340.0
+offset_bottom = 444.0
+theme_override_colors/default_color = Color(0.17, 0.15, 0.12, 1)
+theme_override_fonts/normal_font = SubResource("SystemFont_maquina")
+theme_override_fonts/bold_font = SubResource("SystemFont_maquina_negrita")
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 14
+bbcode_enabled = true
+text = "[b]VÍNCULO:[/b] ..."
+
+[node name="Vacio" type="Label" parent="Hoja"]
+visible = false
+layout_mode = 0
+offset_left = 24.0
+offset_top = 74.0
+offset_right = 336.0
+offset_bottom = 444.0
+theme_override_colors/font_color = Color(0.56, 0.51, 0.43, 1)
+theme_override_font_sizes/font_size = 14
+text = "Sin perfiles cargados."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Anterior" type="Button" parent="Hoja"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 452.0
+offset_right = 84.0
+offset_bottom = 484.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.2, 0.18, 0.15, 1)
+theme_override_colors/font_hover_color = Color(0.7, 0.13, 0.11, 1)
+theme_override_colors/font_disabled_color = Color(0.2, 0.18, 0.15, 0.3)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxEmpty_plano")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hover")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_plano")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_plano")
+text = "<"
+
+[node name="Siguiente" type="Button" parent="Hoja"]
+layout_mode = 0
+offset_left = 276.0
+offset_top = 452.0
+offset_right = 340.0
+offset_bottom = 484.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.2, 0.18, 0.15, 1)
+theme_override_colors/font_hover_color = Color(0.7, 0.13, 0.11, 1)
+theme_override_colors/font_disabled_color = Color(0.2, 0.18, 0.15, 0.3)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxEmpty_plano")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hover")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_plano")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_plano")
+text = ">"
+
+[node name="Espiral" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = -10.0
+offset_right = 340.0
+offset_bottom = 10.0
+mouse_filter = 2
+theme_override_constants/separation = 19
+alignment = 1
+
+[node name="Anillo" type="Panel" parent="Espiral"]
+custom_minimum_size = Vector2(10, 20)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_anillo")

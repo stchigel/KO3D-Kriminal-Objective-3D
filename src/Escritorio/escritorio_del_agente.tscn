@@ -2,11 +2,17 @@
 
 [ext_resource type="Script" uid="uid://dwwjxu1ymhv2y" path="res://src/Escritorio/escritorio_del_agente.gd" id="1_escritorio"]
 [ext_resource type="PackedScene" uid="uid://ci4jsjm8wpw1l" path="res://src/Desktop/desktop1.tscn" id="2_computadora"]
-[ext_resource type="Texture2D" uid="uid://ywqlh3wvvx8t" path="res://assets/escritorio.jpeg" id="2_stf82"]
+[ext_resource type="Texture2D" path="res://assets/fondos/LuzParedEncendida.jpg" id="2_stf82"]
 [ext_resource type="PackedScene" path="res://src/Libreta/libreta.tscn" id="3_libreta"]
 [ext_resource type="PackedScene" path="res://src/Escritorio/pantalla_de_bloqueo.tscn" id="4_bloqueo"]
 [ext_resource type="Shader" uid="uid://dkheiv05k568l" path="res://src/Escritorio/destello_crt.gdshader" id="5_shader"]
 [ext_resource type="Theme" uid="uid://jjy2brslbijy" path="res://assets/tema.tres" id="6_tema"]
+[ext_resource type="PackedScene" path="res://src/Perfiles/cuaderno_perfiles.tscn" id="7_perfiles"]
+[ext_resource type="Resource" path="res://casos/caso1/perfiles/lucas_mendez.tres" id="8_lucas"]
+[ext_resource type="Resource" path="res://casos/caso1/perfiles/camila_rossi.tres" id="9_camila"]
+[ext_resource type="Resource" path="res://casos/caso1/perfiles/tomas_herrera.tres" id="10_tomas"]
+[ext_resource type="Resource" path="res://casos/caso1/perfiles/jorge_pinto.tres" id="11_jorge"]
+[ext_resource type="Script" path="res://src/Perfiles/perfil.gd" id="12_perfil"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_zona"]
 
@@ -25,6 +31,14 @@ shader_parameter/apertura = 0.0
 shader_parameter/brillo = 0.0
 shader_parameter/grosor_minimo = 0.006
 shader_parameter/suavizado_del_borde = 0.03
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_marco"]
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.05, 0.05, 0.06, 1)
 
 [node name="EscritorioDelAgente" type="Control" unique_id=467841037]
 layout_mode = 3
@@ -49,10 +63,42 @@ expand_mode = 1
 [node name="BotonMonitor" type="Button" parent="FondoEscritorio" unique_id=88459694]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.075
-anchor_top = 0.134
+anchor_left = 0.074
+anchor_top = 0.139
 anchor_right = 0.485
-anchor_bottom = 0.622
+anchor_bottom = 0.598
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_zona")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_zona_encima")
+theme_override_styles/hover = SubResource("StyleBoxFlat_zona_encima")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_zona")
+flat = true
+
+[node name="BotonLampara" type="Button" parent="FondoEscritorio"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.066
+anchor_top = 0.49
+anchor_right = 0.14
+anchor_bottom = 0.81
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_zona")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_zona_encima")
+theme_override_styles/hover = SubResource("StyleBoxFlat_zona_encima")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_zona")
+flat = true
+
+[node name="BotonPerfiles" type="Button" parent="FondoEscritorio"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.573
+anchor_top = 0.692
+anchor_right = 0.686
+anchor_bottom = 0.841
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
@@ -65,10 +111,10 @@ flat = true
 [node name="BotonLibreta" type="Button" parent="FondoEscritorio" unique_id=1420395136]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.682
+anchor_left = 0.69
 anchor_top = 0.657
 anchor_right = 0.905
-anchor_bottom = 0.87
+anchor_bottom = 0.88
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
@@ -78,33 +124,26 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_zona_encima")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_zona")
 flat = true
 
-[node name="PantallaComputadora" parent="." unique_id=1801399802 instance=ExtResource("2_computadora")]
+[node name="Monitor" type="Control" parent="."]
+visible = false
+clip_contents = true
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 1164.0
+offset_bottom = 660.0
+scale = Vector2(0.62, 0.62)
+mouse_filter = 2
+
+[node name="PantallaComputadora" parent="Monitor" unique_id=1801399802 instance=ExtResource("2_computadora")]
 visible = false
 layout_mode = 1
 
-[node name="PantallaLibreta" parent="." unique_id=1411414089 instance=ExtResource("3_libreta")]
+[node name="PantallaDeBloqueo" parent="Monitor" unique_id=345391747 instance=ExtResource("4_bloqueo")]
 visible = false
 layout_mode = 1
 
-[node name="PantallaDeBloqueo" parent="." unique_id=345391747 instance=ExtResource("4_bloqueo")]
-visible = false
-layout_mode = 1
-
-[node name="BotonVolver" type="Button" parent="." unique_id=1307359161]
-visible = false
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -70.0
-offset_right = 70.0
-offset_bottom = 26.0
-grow_horizontal = 2
-theme = ExtResource("6_tema")
-theme_override_font_sizes/font_size = 14
-text = "← Levantarse"
-
-[node name="DestelloCrt" type="ColorRect" parent="." unique_id=8462099]
+[node name="DestelloCrt" type="ColorRect" parent="Monitor" unique_id=8462099]
 visible = false
 material = SubResource("ShaderMaterial_destello")
 layout_mode = 1
@@ -114,6 +153,38 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="Marco" type="Panel" parent="Monitor"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_marco")
+
+[node name="PantallaLibreta" parent="." unique_id=1411414089 instance=ExtResource("3_libreta")]
+layout_mode = 1
+
+[node name="CuadernoPerfiles" parent="." instance=ExtResource("7_perfiles")]
+layout_mode = 0
+offset_left = 356.0
+offset_top = 664.0
+offset_right = 716.0
+offset_bottom = 1164.0
+perfiles = Array[ExtResource("12_perfil")]([ExtResource("8_lucas"), ExtResource("10_tomas"), ExtResource("9_camila"), ExtResource("11_jorge")])
+
+[node name="BotonVolver" type="Button" parent="." unique_id=1307359161]
+visible = false
+layout_mode = 0
+offset_left = 12.0
+offset_top = 422.0
+offset_right = 152.0
+offset_bottom = 448.0
+theme = ExtResource("6_tema")
+theme_override_font_sizes/font_size = 14
+text = "← Levantarse"
 
 [node name="BloqueoDeInput" type="Control" parent="." unique_id=1520645433]
 visible = false
