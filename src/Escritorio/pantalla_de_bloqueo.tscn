@@ -1,0 +1,137 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/Escritorio/pantalla_de_bloqueo.gd" id="1_bloqueo"]
+[ext_resource type="Theme" uid="uid://jjy2brslbijy" path="res://assets/tema.tres" id="2_tema"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_campo"]
+content_margin_left = 12.0
+content_margin_right = 12.0
+bg_color = Color(0.02, 0.05, 0.03, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.22, 0.5, 0.3, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_campo_enfocado"]
+content_margin_left = 12.0
+content_margin_right = 12.0
+bg_color = Color(0.02, 0.05, 0.03, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45, 0.95, 0.55, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_boton"]
+bg_color = Color(0.06, 0.14, 0.09, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.22, 0.5, 0.3, 1)
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_boton_encima"]
+bg_color = Color(0.1, 0.24, 0.15, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45, 0.95, 0.55, 1)
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_foco"]
+
+[node name="PantallaDeBloqueo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_tema")
+script = ExtResource("1_bloqueo")
+
+[node name="Fondo" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.03, 0.07, 0.05, 1)
+
+[node name="Centro" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Formulario" type="VBoxContainer" parent="Centro"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="EtiquetaDelUsuario" type="Label" parent="Centro/Formulario"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45, 0.95, 0.55, 1)
+theme_override_font_sizes/font_size = 28
+text = "usuario"
+horizontal_alignment = 1
+
+[node name="EtiquetaDeSesion" type="Label" parent="Centro/Formulario"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.22, 0.5, 0.3, 1)
+theme_override_font_sizes/font_size = 14
+text = "Sesión bloqueada"
+horizontal_alignment = 1
+
+[node name="ContenedorDelCampo" type="Control" parent="Centro/Formulario"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+
+[node name="CampoDeContrasena" type="LineEdit" parent="Centro/Formulario/ContenedorDelCampo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.45, 0.95, 0.55, 1)
+theme_override_colors/font_placeholder_color = Color(0.22, 0.5, 0.3, 1)
+theme_override_colors/caret_color = Color(0.45, 0.95, 0.55, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_campo")
+theme_override_styles/focus = SubResource("StyleBoxFlat_campo_enfocado")
+placeholder_text = "Contraseña"
+alignment = 1
+secret = true
+
+[node name="BotonEntrar" type="Button" parent="Centro/Formulario"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45, 0.95, 0.55, 1)
+theme_override_colors/font_hover_color = Color(0.75, 1, 0.82, 1)
+theme_override_colors/font_pressed_color = Color(0.75, 1, 0.82, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_boton")
+theme_override_styles/hover = SubResource("StyleBoxFlat_boton_encima")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_boton_encima")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_foco")
+text = "Entrar"
+
+[node name="EtiquetaDeError" type="Label" parent="Centro/Formulario"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.35, 0.3, 1)
+horizontal_alignment = 1
+
+[node name="EtiquetaDeAyuda" type="Label" parent="Centro/Formulario"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.878, 0.647, 0.149, 1)
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+autowrap_mode = 3

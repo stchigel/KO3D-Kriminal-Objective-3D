@@ -569,6 +569,7 @@ nombre = "Camara oficina"
 escena = ExtResource("50_oficina")
 
 [node name="Expediente" parent="." unique_id=510146378 instance=ExtResource("47_3pbp2")]
+layout_mode = 0
 offset_left = 577.0
 offset_top = 563.0
 offset_right = 1165.0

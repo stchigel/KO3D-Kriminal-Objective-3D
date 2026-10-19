@@ -11,7 +11,7 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://src/Desktop/desktop2.tscn")
+	get_tree().change_scene_to_file("res://src/Escritorio/escritorio_del_agente_caso2.tscn")
 
 
 func _on_buttonclose_pressed() -> void:

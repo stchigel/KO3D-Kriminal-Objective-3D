@@ -1,4 +1,5 @@
 extends Control
+signal desconexion_solicitada
 @export var ventanas: Array[Node]
 @export var juicioScene: PackedScene
 var selec := false
@@ -42,7 +43,9 @@ func _draw():
 		draw_rect(rect, Color(0.3, 0.5, 1.0, 0.8), false, 1.0)
 
 func aplicar():
-	$Topbar/Panel.hide()
+	var panel_de_apagar := get_node_or_null("Topbar/Panel")
+	if panel_de_apagar:
+		panel_de_apagar.hide()
 	var rect = Rect2(start_pos, current_pos - start_pos).abs()
 	for item in get_children():
 		if item.is_in_group("archivo"):
@@ -58,4 +61,7 @@ func _on_apagar_pressed() -> void:
 
 
 func _on_desconectar_pressed() -> void:
-	get_tree().change_scene_to_packed(juicioScene)
+	if desconexion_solicitada.has_connections():
+		desconexion_solicitada.emit()
+	else:
+		get_tree().change_scene_to_packed(juicioScene)

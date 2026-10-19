@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://d2cvfb4f3nbf1" path="res://assets/iconos/enviado.png" id="6_kcqcq"]
 [ext_resource type="Texture2D" uid="uid://bikjg1l4rc8jn" path="res://assets/iconos/borrador.png" id="7_u66u2"]
 
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahdgd"]
 content_margin_left = 0.0
 content_margin_top = 0.0

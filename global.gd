@@ -10,6 +10,8 @@ signal pistas_limpiadas
 
 var pistas: Array[Pista] = []
 
+var computadora_desbloqueada: bool = false
+
 
 ## Atajo para anotar una pista sin crear el recurso a mano:
 ##     Global.anotar("cam2_camila", "Camila entro al edificio",

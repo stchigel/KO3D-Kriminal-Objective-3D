@@ -26,7 +26,6 @@ func _ready() -> void:
 	mouse_exited.connect(_on_mouse_exited)
 	
 
-
 func _on_input_event(_camera: Node, event: InputEvent, _posicion: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		var nueva := Global.anotar(id, titulo, texto, fuente)

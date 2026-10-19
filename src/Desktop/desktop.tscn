@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://b20v5hqb4w2fp" path="res://src/Imagen/imagen.tscn" id="26_vkhbb"]
 [ext_resource type="Texture2D" uid="uid://b0eysjn7s5kwv" path="res://assets/Kali-Linux.jpg" id="27_hafc4"]
 
+
 [node name="Desktop" type="Control" unique_id=1349076015 node_paths=PackedStringArray("ventanas")]
 layout_mode = 3
 anchors_preset = 15

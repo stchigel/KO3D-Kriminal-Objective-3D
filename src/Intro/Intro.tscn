@@ -176,7 +176,7 @@ offset_top = 8.0
 offset_right = 120.0
 offset_bottom = 24.0
 theme_override_font_sizes/font_size = 10
-text = "Acceso a pc"
+text = "Ir al escritorio"
 vertical_alignment = 1
 
 [connection signal="pressed" from="Mail/Button" to="." method="_on_buttonclose_pressed"]

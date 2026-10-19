@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b8d2qsipb6tuh" path="res://src/Mail/contactoMail.gd" id="1_6ydek"]
 
+
 [node name="ContactoMail" type="Button" unique_id=523193422]
 offset_right = 512.0
 offset_bottom = 64.0

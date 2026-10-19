@@ -1,0 +1,10 @@
+[gd_resource type="Theme" format=3 uid="uid://jjy2brslbijy"]
+
+[ext_resource type="FontFile" uid="uid://cmv6u66fkgmsx" path="res://assets/fuentes/Fuente_texto.ttf" id="1_1edpq"]
+[ext_resource type="FontFile" uid="uid://f7mdsycoffm2" path="res://assets/fuentes/Inter-Italic-VariableFont_opsz,wght.ttf" id="2_3xruy"]
+
+[resource]
+default_font = ExtResource("1_1edpq")
+default_font_size = 18
+RichTextLabel/fonts/italics_font = ExtResource("2_3xruy")
+RichTextLabel/fonts/normal_font = ExtResource("1_1edpq")

@@ -1,0 +1,10 @@
+[gd_resource type="FontVariation" format=3 uid="uid://10t3wumaw3x5"]
+
+[ext_resource type="FontFile" uid="uid://cmv6u66fkgmsx" path="res://assets/fuentes/Fuente_texto.ttf" id="1_h4muv"]
+
+[resource]
+base_font = ExtResource("1_h4muv")
+variation_opentype = {
+1869640570: 14,
+2003265652: 700
+}

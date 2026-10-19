@@ -1,0 +1,122 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/Escritorio/escritorio_del_agente.gd" id="1_escritorio"]
+[ext_resource type="PackedScene" uid="uid://cjsgxjc4wkyx2" path="res://src/Desktop/desktop2.tscn" id="2_computadora"]
+[ext_resource type="Texture2D" uid="uid://ywqlh3wvvx8t" path="res://assets/escritorio.jpeg" id="2_stf82"]
+[ext_resource type="PackedScene" path="res://src/Libreta/libreta.tscn" id="3_libreta"]
+[ext_resource type="PackedScene" path="res://src/Escritorio/pantalla_de_bloqueo.tscn" id="4_bloqueo"]
+[ext_resource type="Shader" path="res://src/Escritorio/destello_crt.gdshader" id="5_shader"]
+[ext_resource type="Theme" uid="uid://jjy2brslbijy" path="res://assets/tema.tres" id="6_tema"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_destello"]
+shader = ExtResource("5_shader")
+shader_parameter/color_del_destello = Color(0.75, 1, 0.82, 1)
+shader_parameter/apertura = 0.0
+shader_parameter/brillo = 0.0
+shader_parameter/grosor_minimo = 0.006
+shader_parameter/suavizado_del_borde = 0.03
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_zona"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_zona_encima"]
+bg_color = Color(0.878, 0.647, 0.149, 0.15)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.878, 0.647, 0.149, 0.8)
+
+[node name="EscritorioDelAgente" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_escritorio")
+
+[node name="FondoEscritorio" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_stf82")
+expand_mode = 1
+
+[node name="BotonMonitor" type="Button" parent="FondoEscritorio"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.075
+anchor_top = 0.134
+anchor_right = 0.485
+anchor_bottom = 0.622
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_zona")
+theme_override_styles/hover = SubResource("StyleBoxFlat_zona_encima")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_zona_encima")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_zona")
+flat = true
+
+[node name="BotonLibreta" type="Button" parent="FondoEscritorio"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.682
+anchor_top = 0.657
+anchor_right = 0.905
+anchor_bottom = 0.87
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_zona")
+theme_override_styles/hover = SubResource("StyleBoxFlat_zona_encima")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_zona_encima")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_zona")
+flat = true
+
+[node name="PantallaComputadora" parent="." instance=ExtResource("2_computadora")]
+visible = false
+
+[node name="PantallaLibreta" parent="." instance=ExtResource("3_libreta")]
+visible = false
+
+[node name="PantallaDeBloqueo" parent="." instance=ExtResource("4_bloqueo")]
+visible = false
+
+[node name="BotonVolver" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70.0
+offset_right = 70.0
+offset_bottom = 26.0
+grow_horizontal = 2
+theme = ExtResource("6_tema")
+theme_override_font_sizes/font_size = 14
+text = "← Levantarse"
+
+[node name="DestelloCrt" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_destello")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BloqueoDeInput" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
