@@ -1,159 +1,196 @@
-# Relevamiento de Jugabilidad Actual y Propuestas de Diseño
+# Relevamiento De Jugabilidad Y Propuestas
 
-**Proyecto:** KO3D — Juego de investigación en escritorio simulado  
-**Equipo:** Grupo de Investigación y Documentación  
-**Versión:** 1.0  
-**Fecha:** 18 de octubre de 2026  
+Equipo de Investigación y Documentación
 
----
+Cómo se juega hoy el proyecto, cómo se resuelven los casos actuales y qué cambios propone el grupo de investigación para unificar el juego con las historias.
 
-## Contenido
+**Proyecto:** KO3D — Juego de investigación en escritorio simulado
+
+**Documento:** Jugabilidad actual y propuestas de diseño
+
+**Equipo:** Grupo de Investigación y Documentación
+
+**Versión:** 1.0
+
+**Fecha:** 18 de octubre de 2026
+
+**Control de versiones**
+
+| Versión | Fecha | Descripción |
+|---|---|---|
+| 1.0 | 18/10/2026 | Relevamiento completo de la jugabilidad actual del proyecto y propuestas del grupo de investigación para sumar sitios web, mecánicas de subrayado y fichero de sospechosos en el juicio. |
+
+**Contenido**
 
 1. Propósito del documento
-2. Cómo se juega actualmente
-3. Qué herramientas tiene hoy el jugador en el escritorio
-4. Cómo se resuelven los dos casos actuales del proyecto
-5. Diagnóstico del grupo de investigación
-6. El grupo de investigación propone los siguientes cambios
-7. Cómo quedan estructuradas las historias con los cambios propuestos
 
----
+2. Cómo se juega actualmente
+
+3. Herramientas que hoy tiene el jugador en el escritorio
+
+4. Cómo descubre el jugador al asesino en los casos actuales
+
+5. Diagnóstico del grupo de investigación
+
+6. El grupo de investigación propone los siguientes cambios
+
+7. Cómo se adaptan nuestras historias al juego con estos cambios
 
 ## 1. Propósito del documento
 
-Este documento fue armado por el grupo de investigación y documentación para dejar en claro dos cosas. Primero, explicar de forma sencilla cómo se juega hoy la versión actual del proyecto que está en desarrollo: qué ve el jugador cuando entra a un caso, qué aplicaciones puede usar y cómo llega a acusar a un sospechoso. Segundo, dejar asentadas por escrito las propuestas de cambio que planteamos desde el equipo para que el juego y las historias de crimen que escribimos funcionen bajo un mismo sistema.
+Desde el grupo de investigación y documentación armamos este documento con dos objetivos. El primero es explicar en claro cómo se juega hoy la versión actual del proyecto: qué ve una persona cuando arranca una partida, qué puede tocar dentro de la computadora y cómo hace hoy para descubrir quién es el asesino. El segundo es dejar asentadas por escrito las propuestas de mejora que planteamos desde el equipo para que el juego incorpore las mecánicas que necesitan nuestras historias de crimen.
 
-Cuando armamos el documento original de prototipos de historias, lo pensamos con varias mecánicas que todavía no están integradas en el juego actual, y a la vez el juego sumó cosas muy buenas (como el escritorio completo, las carpetas ocultas y el interrogatorio por WhatsApp) que en el documento de historias no estaban contempladas. La idea de este relevamiento es unir las dos puntas antes de pasar todo al motor.
-
----
+Cuando escribimos el documento de prototipos de historias, lo habíamos pensado para una estructura distinta, mucho más guiada paso por paso y centrada en resaltar texto dentro de un fichero. Por su lado, la versión actual del juego desarrolló cosas muy sólidas que queremos conservar, como el escritorio libre con carpetas, las carpetas ocultas, los archivos con contraseña y el interrogatorio por WhatsApp. Este documento explica cómo funciona hoy el juego y qué cambios concretos proponemos para unir las dos cosas.
 
 ## 2. Cómo se juega actualmente
 
-Hoy una partida sigue un recorrido directo y lineal:
+En el estado actual del proyecto, una partida completa recorre cinco momentos bien marcados, sin límite de tiempo ni pantallas de derrota intermedias:
 
-1. **Menú principal y selección de caso:** Al abrir el juego, el jugador pasa a una pantalla donde puede elegir entre los casos disponibles sin necesidad de destrabar el primero para jugar el segundo.
-2. **Presentación del caso (correo de encargo):** Antes de entrar a la computadora, aparece en pantalla un correo formal de la Unidad de Criminalística Digital. Ese mensaje presenta a la víctima, cuenta quién encontró el cuerpo, detalla qué elemento de la escena no cierra (por ejemplo, que solo falta una cámara fotográfica sin que hayan forzado la puerta) y muestra una tabla con los primeros sospechosos.
-3. **Exploración del escritorio:** Al tocar el botón de acceso a la PC, el jugador entra al escritorio de la computadora de la víctima. A diferencia de un juego guiado paso por paso, acá las carpetas, los archivos, el correo y el WhatsApp ya están disponibles para revisarlos en el orden que uno quiera.
-4. **Cierre de la sesión:** Cuando el jugador siente que ya reunió la información necesaria y sabe quién es el culpable, va al botón de apagado en la esquina superior derecha de la pantalla y elige **Desconectar**.
-5. **Juicio y desenlace:** Desconectarse de la computadora lleva directamente a la pantalla de acusación. Ahí aparecen los nombres o fotos de los sospechosos (y, según el caso, la opción de archivar la muerte como accidente). Al elegir uno, el juego pasa a la pantalla final, indica si la elección fue correcta o incorrecta y muestra un texto contando qué pasó después con la causa.
+| Etapa | Qué hace el jugador hoy |
+|---|---|
+| 1. Menú y selección de caso | El jugador entra al menú principal y pasa a una pantalla de selección donde elige cuál de los casos quiere investigar. Hoy los casos están abiertos desde el principio, sin necesidad de resolver el primero para destrabar el siguiente. |
+| 2. Correo inicial de encargo | Antes de ver el escritorio, aparece un correo de la Unidad de Criminalística Digital. Ese mensaje cuenta quién es la víctima, cómo encontraron el cuerpo, qué detalle de la escena no cierra y quiénes son los primeros sospechosos. Abajo tiene el botón para entrar a la computadora. |
+| 3. Investigación en el escritorio | El jugador entra a la computadora de la víctima. A diferencia de una aventura lineal, acá tiene acceso libre a las carpetas del sistema, la Papelera, el correo electrónico y el WhatsApp para revisar todo en el orden que quiera. |
+| 4. Desconexión | Cuando el jugador cree que ya entendió qué pasó y quién es el culpable, hace clic en el botón de apagado arriba a la derecha de la pantalla y toca el botón Desconectar. |
+| 5. Juicio y desenlace | Al desconectarse, pasa a la pantalla de Juicio donde aparecen los nombres o fotos de los sospechosos (y, según el caso, la opción de que haya sido un accidente). Al hacer clic en uno, el juego pasa a la pantalla final, dice si acertó o falló y muestra un texto contando cómo terminó la causa. |
 
----
+## 3. Herramientas que hoy tiene el jugador en el escritorio
 
-## 3. Qué herramientas tiene hoy el jugador en el escritorio
+Hoy toda la jugabilidad ocurre adentro de una computadora que imita un sistema operativo con barra de tareas abajo, barra de estado arriba e iconos en el escritorio. Las ventanas se abren, se arrastran con el mouse desde la barra superior y se cierran con la X.
 
-En la versión actual, la investigación pasa por cruzar lo que dicen distintas aplicaciones dentro de la computadora:
+### 3.1 Carpetas, archivos y Papelera
 
-### Carpetas, archivos y Papelera
-El escritorio tiene acceso a la carpeta principal del usuario (`Home`) y a la Papelera (`Trash`). Adentro hay subcarpetas organizadas por temas (Fotos, Trabajo, Clientes, Personal, Notas, Análisis). Los archivos se abren con doble clic y pueden ser de tres tipos:
-- **Notas de texto (`.txt`):** apuntes personales, diarios de viaje, listas o borradores de mensajes que la víctima nunca llegó a mandar.
-- **Imágenes (`.png` / `.jpg`):** fotos tomadas por la víctima o guardadas en sus carpetas de trabajo.
-- **Documentos tipo PDF:** informes, presupuestos, contratos o cartas que se muestran como una o dos páginas escaneadas.
+En el escritorio están la carpeta personal (Home) y la Papelera (Trash). Adentro hay subcarpetas ordenadas por temas como Fotos, Trabajo, Clientes, Personal o Notas. Los archivos se abren con doble clic y hoy existen tres visores distintos:
 
-Además, cada vez que arranca un caso, el juego reparte automáticamente entre las carpetas varios archivos de texto con trámites, actas y notas de oficina que no tienen que ver con el crimen. Eso sirve para que las carpetas tengan volumen y el jugador tenga que separar lo importante de lo cotidiano.
+**Archivos de texto (.txt):** muestran notas personales, diarios de viaje, recordatorios de agenda, listas de música o borradores que la víctima dejó sin mandar.
 
-### Carpetas ocultas y archivos con contraseña
-El escritorio actual tiene dos mecánicas muy buenas para esconder pruebas importantes:
-- **Carpetas o archivos ocultos:** Hay iconos en el escritorio que a simple vista son invisibles. Para encontrarlos, el jugador tiene que hacer clic y arrastrar el rectángulo de selección del mouse por el escritorio; cuando el rectángulo pasa por encima de la posición del archivo oculto, el icono se revela y se puede abrir con doble clic.
-- **Archivos protegidos con contraseña:** Algunos paquetes comprimidos (`.7z`) o carpetas piden clave al intentar abrirlos. La clave no se adivina al azar: siempre sale de cruzar una nota que explica cómo está formada (por ejemplo, el nombre de un cuadro más un año) con otro documento donde aparece ese dato.
+**Visor de imágenes (.png / .jpg):** abre fotos individuales, tanto de carpetas personales como de coberturas de eventos.
 
-### WhatsApp (historial e interrogatorio)
-Desde la barra inferior se abre WhatsApp, que cumple una doble función:
-- **Leer el pasado:** Al entrar a cada contacto se ve la conversación que tuvo esa persona con la víctima en los días previos a la muerte, con fecha y hora de cada mensaje.
-- **Interrogar en el presente:** Abajo de cada conversación hay un menú desplegable con preguntas preparadas. El jugador escribe como investigador a cargo del caso: elige una pregunta, la envía y al segundo recibe la respuesta del contacto. Esta mecánica permite comparar lo que un sospechoso declara hoy con los correos o archivos privados que quedaron en la computadora.
+**Visor de documentos PDF:** muestra contratos, informes técnicos, presupuestos o cartas a la fiscalía en formato de una o dos páginas escaneadas.
 
-### Correo electrónico (Gmail)
-También desde la barra inferior se abre el correo de la víctima, con su bandeja de entrada y la vista de borradores. Ahí aparecen confirmaciones de trabajo, gastos del edificio, turnos médicos y, sobre todo, discusiones más formales o amenazas previas al crimen.
+Además, cada vez que empieza una partida, el juego genera automáticamente archivos de texto con nombres de oficina (presupuestos, actas, memos, balances) y los reparte al azar por las carpetas: entre 3 y 8 en el caso de Lucas y entre 8 y 15 en el de Vidal. Eso hace que la computadora no tenga solamente los archivos del crimen y obliga al jugador a separar lo importante del papelerío normal.
 
-### Cámara 3D y Expediente (estado actual en el proyecto)
-En el proyecto ya están programadas dos piezas más que hoy solo aparecen activas en una escena de prueba:
-- **La ventana de Cámara 3D:** Muestra una habitación en tres dimensiones vista desde una cámara fija que el jugador puede rotar hacia la izquierda, derecha, arriba y abajo con flechas en pantalla. Al pasar el mouse por ciertos objetos de la habitación (como un celular sobre el escritorio, un papel tirado al lado del cesto o un cuadro torcido), el objeto se ilumina y al hacerle clic se anota como pista.
-- **El Expediente desplegable:** Es una carpeta en el borde inferior derecho que sube cuando se registra una pista nueva (ya sea tocando un objeto en la cámara 3D o haciendo clic en una frase marcada dentro de un archivo de texto) y guarda el título, la descripción, la fuente y la hora.
+### 3.2 Carpetas ocultas y archivos con contraseña
 
-Hoy por hoy, en los dos casos principales del juego, ni los chats ni los correos ni los archivos están conectados a ese Expediente, y la pantalla de Juicio tampoco revisa qué pistas juntó el jugador: solo se fija en qué botón de sospechoso tocó al final.
+Para que no todo esté a la vista desde el primer minuto, el escritorio actual tiene dos mecánicas de descubrimiento muy interesantes:
 
----
+**Carpetas ocultas con selección del mouse:** hay carpetas o archivos en el escritorio que arrancan invisibles. La única forma de verlos es haciendo clic y arrastrando el rectángulo azul de selección del mouse por el escritorio. Cuando el rectángulo pasa por encima del lugar donde está la carpeta oculta, el icono aparece en pantalla y el jugador puede abrirlo con doble clic.
 
-## 4. Cómo se resuelven los dos casos actuales del proyecto
+**Archivos protegidos con contraseña:** algunos archivos comprimidos (.7z) o carpetas no se abren directo al hacer doble clic, sino que muestran un recuadro pidiendo una contraseña. Para sacarla, el jugador tiene que cruzar dos documentos: uno que le dice cómo está armada la clave (por ejemplo, el nombre de una pintura más un año) y otro donde aparece ese dato.
 
-Para entender cómo razona hoy el jugador con estas herramientas, sirve repasar los dos casos que ya están armados en el código:
+### 3.3 WhatsApp: historial previo e interrogatorio en vivo
 
-### Caso 1: Lucas Rodrigo Mendez (Expediente 1108-F)
-Lucas es un fotógrafo de 34 años que aparece muerto de un golpe en la cabeza en su departamento de Palermo. No forzaron la puerta ni se llevaron plata ni equipos, salvo su cámara principal. Los dos sospechosos son **Tomás Herrera** (ex amigo peleado por un trabajo) y **Camila Rossi** (su novia).
+WhatsApp se abre desde el icono de la barra inferior y es una de las herramientas más fuertes que tiene hoy el juego, porque junta dos momentos distintos en la misma ventana:
 
-Al revisar la computadora, el jugador ve que Tomás estaba furioso porque Lucas le ganó un trabajo para una revista, pero en la Papelera hay un borrador donde Lucas le pide tomar un café a Tomás para contarle que encontró algo raro en las fotos de un evento. Eso muestra que el problema venía por otro lado.
+**El historial de la víctima:** al tocar un contacto de la lista de la izquierda, aparecen todos los mensajes que esa persona intercambió con la víctima en los días anteriores a su muerte, con fecha y hora.
 
-En WhatsApp, Camila le pregunta a Lucas el jueves si ya procesó las fotos del evento, insiste con saber si sacó fotos de la **zona de cajas** y le pregunta si todavía las tiene todas en la cámara. Lucas le contesta que algunas siguen en la cámara y otras ya las pasó a la compu, y quedan en verse el viernes. En el correo, Lucas le avisa que en las fotos de la zona de cajas se ve algo raro y que prefiere hablarlo en persona. Cuando el jugador entra a la carpeta de trabajo del evento y abre las últimas fotos (`12.png` a `15.png`), ve a Camila robando plata de la caja.
+**El interrogatorio del jugador:** abajo de la conversación hay un desplegable donde el jugador, actuando como el agente a cargo del caso, puede elegir entre 3 y 4 preguntas para mandarle a ese contacto en el presente. Cuando envía una pregunta, al segundo llega la respuesta del sospechoso o testigo.
 
-El cierre sale por contradicción y horario: una nota en la carpeta Personal dice que Camila iba el viernes a las 21; el vecino Jorge cuenta por WhatsApp que a las 21 vio entrar a una mujer joven de pelo oscuro y más tarde escuchó un golpe fuerte; y cuando el jugador interroga a Camila por las fotos, ella miente diciendo que Lucas solo le mandó un link normal y que no había nada raro. Al desconectarse y acusar a **Camila**, el caso se resuelve.
+Esta combinación funciona muy bien porque permite leer primero lo que el sospechoso hablaba en privado con la víctima y después hacerle preguntas para ver en qué miente o qué intenta ocultar.
 
-### Caso 2: Marcelo A. Vidal (Expediente 1114-V)
-Marcelo Vidal, perito tasador de obras de arte, aparece muerto al pie de la escalera interna de su departamento. Las tres opciones en el juicio son acusar al empresario **Lorenzo Machi**, acusar al galerista **Dante Ferreyra** o cerrar el caso como **Accidente**.
+### 3.4 Correo electrónico (Gmail)
 
-Primero el jugador descarta el accidente: en el correo hay un turno con el traumatólogo por la rodilla y, al interrogar por WhatsApp a Rosa (la empleada), ella asegura que Vidal jamás usaba la escalera y siempre bajaba en ascensor. Además, en el chat con `LM` (Lucas Mirabal), Vidal cuenta la noche del lunes a las 22:51 que alguien entró a su departamento y movió su notebook, minutos antes de dejar de contestar para siempre.
+También desde la barra inferior se abre el correo de la víctima. Tiene botones de Recibidos, Enviados y Borradores, aunque hoy solo Recibidos tiene contenido: Enviados todavía no funciona y la lista de borradores está vacía en los dos casos. Se usa para encontrar comunicaciones que no pasarían por WhatsApp: reclamos formales, amenazas, turnos médicos, expensas y correos donde la víctima dejó asentado algún problema antes de morir.
 
-Entre Ferreyra y Machi, los correos y chats muestran que ambos estaban metidos en una red de certificados falsos de cuadros, pero Ferreyra estaba asustado y actuaba como intermediario, mientras que Machi amenazó directamente a Vidal cuando este se negó a firmar el certificado falso de un Quinquela Martín. En el interrogatorio, Mirabal avisa que Vidal dejó una copia de todas las pruebas en una carpeta oculta cuya clave tiene que ver con Giotto.
+### 3.5 Cámara 3D y Expediente (en qué estado están hoy)
 
-En la carpeta Personal hay una nota para el abogado Guillermo Saenz que indica buscar la carpeta oculta `.respaldo_nov` y abrir `paquete_final.7z` con el nombre del cuadro que vieron en Venecia más el año del viaje. Leyendo el diario de viaje de 1998 se encuentra el fresco de Giotto (*La Lamentación de Cristo*). El jugador arrastra el selector sobre el escritorio para descubrir `.respaldo_nov`, abre el archivo con la clave `lamentación1998` y encuentra la carta para la fiscalía donde Vidal documenta que la empresa fantasma Artes del Sur es de **Lorenzo Machi**.
+En el código del proyecto ya están armadas dos herramientas más que todavía no se aprovechan en los dos casos jugables:
 
----
+**La ventana de Cámara 3D:** muestra una habitación en tres dimensiones que el jugador puede mirar girando la cámara hacia la izquierda, la derecha, arriba y abajo mediante botones en pantalla. Ciertos objetos del cuarto (como un celular arriba del escritorio, un bollo de papel cerca del tacho o un cuadro torcido en la pared) se iluminan al pasar el mouse y, cuando el jugador les hace clic, se anotan como pista. También tiene un botón para volver a la vista inicial. Hoy esta ventana solo está colocada en la escena de pruebas, no en los escritorios de los casos.
+
+**El Expediente:** es una pestaña en la esquina inferior derecha del escritorio. Cuando el jugador hace clic en un objeto 3D de la cámara o en una frase enlazada dentro de un archivo de texto, el Expediente se asoma automáticamente y agrega una tarjeta con el título de la pista, una breve descripción, de qué archivo o cámara salió y la hora.
+
+La pestaña del Expediente ya aparece en los escritorios de los dos casos, pero queda vacía: ninguna nota, chat, correo ni imagen de esos casos tiene pistas conectadas, y los enlaces dentro de textos solo existen en la escena de pruebas. Además, cuando el jugador pasa a la pantalla de Juicio, lo anotado no se usa para nada.
+
+## 4. Cómo descubre el jugador al asesino en los casos actuales
+
+Como hoy el juicio no pide presentar pruebas sino elegir un nombre, toda la deducción ocurre en la cabeza del jugador atando cabos entre carpetas, correos y chats. Así funcionan los dos casos que hoy están en el juego:
+
+### 4.1 Caso 1: Lucas Rodrigo Mendez (Expediente 1108-F)
+
+| Aspecto | Detalle |
+|---|---|
+| Víctima y escena | Lucas Mendez (34 años, fotógrafo). Aparece muerto de un golpe en la cabeza en su departamento de Palermo. La puerta no fue forzada y no robaron plata ni computadoras: lo único que falta es su cámara Canon EOS R5. |
+| Sospechosos en el juicio | Tomás Herrera (ex amigo y rival laboral) y Camila Rossi (novia de Lucas). |
+| El sospechoso falso (Tomás) | En WhatsApp y en el correo se ve que Tomás estaba muy enojado porque Lucas le había ganado un trabajo para una revista. Sin embargo, en la Papelera hay un borrador donde Lucas le escribe a Tomás que encontró algo en unas fotos de un evento, que no sabe qué hacer y que le propone tomar un café. Eso sugiere que lo que preocupaba a Lucas venía por otro lado. Cuando se lo interroga, Tomás dice que estuvo solo en su casa y que no tiene coartada. |
+| Las pruebas contra Camila | En el historial de WhatsApp del jueves 17/10, Camila le pregunta a Lucas si ya procesó las fotos del evento del jueves, le pregunta específicamente si sacó fotos de la zona de cajas y si todavía las tiene todas en la cámara. Lucas le responde que algunas siguen en la cámara y otras ya las pasó a la compu, y quedan en verse el viernes. |
+| La evidencia visual y la mentira | En el correo, Lucas le avisa a Camila que en las fotos de la zona de cajas se ve algo raro y que prefiere hablarlo en persona, y ella le contesta que no hace falta que haga nada con esas fotos porque las encargó ella. En Trabajo > Eventos > evento_jueves_rossi_import, las últimas cuatro fotos (12.png a 15.png) muestran a una mujer sacando plata de la caja. El juego no dice quién es: el jugador la vincula con Camila por el chat y los correos. Cuando se la interroga por esas fotos, Camila dice que Lucas solo le mandó un link con fotos del evento y que no había nada raro, lo que choca con el correo. |
+| Ubicación en la noche del crimen | En Personal > Notas > viernes.txt, Lucas anotó que Camila iba a las 21 a hablar de las fotos, y en el interrogatorio Camila admite que fue al departamento esa noche. El vecino Jorge cuenta que escuchó un golpe fuerte y que vio entrar a una mujer joven de pelo oscuro como a las 21. Con todo eso el jugador acusa a Camila Rossi. |
+
+### 4.2 Caso 2: Marcelo A. Vidal (Expediente 1114-V)
+
+| Aspecto | Detalle |
+|---|---|
+| Víctima y escena | Marcelo Vidal, perito tasador de arte, aparece muerto en su departamento. El correo de presentación de este caso tiene el asunto correcto, pero el cuerpo repite el texto del caso de Lucas Mendez, así que hoy el jugador no recibe un resumen propio. La idea de una caída por la escalera interna surge del interrogatorio a Rosa y de la opción Accidente del juicio. |
+| Opciones en el juicio | Lorenzo Machi (empresario), Dante Ferreyra (galerista) o Accidente. |
+| Cómo se descarta el accidente | En el correo hay un turno confirmado con el traumatólogo por la rodilla de Vidal. Al interrogar por WhatsApp a Rosa, la empleada doméstica, ella asegura que por esa rodilla Vidal jamás usaba la escalera y bajaba siempre en ascensor. Además, en el chat con LM (Lucas Mirabal), Vidal cuenta el lunes a las 22:51 que alguien entró a su departamento y movió su notebook, minutos antes de dejar de responder. |
+| Cómo se separa al cómplice del asesino | Los correos y chats muestran que Dante Ferreyra estaba metido en la maniobra de obras falsas, pero estaba asustado y advertía que había gente incómoda con los tiempos. En cambio, Lorenzo Machi amenazó directamente a Vidal por mail y por WhatsApp cuando Vidal se negó a certificar un supuesto Quinquela Martín de 1938 con pigmentos que no existían antes de 1958. Además, al interrogar a LM, este señala directamente a Machi y describe a Ferreyra como cómplice económico. |
+| El puzle de la carpeta oculta | Al interrogar a LM por WhatsApp, revela que Vidal guardó una copia de las pruebas en una carpeta oculta y que la clave tiene que ver con Giotto. En Home > Personal hay una nota dirigida a Guillermo, el amigo con quien Vidal viajó a Italia, que dice que en la carpeta oculta .respaldo_nov está paquete_final.7z y que la clave es el nombre del cuadro que vieron juntos en Venecia más el año en que lo vieron. La misma nota afirma que Artes del Sur SRL es de Machi, que Iturbe es su testaferro y que Ferreyra sabía. En el diario de viaje de 1998, Vidal cuenta que el fresco que más lo impactó fue La Lamentación de Cristo, de Giotto. Arrastrando el rectángulo de selección sobre el escritorio aparece .respaldo_nov, y con la clave lamentación1998 (con tilde y todo junto) se abre el paquete con la carta para la fiscalía. |
 
 ## 5. Diagnóstico del grupo de investigación
 
-Al comparar cómo se juega hoy el proyecto con las seis historias que diseñamos en el documento de prototipos, desde el grupo de investigación encontramos tres diferencias importantes que necesitamos resolver:
+Al revisar el código actual junto con nuestro documento de historias (Prototipos de Historias de Crimen), desde el equipo de investigación encontramos estos puntos a resolver:
 
-1. **Falta el navegador web en el escritorio:** Nuestras historias dependen mucho de salir de los archivos locales para investigar foros del barrio, redes sociales, páginas de reseñas, webs de colegios, hoteles o radios y sitios de compraventa. Hoy el escritorio solo tiene archivos locales, correo y WhatsApp.
-2. **La lectura hoy es pasiva y sin subrayado:** En el juego actual el jugador lee chats, mails y notas, pero no puede subrayar fragmentos dentro de ellos para guardar pistas o destrabar lugares nuevos. Todo queda librado a lo que el jugador se acuerde de memoria.
-3. **Las pistas no se agrupan por sospechoso ni se usan en el juicio:** Hoy el Expediente es una lista general desconectada de los casos, y en el Juicio solo hay botones con nombres. El jugador no puede revisar la ficha de cada sospechoso en el juicio ni respaldar su acusación con las pistas que fue encontrando.
+**1. Las historias nuevas necesitan salir a internet:** en nuestros seis casos aparecen foros barriales, redes sociales, páginas de reseñas, sitios web de hoteles, colegios y radios, nubes privadas y portales de compraventa. Hoy el escritorio del juego solo tiene archivos locales, correo y WhatsApp, pero no tiene navegador web.
 
----
+**2. En el juego actual falta la mecánica de subrayar:** hoy el jugador lee todo pero no puede subrayar fragmentos en los documentos, correos ni chats. En cambio, nuestro diseño narrativo se apoya en que el jugador tenga que decidir qué frases subraya dentro de un límite por documento.
+
+**3. El Expediente y el Juicio hoy están desconectados:** en el juego actual las pistas no se organizan por sospechoso y en la pantalla de Juicio el jugador toca un nombre a ciegas, sin poder leer lo que juntó sobre cada sospechoso ni demostrar por qué lo acusa.
+
+**4. Hay detalles de contenido para corregir en los casos actuales:** el cuerpo del correo de presentación del caso de Vidal repite el texto del caso de Lucas; en el caso de Lucas, Tomás dice por WhatsApp que no tiene coartada, pero el final del juicio dice que estuvo en un casamiento con cincuenta testigos; el vecino Jorge describe a una mujer de pelo oscuro, mientras que la foto de perfil de Camila la muestra rubia; en el caso de Vidal, la pregunta a Machi habla de la noche del martes 12, pero los mensajes muestran que Vidal dejó de responder el lunes 11 a la noche; la nota para Guillermo ubica el fresco en Venecia, aunque el diario lo sitúa en Padua; el escritorio de Vidal conserva un borrador para Tomás copiado del caso de Lucas, que no se puede abrir desde ninguna carpeta; y el botón Enviados del correo no tiene función.
 
 ## 6. El grupo de investigación propone los siguientes cambios
 
-Para unificar el juego sin perder lo que ya funciona bien en el escritorio actual, el grupo de investigación propone tres cambios concretos en la jugabilidad:
+Para que el juego aproveche todo lo que ya tiene hecho y a la vez soporte nuestras historias completas, el grupo de investigación propone implementar tres cambios en la jugabilidad. Estas propuestas definen cómo debe jugarse la versión unificada del proyecto:
 
-### 6.1. Agregar más sitios web mediante un navegador en el escritorio
-Proponemos sumar el **Navegador** como aplicación fija de la barra de tareas (junto a WhatsApp y Correo). Adentro del navegador, cada caso va a contar con varios sitios web propios del universo de la historia:
-- Redes sociales y muros comunitarios (*Barrio*, *Chusmeo*, *Lienzo*, *Laburantes*), donde se pueden ver perfiles públicos, fotos, comentarios cruzados entre sospechosos y buscadores de usuarios o alias.
-- Foros y páginas barriales (*Gateros del Oeste*, el muro de oyentes de *Radio Vecina* o el blog *Micrófono Abierto*).
-- Sitios institucionales y comerciales (la web del *Hotel Mirador*, la web del *Instituto San Martín*, el portal de reseñas *Opiná*, la página de la colecta *Encontremos a Tomi* o el portal de compraventa *FeriArte*).
-- Accesos web con inicio de sesión (como nubes de archivos *FrostCloud*, el *Drive* del curso o sistemas internos).
+### 6.1 Propuesta 1: Agregar el navegador y más sitios web consultables
 
-Algunos sitios pueden estar disponibles desde el inicio en los marcadores de la computadora, y otros se van habilitando en el navegador a medida que el jugador encuentra y subraya su mención en una nota, un correo o un chat.
+Proponemos sumar una aplicación de Navegador en la barra de tareas de la computadora (al lado de WhatsApp y del Correo). Adentro del navegador, el jugador va a poder consultar distintos sitios web propios de cada caso:
 
-### 6.2. Incorporar el subrayado como nuestra mecánica principal
-Proponemos que **subrayar fragmentos de texto** sea la mecánica central con la que el jugador investiga en todas las ventanas del juego: archivos `.txt`, correos, chats e interrogatorios de WhatsApp, publicaciones de sitios web y descripciones de la cámara 3D.
+**Redes sociales y muros públicos:** sitios como Barrio, Chusmeo, Lienzo o Laburantes, donde el jugador puede revisar perfiles de las víctimas y los sospechosos, ver fotos publicadas, leer peleas o comentarios en los posteos y usar el buscador para rastrear un usuario o un alias bancario.
 
-El sistema que planteamos funciona así:
-- Dentro de los textos hay fragmentos que se pueden subrayar con un clic. Para el jugador todos se ven con el mismo resaltado, sin distinguir visualmente si son pistas verdaderas o trampas.
-- Cada documento, correo, chat o publicación tiene un **límite de subrayado de entre 3 y 5 fragmentos**. Eso evita que el jugador subraye todo sin leer. Si llega al límite y quiere marcar otra cosa, puede quitarle el subrayado a un fragmento anterior en cualquier momento.
-- Internamente para el diseño, los fragmentos cumplen cinco funciones:
-  - **Lugar (`[L]`):** menciona una página web, aplicación, carpeta o archivo y lo habilita o lo señala para ir a revisarlo.
-  - **Pista de acceso (`[P]`):** guarda un dato concreto que sirve para armar una contraseña, un PIN o una búsqueda en el navegador.
-  - **Contexto e indicio (`[C]`):** guarda motivos, horarios, contradicciones o coartadas que arman el caso a favor o en contra de un sospechoso.
-  - **Trampa (`[T]`):** datos verdaderos pero irrelevantes o sospechas engañosas que ocupan lugar si el jugador se distrae.
-  - **Pista definitiva (`[D]`):** la prueba irrefutable que termina de demostrar quién cometió el hecho.
+**Foros, blogs y páginas comunitarias:** como el foro Gateros del Oeste, el blog Micrófono Abierto o el muro de mensajes en vivo de los oyentes de la radio.
 
-### 6.3. Mejorar la recolección de pistas por sospechoso y usar su fichero en el Juicio
-Proponemos transformar el Expediente actual en un **Fichero de sospechosos** que acompañe al jugador durante toda la investigación y sea la herramienta central de la pantalla de Juicio:
+**Páginas institucionales, reseñas y portales de venta:** la página web del Hotel Mirador, la web del Instituto San Martín, la web de Radio Vecina, el sitio de reseñas Opiná, la colecta Encontremos a Tomi y el portal de compraventa FeriArte.
 
-1. **Fichas individuales por sospechoso:** A medida que aparecen los involucrados del caso, el Fichero habilita una pestaña o ficha para cada sospechoso (además de un apartado para datos de acceso y contraseñas).
-2. **Asociar las pistas subrayadas a cada sospechoso:** Cuando el jugador subraya un fragmento relevante (por ejemplo, una amenaza en un mail, una mentira en el interrogatorio de WhatsApp, una coartada que lo descarta o un rastro en la cámara 3D), esa pista se guarda y puede asociarse a la ficha del sospechoso correspondiente. Así el jugador va armando el expediente de cada persona: qué motivo tenía, dónde estaba, qué dijo en el chat y qué pruebas reales la comprometen o la dejan afuera.
-3. **Leer el fichero de cada sospechoso en el Juicio y acusar con pruebas:** Cuando el jugador toca *Desconectar* y pasa al Juicio, ya no se encuentra con botones vacíos. En la pantalla de Juicio puede **abrir y leer el fichero completo de cada sospechoso** con todas las pistas que recolectó durante la partida. Para cerrar el caso, el jugador debe **marcar quién es el asesino (o culpable) y seleccionar dentro de su fichero las pistas que determinó para incriminarlo** (incluyendo la pista definitiva). Si elige al culpable correcto y lo respalda con las pistas que prueban su autoría, obtiene el final bueno; si acusa a un inocente o presenta pruebas que no sostienen el cargo, el juicio falla.
+**Servicios web con contraseña:** nubes de archivos y sistemas internos como FrostCloud, el Drive compartido del curso o el sistema de reservas del hotel, que piden usuario y contraseña deducidos durante la investigación.
 
----
+Para que la navegación sea ordenada y no abrume al jugador con veinte pestañas desde el minuto cero, algunos sitios estarán en los marcadores iniciales y los demás se irán habilitando en el navegador cuando el jugador encuentre y subraye su mención en una nota, correo o conversación.
 
-## 7. Cómo quedan estructuradas las historias con los cambios propuestos
+### 6.2 Propuesta 2: Incorporar el subrayado como nuestra mecánica principal
 
-Con la jugabilidad actual más estos tres cambios propuestos por el grupo de investigación, todas las historias del proyecto (tanto los seis prototipos como futuros casos) pasan a compartir la misma estructura completa:
+Proponemos que subrayar fragmentos de texto sea la mecánica central de investigación en todas las ventanas del juego: notas de texto, correos electrónicos, chats e interrogatorios de WhatsApp, páginas web del navegador y notas descriptivas de la cámara 3D.
 
-| Componente del caso | Cómo se usa en las historias adaptadas |
+El funcionamiento concreto que plantea el grupo de investigación es el siguiente:
+
+| Regla del sistema | Cómo funciona en la partida |
 |---|---|
-| **Presentación inicial** | Mensaje o correo al arrancar la partida que plantea el hecho, el detalle que no cierra y el primer archivo a revisar en la PC. |
-| **Escritorio y carpetas** | Archivos `.txt`, documentos, Papelera, carpetas o usuarios bloqueados con contraseña y archivos de contexto. |
-| **WhatsApp (historial + interrogatorio)** | Conversaciones previas de la víctima y preguntas seleccionables para que el jugador interrogue a los sospechosos y testigos y pueda subrayar sus contradicciones. |
-| **Navegador con sitios web** | Redes sociales, foros, webs institucionales, reseñas, nubes de backups y buscadores donde se rastrean perfiles, alias y publicaciones. |
-| **Correo electrónico** | Bandeja de entrada y enviados/borradores con avisos formales, reclamos, turnos, claves y amenazas. |
-| **Cámara 3D en vivo** | Habitación del caso que se recorre hacia izquierda, centro, derecha y abajo; al tocar los objetos se generan notas cuyos fragmentos también se pueden subrayar. |
-| **Subrayado y Fichero de sospechosos** | El jugador subraya entre 3 y 5 fragmentos por documento y organiza los indicios (`[C]`, `[D]`) dentro de la ficha de cada sospechoso. |
-| **Juicio con lectura del Fichero** | Al desconectarse, el jugador lee el fichero de cada sospechoso en el juicio, marca al culpable y presenta las pistas de su fichero que prueban el caso. |
+| Selección y subrayado | Dentro de cada documento, correo, chat o página web hay frases y datos que el jugador puede subrayar con un clic. Para el jugador todos los fragmentos subrayables tienen el mismo aspecto visual, sin revelar de antemano si son pistas reales o distractores. |
+| Límite por documento | Cada documento tiene un límite de entre 3 y 5 subrayados (indicado arriba del texto). Esto obliga al jugador a leer con atención y elegir qué datos realmente importan. Si llega al límite, puede quitar un subrayado anterior en cualquier momento para liberar lugar. |
+| Destrabe de lugares y claves | Cuando el jugador subraya la mención a un sitio web, una aplicación o un archivo (fragmentos de tipo Lugar), ese acceso se habilita en la computadora. Cuando subraya un dato clave para un acceso o búsqueda (fragmentos de tipo Pista), ese dato queda disponible para armar contraseñas o buscar perfiles. |
+| Trampas y ruido | En todos los documentos hay fragmentos verdaderos pero irrelevantes o sospechas falsas (fragmentos de tipo Trampa). Subrayarlos no hace perder la partida, pero ocupa espacio del límite y mete ruido si el jugador no los descarta. |
 
+### 6.3 Propuesta 3: Recolección de pistas en el Fichero de cada sospechoso y uso en el Juicio
+
+El cambio más importante que propone el grupo de investigación es reformular cómo se guardan las pistas y cómo se resuelve el Juicio, para que la investigación tenga peso real al momento de acusar:
+
+**1. Fichero organizado por sospechosos:** en lugar de que el Expediente sea una lista única donde cae todo mezclado, el Fichero pasa a tener una ficha individual por cada sospechoso del caso (que se agrega cuando ese personaje aparece en la investigación), además de una pestaña general para los documentos abiertos y datos de contraseñas.
+
+**2. Guardar y asociar pistas al sospechoso:** cada vez que el jugador subraya un indicio relevante —por ejemplo, una amenaza en un correo, una contradicción al interrogarlo por WhatsApp, una publicación sospechosa en una red social, una coartada que lo descarta o un rastro en la cámara 3D—, puede asignar esa pista a la ficha del sospechoso correspondiente. De esa manera, el jugador va construyendo el fichero de cada involucrado con las pruebas a favor o en contra.
+
+**3. Leer el fichero de cada sospechoso en el Juicio:** cuando el jugador toca Desconectar y entra a la pantalla de Juicio, tiene a la vista las fichas de todos los sospechosos del caso y puede abrir y leer el fichero de cada uno con todas las pistas que fue recolectando y subrayando durante la partida.
+
+**4. Marcar al asesino respaldado por las pistas determinadas por el jugador:** para realizar la acusación en el Juicio, el jugador ya no toca solamente el nombre del sospechoso. Debe elegir a quién acusa como culpable y marcar dentro del fichero de ese sospechoso cuáles son las pistas que determinó que prueban su culpabilidad (incluyendo la pista definitiva y las pruebas de contexto o contradicción). Si acusa al culpable real y presenta las pistas correctas de su fichero, gana el caso; si acusa a un inocente o presenta pistas equivocadas o de trampa, la acusación se cae y lleva a un final malo o incompleto.
+
+## 7. Cómo se adaptan nuestras historias al juego con estos cambios
+
+Con esta propuesta, el documento de historias (Prototipos de Historias de Crimen) se actualiza para combinar lo mejor del juego actual con los tres cambios del grupo de investigación:
+
+| Parte del caso | Cómo queda en el documento de historias actualizado |
+|---|---|
+| Inicio y escritorio | Cada caso arranca con el mensaje de presentación en pantalla y da paso al escritorio de esa computadora (con sus carpetas, archivos, Papelera y accesos protegidos con contraseña) hasta que el jugador decide tocar Apagar > Desconectar. |
+| Navegador y sitios web | Se mantienen todos los sitios web de los seis casos (Gateros del Oeste, Barrio, Chusmeo, Encontremos a Tomi, FrostCloud, Hotel Mirador, Opiná, Laburantes, Instituto San Martín, Radio Vecina, Micrófono Abierto, Lienzo y FeriArte) dentro del Navegador del escritorio. |
+| WhatsApp e interrogatorios | Cada caso incorpora contactos en WhatsApp con historial previo y preguntas seleccionables de interrogatorio, con fragmentos subrayables en las respuestas para atrapar contradicciones o confirmar coartadas. |
+| Cámara 3D y Correo | Todos los casos conservan su cámara 3D interactiva (izquierda, centro, derecha, abajo) y su bandeja de correo electrónico con fragmentos subrayables. |
+| Subrayado y Fichero por sospechoso | Se mantiene el marcado de fragmentos [L], [P], [C], [T] y [D] con límite de 3 a 5 por documento, indicando cómo se suman los sospechosos al Fichero y qué pistas van a la ficha de cada uno. |
+| Juicio con Fichero | En el cierre de cada caso se detalla qué contiene el fichero de cada sospechoso al llegar al Juicio, qué pistas descartan a los inocentes y qué combinación de culpable + pistas de su fichero (con la pista definitiva [D]) resuelve el juicio. |
