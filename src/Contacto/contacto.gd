@@ -7,7 +7,8 @@ func _ready() -> void:
 		$PanelContainer/Icon.texture = chat.avatar
 		$Nombre.text = chat.nombre
 		if chat.mensajes.size() > 0:
-			$Mensaje.text = chat.mensajes[chat.mensajes.size()-1].text
+			var ultimo: String = chat.mensajes[chat.mensajes.size()-1].text
+			$Mensaje.text = RegEx.create_from_string("(?s)\\[url=[^\\]]+\\](.*?)\\[/url\\]").sub(ultimo, "$1", true)
 		else :
 			$Mensaje.text = "Placeholder"
 

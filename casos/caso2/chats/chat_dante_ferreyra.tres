@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="Chat" format=3 uid="uid://bx1dante00004"]
 
 [ext_resource type="Script" uid="uid://gdiumfglcp6n" path="res://mensaje.gd" id="2_7j066"]
+[ext_resource type="Script" uid="uid://b3ag2k8d33jul" path="res://src/Expediente/pista.gd" id="2_k0qtv"]
 [ext_resource type="Script" uid="uid://by8r7fs8syfyj" path="res://chat.gd" id="3_tl1c6"]
 
 [sub_resource type="Resource" id="Resource_vw3sx"]
