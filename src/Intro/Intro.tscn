@@ -2,30 +2,52 @@
 
 [ext_resource type="Texture2D" uid="uid://d2tnrh7xrrftl" path="res://assets/K.O..svg" id="1_666gu"]
 [ext_resource type="Script" uid="uid://8fhxicdrlphq" path="res://src/Intro/intro.gd" id="1_kxwl4"]
+[ext_resource type="Texture2D" uid="uid://oamtg5upud60" path="res://assets/Papel-matrix-sprite.jpg" id="3_papel"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4vfs6"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
-bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.84313726)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
+[sub_resource type="SystemFont" id="SystemFont_maquina"]
+font_names = PackedStringArray("Courier New", "Courier Prime", "Courier", "Monospace")
+
+[sub_resource type="SystemFont" id="SystemFont_maquina_negrita"]
+font_names = PackedStringArray("Courier New", "Courier Prime", "Courier", "Monospace")
+font_weight = 700
+
+[sub_resource type="SystemFont" id="SystemFont_maquina_cursiva"]
+font_names = PackedStringArray("Courier New", "Courier Prime", "Courier", "Monospace")
+font_italic = true
+
+[sub_resource type="SystemFont" id="SystemFont_maquina_negrita_cursiva"]
+font_names = PackedStringArray("Courier New", "Courier Prime", "Courier", "Monospace")
+font_italic = true
+font_weight = 700
+
+[sub_resource type="Theme" id="Theme_impresion"]
+default_font = SubResource("SystemFont_maquina")
+default_font_size = 10
+Label/colors/font_color = Color(0.1, 0.11, 0.17, 1)
+RichTextLabel/colors/default_color = Color(0.1, 0.11, 0.17, 1)
+RichTextLabel/fonts/bold_font = SubResource("SystemFont_maquina_negrita")
+RichTextLabel/fonts/bold_italics_font = SubResource("SystemFont_maquina_negrita_cursiva")
+RichTextLabel/fonts/italics_font = SubResource("SystemFont_maquina_negrita_cursiva")
+RichTextLabel/fonts/mono_font = SubResource("SystemFont_maquina_negrita")
+RichTextLabel/fonts/normal_font = SubResource("SystemFont_maquina_negrita")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kxwl4"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0, 0, 0, 0.6)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.1, 0.11, 0.17, 0.85)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hover"]
+bg_color = Color(0.1, 0.11, 0.17, 0.88)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.1, 0.11, 0.17, 0.88)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_foco"]
 
 [node name="Intro" type="Control" unique_id=1581055040]
 layout_mode = 3
@@ -42,87 +64,82 @@ offset_right = 1162.0
 offset_bottom = 662.0
 color = Color(0.051970966, 0.05197096, 0.05197095, 1)
 
-[node name="Mail" type="Panel" parent="." unique_id=1393977526]
-layout_mode = 0
-offset_left = 380.0
-offset_top = 78.0
-offset_right = 1084.0
-offset_bottom = 608.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_4vfs6")
+[node name="Mail" type="Control" parent="." unique_id=1393977526]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 318.0
+offset_top = 4.0
+offset_right = 834.0
+offset_bottom = 644.0
+theme = SubResource("Theme_impresion")
 
-[node name="Panel" type="Panel" parent="Mail" unique_id=2023464825]
+[node name="Papel" type="TextureRect" parent="Mail" unique_id=1928374650]
 layout_mode = 0
-offset_right = 704.0
-offset_bottom = 32.0
+offset_right = 516.0
+offset_bottom = 640.0
+mouse_filter = 2
+texture = ExtResource("3_papel")
+expand_mode = 1
 
-[node name="Label" type="Label" parent="Mail" unique_id=1059465538]
-layout_mode = 0
-offset_left = 8.0
-offset_right = 320.0
-offset_bottom = 32.0
-text = "Gmail"
-vertical_alignment = 1
-
-[node name="Button" type="Button" parent="Mail" unique_id=1891417420]
-layout_mode = 0
-offset_left = 672.0
-offset_right = 704.0
-offset_bottom = 32.0
-text = "X"
-
-[node name="MailData" type="Panel" parent="Mail" unique_id=1793133585]
-layout_mode = 0
-offset_top = 32.0
-offset_right = 704.0
-offset_bottom = 448.0
+[node name="MailData" type="Control" parent="Mail" unique_id=1793133585]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 516.0
+offset_bottom = 640.0
 
 [node name="Volver" type="Button" parent="Mail/MailData" unique_id=1469383163]
 layout_mode = 0
-offset_right = 32.0
-offset_bottom = 32.0
-text = "<"
+offset_left = -218.0
+offset_top = 496.0
+offset_right = -28.0
+offset_bottom = 528.0
+text = "< Volver"
 
 [node name="Asunto" type="Label" parent="Mail/MailData" unique_id=879500865]
 layout_mode = 0
-offset_left = 32.0
-offset_right = 704.0
-offset_bottom = 32.0
+offset_left = 48.0
+offset_top = 32.0
+offset_right = 470.0
+offset_bottom = 50.0
+theme_override_fonts/font = SubResource("SystemFont_maquina_negrita")
+theme_override_font_sizes/font_size = 12
 text = "Caso 1108-F — Acceso remoto autorizado | Mendez, Lucas R."
 vertical_alignment = 1
 
 [node name="Remitente" type="Label" parent="Mail/MailData" unique_id=2049468720]
 layout_mode = 0
-offset_left = 32.0
-offset_top = 24.0
-offset_right = 128.0
-offset_bottom = 40.0
+offset_left = 48.0
+offset_top = 50.0
+offset_right = 470.0
+offset_bottom = 64.0
+theme_override_fonts/font = SubResource("SystemFont_maquina_negrita")
 theme_override_font_sizes/font_size = 10
 text = "crim.invest@pjn.gob.ar"
 vertical_alignment = 1
 
 [node name="Cuerpo" type="RichTextLabel" parent="Mail/MailData" unique_id=541549091]
 layout_mode = 0
-offset_left = 16.0
-offset_top = 48.0
-offset_right = 688.0
-offset_bottom = 408.0
-theme_override_font_sizes/normal_font_size = 14
-theme_override_font_sizes/bold_font_size = 15
-theme_override_font_sizes/bold_italics_font_size = 14
-theme_override_font_sizes/italics_font_size = 14
-theme_override_font_sizes/mono_font_size = 14
+offset_left = 48.0
+offset_top = 74.0
+offset_right = 470.0
+offset_bottom = 566.0
+theme_override_font_sizes/normal_font_size = 11
+theme_override_font_sizes/bold_font_size = 11
+theme_override_font_sizes/bold_italics_font_size = 11
+theme_override_font_sizes/italics_font_size = 11
+theme_override_font_sizes/mono_font_size = 11
 bbcode_enabled = true
 text = "Agente,
 Se le concede acceso forense al dispositivo digital de Lucas Rodrigo Mendez, DNI 29.441.872, fotógrafo, 34 años. Hallado sin vida el sábado 19 de octubre en su domicilio de Palermo por el vecino del piso de abajo, Sr. Jorge Pinto, quien reportó un golpe fuerte la noche anterior y fue a verificar al día siguiente.
 
-[b]Lo que ya sabemos[/b]
+[u]Lo que ya sabemos[/u]
 Causa de muerte: traumatismo craneal. Objeto contundente no encontrado en la escena. No hay signos de robo: billetera, notebook y equipos de fotografía siguen en el departamento. La puerta no fue forzada.
 La cámara principal de Lucas, una Canon EOS R5, no está en el departamento. Es el único objeto que falta.
 
-[b]Lo que necesitamos[/b]
+[u]Lo que necesitamos[/u]
 Reconstruir con quién tuvo contacto Lucas en los últimos 15 días y establecer quién tenía motivo para llevarse esa cámara.
 
-[b]Sospechosos preliminares[/b]
+[u]Sospechosos preliminares[/u]
 
 [table=3]
 [cell][i]Nombre[/i][/cell]
@@ -142,16 +159,6 @@ Lic. Lorena Casás
 [i]Coordinadora — Unidad de Criminalística Digital[/i]
 "
 
-[node name="Remitente2" type="Label" parent="." unique_id=1623992214]
-layout_mode = 0
-offset_left = 392.0
-offset_top = 528.0
-offset_right = 504.0
-offset_bottom = 544.0
-theme_override_font_sizes/font_size = 10
-text = "Adjuntos"
-vertical_alignment = 1
-
 [node name="K_o_" type="TextureRect" parent="." unique_id=239437778]
 layout_mode = 0
 offset_left = 22.0
@@ -163,22 +170,21 @@ expand_mode = 1
 
 [node name="Button" type="Button" parent="." unique_id=1608764180]
 layout_mode = 0
-offset_left = 392.0
-offset_top = 544.0
-offset_right = 592.0
-offset_bottom = 600.0
+offset_left = 366.0
+offset_top = 574.0
+offset_right = 788.0
+offset_bottom = 602.0
+theme_override_colors/font_color = Color(0.1, 0.11, 0.17, 1)
+theme_override_colors/font_hover_color = Color(0.93, 0.9, 0.87, 1)
+theme_override_colors/font_pressed_color = Color(0.93, 0.9, 0.87, 1)
+theme_override_colors/font_focus_color = Color(0.1, 0.11, 0.17, 1)
+theme_override_fonts/font = SubResource("SystemFont_maquina_negrita")
+theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxFlat_kxwl4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_foco")
+text = ">> IR AL ESCRITORIO <<"
 
-[node name="Remitente3" type="Label" parent="Button" unique_id=1713648418]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 120.0
-offset_bottom = 24.0
-theme_override_font_sizes/font_size = 10
-text = "Ir al escritorio"
-vertical_alignment = 1
-
-[connection signal="pressed" from="Mail/Button" to="." method="_on_buttonclose_pressed"]
 [connection signal="pressed" from="Mail/MailData/Volver" to="." method="_on_volver_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

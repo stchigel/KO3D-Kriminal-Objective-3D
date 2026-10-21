@@ -38,6 +38,7 @@ autowrap_mode = 1
 
 [node name="Panel" type="Panel" parent="." unique_id=840617257]
 visible = false
+z_index = 5
 layout_mode = 0
 offset_left = 80.0
 offset_top = 32.0
