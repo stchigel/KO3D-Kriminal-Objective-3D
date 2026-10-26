@@ -13,6 +13,9 @@ const FONDO_SOLO_TUBO := preload("res://assets/fondos/LuzParedEncendida.jpg")
 @export_group("Destello CRT")
 @export var duracion_del_destello: float = 0.35
 
+@export_group("Monitor")
+@export var duracion_del_agrandado: float = 0.2
+
 @export_group("Fundidos")
 @export var duracion_del_fundido: float = 0.3
 @export var duracion_del_apagado: float = 0.2
@@ -20,6 +23,10 @@ const FONDO_SOLO_TUBO := preload("res://assets/fondos/LuzParedEncendida.jpg")
 var pantalla_activa: Control = null
 var _tubo_encendido: bool = true
 var _timer_del_titileo: Timer
+var _monitor_agrandado: bool = false
+var _escala_del_monitor_chico: Vector2
+var _escala_del_monitor_grande: Vector2
+var _tween_del_agrandado: Tween
 
 @onready var fondo_escritorio: TextureRect = $FondoEscritorio
 @onready var boton_monitor: Button = $FondoEscritorio/BotonMonitor
@@ -33,6 +40,7 @@ var _timer_del_titileo: Timer
 @onready var pantalla_libreta: Control = $PantallaLibreta
 @onready var cuaderno_perfiles: Control = $CuadernoPerfiles
 @onready var boton_volver: Button = $BotonVolver
+@onready var boton_agrandar: Button = $BotonAgrandar
 @onready var bloqueo_de_input: Control = $BloqueoDeInput
 
 
@@ -43,6 +51,9 @@ func _ready() -> void:
 	boton_perfiles.pressed.connect(cuaderno_perfiles.alternar)
 	cuaderno_perfiles.acusacion_confirmada.connect(al_acusar)
 	boton_volver.pressed.connect(al_tocar_levantarse)
+	boton_agrandar.pressed.connect(al_tocar_agrandar)
+	_escala_del_monitor_chico = monitor.scale
+	_escala_del_monitor_grande = _calcular_la_escala_agrandada()
 	pantalla_de_bloqueo.contrasena_aceptada.connect(al_aceptar_la_contrasena)
 	pantalla_computadora.connect("desconexion_solicitada", al_tocar_levantarse)
 	boton_lampara.pressed.connect(al_tocar_la_lampara)
@@ -94,6 +105,11 @@ func _apagar_el_monitor() -> void:
 	monitor.modulate.a = 1.0
 	pantalla_activa = null
 	boton_volver.hide()
+	boton_agrandar.hide()
+	if _tween_del_agrandado:
+		_tween_del_agrandado.kill()
+	_monitor_agrandado = false
+	_fijar_el_tamano_del_monitor(0.0)
 	destello_crt.hide()
 	_bloquear_input(false)
 
@@ -104,9 +120,39 @@ func al_tocar_el_monitor() -> void:
 	var destino: Control = pantalla_computadora if Global.computadora_desbloqueada else pantalla_de_bloqueo
 	_bloquear_input(true)
 	monitor.show()
+	boton_agrandar.show()
 	await _encender_la_pantalla(destino)
 	boton_volver.visible = destino != pantalla_computadora
 	_bloquear_input(false)
+
+
+func al_tocar_agrandar() -> void:
+	_monitor_agrandado = not _monitor_agrandado
+	boton_agrandar.text = "-" if _monitor_agrandado else "+"
+	boton_agrandar.tooltip_text = "Achicar" if _monitor_agrandado else "Agrandar"
+	if _tween_del_agrandado:
+		_tween_del_agrandado.kill()
+	_tween_del_agrandado = create_tween()
+	_tween_del_agrandado.tween_method(_fijar_el_tamano_del_monitor, _avance_del_agrandado(), 1.0 if _monitor_agrandado else 0.0, duracion_del_agrandado) 		.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+
+
+func _avance_del_agrandado() -> float:
+	return inverse_lerp(_escala_del_monitor_chico.x, _escala_del_monitor_grande.x, monitor.scale.x)
+
+
+func _calcular_la_escala_agrandada() -> Vector2:
+	var ocupado := monitor.size * monitor.scale
+	var margen := size - monitor.position - ocupado
+	var disponible := size - monitor.position - margen / 2.0
+	var factor := minf(disponible.x / monitor.size.x, disponible.y / monitor.size.y)
+	return Vector2(factor, factor)
+
+
+func _fijar_el_tamano_del_monitor(avance: float) -> void:
+	monitor.scale = _escala_del_monitor_chico.lerp(_escala_del_monitor_grande, avance)
+	var esquina := monitor.position + monitor.size * monitor.scale
+	boton_agrandar.position = esquina - boton_agrandar.size - Vector2(8, 8)
+	boton_volver.position.y = esquina.y + 8.0
 
 
 func al_acusar(perfil: Perfil, pruebas: Array[Pista]) -> void:

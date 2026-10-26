@@ -168,6 +168,15 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_marco")
 
+[node name="BotonAgrandar" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 28.0
+offset_bottom = 28.0
+theme = ExtResource("6_tema")
+tooltip_text = "Agrandar"
+text = "+"
+
 [node name="PantallaLibreta" parent="." unique_id=1411414089 instance=ExtResource("3_libreta")]
 layout_mode = 1
 

@@ -2,3 +2,5 @@ res://global.gd
 res://src/Camara/pista_clickeable.gd
 res://src/Perfiles/perfil.gd
 res://src/Menu/menu.tscn
+res://src/Camara/camara.gd
+res://src/Escritorio/escritorio_del_agente.gd
