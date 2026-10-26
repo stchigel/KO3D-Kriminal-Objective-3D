@@ -1,0 +1,747 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://node_3d.gd" id="script"]
+[ext_resource type="Script" path="res://src/Camara/pista_clickeable.gd" id="pista"]
+
+[sub_resource type="Environment" id="env"]
+background_mode = 1
+background_color = Color(0.04, 0.04, 0.05, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.7, 0.68, 0.64, 1)
+ambient_light_energy = 0.65
+tonemap_mode = 2
+adjustment_enabled = true
+adjustment_saturation = 0.7
+
+[sub_resource type="StandardMaterial3D" id="Mat_piso"]
+albedo_color = Color(0.36, 0.25, 0.17, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_pared"]
+albedo_color = Color(0.78, 0.72, 0.66, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_oscura"]
+albedo_color = Color(0.2, 0.13, 0.08, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_madera"]
+albedo_color = Color(0.45, 0.3, 0.18, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_sofa"]
+albedo_color = Color(0.25, 0.38, 0.36, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_alfombra"]
+albedo_color = Color(0.55, 0.45, 0.4, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_crema"]
+albedo_color = Color(0.93, 0.9, 0.8, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_laton"]
+albedo_color = Color(0.78, 0.62, 0.25, 1)
+metallic = 0.7
+roughness = 0.35
+
+[sub_resource type="StandardMaterial3D" id="Mat_blanco"]
+albedo_color = Color(0.95, 0.95, 0.92, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_rojo"]
+albedo_color = Color(0.82, 0.1, 0.12, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_bordo"]
+albedo_color = Color(0.42, 0.07, 0.12, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_terracota"]
+albedo_color = Color(0.7, 0.35, 0.2, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_tierra"]
+albedo_color = Color(0.18, 0.1, 0.06, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_vidrio"]
+albedo_color = Color(0.65, 0.8, 0.9, 0.4)
+transparency = 1
+
+[sub_resource type="StandardMaterial3D" id="Mat_cortina"]
+albedo_color = Color(0.85, 0.55, 0.6, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_negro"]
+albedo_color = Color(0.1, 0.1, 0.1, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_hierro"]
+albedo_color = Color(0.12, 0.12, 0.13, 1)
+metallic = 0.6
+roughness = 0.5
+
+[sub_resource type="StandardMaterial3D" id="Mat_te"]
+albedo_color = Color(0.45, 0.28, 0.12, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_salmon"]
+albedo_color = Color(0.9, 0.65, 0.5, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_gris"]
+albedo_color = Color(0.3, 0.3, 0.32, 1)
+
+[sub_resource type="BoxMesh" id="Mesh_0"]
+material = SubResource("Mat_piso")
+size = Vector3(6, 0.1, 5)
+
+[sub_resource type="BoxMesh" id="Mesh_1"]
+material = SubResource("Mat_pared")
+size = Vector3(6.2, 3, 0.1)
+
+[sub_resource type="BoxMesh" id="Mesh_2"]
+material = SubResource("Mat_pared")
+size = Vector3(0.1, 3, 5)
+
+[sub_resource type="BoxMesh" id="Mesh_3"]
+material = SubResource("Mat_oscura")
+size = Vector3(0.06, 2.1, 1)
+
+[sub_resource type="SphereMesh" id="Mesh_4"]
+material = SubResource("Mat_laton")
+height = 0.08
+radius = 0.04
+
+[sub_resource type="BoxMesh" id="Mesh_5"]
+material = SubResource("Mat_alfombra")
+size = Vector3(2.6, 0.01, 1.8)
+
+[sub_resource type="BoxMesh" id="Mesh_6"]
+material = SubResource("Mat_sofa")
+size = Vector3(2, 0.45, 0.85)
+
+[sub_resource type="BoxMesh" id="Mesh_7"]
+material = SubResource("Mat_sofa")
+size = Vector3(2, 0.5, 0.2)
+
+[sub_resource type="BoxMesh" id="Mesh_8"]
+material = SubResource("Mat_sofa")
+size = Vector3(0.18, 0.3, 0.85)
+
+[sub_resource type="BoxMesh" id="Mesh_9"]
+material = SubResource("Mat_madera")
+size = Vector3(0.03, 0.2, 0.6)
+
+[sub_resource type="BoxMesh" id="Mesh_10"]
+material = SubResource("Mat_madera")
+size = Vector3(0.03, 0.08, 0.08)
+
+[sub_resource type="CylinderMesh" id="Mesh_11"]
+material = SubResource("Mat_laton")
+bottom_radius = 0.012
+height = 0.07
+top_radius = 0.012
+
+[sub_resource type="BoxMesh" id="Mesh_12"]
+material = SubResource("Mat_madera")
+size = Vector3(1.4, 0.19, 1.2)
+
+[sub_resource type="BoxMesh" id="Mesh_13"]
+material = SubResource("Mat_bordo")
+size = Vector3(0.9, 0.012, 0.2)
+
+[sub_resource type="BoxMesh" id="Mesh_14"]
+material = SubResource("Mat_madera")
+size = Vector3(1.4, 0.38, 1)
+
+[sub_resource type="BoxMesh" id="Mesh_15"]
+material = SubResource("Mat_madera")
+size = Vector3(1.4, 0.57, 0.8)
+
+[sub_resource type="BoxMesh" id="Mesh_16"]
+material = SubResource("Mat_madera")
+size = Vector3(1.4, 0.76, 0.6)
+
+[sub_resource type="BoxMesh" id="Mesh_17"]
+material = SubResource("Mat_madera")
+size = Vector3(1.4, 0.95, 0.4)
+
+[sub_resource type="BoxMesh" id="Mesh_18"]
+material = SubResource("Mat_madera")
+size = Vector3(1.4, 1.14, 0.2)
+
+[sub_resource type="BoxMesh" id="Mesh_19"]
+material = SubResource("Mat_laton")
+size = Vector3(0.0264, 0.22, 0.0396)
+
+[sub_resource type="BoxMesh" id="Mesh_20"]
+material = SubResource("Mat_blanco")
+size = Vector3(0.022, 0.154, 0.099)
+
+[sub_resource type="BoxMesh" id="Mesh_21"]
+material = SubResource("Mat_laton")
+size = Vector3(0.0264, 0.198, 0.0396)
+
+[sub_resource type="CylinderMesh" id="Mesh_22"]
+material = SubResource("Mat_negro")
+bottom_radius = 0.022
+height = 0.75
+top_radius = 0.022
+
+[sub_resource type="BoxMesh" id="Mesh_23"]
+material = SubResource("Mat_oscura")
+size = Vector3(0.03, 0.05, 0.05)
+
+[sub_resource type="BoxMesh" id="Mesh_24"]
+material = SubResource("Mat_rojo")
+size = Vector3(0.012, 0.3, 0.03)
+
+[sub_resource type="BoxMesh" id="Mesh_25"]
+material = SubResource("Mat_rojo")
+size = Vector3(0.012, 0.1, 0.03)
+
+[sub_resource type="BoxMesh" id="Mesh_26"]
+material = SubResource("Mat_madera")
+size = Vector3(1, 0.05, 0.6)
+
+[sub_resource type="BoxMesh" id="Mesh_27"]
+material = SubResource("Mat_oscura")
+size = Vector3(0.05, 0.38, 0.05)
+
+[sub_resource type="CylinderMesh" id="Mesh_28"]
+material = SubResource("Mat_crema")
+bottom_radius = 0.25
+height = 0.006
+top_radius = 0.25
+
+[sub_resource type="BoxMesh" id="Mesh_29"]
+material = SubResource("Mat_gris")
+size = Vector3(0.07, 0.025, 0.22)
+
+[sub_resource type="CylinderMesh" id="Mesh_30"]
+material = SubResource("Mat_blanco")
+bottom_radius = 0.055
+height = 0.09
+top_radius = 0.055
+
+[sub_resource type="CylinderMesh" id="Mesh_31"]
+material = SubResource("Mat_te")
+bottom_radius = 0.045
+height = 0.005
+top_radius = 0.045
+
+[sub_resource type="BoxMesh" id="Mesh_32"]
+material = SubResource("Mat_crema")
+size = Vector3(0.03, 0.005, 0.04)
+
+[sub_resource type="BoxMesh" id="Mesh_33"]
+material = SubResource("Mat_crema")
+size = Vector3(0.55, 0.7, 0.012)
+
+[sub_resource type="BoxMesh" id="Mesh_34"]
+material = SubResource("Mat_salmon")
+size = Vector3(0.5, 0.28, 0.016)
+
+[sub_resource type="BoxMesh" id="Mesh_35"]
+material = SubResource("Mat_negro")
+size = Vector3(0.46, 0.01, 0.014)
+
+[sub_resource type="BoxMesh" id="Mesh_36"]
+material = SubResource("Mat_rojo")
+size = Vector3(0.24, 0.014, 0.016)
+
+[sub_resource type="BoxMesh" id="Mesh_37"]
+material = SubResource("Mat_oscura")
+size = Vector3(0.06, 1.3, 1.1)
+
+[sub_resource type="BoxMesh" id="Mesh_38"]
+material = SubResource("Mat_vidrio")
+size = Vector3(0.02, 1.1, 0.9)
+
+[sub_resource type="CylinderMesh" id="Mesh_39"]
+material = SubResource("Mat_hierro")
+bottom_radius = 0.014
+height = 1.1
+top_radius = 0.014
+
+[sub_resource type="BoxMesh" id="Mesh_40"]
+material = SubResource("Mat_hierro")
+size = Vector3(0.02, 0.025, 0.9)
+
+[sub_resource type="BoxMesh" id="Mesh_41"]
+material = SubResource("Mat_hierro")
+size = Vector3(0.03, 0.05, 0.12)
+
+[sub_resource type="BoxMesh" id="Mesh_42"]
+material = SubResource("Mat_cortina")
+size = Vector3(0.04, 1.4, 0.32)
+
+[sub_resource type="CylinderMesh" id="Mesh_43"]
+material = SubResource("Mat_terracota")
+bottom_radius = 0.1
+height = 0.2
+top_radius = 0.13
+
+[sub_resource type="BoxMesh" id="Mesh_44"]
+material = SubResource("Mat_tierra")
+size = Vector3(0.2, 0.02, 0.18)
+
+[sub_resource type="BoxMesh" id="Mesh_45"]
+material = SubResource("Mat_tierra")
+size = Vector3(0.12, 0.02, 0.1)
+
+[sub_resource type="BoxMesh" id="Mesh_46"]
+material = SubResource("Mat_laton")
+size = Vector3(0.22, 0.016, 0.04)
+
+[sub_resource type="CylinderMesh" id="Mesh_47"]
+material = SubResource("Mat_laton")
+bottom_radius = 0.055
+height = 0.016
+top_radius = 0.055
+
+[sub_resource type="BoxMesh" id="Mesh_48"]
+material = SubResource("Mat_blanco")
+size = Vector3(0.13, 0.01, 0.09)
+
+[sub_resource type="BoxMesh" id="Mesh_49"]
+material = SubResource("Mat_rojo")
+size = Vector3(0.09, 0.012, 0.075)
+
+[sub_resource type="BoxMesh" id="Mesh_50"]
+material = SubResource("Mat_blanco")
+size = Vector3(0.09, 0.012, 0.075)
+
+[sub_resource type="BoxShape3D" id="Shape_0"]
+size = Vector3(0.15, 0.4, 0.3)
+
+[sub_resource type="BoxShape3D" id="Shape_1"]
+size = Vector3(0.15, 0.9, 0.26)
+
+[sub_resource type="BoxShape3D" id="Shape_2"]
+size = Vector3(1.1, 0.3, 0.7)
+
+[sub_resource type="BoxShape3D" id="Shape_3"]
+size = Vector3(0.6, 0.75, 0.2)
+
+[sub_resource type="BoxShape3D" id="Shape_4"]
+size = Vector3(0.3, 1.45, 1.5)
+
+[sub_resource type="BoxShape3D" id="Shape_5"]
+size = Vector3(0.45, 0.3, 0.4)
+
+[sub_resource type="BoxShape3D" id="Shape_6"]
+size = Vector3(0.75, 0.25, 0.5)
+
+[node name="Living" type="Node3D"]
+script = ExtResource("script")
+pitch_min_deg = -80
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("env")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5736, 0.8192, 0, -0.8192, 0.5736, 0, 3, 2)
+light_energy = 0.5
+shadow_enabled = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7, -0.3)
+light_energy = 0.9
+shadow_enabled = true
+omni_range = 8
+light_color = Color(1, 0.9, 0.75, 1)
+
+[node name="Habitacion" type="Node3D" parent="."]
+
+[node name="Piso" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+mesh = SubResource("Mesh_0")
+
+[node name="ParedFondo" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -2.55)
+mesh = SubResource("Mesh_1")
+
+[node name="ParedIzquierda" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.05, 1.5, 0)
+mesh = SubResource("Mesh_2")
+
+[node name="ParedDerecha" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.05, 1.5, 0)
+mesh = SubResource("Mesh_2")
+
+[node name="PuertaEntrada" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.97, 1.05, -1.1)
+mesh = SubResource("Mesh_3")
+
+[node name="PomoPuerta" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.92, 1, -0.75)
+mesh = SubResource("Mesh_4")
+
+[node name="Alfombra" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.005, -0.6)
+mesh = SubResource("Mesh_5")
+
+[node name="SofaAsiento" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.225, -1.9)
+mesh = SubResource("Mesh_6")
+
+[node name="SofaRespaldo" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, -2.25)
+mesh = SubResource("Mesh_7")
+
+[node name="SofaBrazoIzq" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.09, 0.45, -1.9)
+mesh = SubResource("Mesh_8")
+
+[node name="SofaBrazoDer" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.09, 0.45, -1.9)
+mesh = SubResource("Mesh_8")
+
+[node name="GanchoPlaca" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.985, 1.32, 0.12)
+mesh = SubResource("Mesh_9")
+
+[node name="GanchoOrejaA" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 0.7071, -0.7071, 0, 0.7071, 0.7071, -2.985, 1.46, -0.1)
+mesh = SubResource("Mesh_10")
+
+[node name="GanchoOrejaB" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 0.7071, -0.7071, 0, 0.7071, 0.7071, -2.985, 1.46, 0.34)
+mesh = SubResource("Mesh_10")
+
+[node name="GanchoPerno1" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, -2.94, 1.32, -0.1)
+mesh = SubResource("Mesh_11")
+
+[node name="GanchoPerno2" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, -2.94, 1.32, 0.06)
+mesh = SubResource("Mesh_11")
+
+[node name="GanchoPerno3" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, -2.94, 1.32, 0.2)
+mesh = SubResource("Mesh_11")
+
+[node name="GanchoPerno4" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, -2.94, 1.32, 0.35)
+mesh = SubResource("Mesh_11")
+
+[node name="Escalon1" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.095, 1.9)
+mesh = SubResource("Mesh_12")
+
+[node name="AlfombraEscalon1" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.196, 1.4)
+mesh = SubResource("Mesh_13")
+
+[node name="Escalon2" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.19, 2)
+mesh = SubResource("Mesh_14")
+
+[node name="AlfombraEscalon2" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.386, 1.6)
+mesh = SubResource("Mesh_13")
+
+[node name="Escalon3" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.285, 2.1)
+mesh = SubResource("Mesh_15")
+
+[node name="AlfombraEscalon3" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.576, 1.8)
+mesh = SubResource("Mesh_13")
+
+[node name="Escalon4" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.38, 2.2)
+mesh = SubResource("Mesh_16")
+
+[node name="AlfombraEscalon4" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.766, 2)
+mesh = SubResource("Mesh_13")
+
+[node name="Escalon5" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.475, 2.3)
+mesh = SubResource("Mesh_17")
+
+[node name="AlfombraEscalon5" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.956, 2.2)
+mesh = SubResource("Mesh_13")
+
+[node name="Escalon6" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.57, 2.4)
+mesh = SubResource("Mesh_18")
+
+[node name="AlfombraEscalon6" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 1.146, 2.4)
+mesh = SubResource("Mesh_13")
+
+[node name="Pistas" type="Node3D" parent="."]
+
+[node name="LlaveGancho" type="Area3D" parent="Pistas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.92, 1.2, -0.02)
+script = ExtResource("pista")
+id = "cam_llave_gancho"
+tipo = 0
+titulo = "Llave de Marta en el gancho"
+texto = "La llave de la cerradura nueva de Marta, con la etiqueta \"PUERTA NUEVA\", sigue colgada en el gancho junto a la puerta, al lado de las llaves del galpón."
+fuente = "CamCasa - Entrada"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistas/LlaveGancho"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+shape = SubResource("Shape_0")
+
+[node name="LlaveMarta" type="MeshInstance3D" parent="Pistas/LlaveGancho"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.08)
+mesh = SubResource("Mesh_19")
+
+[node name="EtiquetaPuertaNueva" type="MeshInstance3D" parent="Pistas/LlaveGancho"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.13, -0.08)
+mesh = SubResource("Mesh_20")
+
+[node name="LlaveGalponA" type="MeshInstance3D" parent="Pistas/LlaveGancho"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.08)
+mesh = SubResource("Mesh_19")
+
+[node name="LlaveGalponB" type="MeshInstance3D" parent="Pistas/LlaveGancho"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, -0.01, 0.1)
+mesh = SubResource("Mesh_21")
+
+[node name="CorreaRota" type="Area3D" parent="Pistas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.92, 1.2, 0.28)
+script = ExtResource("pista")
+id = "cam_correa_rota"
+tipo = 3
+titulo = "Correa rota de Pancho"
+texto = "Del mismo gancho cuelgan un paraguas y la correa de Pancho, rota en una punta."
+fuente = "CamCasa - Entrada"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistas/CorreaRota"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+shape = SubResource("Shape_1")
+
+[node name="Paraguas" type="MeshInstance3D" parent="Pistas/CorreaRota"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, -0.08)
+mesh = SubResource("Mesh_22")
+
+[node name="PomoParaguas" type="MeshInstance3D" parent="Pistas/CorreaRota"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.08)
+mesh = SubResource("Mesh_23")
+
+[node name="Correa" type="MeshInstance3D" parent="Pistas/CorreaRota"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14, 0.07)
+mesh = SubResource("Mesh_24")
+
+[node name="CorreaRotaPunta" type="MeshInstance3D" parent="Pistas/CorreaRota"]
+transform = Transform3D(0.9397, -0.342, 0, 0.342, 0.9397, 0, 0, 0, 1, 0.015, -0.34, 0.075)
+mesh = SubResource("Mesh_25")
+
+[node name="MesaRatona" type="Area3D" parent="Pistas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0, -0.5)
+script = ExtResource("pista")
+id = "cam_tazas"
+tipo = 0
+titulo = "Dos tazas de té usadas"
+texto = "Sobre la mesa ratona hay un mantelito, un control remoto y dos tazas de té usadas, una todavía con el saquito adentro. Marta vivía sola."
+fuente = "CamCasa - Living"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistas/MesaRatona"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+shape = SubResource("Shape_2")
+
+[node name="Tapa" type="MeshInstance3D" parent="Pistas/MesaRatona"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+mesh = SubResource("Mesh_26")
+
+[node name="Pata1" type="MeshInstance3D" parent="Pistas/MesaRatona"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.19, -0.25)
+mesh = SubResource("Mesh_27")
+
+[node name="Pata2" type="MeshInstance3D" parent="Pistas/MesaRatona"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 0.19, -0.25)
+mesh = SubResource("Mesh_27")
+
+[node name="Pata3" type="MeshInstance3D" parent="Pistas/MesaRatona"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.19, 0.25)
+mesh = SubResource("Mesh_27")
+
+[node name="Pata4" type="MeshInstance3D" parent="Pistas/MesaRatona"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 0.19, 0.25)
+mesh = SubResource("Mesh_27")
+
+[node name="Mantelito" type="MeshInstance3D" parent="Pistas/MesaRatona"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.428, 0)
+mesh = SubResource("Mesh_28")
+
+[node name="Control" type="MeshInstance3D" parent="Pistas/MesaRatona"]
+transform = Transform3D(0.9397, 0, 0.342, 0, 1, 0, -0.342, 0, 0.9397, -0.35, 0.44, 0.05)
+mesh = SubResource("Mesh_29")
+
+[node name="TazaA" type="MeshInstance3D" parent="Pistas/MesaRatona"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08, 0.473, -0.04)
+mesh = SubResource("Mesh_30")
+
+[node name="TeA" type="MeshInstance3D" parent="Pistas/MesaRatona"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08, 0.516, -0.04)
+mesh = SubResource("Mesh_31")
+
+[node name="TazaB" type="MeshInstance3D" parent="Pistas/MesaRatona"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.473, 0.08)
+mesh = SubResource("Mesh_30")
+
+[node name="TeB" type="MeshInstance3D" parent="Pistas/MesaRatona"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.516, 0.08)
+mesh = SubResource("Mesh_31")
+
+[node name="Saquito" type="MeshInstance3D" parent="Pistas/MesaRatona"]
+transform = Transform3D(0.9659, 0, 0.2588, 0, 1, 0, -0.2588, 0, 0.9659, 0.25, 0.525, 0.13)
+mesh = SubResource("Mesh_32")
+
+[node name="Calendario" type="Area3D" parent="Pistas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.55, -2.47)
+script = ExtResource("pista")
+id = "cam_calendario"
+tipo = 0
+titulo = "Julián, jueves 18 a las 19 hs"
+texto = "El calendario de la farmacia marca el jueves 18 con \"Julián 19 hs\", subrayado dos veces. El viernes 19 dice \"Sonia\"."
+fuente = "CamCasa - Living"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistas/Calendario"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("Shape_3")
+
+[node name="Hoja" type="MeshInstance3D" parent="Pistas/Calendario"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("Mesh_33")
+
+[node name="FotoGatitos" type="MeshInstance3D" parent="Pistas/Calendario"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19, 0.002)
+mesh = SubResource("Mesh_34")
+
+[node name="Renglon1" type="MeshInstance3D" parent="Pistas/Calendario"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.002)
+mesh = SubResource("Mesh_35")
+
+[node name="Renglon2" type="MeshInstance3D" parent="Pistas/Calendario"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.09, 0.002)
+mesh = SubResource("Mesh_35")
+
+[node name="Renglon3" type="MeshInstance3D" parent="Pistas/Calendario"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.18, 0.002)
+mesh = SubResource("Mesh_35")
+
+[node name="Renglon4" type="MeshInstance3D" parent="Pistas/Calendario"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.27, 0.002)
+mesh = SubResource("Mesh_35")
+
+[node name="Subrayado" type="MeshInstance3D" parent="Pistas/Calendario"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, -0.07, 0.004)
+mesh = SubResource("Mesh_36")
+
+[node name="Ventana" type="Area3D" parent="Pistas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9, 1.55, -0.6)
+script = ExtResource("pista")
+id = "cam_ventana"
+tipo = 3
+titulo = "Ventana al patio de Ruiz"
+texto = "La ventana da al patio de Ruiz, pero tiene reja de hierro y está cerrada con la traba puesta desde adentro."
+fuente = "CamCasa - Ventana"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistas/Ventana"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("Shape_4")
+
+[node name="Marco" type="MeshInstance3D" parent="Pistas/Ventana"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.075, 0, 0)
+mesh = SubResource("Mesh_37")
+
+[node name="Vidrio" type="MeshInstance3D" parent="Pistas/Ventana"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06, 0, 0)
+mesh = SubResource("Mesh_38")
+
+[node name="Barrote1" type="MeshInstance3D" parent="Pistas/Ventana"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, 0, -0.36)
+mesh = SubResource("Mesh_39")
+
+[node name="Barrote2" type="MeshInstance3D" parent="Pistas/Ventana"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, 0, -0.18)
+mesh = SubResource("Mesh_39")
+
+[node name="Barrote3" type="MeshInstance3D" parent="Pistas/Ventana"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, 0, 0)
+mesh = SubResource("Mesh_39")
+
+[node name="Barrote4" type="MeshInstance3D" parent="Pistas/Ventana"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, 0, 0.18)
+mesh = SubResource("Mesh_39")
+
+[node name="Barrote5" type="MeshInstance3D" parent="Pistas/Ventana"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, 0, 0.36)
+mesh = SubResource("Mesh_39")
+
+[node name="TravesanoA" type="MeshInstance3D" parent="Pistas/Ventana"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, 0.25, 0)
+mesh = SubResource("Mesh_40")
+
+[node name="TravesanoB" type="MeshInstance3D" parent="Pistas/Ventana"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, -0.25, 0)
+mesh = SubResource("Mesh_40")
+
+[node name="Traba" type="MeshInstance3D" parent="Pistas/Ventana"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, 0, 0.5)
+mesh = SubResource("Mesh_41")
+
+[node name="CortinaIzq" type="MeshInstance3D" parent="Pistas/Ventana"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.66)
+mesh = SubResource("Mesh_42")
+
+[node name="CortinaDer" type="MeshInstance3D" parent="Pistas/Ventana"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.66)
+mesh = SubResource("Mesh_42")
+
+[node name="Maceta" type="Area3D" parent="Pistas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0.66, 1.82)
+script = ExtResource("pista")
+id = "cam_maceta"
+tipo = 3
+titulo = "Maceta volcada en la escalera"
+texto = "Hay una maceta volcada en el tercer escalón, con la tierra desparramada."
+fuente = "CamCasa - Escalera"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistas/Maceta"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("Shape_5")
+
+[node name="Olla" type="MeshInstance3D" parent="Pistas/Maceta"]
+transform = Transform3D(0.1736, -0.9848, 0, 0.9848, 0.1736, 0, 0, 0, 1, 0, 0.06, 0)
+mesh = SubResource("Mesh_43")
+
+[node name="Tierra" type="MeshInstance3D" parent="Pistas/Maceta"]
+transform = Transform3D(0.9063, 0, 0.4226, 0, 1, 0, -0.4226, 0, 0.9063, -0.2, -0.05, 0.03)
+mesh = SubResource("Mesh_44")
+
+[node name="TierraB" type="MeshInstance3D" parent="Pistas/Maceta"]
+transform = Transform3D(0.9659, 0, -0.2588, 0, 1, 0, 0.2588, 0, 0.9659, -0.1, -0.05, -0.12)
+mesh = SubResource("Mesh_45")
+
+[node name="LlaveCaida" type="Area3D" parent="Pistas"]
+transform = Transform3D(0.8192, 0, 0.5736, 0, 1, 0, -0.5736, 0, 0.8192, 0.75, 0.016, 1.12)
+script = ExtResource("pista")
+id = "cam_llave_caida"
+tipo = 4
+titulo = "Llave caída al pie de la escalera"
+texto = "Casi debajo del primer escalón hay una llave con la etiqueta \"PUERTA NUEVA\" y un llavero rojo y blanco."
+fuente = "CamCasa - Escalera"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistas/LlaveCaida"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, 0)
+shape = SubResource("Shape_6")
+
+[node name="Vastago" type="MeshInstance3D" parent="Pistas/LlaveCaida"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("Mesh_46")
+
+[node name="Cabeza" type="MeshInstance3D" parent="Pistas/LlaveCaida"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14, 0, 0)
+mesh = SubResource("Mesh_47")
+
+[node name="EtiquetaPuertaNueva" type="MeshInstance3D" parent="Pistas/LlaveCaida"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27, 0, 0)
+mesh = SubResource("Mesh_48")
+
+[node name="LlaveroRojo" type="MeshInstance3D" parent="Pistas/LlaveCaida"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.38, 0, 0)
+mesh = SubResource("Mesh_49")
+
+[node name="LlaveroBlanco" type="MeshInstance3D" parent="Pistas/LlaveCaida"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47, 0, 0)
+mesh = SubResource("Mesh_50")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9272, 0.3746, 0, -0.3746, 0.9272, 0, 2.55, 2.3)
+fov = 60

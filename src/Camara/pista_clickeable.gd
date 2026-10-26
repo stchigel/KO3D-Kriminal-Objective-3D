@@ -5,6 +5,7 @@ signal clickeada(pista: PistaClickeable, nueva: bool)
 signal hover_cambiado(pista: PistaClickeable, encima: bool)
 
 @export var id: String = ""
+@export var tipo: Pista.Tipo = Pista.Tipo.CONTEXTO
 @export var titulo: String = ""
 @export_multiline var texto: String = ""
 @export var fuente: String = ""
@@ -28,7 +29,7 @@ func _ready() -> void:
 
 func _on_input_event(_camera: Node, event: InputEvent, _posicion: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		var nueva := Global.anotar(id, titulo, texto, fuente)
+		var nueva := Global.anotar(id, titulo, texto, fuente, tipo)
 		resaltar(true)
 		clickeada.emit(self, nueva)
 

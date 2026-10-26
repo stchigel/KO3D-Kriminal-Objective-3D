@@ -16,6 +16,9 @@
 [ext_resource type="Texture2D" path="res://assets/iconos/gmail.png" id="ico_gmail"]
 [ext_resource type="Texture2D" path="res://assets/iconos/user-trash-full.svg" id="ico_papelera"]
 [ext_resource type="Texture2D" path="res://assets/iconos/text.svg" id="ico_texto"]
+[ext_resource type="PackedScene" path="res://src/Camara/camara.tscn" id="camara_scene"]
+[ext_resource type="PackedScene" path="res://src/Camara/escenas/living_marta.tscn" id="living_marta"]
+[ext_resource type="Texture2D" path="res://assets/iconos/multimedia-photo-viewer.svg" id="ico_camara"]
 [ext_resource type="Resource" path="res://casos/pancho/mails/mail_01_escribania_turno.tres" id="mail_01_escribania_turno"]
 [ext_resource type="Resource" path="res://casos/pancho/mails/mail_02_marta_a_escribania.tres" id="mail_02_marta_a_escribania"]
 [ext_resource type="Resource" path="res://casos/pancho/mails/mail_03_sonia_esta_semana.tres" id="mail_03_sonia_esta_semana"]
@@ -82,7 +85,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("desktop_gd")
-ventanas = [NodePath("Papelera"), NodePath("Carta"), NodePath("Chat"), NodePath("Mail")]
+ventanas = [NodePath("Papelera"), NodePath("Carta"), NodePath("Chat"), NodePath("Mail"), NodePath("Camara")]
 
 [node name="Fondo" type="TextureRect" parent="."]
 show_behind_parent = true
@@ -169,6 +172,17 @@ nom = "carta_sin_enviar.txt"
 icono = ExtResource("ico_texto")
 abrir = NodePath("../Carta")
 
+[node name="CamaraIco" parent="." node_paths=PackedStringArray("abrir") instance=ExtResource("archivo_scene")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 216.0
+offset_right = 96.0
+offset_bottom = 296.0
+nom = "CamCasa"
+contra = "0308"
+icono = ExtResource("ico_camara")
+abrir = NodePath("../Camara")
+
 [node name="Papelera" parent="." instance=ExtResource("carpeta_scene")]
 visible = false
 layout_mode = 0
@@ -207,5 +221,15 @@ offset_right = 928.0
 offset_bottom = 528.0
 mails = Array[ExtResource("mail_gd")]([ExtResource("mail_01_escribania_turno"), ExtResource("mail_02_marta_a_escribania"), ExtResource("mail_03_sonia_esta_semana"), ExtResource("mail_04_gateros_resumen"), ExtResource("mail_05_camcasa_bienvenida")])
 contacto_scene = ExtResource("contacto_mail_scene")
+
+[node name="Camara" parent="." instance=ExtResource("camara_scene")]
+visible = false
+layout_mode = 0
+offset_left = 160.0
+offset_top = 72.0
+offset_right = 992.0
+offset_bottom = 520.0
+nombre = "CamCasa - Living"
+escena = ExtResource("living_marta")
 
 [connection signal="pressed" from="Topbar/Desconectar" to="." method="_on_desconectar_pressed"]

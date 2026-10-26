@@ -11,17 +11,23 @@ extends Resource
 @export var es_culpable: bool = false
 @export var pistas_de_cargo: PackedStringArray = PackedStringArray()
 @export var minimo_de_pistas: int = 0
+@export var pistas_obligatorias: PackedStringArray = PackedStringArray()
 @export_multiline var final_al_acusar: String = ""
 @export_multiline var final_sin_pruebas: String = ""
 
 
 func pruebas_alcanzan(elegidas: Array[Pista]) -> bool:
 	var de_cargo := 0
+	var ids_elegidos := PackedStringArray()
 	for pista in elegidas:
 		if pista.tipo == Pista.Tipo.TRAMPA:
 			return false
+		ids_elegidos.append(pista.id)
 		if pista.id in pistas_de_cargo:
 			de_cargo += 1
+	for obligatoria in pistas_obligatorias:
+		if obligatoria not in ids_elegidos:
+			return false
 	return de_cargo >= minimo_de_pistas
 
 
