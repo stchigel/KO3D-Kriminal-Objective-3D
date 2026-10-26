@@ -7,23 +7,23 @@
 [sub_resource type="Resource" id="Pista_1"]
 script = ExtResource("pista")
 id = "wa_julian_19hs"
-tipo = 0
-titulo = "Julián iba a pasar a las 19"
-texto = "El jueves 18 a las 18:10 Julián le escribió a Marta que pasaba por su casa a las 19."
+tipo = 2
+titulo = "Julián iba a pasar el jueves"
+texto = "Julián le avisó a Marta que pasaba por su casa el jueves 18. Mirá si quedó anotado en la casa (CamCasa)."
 
 [sub_resource type="Resource" id="Pista_2"]
 script = ExtResource("pista")
 id = "wa_julian_no_entro"
-tipo = 0
+tipo = 2
 titulo = "Julián dice que no entró"
-texto = "Julián dice que tocó timbre, que nadie le abrió y que se volvió sin entrar."
+texto = "Julián dice que no llegó a entrar a la casa. Revisá la entrada y la escalera en CamCasa."
 
 [sub_resource type="Resource" id="Pista_3"]
 script = ExtResource("pista")
 id = "wa_julian_llave"
-tipo = 0
-titulo = "Julián dice que tiene su llave"
-texto = "Julián afirma que su llave de la cerradura nueva la tiene en el auto, con las demás llaves."
+tipo = 2
+titulo = "Julián habla de su llave"
+texto = "Julián dice que su llave de la cerradura nueva está con él. Fijate dónde están las llaves en CamCasa."
 
 [sub_resource type="Resource" id="Mensaje_1"]
 script = ExtResource("mensaje")

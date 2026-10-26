@@ -50,7 +50,7 @@ func _gui_input(event: InputEvent) -> void:
 		return
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		var fuente := pista.fuente if not pista.fuente.is_empty() else fuente_defecto
-		var nueva := Global.anotar(pista.id, pista.titulo, pista.texto, fuente)
+		var nueva := Global.anotar(pista.id, pista.titulo, pista.texto, fuente, pista.tipo, pista.puntos)
 		queue_redraw()
 		clickeada.emit(self, nueva)
 		accept_event()

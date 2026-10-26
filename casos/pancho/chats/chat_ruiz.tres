@@ -7,9 +7,9 @@
 [sub_resource type="Resource" id="Pista_1"]
 script = ExtResource("pista")
 id = "wa_ruiz_muchacho"
-tipo = 0
-titulo = "Un muchacho salió apurado"
-texto = "Ruiz vio, a eso de las siete y media, a un muchacho salir apurado de la casa de Marta y subirse a un auto."
+tipo = 2
+titulo = "Ruiz vio a alguien salir"
+texto = "Ruiz vio a un muchacho salir apurado de la casa de Marta. Revisá la escalera y la entrada en CamCasa."
 
 [sub_resource type="Resource" id="Pista_2"]
 script = ExtResource("pista")

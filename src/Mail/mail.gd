@@ -43,10 +43,18 @@ func _on_panel_gui_input(event: InputEvent) -> void:
 func load_mail(mail:Mail):
 	$MailData.show()
 	$MailData/Asunto.text = mail.asunto
-	$MailData/Remitente.text = mail.nombre
+	$MailData/Remitente.text = _armar_cabecera(mail)
 	_mail_actual = mail
 	_recien_encontrada = ""
 	_actualizar_cuerpo(false)
+
+func _armar_cabecera(mail: Mail) -> String:
+	var partes := PackedStringArray(["De: " + mail.nombre])
+	if not mail.destinatario.is_empty():
+		partes.append("Para: " + mail.destinatario)
+	if not mail.fecha.is_empty():
+		partes.append("Fecha: " + mail.fecha)
+	return "   |   ".join(partes)
 
 func _on_meta_clicked(meta: Variant) -> void:
 	if _mail_actual == null:
@@ -58,7 +66,7 @@ func _on_meta_clicked(meta: Variant) -> void:
 		push_warning("Mail '%s': el link '%s' no tiene una Pista con ese id." % [mail.asunto, id])
 		return
 	var fuente := pista.fuente if not pista.fuente.is_empty() else "%s (%s)" % [nombre, mail.asunto]
-	if not Global.anotar(pista.id, pista.titulo, pista.texto, fuente):
+	if not Global.anotar(pista.id, pista.titulo, pista.texto, fuente, pista.tipo, pista.puntos):
 		return
 	_recien_encontrada = id
 	_actualizar_cuerpo()

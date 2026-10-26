@@ -159,6 +159,8 @@ func al_acusar(perfil: Perfil, pruebas: Array[Pista]) -> void:
 	var final = ESCENA_FINAL.instantiate()
 	final.texto = perfil.texto_del_final(pruebas)
 	final.correcto = perfil.gana_la_acusacion(pruebas)
+	if perfil.puntos_necesarios > 0:
+		final.puntaje = "Puntaje: %d / %d" % [perfil.puntos_de(pruebas), perfil.puntos_necesarios]
 	var actual := get_tree().current_scene
 	get_tree().root.add_child(final)
 	get_tree().current_scene = final

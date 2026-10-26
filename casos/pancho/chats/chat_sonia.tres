@@ -7,16 +7,16 @@
 [sub_resource type="Resource" id="Pista_1"]
 script = ExtResource("pista")
 id = "wa_sonia_franco"
-tipo = 0
-titulo = "Sonia tenía franco"
-texto = "Sonia dice que el jueves 18 fue su franco porque llevó a su hija al pediatra y que fue recién el viernes a las ocho."
+tipo = 2
+titulo = "Sonia habla de su franco"
+texto = "Sonia dice que el jueves 18 tenía franco. Fijate si se lo avisó a Marta en los mails."
 
 [sub_resource type="Resource" id="Pista_2"]
 script = ExtResource("pista")
 id = "wa_sonia_dos_llaves"
-tipo = 0
-titulo = "Solo dos llaves"
-texto = "Sonia dice que la cerradura nueva tiene solo dos llaves: una de Marta y otra de Julián."
+tipo = 2
+titulo = "Sonia habla de las llaves"
+texto = "Sonia dice que la cerradura nueva tiene solo dos llaves. Fijate dónde está cada una en CamCasa."
 
 [resource]
 script = ExtResource("chat")

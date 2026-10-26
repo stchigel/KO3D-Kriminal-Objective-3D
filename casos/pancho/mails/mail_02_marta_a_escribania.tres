@@ -9,10 +9,13 @@ id = "mail_no_firma"
 tipo = 0
 titulo = "Marta se negó a firmar"
 texto = "Marta le avisó a la escribanía que no iba a ir y que el turno lo sacó su sobrino sin consultarle."
+puntos = 2
 
 [resource]
 script = ExtResource("mail")
-nombre = "Marta Ibáñez → Escribanía Paz"
+nombre = "Marta Ibáñez"
+destinatario = "Escribanía Paz"
+fecha = "16/09/2025 15:40"
 asunto = "RE: Confirmación de turno"
 mensaje = "Buenas tardes. Les escribo para avisarles que [url=mail_no_firma]no voy a ir. No firmo nada.[/url] El turno lo sacó mi sobrino sin consultarme. Disculpen la molestia y que tengan buena semana.\n\nMarta Ibáñez"
 pistas = Array[ExtResource("pista")]([SubResource("Pista_1")])

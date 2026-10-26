@@ -32,6 +32,7 @@
 script = ExtResource("pista")
 id = "carta_no_vender"
 tipo = 0
+puntos = 2
 titulo = "No piensa vender la casa"
 texto = "Marta le dijo por escrito a Julián que no vende la casa, ni ahora ni nunca."
 

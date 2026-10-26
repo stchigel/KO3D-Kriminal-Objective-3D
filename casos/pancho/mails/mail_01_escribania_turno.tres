@@ -9,10 +9,13 @@ id = "mail_turno"
 tipo = 0
 titulo = "Turno en la escribanía"
 texto = "La Escribanía Paz confirmó el turno del jueves 18/09 a las 10 hs para firmar un poder general a favor de Julián."
+puntos = 2
 
 [resource]
 script = ExtResource("mail")
 nombre = "Escribanía Paz"
+destinatario = "Marta Ibáñez"
+fecha = "15/09/2025 09:12"
 asunto = "Confirmación de turno"
 mensaje = "Estimada Sra. Ibáñez:\n\nPor medio del presente le confirmamos su turno para el día [url=mail_turno]jueves 18/09 a las 10 hs[/url], a fin de proceder a la firma del poder general amplio a favor del Sr. Julián Ibáñez, según lo solicitado por el interesado.\n\nLe recordamos presentarse con DNI original y con quince minutos de anticipación. En caso de no poder asistir, le solicitamos avisar con al menos 24 horas.\n\nAtentamente,\n\nEscribanía Paz — Av. San Martín 2140"
 pistas = Array[ExtResource("pista")]([SubResource("Pista_1")])

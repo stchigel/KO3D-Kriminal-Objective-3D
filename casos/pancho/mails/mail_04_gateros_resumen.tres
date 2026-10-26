@@ -5,5 +5,7 @@
 [resource]
 script = ExtResource("mail")
 nombre = "Gateros del Oeste"
+destinatario = "Marta Ibáñez"
+fecha = "15/09/2025 08:00"
 asunto = "Tu resumen semanal 🐾"
 mensaje = "Esta semana en el foro: \"¿Es normal que mi gato duerma 20 horas?\", \"Recetas de snacks caseros\", \"Cómo presentar un gato nuevo a otro gato celoso\". ¡No te pierdas las novedades!"

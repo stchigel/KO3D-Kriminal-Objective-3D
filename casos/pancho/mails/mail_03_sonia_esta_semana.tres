@@ -13,6 +13,8 @@ texto = "Sonia le avisó a Marta por mail que el jueves 18 tenía franco y que i
 [resource]
 script = ExtResource("mail")
 nombre = "Sonia Paredes"
+destinatario = "Marta Ibáñez"
+fecha = "17/09/2025 20:05"
 asunto = "Esta semana"
 mensaje = "Hola Marta, ¿cómo anda? Le escribo por acá porque me quedé sin crédito en el celular. Le recuerdo que [url=mail_sonia_franco]el jueves 18 tengo franco[/url], porque llevo a mi nena al pediatra, así que voy el viernes a primera hora.\n\nLe dejé las milanesas en el freezer, en la bolsa azul, y los remedios del mediodía en el pastillero de la mesada (esta vez no los cambié de lugar, se lo prometo). Cualquier cosa me llama al fijo de mi mamá.\n\nUn beso grande, y otro para Pancho aunque me odie.\n\nSonia"
 pistas = Array[ExtResource("pista")]([SubResource("Pista_1")])

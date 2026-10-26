@@ -89,6 +89,17 @@ text = "Camila Rossi fue detenida 48 horas después. La cámara apareció en su 
 
 [i]Buen trabajo, agente.[/i]"
 
+[node name="Puntaje" type="Label" parent="."]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 448.0
+offset_right = 912.0
+offset_bottom = 488.0
+theme_override_font_sizes/font_size = 22
+text = "Puntaje"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Button" type="Button" parent="." unique_id=1153566892]
 layout_mode = 0
 offset_left = 448.0

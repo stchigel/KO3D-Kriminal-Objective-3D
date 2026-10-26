@@ -1,11 +1,14 @@
 extends Control
 var texto:String
 var correcto:bool
+var puntaje:String = ""
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Texto.text=texto
+	$Puntaje.text = puntaje
+	$Puntaje.visible = not puntaje.is_empty()
 	if correcto:
 		$Mal.hide()
 		$Bien.show()

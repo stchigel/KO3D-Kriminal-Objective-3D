@@ -41,7 +41,7 @@ func _on_meta_clicked(meta: Variant) -> void:
 		push_warning("Texto '%s': el link '%s' no tiene una Pista con ese id." % [nombre, id])
 		return
 	var fuente := pista.fuente if not pista.fuente.is_empty() else nombre
-	if not Global.anotar(pista.id, pista.titulo, pista.texto, fuente):
+	if not Global.anotar(pista.id, pista.titulo, pista.texto, fuente, pista.tipo, pista.puntos):
 		return
 	_recien_encontrada = id
 	_actualizar_texto()

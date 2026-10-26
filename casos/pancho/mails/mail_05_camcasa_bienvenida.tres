@@ -20,6 +20,8 @@ texto = "El PIN de CamCasa es la fecha de instalación de la cámara, en formato
 [resource]
 script = ExtResource("mail")
 nombre = "CamCasa"
+destinatario = "Marta Ibáñez"
+fecha = "03/08/2025 11:30"
 asunto = "¡Bienvenida a CamCasa!"
 mensaje = "Hola, Marta. Tu cámara ya está conectada y lista para usar. Desde la app del celular podés verla en cualquier momento, y desde la compu abriendo [url=mail_camcasa]CamCasa[/url] en el escritorio. Para ingresar, [url=mail_camcasa_pin]tu PIN es la fecha de instalación (DDMM)[/url]. Por seguridad, te recomendamos no compartirlo con nadie.\n\nEl equipo de CamCasa"
 pistas = Array[ExtResource("pista")]([SubResource("Pista_1"), SubResource("Pista_2")])

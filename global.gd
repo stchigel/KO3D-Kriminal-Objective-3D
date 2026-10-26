@@ -17,7 +17,7 @@ var computadora_desbloqueada: bool = false
 ##     Global.anotar("cam2_camila", "Camila entro al edificio",
 ##         "La camara 2 la registra entrando 20:14, dijo que no fue.", "Camara 2")
 ## Devuelve true si la pista era nueva.
-func anotar(id: String, titulo: String, texto: String, fuente: String = "", tipo: Pista.Tipo = Pista.Tipo.CONTEXTO) -> bool:
+func anotar(id: String, titulo: String, texto: String, fuente: String = "", tipo: Pista.Tipo = Pista.Tipo.CONTEXTO, puntos: int = 0) -> bool:
 	if tiene_pista(id):
 		return false
 	var pista := Pista.new()
@@ -26,6 +26,7 @@ func anotar(id: String, titulo: String, texto: String, fuente: String = "", tipo
 	pista.titulo = titulo
 	pista.texto = texto
 	pista.fuente = fuente
+	pista.puntos = puntos
 	return agregar_pista(pista)
 
 
