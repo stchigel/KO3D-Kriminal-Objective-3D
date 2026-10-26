@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Perfil" format=3]
+
+[ext_resource type="Script" path="res://src/Perfiles/perfil.gd" id="perfil"]
+
+[resource]
+script = ExtResource("perfil")
+nombre = "Sonia Paredes"
+rol = "Sospechosa"
+edad = "29"
+ocupacion = "Cuidadora"
+vinculo = "Cuidaba a Marta tres veces por semana"
+notas = "Encontró a Marta caída el viernes 19 a la mañana. Mamá sola de una nena de cuatro."
+final_al_acusar = "Sonia pierde su trabajo e imputan a una inocente mientras Julián vende la casa.\n\n[i]Gracias por intentarlo, agente.[/i]"

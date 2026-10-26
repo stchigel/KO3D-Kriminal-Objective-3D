@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Mail" format=3]
+
+[ext_resource type="Script" path="res://mail.gd" id="mail"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "mail_sonia_franco"
+tipo = 0
+titulo = "Sonia tenía franco el jueves 18"
+texto = "Sonia le avisó a Marta por mail que el jueves 18 tenía franco y que iba el viernes a primera hora."
+
+[resource]
+script = ExtResource("mail")
+nombre = "Sonia Paredes"
+asunto = "Esta semana"
+mensaje = "Hola Marta, ¿cómo anda? Le escribo por acá porque me quedé sin crédito en el celular. Le recuerdo que [url=mail_sonia_franco]el jueves 18 tengo franco[/url], porque llevo a mi nena al pediatra, así que voy el viernes a primera hora.\n\nLe dejé las milanesas en el freezer, en la bolsa azul, y los remedios del mediodía en el pastillero de la mesada (esta vez no los cambié de lugar, se lo prometo). Cualquier cosa me llama al fijo de mi mamá.\n\nUn beso grande, y otro para Pancho aunque me odie.\n\nSonia"
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1")])

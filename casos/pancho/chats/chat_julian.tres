@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="Chat" format=3]
+
+[ext_resource type="Script" path="res://chat.gd" id="chat"]
+[ext_resource type="Script" path="res://mensaje.gd" id="mensaje"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "wa_julian_19hs"
+tipo = 0
+titulo = "Julián iba a pasar a las 19"
+texto = "El jueves 18 a las 18:10 Julián le escribió a Marta que pasaba por su casa a las 19."
+
+[sub_resource type="Resource" id="Pista_2"]
+script = ExtResource("pista")
+id = "wa_julian_no_entro"
+tipo = 0
+titulo = "Julián dice que no entró"
+texto = "Julián dice que tocó timbre, que nadie le abrió y que se volvió sin entrar."
+
+[sub_resource type="Resource" id="Pista_3"]
+script = ExtResource("pista")
+id = "wa_julian_llave"
+tipo = 0
+titulo = "Julián dice que tiene su llave"
+texto = "Julián afirma que su llave de la cerradura nueva la tiene en el auto, con las demás llaves."
+
+[sub_resource type="Resource" id="Mensaje_1"]
+script = ExtResource("mensaje")
+text = "Tía, estoy en la puerta de la escribanía. ¿Dónde estás?"
+time = "18/09 10:15"
+
+[sub_resource type="Resource" id="Mensaje_2"]
+script = ExtResource("mensaje")
+text = "Ya te dije que no iba a ir, Julián. No voy a firmar ningún poder."
+time = "18/09 10:40"
+sent = true
+
+[sub_resource type="Resource" id="Mensaje_3"]
+script = ExtResource("mensaje")
+text = "[url=wa_julian_19hs]A las 19 paso por tu casa y lo hablamos bien[/url]. Atendeme."
+time = "18/09 18:10"
+
+[resource]
+script = ExtResource("chat")
+nombre = "Julián Ibáñez"
+mensajes = Array[ExtResource("mensaje")]([SubResource("Mensaje_1"), SubResource("Mensaje_2"), SubResource("Mensaje_3")])
+mensajes_enviables = Array[String](["¿Fue a la casa de su tía el jueves 18 a la tarde?", "¿Todavía tiene su llave de la cerradura nueva con el llavero rojo y blanco?", "¿Por qué ya habló con una inmobiliaria si la casa era de Marta?"])
+respuestas = Array[String](["Pasé cerca de las siete, pero toqué timbre y [url=wa_julian_no_entro]no me abrió nadie, así que me volví sin entrar[/url]. Seguro estaba durmiendo la siesta.", "[url=wa_julian_llave]Sí, obvio, la tengo en el auto con las demás llaves[/url]. ¿Por qué?", "Alguien se tiene que ocupar de los trámites, soy el único familiar que le queda."])
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1"), SubResource("Pista_2"), SubResource("Pista_3")])

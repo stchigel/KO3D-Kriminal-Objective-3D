@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Mail" format=3]
+
+[ext_resource type="Script" path="res://mail.gd" id="mail"]
+
+[resource]
+script = ExtResource("mail")
+nombre = "Gateros del Oeste"
+asunto = "Tu resumen semanal 🐾"
+mensaje = "Esta semana en el foro: \"¿Es normal que mi gato duerma 20 horas?\", \"Recetas de snacks caseros\", \"Cómo presentar un gato nuevo a otro gato celoso\". ¡No te pierdas las novedades!"

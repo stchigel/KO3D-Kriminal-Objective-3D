@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Perfil" format=3]
+
+[ext_resource type="Script" path="res://src/Perfiles/perfil.gd" id="perfil"]
+
+[resource]
+script = ExtResource("perfil")
+nombre = "Carlos Ruiz"
+rol = "Sospechoso"
+edad = "72"
+ocupacion = "Jubilado"
+vinculo = "Vecino de al lado"
+notas = "Viudo, medio sordo y gruñón. Escucha tangos a todo volumen. Se pelea con Marta porque Pancho le escarba las macetas."
+final_al_acusar = "Ruiz es investigado sin pruebas suficientes y Julián termina vendiendo la casa de Marta.\n\n[i]Gracias por intentarlo, agente.[/i]"

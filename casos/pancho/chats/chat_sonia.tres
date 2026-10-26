@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Chat" format=3]
+
+[ext_resource type="Script" path="res://chat.gd" id="chat"]
+[ext_resource type="Script" path="res://mensaje.gd" id="mensaje"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "wa_sonia_franco"
+tipo = 0
+titulo = "Sonia tenía franco"
+texto = "Sonia dice que el jueves 18 fue su franco porque llevó a su hija al pediatra y que fue recién el viernes a las ocho."
+
+[sub_resource type="Resource" id="Pista_2"]
+script = ExtResource("pista")
+id = "wa_sonia_dos_llaves"
+tipo = 0
+titulo = "Solo dos llaves"
+texto = "Sonia dice que la cerradura nueva tiene solo dos llaves: una de Marta y otra de Julián."
+
+[resource]
+script = ExtResource("chat")
+nombre = "Sonia Paredes"
+mensajes_enviables = Array[String](["¿Estuvo en la casa de Marta el jueves 18?", "¿Usted tenía llave de la cerradura nueva?"])
+respuestas = Array[String](["No, [url=wa_sonia_franco]el jueves fue mi franco porque llevé a mi nena al pediatra[/url], tengo el certificado del hospital. Fui recién el viernes a las ocho y la encontré ahí caída.", "No, desde que la cambió la semana pasada [url=wa_sonia_dos_llaves]Marta solo hizo dos llaves, una para ella y otra para Julián[/url]. Yo tocaba el timbre."])
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1"), SubResource("Pista_2")])

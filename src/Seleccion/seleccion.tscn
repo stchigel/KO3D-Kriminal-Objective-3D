@@ -30,9 +30,9 @@ expand_mode = 1
 
 [node name="1" type="TextureButton" parent="." unique_id=174640419]
 layout_mode = 0
-offset_left = 320.0
+offset_left = 192.0
 offset_top = 240.0
-offset_right = 448.0
+offset_right = 320.0
 offset_bottom = 368.0
 texture_normal = ExtResource("3_0e2wq")
 texture_pressed = ExtResource("3_0e2wq")
@@ -50,9 +50,9 @@ text = "Caso 1 - La Ultima Foto"
 
 [node name="2" type="TextureButton" parent="." unique_id=1195426718]
 layout_mode = 0
-offset_left = 704.0
+offset_left = 512.0
 offset_top = 240.0
-offset_right = 832.0
+offset_right = 640.0
 offset_bottom = 368.0
 texture_normal = ExtResource("3_0e2wq")
 texture_pressed = ExtResource("3_0e2wq")
@@ -67,5 +67,25 @@ offset_right = 128.0
 offset_bottom = 157.0
 text = "Caso 2 - La Obra"
 
+[node name="3" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 832.0
+offset_top = 240.0
+offset_right = 960.0
+offset_bottom = 368.0
+texture_normal = ExtResource("3_0e2wq")
+texture_pressed = ExtResource("3_0e2wq")
+texture_hover = ExtResource("3_0e2wq")
+texture_disabled = ExtResource("3_0e2wq")
+texture_focused = ExtResource("3_0e2wq")
+
+[node name="Label" type="Label" parent="3"]
+layout_mode = 0
+offset_top = 134.0
+offset_right = 128.0
+offset_bottom = 157.0
+text = "Historia 1 - Pancho"
+
 [connection signal="pressed" from="1" to="." method="_on__pressed"]
 [connection signal="pressed" from="2" to="." method="_on_2_pressed"]
+[connection signal="pressed" from="3" to="." method="_on_3_pressed"]

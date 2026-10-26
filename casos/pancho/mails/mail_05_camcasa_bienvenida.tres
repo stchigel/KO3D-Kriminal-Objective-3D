@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Mail" format=3]
+
+[ext_resource type="Script" path="res://mail.gd" id="mail"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "mail_camcasa"
+tipo = 2
+titulo = "CamCasa"
+texto = "Marta tiene una cámara en su casa que se mira desde la compu con la app CamCasa."
+
+[sub_resource type="Resource" id="Pista_2"]
+script = ExtResource("pista")
+id = "mail_camcasa_pin"
+tipo = 1
+titulo = "PIN de CamCasa"
+texto = "El PIN de CamCasa es la fecha de instalación de la cámara, en formato DDMM."
+
+[resource]
+script = ExtResource("mail")
+nombre = "CamCasa"
+asunto = "¡Bienvenida a CamCasa!"
+mensaje = "Hola, Marta. Tu cámara ya está conectada y lista para usar. Desde la app del celular podés verla en cualquier momento, y desde la compu abriendo [url=mail_camcasa]CamCasa[/url] en el escritorio. Para ingresar, [url=mail_camcasa_pin]tu PIN es la fecha de instalación (DDMM)[/url]. Por seguridad, te recomendamos no compartirlo con nadie.\n\nEl equipo de CamCasa"
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1"), SubResource("Pista_2")])

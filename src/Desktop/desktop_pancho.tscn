@@ -1,0 +1,211 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/Desktop/desktop.gd" id="desktop_gd"]
+[ext_resource type="Texture2D" path="res://assets/kali-linux-wallpaper-v7.png" id="fondo"]
+[ext_resource type="PackedScene" path="res://src/Icono/icono.tscn" id="icono_scene"]
+[ext_resource type="PackedScene" path="res://src/Archivo/archivo.tscn" id="archivo_scene"]
+[ext_resource type="PackedScene" path="res://src/Carpeta/carpeta.tscn" id="carpeta_scene"]
+[ext_resource type="PackedScene" path="res://src/Texto/texto.tscn" id="texto_scene"]
+[ext_resource type="PackedScene" path="res://src/Chat/chat.tscn" id="chat_scene"]
+[ext_resource type="PackedScene" path="res://src/Mail/mail.tscn" id="mail_scene"]
+[ext_resource type="PackedScene" path="res://src/Mail/contactoMail.tscn" id="contacto_mail_scene"]
+[ext_resource type="Script" path="res://chat.gd" id="chat_gd"]
+[ext_resource type="Script" path="res://mail.gd" id="mail_gd"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+[ext_resource type="Texture2D" path="res://assets/iconos/whatsapp.png" id="ico_whatsapp"]
+[ext_resource type="Texture2D" path="res://assets/iconos/gmail.png" id="ico_gmail"]
+[ext_resource type="Texture2D" path="res://assets/iconos/user-trash-full.svg" id="ico_papelera"]
+[ext_resource type="Texture2D" path="res://assets/iconos/text.svg" id="ico_texto"]
+[ext_resource type="Resource" path="res://casos/pancho/mails/mail_01_escribania_turno.tres" id="mail_01_escribania_turno"]
+[ext_resource type="Resource" path="res://casos/pancho/mails/mail_02_marta_a_escribania.tres" id="mail_02_marta_a_escribania"]
+[ext_resource type="Resource" path="res://casos/pancho/mails/mail_03_sonia_esta_semana.tres" id="mail_03_sonia_esta_semana"]
+[ext_resource type="Resource" path="res://casos/pancho/mails/mail_04_gateros_resumen.tres" id="mail_04_gateros_resumen"]
+[ext_resource type="Resource" path="res://casos/pancho/mails/mail_05_camcasa_bienvenida.tres" id="mail_05_camcasa_bienvenida"]
+[ext_resource type="Resource" path="res://casos/pancho/chats/chat_julian.tres" id="chat_julian"]
+[ext_resource type="Resource" path="res://casos/pancho/chats/chat_sonia.tres" id="chat_sonia"]
+[ext_resource type="Resource" path="res://casos/pancho/chats/chat_ruiz.tres" id="chat_ruiz"]
+
+[sub_resource type="Resource" id="Pista_carta_1"]
+script = ExtResource("pista")
+id = "carta_no_vender"
+tipo = 0
+titulo = "No piensa vender la casa"
+texto = "Marta le dijo por escrito a Julián que no vende la casa, ni ahora ni nunca."
+
+[sub_resource type="Resource" id="Pista_carta_2"]
+script = ExtResource("pista")
+id = "carta_pancho"
+tipo = 1
+titulo = "Su compañero"
+texto = "Pancho, el gato que no se le despega a Marta."
+
+[sub_resource type="Resource" id="Pista_carta_3"]
+script = ExtResource("pista")
+id = "carta_llegada_pancho"
+tipo = 1
+titulo = "Llegada de Pancho"
+texto = "Pancho llegó a la casa de Marta un 14 de marzo."
+
+[sub_resource type="Resource" id="Pista_carta_4"]
+script = ExtResource("pista")
+id = "carta_gateros"
+tipo = 2
+titulo = "Gateros del Oeste"
+texto = "Marta pasa las tardes en este foro de gateros, que le mostró Julián."
+
+[sub_resource type="Resource" id="Pista_carta_5"]
+script = ExtResource("pista")
+id = "carta_ruiz"
+tipo = 3
+titulo = "Ruiz y su música"
+texto = "Marta escribió que a Ruiz, el vecino, \"un día lo mato\" por la música a todo volumen."
+
+[sub_resource type="Resource" id="Pista_carta_6"]
+script = ExtResource("pista")
+id = "carta_sonia"
+tipo = 3
+titulo = "Sonia cambia las cosas"
+texto = "Sonia, la cuidadora, le cambia todas las cosas de lugar."
+
+[sub_resource type="Resource" id="Pista_carta_7"]
+script = ExtResource("pista")
+id = "carta_cumple"
+tipo = 3
+titulo = "Cumpleaños de Marta"
+texto = "Marta cumple 68 el 2 de junio."
+
+[node name="Desktop" type="Control" node_paths=PackedStringArray("ventanas")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("desktop_gd")
+ventanas = [NodePath("Papelera"), NodePath("Carta"), NodePath("Chat"), NodePath("Mail")]
+
+[node name="Fondo" type="TextureRect" parent="."]
+show_behind_parent = true
+layout_mode = 0
+offset_top = -36.0
+offset_right = 784.0756
+offset_bottom = 454.04727
+scale = Vector2(1.4692461, 1.469246)
+mouse_filter = 2
+texture = ExtResource("fondo")
+expand_mode = 1
+
+[node name="Taskbar" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = 608.0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="Linea" type="ColorRect" parent="Taskbar"]
+layout_mode = 0
+offset_top = -1.0
+offset_right = 1152.0
+
+[node name="Icono" parent="Taskbar" node_paths=PackedStringArray("abrir") instance=ExtResource("icono_scene")]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 48.0
+icono = ExtResource("ico_whatsapp")
+abrir = NodePath("../../Chat")
+
+[node name="Icono2" parent="Taskbar" node_paths=PackedStringArray("abrir") instance=ExtResource("icono_scene")]
+layout_mode = 0
+offset_left = 56.0
+offset_right = 96.0
+icono = ExtResource("ico_gmail")
+abrir = NodePath("../../Mail")
+
+[node name="Topbar" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 24.0
+color = Color(0, 0, 0, 1)
+
+[node name="Linea" type="ColorRect" parent="Topbar"]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 1152.0
+offset_bottom = 25.0
+
+[node name="Label" type="Label" parent="Topbar"]
+layout_mode = 0
+offset_left = 1080.0
+offset_right = 1144.0
+offset_bottom = 24.0
+text = "12:00"
+
+[node name="Desconectar" type="Button" parent="Topbar"]
+layout_mode = 0
+offset_left = 920.0
+offset_right = 1072.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 13
+text = "Desconectar"
+flat = true
+
+[node name="PapeleraIco" parent="." node_paths=PackedStringArray("abrir") instance=ExtResource("archivo_scene")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 40.0
+offset_right = 96.0
+offset_bottom = 120.0
+nom = "Trash"
+icono = ExtResource("ico_papelera")
+abrir = NodePath("../Papelera")
+
+[node name="CartaIco" parent="." node_paths=PackedStringArray("abrir") instance=ExtResource("archivo_scene")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 128.0
+offset_right = 96.0
+offset_bottom = 208.0
+nom = "carta_sin_enviar.txt"
+icono = ExtResource("ico_texto")
+abrir = NodePath("../Carta")
+
+[node name="Papelera" parent="." instance=ExtResource("carpeta_scene")]
+visible = false
+layout_mode = 0
+offset_left = 136.0
+offset_top = 96.0
+offset_right = 968.0
+offset_bottom = 544.0
+nombre = "Papelera"
+
+[node name="Carta" parent="." instance=ExtResource("texto_scene")]
+visible = false
+layout_mode = 0
+offset_left = 288.0
+offset_top = 152.0
+offset_right = 608.0
+offset_bottom = 600.0
+texto = "Julián:\n\nTe escribo porque por teléfono no me dejás terminar una frase, y cuando venís estás tan apurado que no te sacás ni la campera. Así que va por escrito, como se hacía antes, que para algo tu tía fue maestra treinta y dos años.\n\nYa sé lo que me vas a decir. Que la casa es grande, que la escalera, que a mi edad, que un día me voy a caer y nadie se va a enterar. Me lo repetís tanto que ya parece una promesa. Pero esta casa la levantamos con tu tío ladrillo por ladrillo, los fines de semana, cuando vos todavía ni habías nacido. En el marco de la puerta de la cocina siguen las rayitas donde te medíamos en cada cumpleaños. Así que te lo digo clarito, para que no queden dudas: [url=carta_no_vender]no pienso venderla, ni ahora ni nunca[/url].\n\nTampoco estoy tan sola como creés. Tengo a [url=carta_pancho]Pancho[/url], que desde que [url=carta_llegada_pancho]llegó a casa un 14 de marzo[/url], flaco y con una oreja mordida, no se me despega ni para ir al baño. Duerme en el tercer escalón, que es el único donde da el sol a la tarde, y cada vez que bajo me tengo que acordar de pasarle por arriba. Y me paso las tardes en [url=carta_gateros]Gateros del Oeste[/url], el foro ese que me mostraste vos, charlando con gente que por lo menos me pregunta cómo estoy antes de preguntarme por los papeles.\n\nLo único que me altera los nervios es [url=carta_ruiz]Ruiz, el de al lado, con la música a todo volumen; un día lo mato[/url]. Pone tangos a las once de la noche, y no de los lindos. Y Sonia, que viene tres veces por semana y [url=carta_sonia]me cambia todas las cosas de lugar[/url]: el azúcar arriba, los remedios abajo, las tijeras quién sabe dónde. Aunque es buena chica y me hace reír, que a esta altura no es poco.\n\nEl [url=carta_cumple]2 de junio cumplo 68[/url] y me gustaría que vengas a comer. Hago los canelones de tu abuela, los que te gustaban cuando eras chico y te manchabas la remera entera de salsa. Pero vení a comer, Julián. A comer, no a traerme papeles.\n\nTu tía que te quiere, aunque no parezca,\n\nMarta\n\nP.D.: Pancho te manda saludos. Mentira, no te quiere mucho. Pero yo sí."
+nombre = "carta_sin_enviar.txt"
+pistas = Array[ExtResource("pista")]([SubResource("Pista_carta_1"), SubResource("Pista_carta_2"), SubResource("Pista_carta_3"), SubResource("Pista_carta_4"), SubResource("Pista_carta_5"), SubResource("Pista_carta_6"), SubResource("Pista_carta_7")])
+
+[node name="Chat" parent="." instance=ExtResource("chat_scene")]
+visible = false
+layout_mode = 0
+offset_left = 192.0
+offset_top = 56.0
+offset_right = 1024.0
+offset_bottom = 504.0
+chats = Array[ExtResource("chat_gd")]([ExtResource("chat_julian"), ExtResource("chat_sonia"), ExtResource("chat_ruiz")])
+
+[node name="Mail" parent="." instance=ExtResource("mail_scene")]
+visible = false
+layout_mode = 0
+offset_left = 224.0
+offset_top = 80.0
+offset_right = 928.0
+offset_bottom = 528.0
+mails = Array[ExtResource("mail_gd")]([ExtResource("mail_01_escribania_turno"), ExtResource("mail_02_marta_a_escribania"), ExtResource("mail_03_sonia_esta_semana"), ExtResource("mail_04_gateros_resumen"), ExtResource("mail_05_camcasa_bienvenida")])
+contacto_scene = ExtResource("contacto_mail_scene")
+
+[connection signal="pressed" from="Topbar/Desconectar" to="." method="_on_desconectar_pressed"]

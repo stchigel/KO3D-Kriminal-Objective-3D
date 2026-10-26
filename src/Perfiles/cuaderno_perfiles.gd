@@ -1,5 +1,7 @@
 extends Control
 
+signal acusacion_confirmada(perfil: Perfil, pruebas: Array[Pista])
+
 const COLOR_POR_ROL := {
 	"víctima": Color(0.25, 0.3, 0.4),
 	"sospechoso": Color(0.7, 0.13, 0.11),
@@ -13,6 +15,7 @@ const COLOR_ROL_POR_DEFECTO := Color(0.4, 0.33, 0.22)
 @export var duracion: float = 0.35
 @export var anillos_del_espiral: int = 11
 @export var duracion_del_volteo: float = 0.35
+@export var exigir_pruebas: bool = false
 
 var abierto: bool = false
 var pagina: int = 0
@@ -33,10 +36,26 @@ var _volteando: bool = false
 @onready var vacio: Label = $Hoja/Vacio
 @onready var anterior: Button = $Hoja/Anterior
 @onready var siguiente: Button = $Hoja/Siguiente
+@onready var acusar: Button = $Hoja/Acusar
+@onready var confirmacion: Panel = $Hoja/Confirmacion
+@onready var detalle_de_la_acusacion: Label = $Hoja/Confirmacion/Detalle
+@onready var confirmar_acusacion: Button = $Hoja/Confirmacion/Si
+@onready var cancelar_acusacion: Button = $Hoja/Confirmacion/No
+@onready var panel_de_pruebas: Panel = $Hoja/Pruebas
+@onready var indicacion_de_pruebas: Label = $Hoja/Pruebas/Indicacion
+@onready var lista_de_pruebas: VBoxContainer = $Hoja/Pruebas/Scroll/Lista
+@onready var sin_pruebas: Label = $Hoja/Pruebas/SinPruebas
+@onready var presentar_pruebas: Button = $Hoja/Pruebas/Presentar
+@onready var volver_de_las_pruebas: Button = $Hoja/Pruebas/Volver
 
 
 func _ready() -> void:
 	_y_cerrado = position.y
+	acusar.pressed.connect(_pedir_confirmacion)
+	confirmar_acusacion.pressed.connect(_confirmar_la_acusacion)
+	cancelar_acusacion.pressed.connect(confirmacion.hide)
+	presentar_pruebas.pressed.connect(_presentar_la_acusacion)
+	volver_de_las_pruebas.pressed.connect(panel_de_pruebas.hide)
 	var anillo := espiral.get_child(0)
 	for i in anillos_del_espiral - 1:
 		espiral.add_child(anillo.duplicate())
@@ -53,6 +72,8 @@ func abrir() -> void:
 
 func cerrar() -> void:
 	abierto = false
+	confirmacion.hide()
+	panel_de_pruebas.hide()
 	_animar(_y_cerrado)
 
 
@@ -97,12 +118,71 @@ func _voltear(copia: Control, desde: float, hasta: float, suavizado: Tween.EaseT
 	await tween.finished
 
 
+func _pedir_confirmacion() -> void:
+	if perfiles.is_empty():
+		return
+	detalle_de_la_acusacion.text = "Vas a acusar a %s. No hay vuelta atrás." % perfiles[pagina].nombre
+	confirmacion.show()
+
+
+func _confirmar_la_acusacion() -> void:
+	confirmacion.hide()
+	if exigir_pruebas:
+		_abrir_las_pruebas()
+		return
+	var ninguna: Array[Pista] = []
+	acusacion_confirmada.emit(perfiles[pagina], ninguna)
+
+
+func _abrir_las_pruebas() -> void:
+	for boton in lista_de_pruebas.get_children():
+		lista_de_pruebas.remove_child(boton)
+		boton.queue_free()
+	indicacion_de_pruebas.text = "Marcá las pistas que demuestran que %s es culpable." % perfiles[pagina].nombre
+	sin_pruebas.visible = Global.pistas.is_empty()
+	for pista in Global.pistas:
+		lista_de_pruebas.add_child(_crear_boton_de_prueba(pista))
+	panel_de_pruebas.show()
+
+
+func _crear_boton_de_prueba(pista: Pista) -> Button:
+	var texto := pista.titulo
+	if not pista.texto.is_empty():
+		texto = pista.texto if texto.is_empty() else "%s: %s" % [texto, pista.texto]
+	var boton := Button.new()
+	boton.toggle_mode = true
+	boton.alignment = HORIZONTAL_ALIGNMENT_LEFT
+	boton.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	boton.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	boton.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	boton.text = "[ ] " + texto
+	boton.set_meta("pista", pista)
+	boton.toggled.connect(_al_marcar_prueba.bind(boton, texto))
+	return boton
+
+
+func _al_marcar_prueba(marcada: bool, boton: Button, texto: String) -> void:
+	boton.text = ("[X] " if marcada else "[ ] ") + texto
+
+
+func _presentar_la_acusacion() -> void:
+	var elegidas: Array[Pista] = []
+	for boton in lista_de_pruebas.get_children():
+		if boton is Button and boton.button_pressed:
+			elegidas.append(boton.get_meta("pista"))
+	panel_de_pruebas.hide()
+	acusacion_confirmada.emit(perfiles[pagina], elegidas)
+
+
 func _mostrar_pagina() -> void:
 	var hay_perfiles := not perfiles.is_empty()
 	contenido.visible = hay_perfiles
 	vacio.visible = not hay_perfiles
 	anterior.disabled = perfiles.size() < 2
 	siguiente.disabled = perfiles.size() < 2
+	confirmacion.hide()
+	panel_de_pruebas.hide()
+	acusar.visible = hay_perfiles and not perfiles[pagina].final_al_acusar.is_empty()
 	if not hay_perfiles:
 		paginacion.text = ""
 		return

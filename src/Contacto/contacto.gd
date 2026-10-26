@@ -10,7 +10,7 @@ func _ready() -> void:
 			var ultimo: String = chat.mensajes[chat.mensajes.size()-1].text
 			$Mensaje.text = RegEx.create_from_string("(?s)\\[url=[^\\]]+\\](.*?)\\[/url\\]").sub(ultimo, "$1", true)
 		else :
-			$Mensaje.text = "Placeholder"
+			$Mensaje.text = "Sin mensajes previos"
 
 
 func _on_pressed() -> void:

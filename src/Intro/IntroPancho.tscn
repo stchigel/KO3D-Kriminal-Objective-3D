@@ -1,0 +1,162 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" uid="uid://d2tnrh7xrrftl" path="res://assets/K.O..svg" id="1_666gu"]
+[ext_resource type="Script" path="res://src/Intro/intro_pancho.gd" id="1_kxwl4"]
+[ext_resource type="Texture2D" uid="uid://oamtg5upud60" path="res://assets/Papel-matrix-sprite.jpg" id="3_papel"]
+
+[sub_resource type="SystemFont" id="SystemFont_maquina"]
+font_names = PackedStringArray("Courier New", "Courier Prime", "Courier", "Monospace")
+
+[sub_resource type="SystemFont" id="SystemFont_maquina_negrita"]
+font_names = PackedStringArray("Courier New", "Courier Prime", "Courier", "Monospace")
+font_weight = 700
+
+[sub_resource type="SystemFont" id="SystemFont_maquina_cursiva"]
+font_names = PackedStringArray("Courier New", "Courier Prime", "Courier", "Monospace")
+font_italic = true
+
+[sub_resource type="SystemFont" id="SystemFont_maquina_negrita_cursiva"]
+font_names = PackedStringArray("Courier New", "Courier Prime", "Courier", "Monospace")
+font_italic = true
+font_weight = 700
+
+[sub_resource type="Theme" id="Theme_impresion"]
+default_font = SubResource("SystemFont_maquina")
+default_font_size = 10
+Label/colors/font_color = Color(0.1, 0.11, 0.17, 1)
+RichTextLabel/colors/default_color = Color(0.1, 0.11, 0.17, 1)
+RichTextLabel/fonts/bold_font = SubResource("SystemFont_maquina_negrita")
+RichTextLabel/fonts/bold_italics_font = SubResource("SystemFont_maquina_negrita_cursiva")
+RichTextLabel/fonts/italics_font = SubResource("SystemFont_maquina_negrita_cursiva")
+RichTextLabel/fonts/mono_font = SubResource("SystemFont_maquina_negrita")
+RichTextLabel/fonts/normal_font = SubResource("SystemFont_maquina_negrita")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kxwl4"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.1, 0.11, 0.17, 0.85)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hover"]
+bg_color = Color(0.1, 0.11, 0.17, 0.88)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.1, 0.11, 0.17, 0.88)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_foco"]
+
+[node name="Intro" type="Control" unique_id=1581055040]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kxwl4")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=863699788]
+layout_mode = 0
+offset_right = 1162.0
+offset_bottom = 662.0
+color = Color(0.051970966, 0.05197096, 0.05197095, 1)
+
+[node name="Mail" type="Control" parent="." unique_id=1393977526]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 318.0
+offset_top = 4.0
+offset_right = 834.0
+offset_bottom = 644.0
+theme = SubResource("Theme_impresion")
+
+[node name="Papel" type="TextureRect" parent="Mail" unique_id=1928374650]
+layout_mode = 0
+offset_right = 516.0
+offset_bottom = 640.0
+mouse_filter = 2
+texture = ExtResource("3_papel")
+expand_mode = 1
+
+[node name="MailData" type="Control" parent="Mail" unique_id=1793133585]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 516.0
+offset_bottom = 640.0
+
+[node name="Volver" type="Button" parent="Mail/MailData" unique_id=1469383163]
+layout_mode = 0
+offset_left = -218.0
+offset_top = 496.0
+offset_right = -28.0
+offset_bottom = 528.0
+text = "< Volver"
+
+[node name="Asunto" type="Label" parent="Mail/MailData" unique_id=879500865]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 32.0
+offset_right = 470.0
+offset_bottom = 50.0
+theme_override_fonts/font = SubResource("SystemFont_maquina_negrita")
+theme_override_font_sizes/font_size = 12
+text = "Marta Ibáñez | La notebook y la carta sin enviar"
+vertical_alignment = 1
+
+[node name="Remitente" type="Label" parent="Mail/MailData" unique_id=2049468720]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 50.0
+offset_right = 470.0
+offset_bottom = 64.0
+theme_override_fonts/font = SubResource("SystemFont_maquina_negrita")
+theme_override_font_sizes/font_size = 10
+text = "Nelly Ferrari"
+vertical_alignment = 1
+
+[node name="Cuerpo" type="RichTextLabel" parent="Mail/MailData" unique_id=541549091]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 74.0
+offset_right = 470.0
+offset_bottom = 566.0
+theme_override_font_sizes/normal_font_size = 11
+theme_override_font_sizes/bold_font_size = 11
+theme_override_font_sizes/bold_italics_font_size = 11
+theme_override_font_sizes/italics_font_size = 11
+theme_override_font_sizes/mono_font_size = 11
+bbcode_enabled = true
+text = "Hola. No sé bien cómo se empieza esto, así que te escribo como me sale.\n\nMe llamo Nelly Ferrari. Fui amiga de Marta Ibáñez durante cuarenta años. Nos conocimos en la Escuela 14 de Villa Bosch: ella daba cuarto grado y yo era la portera. Desde entonces no pasó una semana sin que tomáramos mate juntas.\n\nEl viernes 19 a la mañana, Sonia, la chica que la cuida, la encontró al pie de la escalera. La policía dice que se cayó. Que a los 68 años pasa, que la escalera es empinada, que tenía una maceta en el medio. Yo no lo creo. Marta subía y bajaba esa escalera veinte veces por día, con Pancho enredado entre los pies, y nunca se tropezó ni una vez.\n\nHay otra cosa. El jueves a la tarde me escribió \"mañana te cuento algo, no sabés lo que me pasó\". Nunca me contó.\n\nLa casa está cerrada desde ese día. Nadie entró. Julián, el sobrino, dice que el lunes va con la inmobiliaria a mostrarla. Ni siquiera pasó una semana.\n\nMarta me había prestado su notebook para que aprenda a hacer videollamadas con mi nieta. Todavía la tengo. Yo no entiendo nada de estas cosas, pero sé que Marta escribía todo, todo, todo. En el escritorio hay una carta que le escribió a Julián y nunca le mandó. Empezá por ahí.\n\nPancho está conmigo. No come mucho. Creo que la extraña.\n\nNelly"
+
+[node name="K_o_" type="TextureRect" parent="." unique_id=239437778]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 23.0
+offset_right = 186.0
+offset_bottom = 228.0
+texture = ExtResource("1_666gu")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="." unique_id=1608764180]
+layout_mode = 0
+offset_left = 366.0
+offset_top = 574.0
+offset_right = 788.0
+offset_bottom = 602.0
+theme_override_colors/font_color = Color(0.1, 0.11, 0.17, 1)
+theme_override_colors/font_hover_color = Color(0.93, 0.9, 0.87, 1)
+theme_override_colors/font_pressed_color = Color(0.93, 0.9, 0.87, 1)
+theme_override_colors/font_focus_color = Color(0.1, 0.11, 0.17, 1)
+theme_override_fonts/font = SubResource("SystemFont_maquina_negrita")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_kxwl4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_foco")
+text = ">> IR AL ESCRITORIO <<"
+
+[connection signal="pressed" from="Mail/MailData/Volver" to="." method="_on_volver_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

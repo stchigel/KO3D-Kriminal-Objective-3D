@@ -1,5 +1,6 @@
 extends Control
 
+const ESCENA_FINAL := preload("res://src/Final/final.tscn")
 const FONDO_LUCES_ENCENDIDAS := preload("res://assets/fondos/LucesEncendidas.jpg")
 const FONDO_LUCES_APAGADAS := preload("res://assets/fondos/LucesApagadas.jpg")
 const FONDO_SOLO_LAMPARA := preload("res://assets/fondos/LuzEscritorioEncendida.jpg")
@@ -40,6 +41,7 @@ func _ready() -> void:
 	boton_monitor.pressed.connect(al_tocar_el_monitor)
 	boton_libreta.pressed.connect(al_tocar_la_libreta)
 	boton_perfiles.pressed.connect(cuaderno_perfiles.alternar)
+	cuaderno_perfiles.acusacion_confirmada.connect(al_acusar)
 	boton_volver.pressed.connect(al_tocar_levantarse)
 	pantalla_de_bloqueo.contrasena_aceptada.connect(al_aceptar_la_contrasena)
 	pantalla_computadora.connect("desconexion_solicitada", al_tocar_levantarse)
@@ -105,6 +107,16 @@ func al_tocar_el_monitor() -> void:
 	await _encender_la_pantalla(destino)
 	boton_volver.visible = destino != pantalla_computadora
 	_bloquear_input(false)
+
+
+func al_acusar(perfil: Perfil, pruebas: Array[Pista]) -> void:
+	var final = ESCENA_FINAL.instantiate()
+	final.texto = perfil.texto_del_final(pruebas)
+	final.correcto = perfil.gana_la_acusacion(pruebas)
+	var actual := get_tree().current_scene
+	get_tree().root.add_child(final)
+	get_tree().current_scene = final
+	actual.queue_free()
 
 
 func al_tocar_la_libreta() -> void:

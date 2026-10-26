@@ -72,6 +72,98 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.7, 0.13, 0.11, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_acusar"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.7, 0.13, 0.11, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_acusar_encima"]
+bg_color = Color(0.7, 0.13, 0.11, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.7, 0.13, 0.11, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_confirmacion"]
+bg_color = Color(0.96, 0.93, 0.85, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.7, 0.13, 0.11, 1)
+shadow_color = Color(0, 0, 0, 0.35)
+shadow_size = 8
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_no"]
+bg_color = Color(0.93, 0.9, 0.82, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.2, 0.18, 0.15, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_no_encima"]
+bg_color = Color(0.2, 0.18, 0.15, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.2, 0.18, 0.15, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_prueba"]
+content_margin_left = 8.0
+content_margin_top = 5.0
+content_margin_right = 8.0
+content_margin_bottom = 5.0
+bg_color = Color(0.96, 0.93, 0.85, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.45, 0.4, 0.3, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_prueba_encima"]
+content_margin_left = 8.0
+content_margin_top = 5.0
+content_margin_right = 8.0
+content_margin_bottom = 5.0
+bg_color = Color(0.9, 0.86, 0.76, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.45, 0.4, 0.3, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_prueba_marcada"]
+content_margin_left = 8.0
+content_margin_top = 5.0
+content_margin_right = 8.0
+content_margin_bottom = 5.0
+bg_color = Color(0.93, 0.8, 0.74, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.7, 0.13, 0.11, 1)
+
+[sub_resource type="Theme" id="Theme_pruebas"]
+Button/colors/font_color = Color(0.17, 0.15, 0.12, 1)
+Button/colors/font_focus_color = Color(0.17, 0.15, 0.12, 1)
+Button/colors/font_hover_color = Color(0.17, 0.15, 0.12, 1)
+Button/colors/font_hover_pressed_color = Color(0.45, 0.08, 0.06, 1)
+Button/colors/font_pressed_color = Color(0.45, 0.08, 0.06, 1)
+Button/font_sizes/font_size = 12
+Button/styles/focus = SubResource("StyleBoxEmpty_plano")
+Button/styles/hover = SubResource("StyleBoxFlat_prueba_encima")
+Button/styles/hover_pressed = SubResource("StyleBoxFlat_prueba_marcada")
+Button/styles/normal = SubResource("StyleBoxFlat_prueba")
+Button/styles/pressed = SubResource("StyleBoxFlat_prueba_marcada")
+
 [node name="CuadernoPerfiles" type="Control"]
 layout_mode = 3
 anchors_preset = 0
@@ -272,6 +364,197 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_hover")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_plano")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_plano")
 text = ">"
+
+[node name="Acusar" type="Button" parent="Hoja"]
+visible = false
+layout_mode = 0
+offset_left = 100.0
+offset_top = 452.0
+offset_right = 260.0
+offset_bottom = 484.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.7, 0.13, 0.11, 1)
+theme_override_colors/font_hover_color = Color(0.96, 0.93, 0.85, 1)
+theme_override_colors/font_pressed_color = Color(0.96, 0.93, 0.85, 1)
+theme_override_fonts/font = SubResource("SystemFont_maquina_negrita")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_acusar")
+theme_override_styles/hover = SubResource("StyleBoxFlat_acusar_encima")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_acusar_encima")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_plano")
+text = "ACUSAR"
+
+[node name="Confirmacion" type="Panel" parent="Hoja"]
+visible = false
+layout_mode = 0
+offset_left = 30.0
+offset_top = 150.0
+offset_right = 330.0
+offset_bottom = 340.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_confirmacion")
+
+[node name="Pregunta" type="Label" parent="Hoja/Confirmacion"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 18.0
+offset_right = 284.0
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(0.7, 0.13, 0.11, 1)
+theme_override_fonts/font = SubResource("SystemFont_maquina_negrita")
+theme_override_font_sizes/font_size = 22
+text = "¿ESTÁS SEGURO?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Detalle" type="Label" parent="Hoja/Confirmacion"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 62.0
+offset_right = 284.0
+offset_bottom = 126.0
+theme_override_colors/font_color = Color(0.17, 0.15, 0.12, 1)
+theme_override_fonts/font = SubResource("SystemFont_maquina_negrita")
+theme_override_font_sizes/font_size = 14
+text = "Vas a acusar a Nombre. No hay vuelta atrás."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Si" type="Button" parent="Hoja/Confirmacion"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 140.0
+offset_right = 140.0
+offset_bottom = 174.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.7, 0.13, 0.11, 1)
+theme_override_colors/font_hover_color = Color(0.96, 0.93, 0.85, 1)
+theme_override_colors/font_pressed_color = Color(0.96, 0.93, 0.85, 1)
+theme_override_fonts/font = SubResource("SystemFont_maquina_negrita")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_acusar")
+theme_override_styles/hover = SubResource("StyleBoxFlat_acusar_encima")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_acusar_encima")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_plano")
+text = "SÍ, ACUSAR"
+
+[node name="No" type="Button" parent="Hoja/Confirmacion"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 140.0
+offset_right = 276.0
+offset_bottom = 174.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.2, 0.18, 0.15, 1)
+theme_override_colors/font_hover_color = Color(0.96, 0.93, 0.85, 1)
+theme_override_colors/font_pressed_color = Color(0.96, 0.93, 0.85, 1)
+theme_override_fonts/font = SubResource("SystemFont_maquina_negrita")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_no")
+theme_override_styles/hover = SubResource("StyleBoxFlat_no_encima")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_no_encima")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_plano")
+text = "CANCELAR"
+
+[node name="Pruebas" type="Panel" parent="Hoja"]
+visible = false
+layout_mode = 0
+offset_left = 12.0
+offset_top = 64.0
+offset_right = 348.0
+offset_bottom = 490.0
+theme = SubResource("Theme_pruebas")
+theme_override_styles/panel = SubResource("StyleBoxFlat_confirmacion")
+
+[node name="Titulo" type="Label" parent="Hoja/Pruebas"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 324.0
+offset_bottom = 34.0
+theme_override_colors/font_color = Color(0.7, 0.13, 0.11, 1)
+theme_override_fonts/font = SubResource("SystemFont_maquina_negrita")
+theme_override_font_sizes/font_size = 17
+text = "ELEGÍ TUS PRUEBAS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Indicacion" type="Label" parent="Hoja/Pruebas"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 38.0
+offset_right = 324.0
+offset_bottom = 74.0
+theme_override_colors/font_color = Color(0.17, 0.15, 0.12, 1)
+theme_override_fonts/font = SubResource("SystemFont_maquina_negrita")
+theme_override_font_sizes/font_size = 12
+text = "Marcá las pistas que demuestran que Nombre es culpable."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Scroll" type="ScrollContainer" parent="Hoja/Pruebas"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 80.0
+offset_right = 324.0
+offset_bottom = 366.0
+horizontal_scroll_mode = 0
+
+[node name="Lista" type="VBoxContainer" parent="Hoja/Pruebas/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="SinPruebas" type="Label" parent="Hoja/Pruebas"]
+visible = false
+layout_mode = 0
+offset_left = 12.0
+offset_top = 80.0
+offset_right = 324.0
+offset_bottom = 366.0
+theme_override_colors/font_color = Color(0.56, 0.51, 0.43, 1)
+theme_override_font_sizes/font_size = 14
+text = "Todavía no reuniste ninguna pista."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Presentar" type="Button" parent="Hoja/Pruebas"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 378.0
+offset_right = 192.0
+offset_bottom = 412.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.7, 0.13, 0.11, 1)
+theme_override_colors/font_hover_color = Color(0.96, 0.93, 0.85, 1)
+theme_override_colors/font_pressed_color = Color(0.96, 0.93, 0.85, 1)
+theme_override_fonts/font = SubResource("SystemFont_maquina_negrita")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_acusar")
+theme_override_styles/hover = SubResource("StyleBoxFlat_acusar_encima")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_acusar_encima")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_plano")
+text = "PRESENTAR ACUSACIÓN"
+
+[node name="Volver" type="Button" parent="Hoja/Pruebas"]
+layout_mode = 0
+offset_left = 204.0
+offset_top = 378.0
+offset_right = 324.0
+offset_bottom = 412.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.2, 0.18, 0.15, 1)
+theme_override_colors/font_hover_color = Color(0.96, 0.93, 0.85, 1)
+theme_override_colors/font_pressed_color = Color(0.96, 0.93, 0.85, 1)
+theme_override_fonts/font = SubResource("SystemFont_maquina_negrita")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_no")
+theme_override_styles/hover = SubResource("StyleBoxFlat_no_encima")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_no_encima")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_plano")
+text = "VOLVER"
 
 [node name="Espiral" type="HBoxContainer" parent="."]
 layout_mode = 0

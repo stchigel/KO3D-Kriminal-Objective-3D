@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Chat" format=3]
+
+[ext_resource type="Script" path="res://chat.gd" id="chat"]
+[ext_resource type="Script" path="res://mensaje.gd" id="mensaje"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "wa_ruiz_muchacho"
+tipo = 0
+titulo = "Un muchacho salió apurado"
+texto = "Ruiz vio, a eso de las siete y media, a un muchacho salir apurado de la casa de Marta y subirse a un auto."
+
+[sub_resource type="Resource" id="Pista_2"]
+script = ExtResource("pista")
+id = "wa_ruiz_zoonosis"
+tipo = 3
+titulo = "Ruiz amenazó con zoonosis"
+texto = "Ruiz admite que le dijo a Marta que iba a llamar a zoonosis porque el gato le escarba las macetas."
+
+[resource]
+script = ExtResource("chat")
+nombre = "Carlos Ruiz"
+mensajes_enviables = Array[String](["¿Vio o escuchó algo raro en la casa de Marta el jueves a la tarde?", "¿Es cierto que usted amenazó a Marta por el gato?"])
+respuestas = Array[String](["Escuchar, nada: ando medio sordo y tenía los tangos fuerte. Pero tipo siete y media salí a sacar la basura y [url=wa_ruiz_muchacho]vi a un muchacho salir apurado de lo de Marta y subirse a un auto[/url].", "[url=wa_ruiz_zoonosis]Le dije que iba a llamar a zoonosis porque me escarbaba las macetas[/url], pero de ahí a tocarle un pelo a la señora hay un abismo."])
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1"), SubResource("Pista_2")])

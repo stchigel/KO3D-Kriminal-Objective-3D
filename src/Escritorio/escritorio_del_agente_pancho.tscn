@@ -1,0 +1,201 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://dwwjxu1ymhv2y" path="res://src/Escritorio/escritorio_del_agente.gd" id="1_escritorio"]
+[ext_resource type="PackedScene" path="res://src/Desktop/desktop_pancho.tscn" id="2_computadora"]
+[ext_resource type="Texture2D" path="res://assets/fondos/LuzParedEncendida.jpg" id="2_stf82"]
+[ext_resource type="PackedScene" path="res://src/Libreta/libreta.tscn" id="3_libreta"]
+[ext_resource type="PackedScene" path="res://src/Escritorio/pantalla_de_bloqueo.tscn" id="4_bloqueo"]
+[ext_resource type="Shader" uid="uid://dkheiv05k568l" path="res://src/Escritorio/destello_crt.gdshader" id="5_shader"]
+[ext_resource type="Theme" uid="uid://jjy2brslbijy" path="res://assets/tema.tres" id="6_tema"]
+[ext_resource type="PackedScene" path="res://src/Perfiles/cuaderno_perfiles.tscn" id="7_perfiles"]
+[ext_resource type="Resource" path="res://casos/pancho/perfiles/marta_ibanez.tres" id="8_marta"]
+[ext_resource type="Resource" path="res://casos/pancho/perfiles/julian_ibanez.tres" id="9_julian"]
+[ext_resource type="Resource" path="res://casos/pancho/perfiles/sonia_paredes.tres" id="10_sonia"]
+[ext_resource type="Resource" path="res://casos/pancho/perfiles/carlos_ruiz.tres" id="11_ruiz"]
+[ext_resource type="Resource" path="res://casos/pancho/perfiles/nelly_ferrari.tres" id="12_nelly"]
+[ext_resource type="Script" path="res://src/Perfiles/perfil.gd" id="13_perfil"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_zona"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_zona_encima"]
+bg_color = Color(0.878, 0.647, 0.149, 0.15)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.878, 0.647, 0.149, 0.8)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_destello"]
+shader = ExtResource("5_shader")
+shader_parameter/color_del_destello = Color(0.75, 1, 0.82, 1)
+shader_parameter/apertura = 0.0
+shader_parameter/brillo = 0.0
+shader_parameter/grosor_minimo = 0.006
+shader_parameter/suavizado_del_borde = 0.03
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_marco"]
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.05, 0.05, 0.06, 1)
+
+[node name="EscritorioDelAgente" type="Control" unique_id=467841037]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_escritorio")
+
+[node name="FondoEscritorio" type="TextureRect" parent="." unique_id=1496850804]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_stf82")
+expand_mode = 1
+
+[node name="BotonMonitor" type="Button" parent="FondoEscritorio" unique_id=88459694]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.074
+anchor_top = 0.139
+anchor_right = 0.485
+anchor_bottom = 0.598
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_zona")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_zona_encima")
+theme_override_styles/hover = SubResource("StyleBoxFlat_zona_encima")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_zona")
+flat = true
+
+[node name="BotonLampara" type="Button" parent="FondoEscritorio"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.066
+anchor_top = 0.49
+anchor_right = 0.14
+anchor_bottom = 0.81
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_zona")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_zona_encima")
+theme_override_styles/hover = SubResource("StyleBoxFlat_zona_encima")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_zona")
+flat = true
+
+[node name="BotonPerfiles" type="Button" parent="FondoEscritorio"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.573
+anchor_top = 0.692
+anchor_right = 0.686
+anchor_bottom = 0.841
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_zona")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_zona_encima")
+theme_override_styles/hover = SubResource("StyleBoxFlat_zona_encima")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_zona")
+flat = true
+
+[node name="BotonLibreta" type="Button" parent="FondoEscritorio" unique_id=1420395136]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.69
+anchor_top = 0.657
+anchor_right = 0.905
+anchor_bottom = 0.88
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_zona")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_zona_encima")
+theme_override_styles/hover = SubResource("StyleBoxFlat_zona_encima")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_zona")
+flat = true
+
+[node name="Monitor" type="Control" parent="."]
+visible = false
+clip_contents = true
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 1164.0
+offset_bottom = 660.0
+scale = Vector2(0.62, 0.62)
+mouse_filter = 2
+
+[node name="PantallaComputadora" parent="Monitor" unique_id=1801399802 instance=ExtResource("2_computadora")]
+visible = false
+layout_mode = 1
+
+[node name="PantallaDeBloqueo" parent="Monitor" unique_id=345391747 instance=ExtResource("4_bloqueo")]
+visible = false
+layout_mode = 1
+nombre_de_usuario = "Marta Ibáñez"
+contrasena_correcta = "pancho"
+texto_de_la_ayuda = "Ayuda: Marta usaba el nombre de su gato."
+
+[node name="DestelloCrt" type="ColorRect" parent="Monitor" unique_id=8462099]
+visible = false
+material = SubResource("ShaderMaterial_destello")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Marco" type="Panel" parent="Monitor"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_marco")
+
+[node name="PantallaLibreta" parent="." unique_id=1411414089 instance=ExtResource("3_libreta")]
+layout_mode = 1
+
+[node name="CuadernoPerfiles" parent="." instance=ExtResource("7_perfiles")]
+layout_mode = 0
+offset_left = 356.0
+offset_top = 664.0
+offset_right = 716.0
+offset_bottom = 1164.0
+exigir_pruebas = true
+perfiles =Array[ExtResource("13_perfil")]([ExtResource("8_marta"), ExtResource("9_julian"), ExtResource("10_sonia"), ExtResource("11_ruiz"), ExtResource("12_nelly")])
+
+[node name="BotonVolver" type="Button" parent="." unique_id=1307359161]
+visible = false
+layout_mode = 0
+offset_left = 12.0
+offset_top = 422.0
+offset_right = 152.0
+offset_bottom = 448.0
+theme = ExtResource("6_tema")
+theme_override_font_sizes/font_size = 14
+text = "← Levantarse"
+
+[node name="BloqueoDeInput" type="Control" parent="." unique_id=1520645433]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

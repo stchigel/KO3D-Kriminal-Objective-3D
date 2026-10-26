@@ -8,3 +8,5 @@ nombre = "Camila Rossi"
 rol = "Sospechosa"
 vinculo = "Novia de Lucas"
 notas = "Sin motivo aparente por ahora. Mail: camilarossi.ok@gmail.com"
+es_culpable = true
+final_al_acusar = "Camila Rossi fue detenida 48 horas después. La cámara apareció en su departamento, con las fotos de la zona de cajas borradas, pero recuperadas por el equipo forense. Fue imputada por homicidio y hurto agravado. En su declaración dijo que 'no era su intención'. Lucas nunca iba a denunciarla.\n\n[i]Buen trabajo, agente.[/i]"

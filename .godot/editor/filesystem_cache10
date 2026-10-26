@@ -1,5 +1,5 @@
 78098b89c88a74ebe8c20117b8754620
-::res://::1792608324
+::res://::1793024768
 chat.gd::GDScript::4140167023119440589::1791890186::0::1::::Chat<>Resource<><>0<>0<><>::
 chatTest.tres::Resource/Chat::5759719646548127647::1790558868::0::1::::<><><>0<>0<><>::uid://b0eysjn7s5kwv::::res://assets/Kali-Linux.jpg<>uid://gdiumfglcp6n::::res://mensaje.gd<>uid://by8r7fs8syfyj::::res://chat.gd
 global.gd::GDScript::1719570434359201376::1792608304::0::1::::<>Node<><>0<>0<><>::
@@ -31,7 +31,7 @@ blurx_shader.material::ShaderMaterial::2074724705634684336::1790558868::0::1::::
 blury_shader.material::ShaderMaterial::6756244234399318736::1790558868::0::1::::<><><>0<>0<><>::uid://cttmcfopcxhf8::::res://addons/flowerwall_crt/shaders/blur.gdshader
 crt.gdshader::Shader::4443921332056187358::1790558868::0::1::::<><><>0<>0<><>::
 crt_shader.material::ShaderMaterial::1215484623003657933::1790558868::0::1::::<><><>0<>0<><>::uid://b4kwy80l03ffq::::res://addons/flowerwall_crt/shaders/crt.gdshader
-::res://assets/::1792609141
+::res://assets/::1792609143
 escritorio.jpeg::CompressedTexture2D::1730940085465779721::1792608304::1792608304::1::::<><><>0<>0<>84db234f565d39f979b7b302a71a305a<>res://.godot/imported/escritorio.jpeg-63266b185227a3d9d62ddffe594dc803.ctex::
 icon.svg::CompressedTexture2D::7661540761012073869::1790558868::1790558912::1::::<><><>0<>0<>80d8880d6f40963dc427ee89fa40dec2<>res://.godot/imported/icon.svg-56083ea2a1f1a4f1e49773bdc6d7826c.ctex::
 K.O..svg::CompressedTexture2D::9094404104201259933::1790558868::1790558913::1::::<><><>0<>0<>4de91fa3331182347efa6c18edda5dc3<>res://.godot/imported/K.O..svg-df8942da5af61f58ae2762314283ba66.ctex::
@@ -220,11 +220,11 @@ imagen.gd::GDScript::4498940836099059650::1791892587::0::1::::<>Panel<><>0<>0<><
 imagen.tscn::PackedScene::4334457928902119365::1791892587::0::1::::<><><>0<>0<><>::uid://b5dk5snqvfisg::::res://src/Imagen/imagen.gd
 pista_area.gd::GDScript::5581876593689570557::1791892327::0::1::::PistaArea<>Control<><>0<>0<><>::
 pista_imagen.gd::GDScript::1018141034886214650::1791889999::0::1::::PistaImagen<>Pista<><>0<>0<><>::
-::res://src/Intro/::1792608304
+::res://src/Intro/::1792610276
 intro2.gd::GDScript::2523795723455165394::1792608304::0::1::::<>Control<><>0<>0<><>::
 Intro2.tscn::PackedScene::7441993905238333732::1792608304::0::1::::<><><>0<>0<><>::uid://bb7ssue1e4g31::::res://src/Intro/intro2.gd<>uid://d2tnrh7xrrftl::::res://assets/K.O..svg
 intro.gd::GDScript::2327020244470429314::1792608304::0::1::::<>Control<><>0<>0<><>::
-Intro.tscn::PackedScene::9114349666815264241::1792608304::0::1::::<><><>0<>0<><>::uid://d2tnrh7xrrftl::::res://assets/K.O..svg<>uid://8fhxicdrlphq::::res://src/Intro/intro.gd
+Intro.tscn::PackedScene::9114349666815264241::1792610276::0::1::::<><><>0<>0<><>::uid://d2tnrh7xrrftl::::res://assets/K.O..svg<>uid://8fhxicdrlphq::::res://src/Intro/intro.gd<>uid://oamtg5upud60::::res://assets/Papel-matrix-sprite.jpg
 IntroOld.tscn::PackedScene::6086760223882846796::1790558868::0::1::::<><><>0<>0<><>::uid://8fhxicdrlphq::::res://src/Intro/intro.gd<>uid://d2tnrh7xrrftl::::res://assets/K.O..svg
 ::res://src/Juicio/::1790558868
 juicio1.gd::GDScript::596633407183561330::1790558868::0::1::::<>Control<><>0<>0<><>::
