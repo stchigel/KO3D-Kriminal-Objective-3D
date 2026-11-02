@@ -86,6 +86,107 @@ offset_right = 128.0
 offset_bottom = 157.0
 text = "Historia 1 - Pancho"
 
+[node name="4" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 440.0
+offset_right = 168.0
+offset_bottom = 568.0
+texture_normal = ExtResource("3_0e2wq")
+texture_pressed = ExtResource("3_0e2wq")
+texture_hover = ExtResource("3_0e2wq")
+texture_disabled = ExtResource("3_0e2wq")
+texture_focused = ExtResource("3_0e2wq")
+
+[node name="Label" type="Label" parent="4"]
+layout_mode = 0
+offset_top = 134.0
+offset_right = 128.0
+offset_bottom = 157.0
+text = "Historia 2 - Tomi_Frost"
+
+[node name="5" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 260.0
+offset_top = 440.0
+offset_right = 388.0
+offset_bottom = 568.0
+texture_normal = ExtResource("3_0e2wq")
+texture_pressed = ExtResource("3_0e2wq")
+texture_hover = ExtResource("3_0e2wq")
+texture_disabled = ExtResource("3_0e2wq")
+texture_focused = ExtResource("3_0e2wq")
+
+[node name="Label" type="Label" parent="5"]
+layout_mode = 0
+offset_top = 134.0
+offset_right = 128.0
+offset_bottom = 157.0
+text = "Historia 3 - Habitacion 412"
+
+[node name="6" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 440.0
+offset_right = 608.0
+offset_bottom = 568.0
+texture_normal = ExtResource("3_0e2wq")
+texture_pressed = ExtResource("3_0e2wq")
+texture_hover = ExtResource("3_0e2wq")
+texture_disabled = ExtResource("3_0e2wq")
+texture_focused = ExtResource("3_0e2wq")
+
+[node name="Label" type="Label" parent="6"]
+layout_mode = 0
+offset_top = 134.0
+offset_right = 128.0
+offset_bottom = 157.0
+text = "Historia 4 - Fondos del viaje"
+
+[node name="7" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 700.0
+offset_top = 440.0
+offset_right = 828.0
+offset_bottom = 568.0
+texture_normal = ExtResource("3_0e2wq")
+texture_pressed = ExtResource("3_0e2wq")
+texture_hover = ExtResource("3_0e2wq")
+texture_disabled = ExtResource("3_0e2wq")
+texture_focused = ExtResource("3_0e2wq")
+
+[node name="Label" type="Label" parent="7"]
+layout_mode = 0
+offset_top = 134.0
+offset_right = 128.0
+offset_bottom = 157.0
+text = "Historia 5 - Radio muda"
+
+[node name="8" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 920.0
+offset_top = 440.0
+offset_right = 1048.0
+offset_bottom = 568.0
+texture_normal = ExtResource("3_0e2wq")
+texture_pressed = ExtResource("3_0e2wq")
+texture_hover = ExtResource("3_0e2wq")
+texture_disabled = ExtResource("3_0e2wq")
+texture_focused = ExtResource("3_0e2wq")
+
+[node name="Label" type="Label" parent="8"]
+layout_mode = 0
+offset_top = 134.0
+offset_right = 128.0
+offset_bottom = 157.0
+text = "Historia 6 - Depto 3B"
+
+
 [connection signal="pressed" from="1" to="." method="_on__pressed"]
 [connection signal="pressed" from="2" to="." method="_on_2_pressed"]
 [connection signal="pressed" from="3" to="." method="_on_3_pressed"]
+[connection signal="pressed" from="4" to="." method="_on_4_pressed"]
+[connection signal="pressed" from="5" to="." method="_on_5_pressed"]
+[connection signal="pressed" from="6" to="." method="_on_6_pressed"]
+[connection signal="pressed" from="7" to="." method="_on_7_pressed"]
+[connection signal="pressed" from="8" to="." method="_on_8_pressed"]
