@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Mail" format=3]
+
+[ext_resource type="Script" path="res://mail.gd" id="mail"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "mail_rs_cuota1"
+tipo = 0
+titulo = "Rumbo Sur solo recibió la cuota 1"
+texto = "La agencia Rumbo Sur solo registra el pago de la cuota 1 en la cuenta del contingente."
+
+[sub_resource type="Resource" id="Pista_2"]
+script = ExtResource("pista")
+id = "mail_rs_desmentido"
+tipo = 0
+titulo = "Rumbo Sur nunca cambió su alias"
+texto = "Rumbo Sur aclara que su alias es y siempre fue VIAJE.PROMO.26 y que nunca envió un aviso de cambio de alias."
+puntos = 3
+
+[resource]
+script = ExtResource("mail")
+nombre = "Rumbo Sur"
+destinatario = "Laura Méndez"
+fecha = "09/09/2026 09:40"
+asunto = "Estado de pagos 5°B — Instituto San Martín"
+mensaje = "Estimada preceptora Méndez:\n\nNos comunicamos porque, al revisar la cuenta del contingente, [url=mail_rs_cuota1]solo registramos el pago de la cuota 1[/url]. Queremos aclarar que [url=mail_rs_desmentido]nuestro alias es y siempre fue VIAJE.PROMO.26, y que nunca enviamos ningún aviso de cambio de alias[/url]. Si recibieron alguno, les pedimos que nos lo reenvíen, porque podría tratarse de una estafa.\n\nQuedamos a disposición.\n\nAdministración — Rumbo Sur Viajes Estudiantiles"
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1"), SubResource("Pista_2")])

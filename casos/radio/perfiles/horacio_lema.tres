@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Perfil" format=3]
+
+[ext_resource type="Script" path="res://src/Perfiles/perfil.gd" id="perfil"]
+
+[resource]
+script = ExtResource("perfil")
+nombre = "Horacio Lema"
+rol = "Víctima"
+edad = "61"
+ocupacion = "Conductor de La Trasnoche, FM 97.3 Radio Vecina"
+vinculo = "Dueño de la voz del barrio"
+notas = "Treinta años conduciendo La Trasnoche. Hijo de un canillita que le enseñó a mirar el cielo antes de salir a la calle. Apareció en el estudio, al lado de la consola, el sábado a las ocho de la mañana."

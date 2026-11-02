@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Mail" format=3]
+
+[ext_resource type="Script" path="res://mail.gd" id="mail"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "mail_matias_sabado"
+tipo = 3
+puntos = 1
+titulo = "Matías no va a lo de los padres de Abril"
+texto = "Matías le escribe a Abril que el sábado no llega a lo de sus padres porque tiene laburo todo el día."
+
+[resource]
+script = ExtResource("mail")
+nombre = "Matías"
+destinatario = "Abril Sosa"
+fecha = "14/11/2025 18:30"
+asunto = "(sin asunto)"
+mensaje = "Amor, perdón, [url=mail_matias_sabado]el sábado no llego a lo de tus viejos, tengo laburo todo el día[/url]. Decile a tu mamá que el domingo paso a buscar el táper. Te quiero."
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1")])

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Chat" format=3]
+
+[ext_resource type="Script" path="res://chat.gd" id="chat"]
+[ext_resource type="Script" path="res://mensaje.gd" id="mensaje"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "wa_kaiser_en_vivo"
+tipo = 0
+titulo = "KaiserX estaba en vivo esa madrugada"
+texto = "KaiserX estuvo transmitiendo desde las 23 hasta las 4 ante ocho mil personas, con el VOD subido."
+
+[resource]
+script = ExtResource("chat")
+nombre = "KaiserX"
+mensajes_enviables = Array[String](["¿Qué tenía que ver con la amenaza que le dejó a Tomi_Frost el lunes?"])
+respuestas = Array[String](["Era bardeo para clips, nos tiramos hate hace un año para levantar vistas. El martes a la madrugada [url=wa_kaiser_en_vivo]estuve en vivo desde las 23 hasta las 4 de la mañana ante ocho mil personas[/url], está el VOD subido."])
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1")])

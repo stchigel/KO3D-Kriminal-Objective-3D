@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Perfil" format=3]
+
+[ext_resource type="Script" path="res://src/Perfiles/perfil.gd" id="perfil"]
+
+[resource]
+script = ExtResource("perfil")
+nombre = "KaiserX"
+rol = "Sospechoso"
+edad = "21"
+ocupacion = "Streamer"
+vinculo = "Rival de Tomás"
+notas = "Vive de bardear a otros streamers para ganar vistas. Amenazó a Tomás en su último stream."
+final_al_acusar = "La investigación apunta a un inocente y la colecta falsa sigue sumando millones.\n\n[i]Gracias por intentarlo, agente.[/i]"

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Mail" format=3]
+
+[ext_resource type="Script" path="res://mail.gd" id="mail"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "mail_galeria_visita"
+tipo = 0
+titulo = "Visita del comprador el sábado 15"
+texto = "La Galería Norte confirmó que un coleccionista iba a ver Agua quieta nº 3 en el departamento el sábado 15 a las 18."
+
+[resource]
+script = ExtResource("mail")
+nombre = "Galería Norte"
+destinatario = "Lucía Ferro"
+fecha = "05/11/2025 10:00"
+asunto = "Visita del comprador"
+mensaje = "Hola, Lucía:\n\nTe confirmamos que [url=mail_galeria_visita]el comprador pasa el sábado 15 a las 18 a ver \"Agua quieta nº 3\"[/url] en tu casa. Es un coleccionista serio, así que te recomendamos tener el cuadro bien iluminado. Si todo sale bien, la operación se cerraría la semana siguiente.\n\nConfirmanos que vas a estar.\n\nGalería Norte"
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1")])

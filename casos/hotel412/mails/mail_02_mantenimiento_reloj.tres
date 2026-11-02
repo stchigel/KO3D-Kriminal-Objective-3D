@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Mail" format=3]
+
+[ext_resource type="Script" path="res://mail.gd" id="mail"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "mail_reloj_atrasa"
+tipo = 0
+titulo = "El reloj del sistema atrasa 40 minutos"
+texto = "Mantenimiento confirmó que el reloj del sistema atrasa 40 minutos y que hay que tener en cuenta la diferencia en todos los registros."
+puntos = 2
+
+[resource]
+script = ExtResource("mail")
+nombre = "Mantenimiento"
+destinatario = "Recepción Hotel Mirador"
+fecha = "20/10/2026 16:40"
+asunto = "Reloj del sistema"
+mensaje = "Hola, recepción. Recibimos el aviso. [url=mail_reloj_atrasa]El reloj del sistema atrasa 40 minutos.[/url] El técnico del proveedor viene recién el lunes, así que mientras tanto tengan en cuenta la diferencia en todos los registros. Perdón por la demora."
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1")])

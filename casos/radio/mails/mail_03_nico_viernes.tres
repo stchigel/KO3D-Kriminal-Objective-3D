@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Mail" format=3]
+
+[ext_resource type="Script" path="res://mail.gd" id="mail"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "mail_nico_automatico"
+tipo = 3
+titulo = "Nico dejó la consola en automático"
+texto = "Nico avisó que se iba a las 21 al cumpleaños de su sobrino y dejaba la consola en automático hasta que llegara Horacio."
+
+[resource]
+script = ExtResource("mail")
+nombre = "Nico Suárez"
+destinatario = "Todos"
+fecha = "07/11/2025 16:20"
+asunto = "Viernes"
+mensaje = "Chicos, aviso que hoy tengo el cumpleaños de mi sobrino. Me voy a las 21 en punto, [url=mail_nico_automatico]dejo la consola en automático[/url] hasta que llegue Horacio. La tanda de El Tano ya está cargada. Si se corta algo, el botón rojo de siempre."
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1")])

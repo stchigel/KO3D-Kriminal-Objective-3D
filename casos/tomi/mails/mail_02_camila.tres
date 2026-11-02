@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Mail" format=3]
+
+[ext_resource type="Script" path="res://mail.gd" id="mail"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "mail_camila_cosas"
+tipo = 3
+titulo = "Camila amenaza con ir a buscar sus cosas"
+texto = "Camila le reclama su campera, dos libros y el cargador, y dice que va a buscarlos ella."
+
+[resource]
+script = ExtResource("mail")
+nombre = "Camila"
+destinatario = "Tomás Aguirre"
+fecha = "12/10/2025 23:48"
+asunto = "(sin asunto)"
+mensaje = "No te voy a escribir más después de esto. Tenés en tu casa mi campera negra, dos libros y el cargador de la compu. [url=mail_camila_cosas]Devolveme mis cosas o voy a buscarlas yo.[/url] Y no me vengas con que estás \"re ocupado\", que te veo en vivo todas las noches."
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1")])

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Mail" format=3]
+
+[ext_resource type="Script" path="res://mail.gd" id="mail"]
+
+[resource]
+script = ExtResource("mail")
+nombre = "Cocina"
+destinatario = "Recepción Hotel Mirador"
+fecha = "22/10/2026 15:10"
+asunto = "Desayuno de mañana"
+mensaje = "Mañana hay congreso, ¿pueden confirmar cuántos desayunos? Hernán dice que si no le avisan hace medialunas para un regimiento."

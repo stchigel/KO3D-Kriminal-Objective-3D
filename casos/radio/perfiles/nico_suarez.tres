@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Perfil" format=3]
+
+[ext_resource type="Script" path="res://src/Perfiles/perfil.gd" id="perfil"]
+
+[resource]
+script = ExtResource("perfil")
+nombre = "Nico Suárez"
+rol = "Sospechoso"
+edad = "29"
+ocupacion = "Operador técnico de la radio"
+vinculo = "Último en irse el viernes"
+notas = "Arregla todo con cinta y alambre. Dice que se fue a las 21 al cumpleaños de su sobrino y dejó la consola en automático."
+final_al_acusar = "Nico queda imputado por haber dejado la consola en automático y Vera queda impune.\n\n[i]Gracias por intentarlo, agente.[/i]"

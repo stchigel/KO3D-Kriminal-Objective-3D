@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Chat" format=3]
+
+[ext_resource type="Script" path="res://chat.gd" id="chat"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "wa_rocio_master1"
+tipo = 0
+titulo = "Rocío usó MASTER-1 y la devolvió"
+texto = "Rocío entró a la 412 a las once de la noche con MASTER-1, la anotó en la planilla y la dejó en su gancho a las 23:30."
+
+[resource]
+script = ExtResource("chat")
+nombre = "Rocío Lagos"
+mensajes_enviables = Array[String](["¿A qué hora entró a la habitación 412 y qué llave usó?"])
+respuestas = Array[String](["Entré a las once de la noche a reponer el minibar, como hago siempre. Usé MASTER-1, la anoté en la planilla del office y [url=wa_rocio_master1]la dejé colgada en su gancho a las 23:30[/url]."])
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1")])

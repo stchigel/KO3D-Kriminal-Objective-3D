@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Mail" format=3]
+
+[ext_resource type="Script" path="res://mail.gd" id="mail"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "mail_reserva_hostel"
+tipo = 4
+titulo = "Reserva del hostel en Bariloche"
+texto = "Lucas le reenvió a Tomás una reserva de 30 noches en el Hostel Los Alerces de Bariloche, con los dos como huéspedes, para el miércoles siguiente a su desaparición."
+puntos = 5
+
+[resource]
+script = ExtResource("mail")
+nombre = "Lucas Ferreyra"
+destinatario = "Tomás Aguirre"
+fecha = "13/10/2025 17:20"
+asunto = "Fwd: Reserva confirmada"
+mensaje = "Te reenvío para que la tengas por las dudas. Borralo después de leerlo.\n\n———— Mensaje reenviado ————\n\nHostel Los Alerces — Bariloche\n\n¡Gracias por elegirnos! Tu reserva está confirmada.\n\nTitular: Lucas Ferreyra · Habitación doble con vista al lago\nCheck-in: miércoles · Estadía: 30 noches\n[url=mail_reserva_hostel]Huéspedes: Lucas Ferreyra, Tomás Aguirre[/url]\n\nTe esperamos. Recordá traer abrigo: por la noche la temperatura baja de cero."
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1")])

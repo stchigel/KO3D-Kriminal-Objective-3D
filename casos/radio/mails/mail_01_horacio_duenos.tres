@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Mail" format=3]
+
+[ext_resource type="Script" path="res://mail.gd" id="mail"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "mail_horacio_denuncia"
+tipo = 0
+titulo = "Horacio denuncia a Vera"
+texto = "Horacio tenía pruebas de que Vera cobraba avisos por afuera: facturas que no existen, avisos que salen sin figurar y un cuaderno donde ella anota todo."
+puntos = 3
+
+[resource]
+script = ExtResource("mail")
+nombre = "Horacio Lema"
+destinatario = "Dueños Radio Vecina"
+fecha = "06/11/2025 22:30"
+asunto = "Tenemos que hablar"
+mensaje = "Queridos:\n\nLes escribo con mucha tristeza. En treinta años nunca les pedí una reunión así. Tengo pruebas de [url=mail_horacio_denuncia]lo de la publicidad de Vera[/url]: facturas que no existen, avisos que salen y no figuran en ningún lado, y un cuaderno donde ella anota todo.\n\nLes pido que el lunes a primera hora nos juntemos los tres. No quiero que esto se entere nadie antes.\n\nUn abrazo,\nHoracio"
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1")])

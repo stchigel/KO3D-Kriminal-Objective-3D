@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Perfil" format=3]
+
+[ext_resource type="Script" path="res://src/Perfiles/perfil.gd" id="perfil"]
+
+[resource]
+script = ExtResource("perfil")
+nombre = "Esteban Vidal"
+rol = "Sospechoso"
+edad = "45"
+ocupacion = "Gerente nocturno del Hotel Mirador"
+vinculo = "Estaba de turno la noche del crimen"
+notas = "Dice que entre las 2 y las 3 estuvo todo el tiempo en recepción haciendo un check-in. Juega en el casino flotante los días de franco."
+es_culpable = true
+pistas_de_cargo = PackedStringArray("mail_salas_ultimatum", "mail_reloj_atrasa", "nov_reloj_atrasa", "wa_esteban_no_subio", "wa_esteban_faltante", "pms_acceso_master2", "pms_custodia_faltante_ev", "web_opina_custodia", "cam_tablero_master2", "cam_planilla_ev", "cam_reloj_pared")
+puntos_necesarios = 12
+pistas_obligatorias = PackedStringArray("cam_planilla_ev")
+final_al_acusar = "Esteban Vidal es detenido y se comprueba el robo sistemático de los sobres de custodia de los huéspedes.\n\n[i]Buen trabajo, agente.[/i]"
+final_sin_pruebas = "Esteban fue acusado, pero las pruebas presentadas no alcanzaron para sostener el cargo y siguió en su puesto. Los sobres de custodia siguieron perdiendo plata.\n\n[i]Gracias por intentarlo, agente.[/i]"

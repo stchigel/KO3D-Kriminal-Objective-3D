@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Perfil" format=3]
+
+[ext_resource type="Script" path="res://src/Perfiles/perfil.gd" id="perfil"]
+
+[resource]
+script = ExtResource("perfil")
+nombre = "Tomás Aguirre"
+rol = "Sospechoso"
+edad = "23"
+ocupacion = "Streamer (Tomi_Frost)"
+vinculo = "Dueño de la computadora"
+notas = "Desapareció la madrugada del martes, después del stream por los 100 mil seguidores. Vive solo en un monoambiente en Almagro con su perro Rocco."
+es_culpable = true
+pistas_de_cargo = PackedStringArray("mail_reserva_hostel", "mail_volt_demanda", "wa_lucas_ultima_vez", "wa_lucas_deuda", "wa_lucas_colecta", "guion_sponsor", "guion_madrugar", "web_chat_apagar_todo", "web_chat_colecta_lucas", "web_borrador_video", "cam_placard_valija")
+puntos_necesarios = 10
+pistas_obligatorias = PackedStringArray("mail_reserva_hostel")
+final_al_acusar = "Encuentran a Tomás y a Lucas en Bariloche. Se frena la estafa, Lucas queda imputado como coautor y el dinero de la colecta vuelve a los seguidores.\n\n[i]Buen trabajo, agente.[/i]"
+final_sin_pruebas = "Tomás fue acusado, pero las pruebas presentadas no alcanzaron para sostener el cargo y siguió sin aparecer. La colecta continuó sumando millones.\n\n[i]Gracias por intentarlo, agente.[/i]"

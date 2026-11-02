@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Mail" format=3]
+
+[ext_resource type="Script" path="res://mail.gd" id="mail"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "mail_camara"
+tipo = 2
+titulo = "Cámara de preceptoría"
+texto = "Instalaron una cámara nueva en preceptoría que se mueve con flechas y se mira desde la compu."
+
+[sub_resource type="Resource" id="Pista_2"]
+script = ExtResource("pista")
+id = "mail_camara_clave"
+tipo = 1
+titulo = "Clave de la cámara"
+texto = "La clave de la cámara es el número de aula de 5°B."
+
+[resource]
+script = ExtResource("mail")
+nombre = "Soporte técnico del colegio"
+destinatario = "Laura Méndez"
+fecha = "28/08/2026 10:00"
+asunto = "Cámara de preceptoría"
+mensaje = "Hola, Laura. Ya quedó instalada [url=mail_camara]la cámara nueva de preceptoría[/url], la que se mueve con las flechas. Para entrar desde la compu, [url=mail_camara_clave]la clave es el número de aula de 5°B.[/url] Si necesitás que te la cambiemos, avisá."
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1"), SubResource("Pista_2")])

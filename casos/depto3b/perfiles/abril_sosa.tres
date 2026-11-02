@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Perfil" format=3]
+
+[ext_resource type="Script" path="res://src/Perfiles/perfil.gd" id="perfil"]
+
+[resource]
+script = ExtResource("perfil")
+nombre = "Abril Sosa"
+rol = "Sospechosa"
+edad = "25"
+ocupacion = "Estudiante de Psicología"
+vinculo = "Compañera de departamento"
+notas = "Enamoradiza, confía en todo el mundo y nunca repone el papel higiénico. Le prestó las llaves a su novio sin pensarlo dos veces."
+final_al_acusar = "La amistad se rompe: Abril se va del departamento y Matías vende el cuadro por su cuenta.\n\n[i]Gracias por intentarlo, agente.[/i]"

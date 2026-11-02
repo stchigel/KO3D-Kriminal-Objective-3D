@@ -1,0 +1,299 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/Desktop/desktop.gd" id="desktop_gd"]
+[ext_resource type="Texture2D" path="res://assets/kali-linux-wallpaper-v7.png" id="fondo"]
+[ext_resource type="PackedScene" path="res://src/Icono/icono.tscn" id="icono_scene"]
+[ext_resource type="PackedScene" path="res://src/Archivo/archivo.tscn" id="archivo_scene"]
+[ext_resource type="PackedScene" path="res://src/Carpeta/carpeta.tscn" id="carpeta_scene"]
+[ext_resource type="PackedScene" path="res://src/Texto/texto.tscn" id="texto_scene"]
+[ext_resource type="PackedScene" path="res://src/Chat/chat.tscn" id="chat_scene"]
+[ext_resource type="PackedScene" path="res://src/Mail/mail.tscn" id="mail_scene"]
+[ext_resource type="PackedScene" path="res://src/Mail/contactoMail.tscn" id="contacto_mail_scene"]
+[ext_resource type="Script" path="res://chat.gd" id="chat_gd"]
+[ext_resource type="Script" path="res://mail.gd" id="mail_gd"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+[ext_resource type="Texture2D" path="res://assets/iconos/whatsapp.png" id="ico_whatsapp"]
+[ext_resource type="Texture2D" path="res://assets/iconos/gmail.png" id="ico_gmail"]
+[ext_resource type="Texture2D" path="res://assets/iconos/user-trash-full.svg" id="ico_papelera"]
+[ext_resource type="Texture2D" path="res://assets/iconos/text.svg" id="ico_texto"]
+[ext_resource type="Resource" path="res://casos/radio/mails/mail_01_horacio_duenos.tres" id="mail_01_horacio_duenos"]
+[ext_resource type="Resource" path="res://casos/radio/mails/mail_02_vera_horacio.tres" id="mail_02_vera_horacio"]
+[ext_resource type="Resource" path="res://casos/radio/mails/mail_03_nico_viernes.tres" id="mail_03_nico_viernes"]
+[ext_resource type="Resource" path="res://casos/radio/mails/mail_04_chela.tres" id="mail_04_chela"]
+[ext_resource type="Resource" path="res://casos/radio/mails/mail_05_oyente.tres" id="mail_05_oyente"]
+[ext_resource type="Resource" path="res://casos/radio/chats/chat_vera.tres" id="chat_vera"]
+[ext_resource type="Resource" path="res://casos/radio/chats/chat_nico.tres" id="chat_nico"]
+[ext_resource type="Resource" path="res://casos/radio/chats/chat_ernesto.tres" id="chat_ernesto"]
+[ext_resource type="Texture2D" path="res://assets/iconos/folder-blue.svg" id="ico_carpeta"]
+
+[sub_resource type="Resource" id="Pista_pauta_1"]
+script = ExtResource("pista")
+id = "pauta_clima"
+tipo = 0
+puntos = 2
+titulo = "Horacio abre con el clima"
+texto = "Horacio siempre abre el programa hablando del clima. Es su marca. Si llueve, deja la ventana abierta para que se escuche."
+
+[sub_resource type="Resource" id="Pista_pauta_2"]
+script = ExtResource("pista")
+id = "pauta_tano"
+tipo = 3
+titulo = "Avisos de El Tano"
+texto = "Tres avisos de Corralón El Tano en la primera tanda. Hay que cobrarlos este mes porque ya deben dos."
+
+[sub_resource type="Resource" id="Pista_pauta_3"]
+script = ExtResource("pista")
+id = "pauta_vera_audios"
+tipo = 0
+puntos = 2
+titulo = "Vera sube los bloques grabados"
+texto = "Los bloques grabados los sube Vera a la carpeta de Audios."
+
+[sub_resource type="Resource" id="Pista_pauta_4"]
+script = ExtResource("pista")
+id = "pauta_web"
+tipo = 2
+titulo = "La web de la radio"
+texto = "Nico tiene que actualizar la grilla en la web de la radio. Mirá la web para ver cómo quedó."
+
+[sub_resource type="Resource" id="Pista_pauta_5"]
+script = ExtResource("pista")
+id = "pauta_nico_listo"
+tipo = 3
+titulo = "Nico deja todo listo"
+texto = "Nico cierra la radio a las 21 y deja todo listo para que Horacio arranque solo."
+
+[sub_resource type="Resource" id="Pista_reg_1"]
+script = ExtResource("pista")
+id = "registro_tano"
+tipo = 3
+titulo = "Tanda de El Tano"
+texto = "La tanda de El Tano la cargó Nico el viernes a las 19:00."
+
+[sub_resource type="Resource" id="Pista_reg_2"]
+script = ExtResource("pista")
+id = "registro_bloque_viernes"
+tipo = 4
+puntos = 5
+titulo = "El bloque del viernes lo subió Vera"
+texto = "El archivo bloque_viernes.mp3 fue creado el viernes a las 20:47 por el usuario vcastro, diecisiete minutos después de la cita con Horacio."
+
+[sub_resource type="Resource" id="Pista_trans_1"]
+script = ExtResource("pista")
+id = "transcripcion_sol"
+tipo = 0
+puntos = 3
+titulo = "Horacio habla de sol"
+texto = "En el audio del viernes Horacio habla de un hermoso sol, pero ese día llovió en todo el barrio. Horacio nunca mentía con el clima."
+
+[sub_resource type="Resource" id="Pista_trans_2"]
+script = ExtResource("pista")
+id = "transcripcion_saludos"
+tipo = 3
+titulo = "Los saludos de siempre"
+texto = "El audio arranca con los saludos de siempre a los oyentes del muro."
+
+[sub_resource type="Resource" id="Pista_trans_3"]
+script = ExtResource("pista")
+id = "transcripcion_muro"
+tipo = 2
+titulo = "El muro de la web"
+texto = "El audio menciona el muro de la web. Mirá qué escribieron los oyentes esa noche."
+
+[node name="Desktop" type="Control" node_paths=PackedStringArray("ventanas")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("desktop_gd")
+ventanas = [NodePath("Papelera"), NodePath("Pauta"), NodePath("Audios"), NodePath("Registro"), NodePath("Transcripcion"), NodePath("Chat"), NodePath("Mail")]
+
+[node name="Fondo" type="TextureRect" parent="."]
+show_behind_parent = true
+layout_mode = 0
+offset_top = -36.0
+offset_right = 784.0756
+offset_bottom = 454.04727
+scale = Vector2(1.4692461, 1.469246)
+mouse_filter = 2
+texture = ExtResource("fondo")
+expand_mode = 1
+
+[node name="Taskbar" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = 608.0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="Linea" type="ColorRect" parent="Taskbar"]
+layout_mode = 0
+offset_top = -1.0
+offset_right = 1152.0
+
+[node name="Icono" parent="Taskbar" node_paths=PackedStringArray("abrir") instance=ExtResource("icono_scene")]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 48.0
+icono = ExtResource("ico_whatsapp")
+abrir = NodePath("../../Chat")
+
+[node name="Icono2" parent="Taskbar" node_paths=PackedStringArray("abrir") instance=ExtResource("icono_scene")]
+layout_mode = 0
+offset_left = 56.0
+offset_right = 96.0
+icono = ExtResource("ico_gmail")
+abrir = NodePath("../../Mail")
+
+[node name="Topbar" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 24.0
+color = Color(0, 0, 0, 1)
+
+[node name="Linea" type="ColorRect" parent="Topbar"]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 1152.0
+offset_bottom = 25.0
+
+[node name="Label" type="Label" parent="Topbar"]
+layout_mode = 0
+offset_left = 1080.0
+offset_right = 1144.0
+offset_bottom = 24.0
+text = "12:00"
+
+[node name="Desconectar" type="Button" parent="Topbar"]
+layout_mode = 0
+offset_left = 920.0
+offset_right = 1072.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 13
+text = "Desconectar"
+flat = true
+
+[node name="PapeleraIco" parent="." node_paths=PackedStringArray("abrir") instance=ExtResource("archivo_scene")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 40.0
+offset_right = 96.0
+offset_bottom = 120.0
+nom = "Trash"
+icono = ExtResource("ico_papelera")
+abrir = NodePath("../Papelera")
+
+[node name="PautaIco" parent="." node_paths=PackedStringArray("abrir") instance=ExtResource("archivo_scene")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 128.0
+offset_right = 96.0
+offset_bottom = 208.0
+nom = "pauta_programa.txt"
+icono = ExtResource("ico_texto")
+abrir = NodePath("../Pauta")
+
+[node name="AudiosIco" parent="." node_paths=PackedStringArray("abrir") instance=ExtResource("archivo_scene")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 216.0
+offset_right = 96.0
+offset_bottom = 296.0
+nom = "Audios"
+contra = "973LU44"
+icono = ExtResource("ico_carpeta")
+abrir = NodePath("../Audios")
+
+[node name="Papelera" parent="." instance=ExtResource("carpeta_scene")]
+visible = false
+layout_mode = 0
+offset_left = 136.0
+offset_top = 96.0
+offset_right = 968.0
+offset_bottom = 544.0
+nombre = "Papelera"
+
+[node name="Pauta" parent="." instance=ExtResource("texto_scene")]
+visible = false
+layout_mode = 0
+offset_left = 288.0
+offset_top = 152.0
+offset_right = 608.0
+offset_bottom = 600.0
+texto = "LA TRASNOCHE — PAUTA VIERNES 07/11 — 22 A 24 HS\n\n22:00 — APERTURA\nCortina de siempre (la de los violines, NO la nueva que no le gusta a nadie).\n[url=pauta_clima]Horacio siempre abre hablando del clima.[/url] Es su marca, no tocar. Si llueve, deja la ventana abierta para que se escuche.\n\n22:15 — SALUDOS\nLeer los mensajes del muro. Priorizar a los de siempre: Chela de Villa Bosch, Rubén de Caseros, la señora del kiosco de la estación.\n\n22:40 — TANDA 1\nTres avisos de [url=pauta_tano]Corralón El Tano[/url] (cobrar este mes sin falta, ya deben dos).\nUn aviso de la pizzería La Esquina.\n\n23:00 — COLUMNA\nHoracio lee la columna de la semana. La sube el día anterior a su blog, así los oyentes pueden comentarla.\n\n23:30 — MÚSICA\nTres temas de la lista de Horacio. Nada de reggaetón, que después llaman para quejarse.\n\nOPERACIÓN\n[url=pauta_vera_audios]Los bloques grabados los sube Vera[/url] a la carpeta de Audios.\nNico: actualizar la grilla nueva en [url=pauta_web]la web de la radio[/url], que sigue apareciendo La Siesta de los martes y ya no existe.\nOperación técnica: Nico. Nico cierra la radio a las 21 y [url=pauta_nico_listo]deja todo listo[/url] para que Horacio arranque solo."
+nombre = "pauta_programa.txt"
+pistas = Array[ExtResource("pista")]([SubResource("Pista_pauta_1"), SubResource("Pista_pauta_2"), SubResource("Pista_pauta_3"), SubResource("Pista_pauta_4"), SubResource("Pista_pauta_5")])
+
+[node name="Audios" parent="." instance=ExtResource("carpeta_scene")]
+visible = false
+layout_mode = 0
+offset_left = 136.0
+offset_top = 96.0
+offset_right = 968.0
+offset_bottom = 544.0
+nombre = "Audios"
+
+[node name="RegistroIco" parent="Audios" node_paths=PackedStringArray("abrir") instance=ExtResource("archivo_scene")]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 48.0
+offset_right = 104.0
+offset_bottom = 128.0
+nom = "registro_archivos.txt"
+icono = ExtResource("ico_texto")
+abrir = NodePath("../../Registro")
+
+[node name="TranscripcionIco" parent="Audios" node_paths=PackedStringArray("abrir") instance=ExtResource("archivo_scene")]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 48.0
+offset_right = 208.0
+offset_bottom = 128.0
+nom = "transcripcion_bloque_viernes.txt"
+icono = ExtResource("ico_texto")
+abrir = NodePath("../../Transcripcion")
+
+[node name="Registro" parent="." instance=ExtResource("texto_scene")]
+visible = false
+layout_mode = 0
+offset_left = 320.0
+offset_top = 168.0
+offset_right = 640.0
+offset_bottom = 616.0
+texto = "REGISTRO DE ARCHIVOS — CARPETA AUDIOS — SEMANA 03/11 AL 07/11\n\ncortina_violines.mp3 — creado: 12/03/2019 — usuario: hlema\nbloque_miercoles.mp3 — creado: miércoles 20:55 — usuario: vcastro\nbloque_jueves.mp3 — creado: jueves 21:10 — usuario: nsuarez\n[url=registro_tano]tanda_eltano.mp3 — creado: viernes 19:00 — usuario: nsuarez[/url]\n[url=registro_bloque_viernes]bloque_viernes.mp3 — creado: viernes 20:47 — usuario: vcastro[/url]\ncolumna_horacio_0611.mp3 — creado: jueves 18:30 — usuario: hlema"
+nombre = "registro_archivos.txt"
+pistas = Array[ExtResource("pista")]([SubResource("Pista_reg_1"), SubResource("Pista_reg_2")])
+
+[node name="Transcripcion" parent="." instance=ExtResource("texto_scene")]
+visible = false
+layout_mode = 0
+offset_left = 352.0
+offset_top = 184.0
+offset_right = 672.0
+offset_bottom = 632.0
+texto = "Buenas noches, vecinos, bienvenidos a La Trasnoche, como todos los viernes. [url=transcripcion_sol]¡Qué hermoso sol tuvimos hoy![/url] Da gusto salir a la vereda con un día así, ¿no? Se nota que la primavera llegó para quedarse.\n\nArrancamos con [url=transcripcion_saludos]los saludos de siempre[/url], que [url=transcripcion_muro]el muro de la web[/url] ya está explotando. Un beso grande para Chela de Villa Bosch, para Rubén de Caseros, para la señora del kiosco…\n\n(el audio tiene un pequeño corte, como si estuviera pegado de dos grabaciones distintas)"
+nombre = "transcripcion_bloque_viernes.txt"
+pistas = Array[ExtResource("pista")]([SubResource("Pista_trans_1"), SubResource("Pista_trans_2"), SubResource("Pista_trans_3")])
+
+[node name="Chat" parent="." instance=ExtResource("chat_scene")]
+visible = false
+layout_mode = 0
+offset_left = 192.0
+offset_top = 56.0
+offset_right = 1024.0
+offset_bottom = 504.0
+chats = Array[ExtResource("chat_gd")]([ExtResource("chat_vera"), ExtResource("chat_nico"), ExtResource("chat_ernesto")])
+
+[node name="Mail" parent="." instance=ExtResource("mail_scene")]
+visible = false
+layout_mode = 0
+offset_left = 224.0
+offset_top = 80.0
+offset_right = 928.0
+offset_bottom = 528.0
+mails = Array[ExtResource("mail_gd")]([ExtResource("mail_01_horacio_duenos"), ExtResource("mail_02_vera_horacio"), ExtResource("mail_03_nico_viernes"), ExtResource("mail_04_chela"), ExtResource("mail_05_oyente")])
+contacto_scene = ExtResource("contacto_mail_scene")
+
+[connection signal="pressed" from="Topbar/Desconectar" to="." method="_on_desconectar_pressed"]

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Mail" format=3]
+
+[ext_resource type="Script" path="res://mail.gd" id="mail"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "mail_salas_ultimatum"
+tipo = 0
+titulo = "Salas amenaza con ir a los dueños"
+texto = "Salas reclamó dos veces por el sobre del 20/10 ($800.000 entregados, $620.000 devueltos) y avisó que el lunes habla con los dueños si no le devuelven lo que falta."
+puntos = 2
+
+[resource]
+script = ExtResource("mail")
+nombre = "Ramiro Salas"
+destinatario = "Recepción Hotel Mirador"
+fecha = "21/10/2026 22:05"
+asunto = "Sobre en custodia del 20/10"
+mensaje = "Buenas noches.\n\nLes escribo por segunda vez por el sobre que dejé en custodia el 20 de octubre. Entregué $800.000 y me devolvieron $620.000. El sobre estaba cerrado y firmado por mí. No hay error posible.\n\nMe ofrecieron \"revisar las cámaras\" y todavía estoy esperando. Voy a ser claro: o me devuelven lo que falta del sobre, o [url=mail_salas_ultimatum]el lunes hablo directamente con los dueños[/url]. Tengo anotado cada peso y sé en qué turno fue.\n\nRamiro Salas — Hab. 412"
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1")])

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Perfil" format=3]
+
+[ext_resource type="Script" path="res://src/Perfiles/perfil.gd" id="perfil"]
+
+[resource]
+script = ExtResource("perfil")
+nombre = "Lucía Ferro"
+rol = "Víctima"
+edad = "24"
+ocupacion = "Estudiante de Bellas Artes"
+vinculo = "Vive en el 3B"
+notas = "Vino de Chivilcoy a estudiar y comparte el departamento con dos amigas. Tímida, detallista y bastante desconfiada. Agua quieta nº 3 es el cuadro más importante que pintó: con la venta iba a pagar un año de alquiler y el taller."

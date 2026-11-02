@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="Chat" format=3]
+
+[ext_resource type="Script" path="res://chat.gd" id="chat"]
+[ext_resource type="Script" path="res://mensaje.gd" id="mensaje"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "wa_lucas_ultima_vez"
+tipo = 0
+titulo = "Lucas dice que no supo nada de Tomás"
+texto = "Lucas afirma que no habló más con Tomás después del stream. Contrastalo con el correo que le reenvió."
+puntos = 3
+
+[sub_resource type="Resource" id="Pista_2"]
+script = ExtResource("pista")
+id = "wa_lucas_colecta"
+tipo = 0
+titulo = "La colecta va a la cuenta de Lucas"
+texto = "Lucas justifica que el dinero de la colecta se deposite en su cuenta personal."
+puntos = 1
+
+[sub_resource type="Resource" id="Pista_3"]
+script = ExtResource("pista")
+id = "wa_lucas_deuda"
+tipo = 0
+titulo = "Lucas niega saber de la deuda con Volt"
+texto = "Lucas dice que no sabía de las deudas de Tomás con el sponsor."
+puntos = 3
+
+[resource]
+script = ExtResource("chat")
+nombre = "Lucas Ferreyra"
+mensajes_enviables = Array[String](["¿Cuándo fue la última vez que habló con Tomás?", "¿Por qué la plata de la colecta Encontremos a Tomi va a su cuenta personal?", "¿Sabía que VoltEnergy iba a demandar a Tomás por tres millones?"])
+respuestas = Array[String](["El lunes antes del stream de los 100K. [url=wa_lucas_ultima_vez]Después de que apagó el directo no supe nada más de él[/url].", "[url=wa_lucas_colecta]Porque la familia estaba muy mal para ocuparse de los bancos y puse mi cuenta para pagar abogados y búsquedas[/url].", "[url=wa_lucas_deuda]No tenía idea de que tuviera deudas con el sponsor[/url], de los contratos se encargaba él solo."])
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1"), SubResource("Pista_2"), SubResource("Pista_3")])

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Perfil" format=3]
+
+[ext_resource type="Script" path="res://src/Perfiles/perfil.gd" id="perfil"]
+
+[resource]
+script = ExtResource("perfil")
+nombre = "Matías Roldán"
+rol = "Sospechoso"
+edad = "27"
+ocupacion = "Vende de todo: zapatillas, bicis, lo que caiga"
+vinculo = "Novio de Abril"
+notas = "Encantador, siempre con un chiste. Se mostró muy interesado cuando Lucía le enseñó el cuadro."
+es_culpable = true
+pistas_de_cargo = PackedStringArray("web_feriarte_publicacion", "mail_cerrajeria_copia", "web_lienzo_mati_precio", "wa_matias_copia", "wa_matias_usuario", "mail_matias_sabado", "wa_abril_sabado", "dana_llaves", "lucia_sin_venta")
+puntos_necesarios = 14
+final_al_acusar = "La policía allana el domicilio de Matías, Lucía recupera \"Agua quieta nº 3\" intacto y concreta la venta con el coleccionista.\n\n[i]Buen trabajo, agente.[/i]"
+final_sin_pruebas = "Matías fue acusado, pero las pruebas presentadas no alcanzaron para sostener el cargo y quedó en libertad. El cuadro no volvió a aparecer.\n\n[i]Gracias por intentarlo, agente.[/i]"

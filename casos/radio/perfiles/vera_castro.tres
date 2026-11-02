@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Perfil" format=3]
+
+[ext_resource type="Script" path="res://src/Perfiles/perfil.gd" id="perfil"]
+
+[resource]
+script = ExtResource("perfil")
+nombre = "Vera Castro"
+rol = "Sospechosa"
+edad = "44"
+ocupacion = "Productora de La Trasnoche"
+vinculo = "Producía el programa de Horacio"
+notas = "Tiene acceso a todos los audios de Horacio. Dice que el viernes no pisó el estudio."
+es_culpable = true
+pistas_de_cargo = PackedStringArray("pauta_clima", "pauta_vera_audios", "registro_bloque_viernes", "transcripcion_sol", "mail_horacio_denuncia", "mail_vera_cita", "wa_vera_no_piso", "wa_vera_facturas", "web_blog_cobra_afuera", "web_blog_lunes_duenos", "web_blog_clima", "web_muro_diluvia", "cam_perchero_campera", "cam_taza_labial", "cam_consola_automatica")
+puntos_necesarios = 10
+pistas_obligatorias = PackedStringArray("registro_bloque_viernes")
+final_al_acusar = "Vera es detenida por el homicidio de Horacio y se destapa toda la maniobra de publicidades cobradas en negro.\n\n[i]Buen trabajo, agente.[/i]"
+final_sin_pruebas = "Vera fue acusada, pero las pruebas presentadas no alcanzaron para sostener el cargo y quedó en libertad. Siguió produciendo el programa como si nada.\n\n[i]Gracias por intentarlo, agente.[/i]"

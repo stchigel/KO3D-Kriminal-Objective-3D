@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Perfil" format=3]
+
+[ext_resource type="Script" path="res://src/Perfiles/perfil.gd" id="perfil"]
+
+[resource]
+script = ExtResource("perfil")
+nombre = "Gómez"
+rol = "Sospechoso"
+edad = "61"
+ocupacion = "Preceptor"
+vinculo = "Tiene la llave de la caja de preceptoría"
+notas = "A punto de jubilarse y bastante olvidadizo. La semana del problema estaba de licencia por una operación de rodilla."
+final_al_acusar = "Sancionan a un inocente por un robo en efectivo que nunca existió y el curso pierde el viaje.\n\n[i]Gracias por intentarlo, agente.[/i]"

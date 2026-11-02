@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Mail" format=3]
+
+[ext_resource type="Script" path="res://mail.gd" id="mail"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "mail_falso_alias"
+tipo = 3
+titulo = "Aviso de nuevo alias"
+texto = "Un mail de \"Rumbo Sur Pagos\" avisa que desde la cuota 2 hay que pagar a un alias nuevo."
+
+[resource]
+script = ExtResource("mail")
+nombre = "Rumbo Sur Pagos"
+destinatario = "Bruno Ale (CC: preceptoría)"
+fecha = "03/07/2026 03:05"
+asunto = "Nuevo alias de pago"
+mensaje = "Estimados:\n\nPor motivos bancarios, [url=mail_falso_alias]a partir de la cuota 2 deberán abonar al nuevo alias.[/url] El anterior queda dado de baja. Disculpen las molestias.\n\nSaludos cordiales,\n\nRumbo Sur"
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1")])

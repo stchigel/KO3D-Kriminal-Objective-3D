@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Mail" format=3]
+
+[ext_resource type="Script" path="res://mail.gd" id="mail"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "mail_vera_cita"
+tipo = 0
+titulo = "Vera cita a Horacio a las 20:30"
+texto = "Vera citó a Horacio a solas en el estudio a las 20:30 del viernes y le pidió que no le dijera nada a Nico."
+puntos = 3
+
+[resource]
+script = ExtResource("mail")
+nombre = "Vera Castro"
+destinatario = "Horacio Lema"
+fecha = "07/11/2025 17:40"
+asunto = "Hoy"
+mensaje = "Horacio, [url=mail_vera_cita]pasá a las 20:30 por el estudio, tenemos que hablar antes del programa.[/url] Es importante. No le digas nada a Nico."
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1")])

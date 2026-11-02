@@ -1,0 +1,199 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/Desktop/desktop.gd" id="desktop_gd"]
+[ext_resource type="Texture2D" path="res://assets/kali-linux-wallpaper-v7.png" id="fondo"]
+[ext_resource type="PackedScene" path="res://src/Icono/icono.tscn" id="icono_scene"]
+[ext_resource type="PackedScene" path="res://src/Archivo/archivo.tscn" id="archivo_scene"]
+[ext_resource type="PackedScene" path="res://src/Carpeta/carpeta.tscn" id="carpeta_scene"]
+[ext_resource type="PackedScene" path="res://src/Texto/texto.tscn" id="texto_scene"]
+[ext_resource type="PackedScene" path="res://src/Chat/chat.tscn" id="chat_scene"]
+[ext_resource type="PackedScene" path="res://src/Mail/mail.tscn" id="mail_scene"]
+[ext_resource type="PackedScene" path="res://src/Mail/contactoMail.tscn" id="contacto_mail_scene"]
+[ext_resource type="Script" path="res://chat.gd" id="chat_gd"]
+[ext_resource type="Script" path="res://mail.gd" id="mail_gd"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+[ext_resource type="Texture2D" path="res://assets/iconos/whatsapp.png" id="ico_whatsapp"]
+[ext_resource type="Texture2D" path="res://assets/iconos/gmail.png" id="ico_gmail"]
+[ext_resource type="Texture2D" path="res://assets/iconos/user-trash-full.svg" id="ico_papelera"]
+[ext_resource type="Texture2D" path="res://assets/iconos/text.svg" id="ico_texto"]
+[ext_resource type="Resource" path="res://casos/hotel412/mails/mail_01_salas_sobre_custodia.tres" id="mail_01_salas_sobre_custodia"]
+[ext_resource type="Resource" path="res://casos/hotel412/mails/mail_02_mantenimiento_reloj.tres" id="mail_02_mantenimiento_reloj"]
+[ext_resource type="Resource" path="res://casos/hotel412/mails/mail_03_mantenimiento_clave_camara.tres" id="mail_03_mantenimiento_clave_camara"]
+[ext_resource type="Resource" path="res://casos/hotel412/mails/mail_04_ortiz_caja.tres" id="mail_04_ortiz_caja"]
+[ext_resource type="Resource" path="res://casos/hotel412/mails/mail_05_cocina_desayuno.tres" id="mail_05_cocina_desayuno"]
+[ext_resource type="Resource" path="res://casos/hotel412/chats/chat_esteban_vidal.tres" id="chat_esteban_vidal"]
+[ext_resource type="Resource" path="res://casos/hotel412/chats/chat_rocio_lagos.tres" id="chat_rocio_lagos"]
+[ext_resource type="Resource" path="res://casos/hotel412/chats/chat_martin_duarte.tres" id="chat_martin_duarte"]
+
+[sub_resource type="Resource" id="Pista_nov_1"]
+script = ExtResource("pista")
+id = "nov_salas_no_molestar"
+tipo = 0
+puntos = 1
+titulo = "Salas pidió no ser molestado"
+texto = "A las 22:40 Salas pidió no ser molestado, dejó un sobre nuevo en custodia y preguntó dos veces quién estaba de gerente esa noche."
+
+[sub_resource type="Resource" id="Pista_nov_2"]
+script = ExtResource("pista")
+id = "nov_rocio_llave"
+tipo = 3
+titulo = "Rocío pidió la llave maestra"
+texto = "A las 23:00 Rocío pidió la llave maestra para reponer los minibares del piso 4 y la devolvió a las 23:30."
+
+[sub_resource type="Resource" id="Pista_nov_3"]
+script = ExtResource("pista")
+id = "nov_reloj_atrasa"
+tipo = 0
+puntos = 1
+titulo = "El reloj del sistema atrasa"
+texto = "A las 00:15 el recepcionista anotó que el reloj del sistema sigue atrasando y que tiene que corregir la hora a mano en cada ticket."
+
+[sub_resource type="Resource" id="Pista_nov_4"]
+script = ExtResource("pista")
+id = "nov_clave_pms"
+tipo = 1
+titulo = "Clave del sistema de reservas"
+texto = "La clave del sistema de reservas es el número de la suite presidencial más las iniciales del gerente nocturno."
+
+[sub_resource type="Resource" id="Pista_nov_5"]
+script = ExtResource("pista")
+id = "nov_web_hotel"
+tipo = 2
+titulo = "Web del hotel"
+texto = "Los datos para recordar la clave están en la web del hotel."
+
+[node name="Desktop" type="Control" node_paths=PackedStringArray("ventanas")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("desktop_gd")
+ventanas = [NodePath("Papelera"), NodePath("Novedades"), NodePath("Chat"), NodePath("Mail")]
+
+[node name="Fondo" type="TextureRect" parent="."]
+show_behind_parent = true
+layout_mode = 0
+offset_top = -36.0
+offset_right = 784.0756
+offset_bottom = 454.04727
+scale = Vector2(1.4692461, 1.469246)
+mouse_filter = 2
+texture = ExtResource("fondo")
+expand_mode = 1
+
+[node name="Taskbar" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = 608.0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="Linea" type="ColorRect" parent="Taskbar"]
+layout_mode = 0
+offset_top = -1.0
+offset_right = 1152.0
+
+[node name="Icono" parent="Taskbar" node_paths=PackedStringArray("abrir") instance=ExtResource("icono_scene")]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 48.0
+icono = ExtResource("ico_whatsapp")
+abrir = NodePath("../../Chat")
+
+[node name="Icono2" parent="Taskbar" node_paths=PackedStringArray("abrir") instance=ExtResource("icono_scene")]
+layout_mode = 0
+offset_left = 56.0
+offset_right = 96.0
+icono = ExtResource("ico_gmail")
+abrir = NodePath("../../Mail")
+
+[node name="Topbar" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 24.0
+color = Color(0, 0, 0, 1)
+
+[node name="Linea" type="ColorRect" parent="Topbar"]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 1152.0
+offset_bottom = 25.0
+
+[node name="Label" type="Label" parent="Topbar"]
+layout_mode = 0
+offset_left = 1080.0
+offset_right = 1144.0
+offset_bottom = 24.0
+text = "12:00"
+
+[node name="Desconectar" type="Button" parent="Topbar"]
+layout_mode = 0
+offset_left = 920.0
+offset_right = 1072.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 13
+text = "Desconectar"
+flat = true
+
+[node name="PapeleraIco" parent="." node_paths=PackedStringArray("abrir") instance=ExtResource("archivo_scene")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 40.0
+offset_right = 96.0
+offset_bottom = 120.0
+nom = "Trash"
+icono = ExtResource("ico_papelera")
+abrir = NodePath("../Papelera")
+
+[node name="NovedadesIco" parent="." node_paths=PackedStringArray("abrir") instance=ExtResource("archivo_scene")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 128.0
+offset_right = 96.0
+offset_bottom = 208.0
+nom = "novedades_turno_noche.txt"
+icono = ExtResource("ico_texto")
+abrir = NodePath("../Novedades")
+
+[node name="Papelera" parent="." instance=ExtResource("carpeta_scene")]
+visible = false
+layout_mode = 0
+offset_left = 136.0
+offset_top = 96.0
+offset_right = 968.0
+offset_bottom = 544.0
+nombre = "Papelera"
+
+[node name="Novedades" parent="." instance=ExtResource("texto_scene")]
+visible = false
+layout_mode = 0
+offset_left = 288.0
+offset_top = 152.0
+offset_right = 608.0
+offset_bottom = 600.0
+texto = "LIBRO DE NOVEDADES — TURNO NOCHE — MIÉRCOLES 22/10\n\n21:05 — Recibo el turno. Ocupación 78 %. Pendientes del turno tarde: la 305 llega tarde (vuelo demorado), la 210 pidió almohada extra.\n\n21:30 — Se entrega almohada a la 210. Se queja del ruido del ascensor. Se le ofrece cambio, no acepta.\n\n22:10 — Grupo de congresistas vuelve de la cena. Mucho ruido en el lobby. Se pide silencio con buenos modos.\n\n22:40 — El Sr. Salas (412) [url=nov_salas_no_molestar]pide no ser molestado. Deja un sobre nuevo en custodia, cerrado y firmado. Lo noto de mal humor, pregunta dos veces quién está de gerente esta noche.[/url]\n\n23:00 — Rocío pide [url=nov_rocio_llave]la llave maestra[/url] para reponer los minibares del piso 4.\n\n23:30 — Rocío devuelve la llave. Avisa que la luz del pasillo del 4 parpadea.\n\n00:15 — El reloj del sistema sigue atrasando. Se lo avisé a mantenimiento otra vez. [url=nov_reloj_atrasa]Cada vez que hago un check-in tengo que corregir la hora a mano en el ticket.[/url]\n\n00:20 — Para el que viene mañana, porque siempre me preguntan: la clave del sistema de reservas es la de siempre, [url=nov_clave_pms]número de la suite presidencial + iniciales del gerente nocturno.[/url] Si no se acuerdan de alguno, está todo en [url=nov_web_hotel]la web del hotel[/url]. No la anoten en un post-it, por favor.\n\n00:45 — Gato en la puerta del estacionamiento. Otra vez. Le di jamón. No le digan a gerencia.\n\n01:00 — Sin novedades. Todo tranquilo.\n\n02:00 — Llega la 305. Check-in sin problemas.\n\n— Recepción, turno noche"
+nombre = "novedades_turno_noche.txt"
+pistas = Array[ExtResource("pista")]([SubResource("Pista_nov_1"), SubResource("Pista_nov_2"), SubResource("Pista_nov_3"), SubResource("Pista_nov_4"), SubResource("Pista_nov_5")])
+
+[node name="Chat" parent="." instance=ExtResource("chat_scene")]
+visible = false
+layout_mode = 0
+offset_left = 192.0
+offset_top = 56.0
+offset_right = 1024.0
+offset_bottom = 504.0
+chats = Array[ExtResource("chat_gd")]([ExtResource("chat_esteban_vidal"), ExtResource("chat_rocio_lagos"), ExtResource("chat_martin_duarte")])
+
+[node name="Mail" parent="." instance=ExtResource("mail_scene")]
+visible = false
+layout_mode = 0
+offset_left = 224.0
+offset_top = 80.0
+offset_right = 928.0
+offset_bottom = 528.0
+mails = Array[ExtResource("mail_gd")]([ExtResource("mail_01_salas_sobre_custodia"), ExtResource("mail_02_mantenimiento_reloj"), ExtResource("mail_03_mantenimiento_clave_camara"), ExtResource("mail_04_ortiz_caja"), ExtResource("mail_05_cocina_desayuno")])
+contacto_scene = ExtResource("contacto_mail_scene")
+
+[connection signal="pressed" from="Topbar/Desconectar" to="." method="_on_desconectar_pressed"]

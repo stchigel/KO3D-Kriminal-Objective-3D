@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Perfil" format=3]
+
+[ext_resource type="Script" path="res://src/Perfiles/perfil.gd" id="perfil"]
+
+[resource]
+script = ExtResource("perfil")
+nombre = "Omar"
+rol = "Sospechoso"
+edad = "60"
+ocupacion = "Encargado del edificio"
+vinculo = "Tiene copia de todas las llaves"
+notas = "Les tiene cariño a las chicas del 3B, que le llevan medialunas los domingos. El sábado a la tarde estaba en portería, como siempre."
+final_al_acusar = "Se acusa a un inocente sin pruebas y el cuadro no vuelve a aparecer.\n\n[i]Gracias por intentarlo, agente.[/i]"

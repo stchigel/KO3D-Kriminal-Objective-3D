@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Mail" format=3]
+
+[ext_resource type="Script" path="res://mail.gd" id="mail"]
+
+[resource]
+script = ExtResource("mail")
+nombre = "Flor"
+destinatario = "Tomás Aguirre"
+fecha = "15/10/2025 08:02"
+asunto = "Tomi contestame"
+mensaje = "Tomi, por favor contestame aunque sea un emoji. Mamá no duerme. Rocco está conmigo, está bien, pero te busca por toda la casa. No me importa lo que haya pasado, solo decime que estás bien."

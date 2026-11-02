@@ -1,0 +1,410 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/Desktop/desktop.gd" id="desktop_gd"]
+[ext_resource type="Texture2D" path="res://assets/kali-linux-wallpaper-v7.png" id="fondo"]
+[ext_resource type="PackedScene" path="res://src/Icono/icono.tscn" id="icono_scene"]
+[ext_resource type="PackedScene" path="res://src/Archivo/archivo.tscn" id="archivo_scene"]
+[ext_resource type="PackedScene" path="res://src/Carpeta/carpeta.tscn" id="carpeta_scene"]
+[ext_resource type="PackedScene" path="res://src/Texto/texto.tscn" id="texto_scene"]
+[ext_resource type="PackedScene" path="res://src/Chat/chat.tscn" id="chat_scene"]
+[ext_resource type="PackedScene" path="res://src/Mail/mail.tscn" id="mail_scene"]
+[ext_resource type="PackedScene" path="res://src/Mail/contactoMail.tscn" id="contacto_mail_scene"]
+[ext_resource type="Script" path="res://chat.gd" id="chat_gd"]
+[ext_resource type="Script" path="res://mail.gd" id="mail_gd"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+[ext_resource type="Texture2D" path="res://assets/iconos/whatsapp.png" id="ico_whatsapp"]
+[ext_resource type="Texture2D" path="res://assets/iconos/gmail.png" id="ico_gmail"]
+[ext_resource type="Texture2D" path="res://assets/iconos/user-trash-full.svg" id="ico_papelera"]
+[ext_resource type="Texture2D" path="res://assets/iconos/text.svg" id="ico_texto"]
+[ext_resource type="Texture2D" path="res://assets/iconos/folder-blue-home.svg" id="ico_usuario"]
+[ext_resource type="Resource" path="res://casos/depto3b/chats/chat_matias.tres" id="chat_matias"]
+[ext_resource type="Resource" path="res://casos/depto3b/chats/chat_abril.tres" id="chat_abril"]
+[ext_resource type="Resource" path="res://casos/depto3b/chats/chat_dana.tres" id="chat_dana"]
+[ext_resource type="Resource" path="res://casos/depto3b/chats/chat_omar.tres" id="chat_omar"]
+[ext_resource type="Resource" path="res://casos/depto3b/mails/mail_01_cerrajeria_copia.tres" id="mail_01_cerrajeria_copia"]
+[ext_resource type="Resource" path="res://casos/depto3b/mails/mail_02_matias_a_abril.tres" id="mail_02_matias_a_abril"]
+[ext_resource type="Resource" path="res://casos/depto3b/mails/mail_03_galeria_visita.tres" id="mail_03_galeria_visita"]
+[ext_resource type="Resource" path="res://casos/depto3b/mails/mail_04_lucia_a_galeria.tres" id="mail_04_lucia_a_galeria"]
+
+[sub_resource type="Resource" id="Pista_Reglas_1"]
+script = ExtResource("pista")
+id = "reglas_visitas"
+tipo = 0
+titulo = "Reglas sobre las visitas"
+texto = "En el 3B nadie trae gente a dormir sin avisar en el grupo."
+
+[sub_resource type="Resource" id="Pista_Reglas_2"]
+script = ExtResource("pista")
+id = "reglas_omar"
+tipo = 3
+titulo = "Omar tiene copia de todas las llaves"
+texto = "Las reglas del depto dicen que Omar, el encargado, tiene copia de todas las llaves."
+
+[sub_resource type="Resource" id="Pista_Reglas_3"]
+script = ExtResource("pista")
+id = "reglas_camara"
+tipo = 2
+titulo = "App de la cámara del living"
+texto = "La cámara del living se mira desde la app del usuario Invitado."
+
+[sub_resource type="Resource" id="Pista_Reglas_4"]
+script = ExtResource("pista")
+id = "reglas_expensas"
+tipo = 3
+titulo = "Dani debe dos meses de expensas"
+texto = "Dana le debe dos meses de expensas a sus compañeras."
+
+[sub_resource type="Resource" id="Pista_ChatAbril_1"]
+script = ExtResource("pista")
+id = "dana_aniversario"
+tipo = 1
+titulo = "Aniversario de Abril y Matías"
+texto = "Abril y Matías cumplen dos años el 21 de agosto. Probá esa fecha (DDMM) como clave."
+
+[sub_resource type="Resource" id="Pista_ChatAbril_2"]
+script = ExtResource("pista")
+id = "dana_llaves"
+tipo = 0
+puntos = 2
+titulo = "Abril le prestó las llaves a Matías"
+texto = "Abril le prestó sus llaves a Matías el jueves y él las devolvió a la noche."
+
+[sub_resource type="Resource" id="Pista_ChatAbril_3"]
+script = ExtResource("pista")
+id = "dana_sabado"
+tipo = 3
+titulo = "Dana no está el sábado"
+texto = "Dana dice que el sábado no está en todo el día porque se va a Moreno."
+
+[sub_resource type="Resource" id="Pista_Tarjeta_1"]
+script = ExtResource("pista")
+id = "tarjeta_saldo"
+tipo = 3
+titulo = "Dana debe $480.000"
+texto = "El resumen de la tarjeta de Dana muestra un saldo adeudado de $480.000."
+
+[sub_resource type="Resource" id="Pista_Tarjeta_2"]
+script = ExtResource("pista")
+id = "tarjeta_minimo"
+tipo = 3
+titulo = "Pago mínimo vencido"
+texto = "Dana tiene vencido el pago mínimo de su tarjeta."
+
+[sub_resource type="Resource" id="Pista_NotasAbril_1"]
+script = ExtResource("pista")
+id = "abril_sal_de_mar"
+tipo = 1
+titulo = "Primera muestra de Lucía"
+texto = "La primera muestra de Lucía se llamó Sal de mar. Probá ese nombre como clave."
+
+[sub_resource type="Resource" id="Pista_NotasAbril_2"]
+script = ExtResource("pista")
+id = "abril_agua_quieta"
+tipo = 3
+titulo = "Agua quieta, la muestra conocida"
+texto = "Según Abril, la que hizo conocida a Lucía fue Agua quieta, la del año pasado."
+
+[sub_resource type="Resource" id="Pista_NotasLucia_1"]
+script = ExtResource("pista")
+id = "lucia_sin_venta"
+tipo = 0
+puntos = 1
+titulo = "El cuadro nunca estuvo a la venta online"
+texto = "Lucía no subió Agua quieta nº 3 a ninguna página de venta: la única foto, incompleta, está en su Lienzo."
+
+[sub_resource type="Resource" id="Pista_NotasLucia_2"]
+script = ExtResource("pista")
+id = "lucia_lienzo"
+tipo = 2
+titulo = "Lienzo de Lucía"
+texto = "Lucía tiene una foto parcial del cuadro en su red social Lienzo."
+
+[sub_resource type="Resource" id="Pista_NotasLucia_3"]
+script = ExtResource("pista")
+id = "lucia_luz_pasillo"
+tipo = 3
+titulo = "Omar y la luz del pasillo"
+texto = "Lucía quería pedirle a Omar que arregle la luz del pasillo."
+
+[node name="Desktop" type="Control" node_paths=PackedStringArray("ventanas")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("desktop_gd")
+ventanas = [NodePath("Papelera"), NodePath("Reglas"), NodePath("Chat"), NodePath("Mail"), NodePath("CuentaDana"), NodePath("CuentaAbril"), NodePath("CuentaLucia"), NodePath("ChatAbril"), NodePath("Tarjeta"), NodePath("NotasAbril"), NodePath("NotasLucia")]
+
+[node name="Fondo" type="TextureRect" parent="."]
+show_behind_parent = true
+layout_mode = 0
+offset_top = -36.0
+offset_right = 784.0756
+offset_bottom = 454.04727
+scale = Vector2(1.4692461, 1.469246)
+mouse_filter = 2
+texture = ExtResource("fondo")
+expand_mode = 1
+
+[node name="Taskbar" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = 608.0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="Linea" type="ColorRect" parent="Taskbar"]
+layout_mode = 0
+offset_top = -1.0
+offset_right = 1152.0
+
+[node name="Icono" parent="Taskbar" node_paths=PackedStringArray("abrir") instance=ExtResource("icono_scene")]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 48.0
+icono = ExtResource("ico_whatsapp")
+abrir = NodePath("../../Chat")
+
+[node name="Icono2" parent="Taskbar" node_paths=PackedStringArray("abrir") instance=ExtResource("icono_scene")]
+layout_mode = 0
+offset_left = 56.0
+offset_right = 96.0
+icono = ExtResource("ico_gmail")
+abrir = NodePath("../../Mail")
+
+[node name="Topbar" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 24.0
+color = Color(0, 0, 0, 1)
+
+[node name="Linea" type="ColorRect" parent="Topbar"]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 1152.0
+offset_bottom = 25.0
+
+[node name="Label" type="Label" parent="Topbar"]
+layout_mode = 0
+offset_left = 1080.0
+offset_right = 1144.0
+offset_bottom = 24.0
+text = "12:00"
+
+[node name="Desconectar" type="Button" parent="Topbar"]
+layout_mode = 0
+offset_left = 920.0
+offset_right = 1072.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 13
+text = "Desconectar"
+flat = true
+
+[node name="PapeleraIco" parent="." node_paths=PackedStringArray("abrir") instance=ExtResource("archivo_scene")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 40.0
+offset_right = 96.0
+offset_bottom = 120.0
+nom = "Trash"
+icono = ExtResource("ico_papelera")
+abrir = NodePath("../Papelera")
+
+[node name="ReglasIco" parent="." node_paths=PackedStringArray("abrir") instance=ExtResource("archivo_scene")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 128.0
+offset_right = 96.0
+offset_bottom = 208.0
+nom = "reglas_depto.txt"
+icono = ExtResource("ico_texto")
+abrir = NodePath("../Reglas")
+
+[node name="DanaIco" parent="." node_paths=PackedStringArray("abrir") instance=ExtResource("archivo_scene")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 216.0
+offset_right = 96.0
+offset_bottom = 296.0
+tooltip_text = "Mi banda favorita + el número del depto"
+nom = "Dana"
+contra = "nieblanorte3B"
+icono = ExtResource("ico_usuario")
+abrir = NodePath("../CuentaDana")
+
+[node name="AbrilIco" parent="." node_paths=PackedStringArray("abrir") instance=ExtResource("archivo_scene")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 304.0
+offset_right = 96.0
+offset_bottom = 384.0
+tooltip_text = "Nuestro aniversario (DDMM)"
+nom = "Abril"
+contra = "2108"
+icono = ExtResource("ico_usuario")
+abrir = NodePath("../CuentaAbril")
+
+[node name="LuciaIco" parent="." node_paths=PackedStringArray("abrir") instance=ExtResource("archivo_scene")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 392.0
+offset_right = 96.0
+offset_bottom = 472.0
+tooltip_text = "El nombre de mi primera muestra"
+nom = "Lucía"
+contra = "saldemar"
+icono = ExtResource("ico_usuario")
+abrir = NodePath("../CuentaLucia")
+
+[node name="Papelera" parent="." instance=ExtResource("carpeta_scene")]
+visible = false
+layout_mode = 0
+offset_left = 136.0
+offset_top = 96.0
+offset_right = 968.0
+offset_bottom = 544.0
+nombre = "Papelera"
+
+[node name="Reglas" parent="." instance=ExtResource("texto_scene")]
+visible = false
+layout_mode = 0
+offset_left = 288.0
+offset_top = 152.0
+offset_right = 608.0
+offset_bottom = 600.0
+texto = "REGLAS OFICIALES DEL 3B\nVersión 4 (la 3 se perdió cuando Dani derramó mate en la compu)\nFirmado: Lu, Abri, Dani\n\n1. La compu es de las tres, cada una con su usuario. Invitado es para visitas, novios y el primo de Dani que viene a imprimir cosas.\n\n2. [url=reglas_visitas]Nadie trae gente a dormir sin avisar.[/url] Con un mensaje en el grupo alcanza. \"Ya está acá\" no cuenta como aviso.\n\n3. [url=reglas_omar]Omar tiene copia de todas las llaves[/url], así que si se olvidan la suya, toquen en portería. Llévenle algo, que siempre nos salva.\n\n4. La cámara del living es para cuando no hay nadie, por los robos del edificio. La app de la cámara está en el usuario Invitado. [url=reglas_camara]Se mueve con las flechitas.[/url]\n\n5. [url=reglas_expensas]Dani nos debe dos meses de expensas[/url] (esto va en serio, Dani, lo firmaste).\n\n6. Los viernes se pide pizza. Sin excepción. Ni por parciales.\n\n7. El cuadro grande de Lu NO se toca, NO se apoya nada contra la pared y NO se le pasa el plumero. Lu lo limpia sola.\n\n8. El que termina el papel higiénico lo repone. Sí, Abri, vos."
+nombre = "reglas_depto.txt"
+pistas = Array[ExtResource("pista")]([SubResource("Pista_Reglas_1"), SubResource("Pista_Reglas_2"), SubResource("Pista_Reglas_3"), SubResource("Pista_Reglas_4")])
+
+[node name="Chat" parent="." instance=ExtResource("chat_scene")]
+visible = false
+layout_mode = 0
+offset_left = 192.0
+offset_top = 56.0
+offset_right = 1024.0
+offset_bottom = 504.0
+chats = Array[ExtResource("chat_gd")]([ExtResource("chat_matias"), ExtResource("chat_abril"), ExtResource("chat_dana"), ExtResource("chat_omar")])
+
+[node name="Mail" parent="." instance=ExtResource("mail_scene")]
+visible = false
+layout_mode = 0
+offset_left = 224.0
+offset_top = 80.0
+offset_right = 928.0
+offset_bottom = 528.0
+mails = Array[ExtResource("mail_gd")]([ExtResource("mail_01_cerrajeria_copia"), ExtResource("mail_02_matias_a_abril"), ExtResource("mail_03_galeria_visita"), ExtResource("mail_04_lucia_a_galeria")])
+contacto_scene = ExtResource("contacto_mail_scene")
+
+[node name="CuentaDana" parent="." instance=ExtResource("carpeta_scene")]
+visible = false
+layout_mode = 0
+offset_left = 136.0
+offset_top = 96.0
+offset_right = 968.0
+offset_bottom = 544.0
+nombre = "Cuenta de Dana"
+
+[node name="ChatAbrilIco" parent="CuentaDana" node_paths=PackedStringArray("abrir") instance=ExtResource("archivo_scene")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 48.0
+offset_right = 96.0
+offset_bottom = 128.0
+nom = "chat_abril.txt"
+icono = ExtResource("ico_texto")
+abrir = NodePath("../../ChatAbril")
+
+[node name="TarjetaIco" parent="CuentaDana" node_paths=PackedStringArray("abrir") instance=ExtResource("archivo_scene")]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 48.0
+offset_right = 184.0
+offset_bottom = 128.0
+nom = "resumen_tarjeta.txt"
+icono = ExtResource("ico_texto")
+abrir = NodePath("../../Tarjeta")
+
+[node name="CuentaAbril" parent="." instance=ExtResource("carpeta_scene")]
+visible = false
+layout_mode = 0
+offset_left = 136.0
+offset_top = 96.0
+offset_right = 968.0
+offset_bottom = 544.0
+nombre = "Cuenta de Abril"
+
+[node name="NotasAbrilIco" parent="CuentaAbril" node_paths=PackedStringArray("abrir") instance=ExtResource("archivo_scene")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 48.0
+offset_right = 96.0
+offset_bottom = 128.0
+nom = "notas.txt"
+icono = ExtResource("ico_texto")
+abrir = NodePath("../../NotasAbril")
+
+[node name="CuentaLucia" parent="." instance=ExtResource("carpeta_scene")]
+visible = false
+layout_mode = 0
+offset_left = 136.0
+offset_top = 96.0
+offset_right = 968.0
+offset_bottom = 544.0
+nombre = "Cuenta de Lucía"
+
+[node name="NotasLuciaIco" parent="CuentaLucia" node_paths=PackedStringArray("abrir") instance=ExtResource("archivo_scene")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 48.0
+offset_right = 96.0
+offset_bottom = 128.0
+nom = "notas_lucia.txt"
+icono = ExtResource("ico_texto")
+abrir = NodePath("../../NotasLucia")
+
+[node name="ChatAbril" parent="." instance=ExtResource("texto_scene")]
+visible = false
+layout_mode = 0
+offset_left = 288.0
+offset_top = 152.0
+offset_right = 608.0
+offset_bottom = 600.0
+texto = "Dana: Abriii\nDana: ¿Mañana cumplís dos años con Matías, no? [url=dana_aniversario]21 de agosto[/url], lo tengo anotado jaja\nAbril: Síiii 🥹 Me hizo reservar en el lugar de sushi caro, el de la esquina de Rivadavia.\nDana: Uuuh, se viene anillo\nAbril: Callate jajaja\nAbril: Che, [url=dana_llaves]le presté mis llaves el jueves[/url] porque se le rompió el celu y tenía que esperar al técnico acá. Me las devolvió a la noche, no te asustes.\nDana: Mmm ok. Avisale a Lu igual, que ya sabés cómo se pone con el cuadro.\nAbril: Sí sí, igual solo estuvo en el living.\nDana: [url=dana_sabado]Yo el sábado no estoy en todo el día[/url], me voy a lo de mi vieja a Moreno.\nAbril: Tranqui, él es re responsable.\nDana: Bueno, pero la pizza del viernes la pagás vos."
+nombre = "chat_abril.txt"
+pistas = Array[ExtResource("pista")]([SubResource("Pista_ChatAbril_1"), SubResource("Pista_ChatAbril_2"), SubResource("Pista_ChatAbril_3")])
+
+[node name="Tarjeta" parent="." instance=ExtResource("texto_scene")]
+visible = false
+layout_mode = 0
+offset_left = 288.0
+offset_top = 152.0
+offset_right = 608.0
+offset_bottom = 600.0
+texto = "BANCO — RESUMEN DE TARJETA — DANA RÍOS\n\nConsumos del período: Supermercado, Plataforma de música, Entradas recital, Farmacia, Delivery (x9)\nSaldo adeudado: [url=tarjeta_saldo]$480.000[/url]\n[url=tarjeta_minimo]Pago mínimo vencido[/url]\nPróximo vencimiento: 28/11"
+nombre = "resumen_tarjeta.txt"
+pistas = Array[ExtResource("pista")]([SubResource("Pista_Tarjeta_1"), SubResource("Pista_Tarjeta_2")])
+
+[node name="NotasAbril" parent="." instance=ExtResource("texto_scene")]
+visible = false
+layout_mode = 0
+offset_left = 288.0
+offset_top = 152.0
+offset_right = 608.0
+offset_bottom = 600.0
+texto = "Cosas para no olvidarme:\n– Turno dentista jueves 17 hs\n– Devolverle a Dani el cargador\n– Comprar regalo para Lu\n\nIdeas de regalo para Lu:\n– Libro de acuarela (el de tapa azul que vio en la feria)\n– Entradas para alguna muestra\n– Un marco lindo para sus dibujos chiquitos\n\nLu me contó el otro día, mientras cocinábamos, que su primera muestra se llamó [url=abril_sal_de_mar]Sal de mar[/url], re poético. La hizo en un bar de San Telmo con doce cuadros y vinieron solo sus viejos y dos amigas. Se reía contándolo. La que la hizo conocida fue [url=abril_agua_quieta]Agua quieta[/url], la del año pasado."
+nombre = "notas.txt"
+pistas = Array[ExtResource("pista")]([SubResource("Pista_NotasAbril_1"), SubResource("Pista_NotasAbril_2")])
+
+[node name="NotasLucia" parent="." instance=ExtResource("texto_scene")]
+visible = false
+layout_mode = 0
+offset_left = 288.0
+offset_top = 152.0
+offset_right = 608.0
+offset_bottom = 600.0
+texto = "CUADROS 2025\n\n\"Agua quieta nº 3\" — óleo sobre tela, 80 × 60. Lo terminé en octubre, después de cuatro meses. Es el mejor que hice. Todavía me da un poco de pena venderlo, pero con eso pago el alquiler de un año y el taller.\n\n[url=lucia_sin_venta]No lo subí a ninguna página de venta.[/url] No quiero que ande dando vueltas por internet. La única foto está en [url=lucia_lienzo]mi Lienzo[/url], y ni siquiera se ve entero. Solo lo sabe la galería y los que vinieron a casa a verlo: las chicas, mis viejos, Mati (el novio de Abri) y el profe Julio.\n\nPendientes:\n– Comprar bastidores\n– [url=lucia_luz_pasillo]Pedirle a Omar que arregle la luz del pasillo[/url], que me da miedo subir de noche\n– Terminar la serie de acuarelas para el parcial"
+nombre = "notas_lucia.txt"
+pistas = Array[ExtResource("pista")]([SubResource("Pista_NotasLucia_1"), SubResource("Pista_NotasLucia_2"), SubResource("Pista_NotasLucia_3")])
+
+[connection signal="pressed" from="Topbar/Desconectar" to="." method="_on_desconectar_pressed"]

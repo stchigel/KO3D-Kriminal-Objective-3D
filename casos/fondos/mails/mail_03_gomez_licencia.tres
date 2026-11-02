@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Mail" format=3]
+
+[ext_resource type="Script" path="res://mail.gd" id="mail"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "mail_gomez_licencia"
+tipo = 0
+titulo = "Gómez de licencia"
+texto = "Gómez estaba de licencia del 8 al 12 por la operación de rodilla."
+
+[resource]
+script = ExtResource("mail")
+nombre = "Gómez"
+destinatario = "Laura Méndez"
+fecha = "05/09/2026 12:15"
+asunto = "Licencia"
+mensaje = "Laura, te aviso que [url=mail_gomez_licencia]estoy de licencia del 8 al 12[/url] por la operación de rodilla. La llave de la caja queda en dirección, en el cajón de la vicedirectora. Cualquier cosa me mandan mensaje, pero voy a estar medio dormido."
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1")])

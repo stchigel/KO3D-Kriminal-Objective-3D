@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Mail" format=3]
+
+[ext_resource type="Script" path="res://mail.gd" id="mail"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "mail_lucia_sola"
+tipo = 3
+titulo = "Lucía iba a estar sola"
+texto = "Lucía le confirmó a la galería que iba a estar sola en casa el sábado."
+
+[resource]
+script = ExtResource("mail")
+nombre = "Lucía Ferro"
+destinatario = "Galería Norte"
+fecha = "05/11/2025 12:20"
+asunto = "RE: Visita del comprador"
+mensaje = "¡Confirmado! [url=mail_lucia_sola]Voy a estar sola en casa[/url], así que pueden venir tranquilos. Llego a las cinco y media de la facu."
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1")])

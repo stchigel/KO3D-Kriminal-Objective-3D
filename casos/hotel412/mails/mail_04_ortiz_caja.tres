@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Mail" format=3]
+
+[ext_resource type="Script" path="res://mail.gd" id="mail"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "mail_ortiz_escandalo"
+tipo = 3
+titulo = "Ortiz teme el escándalo"
+texto = "Marcela Ortiz le escribió a Esteban que si lo de la custodia sale a la luz los hunde a los dos."
+
+[resource]
+script = ExtResource("mail")
+nombre = "Marcela Ortiz"
+destinatario = "Esteban Vidal"
+fecha = "22/10/2026 17:30"
+asunto = "Caja"
+mensaje = "Esteban: [url=mail_ortiz_escandalo]si lo de la custodia sale a la luz, nos hunde a los dos.[/url] Mañana a primera hora te quiero en mi oficina con todos los registros del mes. Sin excusas."
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1")])

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Perfil" format=3]
+
+[ext_resource type="Script" path="res://src/Perfiles/perfil.gd" id="perfil"]
+
+[resource]
+script = ExtResource("perfil")
+nombre = "Aldo Ferrante"
+rol = "Contacto"
+edad = "70"
+ocupacion = "Dueño de Radio Vecina y de la ferretería de abajo"
+vinculo = "Amigo de Horacio desde siempre"
+notas = "Encontró a Horacio el sábado a las ocho de la mañana. No cree que lo que salió al aire fuera Horacio."

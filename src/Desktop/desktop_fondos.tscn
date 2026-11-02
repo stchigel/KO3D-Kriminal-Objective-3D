@@ -1,0 +1,212 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/Desktop/desktop.gd" id="desktop_gd"]
+[ext_resource type="Texture2D" path="res://assets/kali-linux-wallpaper-v7.png" id="fondo"]
+[ext_resource type="PackedScene" path="res://src/Icono/icono.tscn" id="icono_scene"]
+[ext_resource type="PackedScene" path="res://src/Archivo/archivo.tscn" id="archivo_scene"]
+[ext_resource type="PackedScene" path="res://src/Carpeta/carpeta.tscn" id="carpeta_scene"]
+[ext_resource type="PackedScene" path="res://src/Texto/texto.tscn" id="texto_scene"]
+[ext_resource type="PackedScene" path="res://src/Chat/chat.tscn" id="chat_scene"]
+[ext_resource type="PackedScene" path="res://src/Mail/mail.tscn" id="mail_scene"]
+[ext_resource type="PackedScene" path="res://src/Mail/contactoMail.tscn" id="contacto_mail_scene"]
+[ext_resource type="Script" path="res://chat.gd" id="chat_gd"]
+[ext_resource type="Script" path="res://mail.gd" id="mail_gd"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+[ext_resource type="Texture2D" path="res://assets/iconos/whatsapp.png" id="ico_whatsapp"]
+[ext_resource type="Texture2D" path="res://assets/iconos/gmail.png" id="ico_gmail"]
+[ext_resource type="Texture2D" path="res://assets/iconos/user-trash-full.svg" id="ico_papelera"]
+[ext_resource type="Texture2D" path="res://assets/iconos/text.svg" id="ico_texto"]
+[ext_resource type="Resource" path="res://casos/fondos/mails/mail_01_rumbosur_estado.tres" id="mail_01_rumbosur_estado"]
+[ext_resource type="Resource" path="res://casos/fondos/mails/mail_02_rumbosur_nuevo_alias.tres" id="mail_02_rumbosur_nuevo_alias"]
+[ext_resource type="Resource" path="res://casos/fondos/mails/mail_03_gomez_licencia.tres" id="mail_03_gomez_licencia"]
+[ext_resource type="Resource" path="res://casos/fondos/mails/mail_04_soporte_camara.tres" id="mail_04_soporte_camara"]
+[ext_resource type="Resource" path="res://casos/fondos/chats/chat_bruno.tres" id="chat_bruno"]
+[ext_resource type="Resource" path="res://casos/fondos/chats/chat_sofia.tres" id="chat_sofia"]
+[ext_resource type="Resource" path="res://casos/fondos/chats/chat_gomez.tres" id="chat_gomez"]
+
+[sub_resource type="Resource" id="Pista_acta_1"]
+script = ExtResource("pista")
+id = "acta_tres_cuotas"
+tipo = 0
+titulo = "Se pagaron 3 cuotas"
+texto = "Según la planilla, el curso ya pagó 3 de las 6 cuotas del viaje."
+
+[sub_resource type="Resource" id="Pista_acta_2"]
+script = ExtResource("pista")
+id = "acta_bruno_planilla"
+tipo = 0
+puntos = 1
+titulo = "Bruno maneja la planilla"
+texto = "La planilla de cobros la maneja Bruno Ale desde el drive del curso."
+
+[sub_resource type="Resource" id="Pista_acta_3"]
+script = ExtResource("pista")
+id = "acta_clave_drive"
+tipo = 1
+titulo = "Clave del drive"
+texto = "La clave del drive la eligió el curso: el nombre de la mascota del colegio y el año de egreso."
+
+[sub_resource type="Resource" id="Pista_acta_4"]
+script = ExtResource("pista")
+id = "acta_web_colegio"
+tipo = 2
+titulo = "Web del colegio"
+texto = "El nombre de la mascota del colegio está en la web del colegio."
+
+[sub_resource type="Resource" id="Pista_acta_5"]
+script = ExtResource("pista")
+id = "acta_sofia_efectivo"
+tipo = 3
+titulo = "Sofía y el efectivo"
+texto = "Sofía Rey es la única que toca la plata en efectivo."
+
+[sub_resource type="Resource" id="Pista_acta_6"]
+script = ExtResource("pista")
+id = "acta_gomez_llave"
+tipo = 3
+titulo = "La llave de la caja"
+texto = "Gómez tiene la única llave de la caja de preceptoría."
+
+[sub_resource type="Resource" id="Pista_acta_7"]
+script = ExtResource("pista")
+id = "acta_bruno_alias"
+tipo = 0
+puntos = 2
+titulo = "Bruno anunció el cambio de alias"
+texto = "Bruno informó en la reunión que Rumbo Sur cambió su alias de pago por un tema del banco."
+
+[node name="Desktop" type="Control" node_paths=PackedStringArray("ventanas")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("desktop_gd")
+ventanas = [NodePath("Papelera"), NodePath("Acta"), NodePath("Chat"), NodePath("Mail")]
+
+[node name="Fondo" type="TextureRect" parent="."]
+show_behind_parent = true
+layout_mode = 0
+offset_top = -36.0
+offset_right = 784.0756
+offset_bottom = 454.04727
+scale = Vector2(1.4692461, 1.469246)
+mouse_filter = 2
+texture = ExtResource("fondo")
+expand_mode = 1
+
+[node name="Taskbar" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = 608.0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="Linea" type="ColorRect" parent="Taskbar"]
+layout_mode = 0
+offset_top = -1.0
+offset_right = 1152.0
+
+[node name="Icono" parent="Taskbar" node_paths=PackedStringArray("abrir") instance=ExtResource("icono_scene")]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 48.0
+icono = ExtResource("ico_whatsapp")
+abrir = NodePath("../../Chat")
+
+[node name="Icono2" parent="Taskbar" node_paths=PackedStringArray("abrir") instance=ExtResource("icono_scene")]
+layout_mode = 0
+offset_left = 56.0
+offset_right = 96.0
+icono = ExtResource("ico_gmail")
+abrir = NodePath("../../Mail")
+
+[node name="Topbar" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 24.0
+color = Color(0, 0, 0, 1)
+
+[node name="Linea" type="ColorRect" parent="Topbar"]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 1152.0
+offset_bottom = 25.0
+
+[node name="Label" type="Label" parent="Topbar"]
+layout_mode = 0
+offset_left = 1080.0
+offset_right = 1144.0
+offset_bottom = 24.0
+text = "12:00"
+
+[node name="Desconectar" type="Button" parent="Topbar"]
+layout_mode = 0
+offset_left = 920.0
+offset_right = 1072.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 13
+text = "Desconectar"
+flat = true
+
+[node name="PapeleraIco" parent="." node_paths=PackedStringArray("abrir") instance=ExtResource("archivo_scene")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 40.0
+offset_right = 96.0
+offset_bottom = 120.0
+nom = "Trash"
+icono = ExtResource("ico_papelera")
+abrir = NodePath("../Papelera")
+
+[node name="ActaIco" parent="." node_paths=PackedStringArray("abrir") instance=ExtResource("archivo_scene")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 128.0
+offset_right = 96.0
+offset_bottom = 208.0
+nom = "acta_reunion_padres.txt"
+icono = ExtResource("ico_texto")
+abrir = NodePath("../Acta")
+
+[node name="Papelera" parent="." instance=ExtResource("carpeta_scene")]
+visible = false
+layout_mode = 0
+offset_left = 136.0
+offset_top = 96.0
+offset_right = 968.0
+offset_bottom = 544.0
+nombre = "Papelera"
+
+[node name="Acta" parent="." instance=ExtResource("texto_scene")]
+visible = false
+layout_mode = 0
+offset_left = 288.0
+offset_top = 152.0
+offset_right = 608.0
+offset_bottom = 600.0
+texto = "ACTA DE REUNIÓN DE PADRES — 5°B — MARTES 02/09\n\nSiendo las 19:10 horas se da comienzo a la reunión en el aula 12, con la presencia de 21 familias, la preceptora Laura Méndez y los delegados del curso. Se tratan los siguientes temas:\n\n1. Viaje de egresados. El viaje a Bariloche con la agencia Rumbo Sur sigue en pie para la primera semana de diciembre. Según la planilla, [url=acta_tres_cuotas]ya se pagaron 3 cuotas[/url] de las 6 acordadas. La agencia confirmará el hotel antes de fin de mes. Varias familias preguntan por el seguro médico; se pedirá la póliza por escrito.\n\n2. Administración de los pagos. [url=acta_bruno_planilla]La planilla de cobros la maneja Bruno Ale[/url] desde el drive del curso, al que tienen acceso los delegados y preceptoría. [url=acta_clave_drive]La clave del drive la eligió el curso: el nombre de la mascota del colegio y el año de egreso.[/url] Para las familias nuevas que no se acuerdan del nombre de la mascota, [url=acta_web_colegio]está en la web del colegio[/url]. Se pide no compartir la clave fuera del grupo.\n\n3. Efectivo. Los pagos en efectivo los junta Sofía Rey, [url=acta_sofia_efectivo]que es la única que toca la plata[/url], y los entrega en preceptoría a cambio de un recibo firmado. Algunas familias proponen que todos paguen por transferencia para evitar problemas.\n\n4. Caja de preceptoría. El preceptor Gómez [url=acta_gomez_llave]tiene la única llave de la caja[/url] donde se guarda el efectivo hasta que se deposita.\n\n5. Cambio de alias. Bruno informa que [url=acta_bruno_alias]Rumbo Sur cambió su alias de pago[/url] por \"un tema del banco\". Se anota el nuevo en el pizarrón de preceptoría para que todas las familias lo copien.\n\n6. Buzos de egresados. Se votó el diseño: gana el azul con el carpincho en la espalda (14 votos contra 7 del bordó). La mamá de Martina se ofrece a averiguar precios.\n\n7. Fiesta de egresados. Se posterga la discusión para la próxima reunión porque ya son las 21 y el portero quiere cerrar.\n\nSin más temas, se da por finalizada la reunión a las 21:05.\n\nFirma: Laura Méndez, preceptora"
+nombre = "acta_reunion_padres.txt"
+pistas = Array[ExtResource("pista")]([SubResource("Pista_acta_1"), SubResource("Pista_acta_2"), SubResource("Pista_acta_3"), SubResource("Pista_acta_4"), SubResource("Pista_acta_5"), SubResource("Pista_acta_6"), SubResource("Pista_acta_7")])
+
+[node name="Chat" parent="." instance=ExtResource("chat_scene")]
+visible = false
+layout_mode = 0
+offset_left = 192.0
+offset_top = 56.0
+offset_right = 1024.0
+offset_bottom = 504.0
+chats = Array[ExtResource("chat_gd")]([ExtResource("chat_bruno"), ExtResource("chat_sofia"), ExtResource("chat_gomez")])
+
+[node name="Mail" parent="." instance=ExtResource("mail_scene")]
+visible = false
+layout_mode = 0
+offset_left = 224.0
+offset_top = 80.0
+offset_right = 928.0
+offset_bottom = 528.0
+mails = Array[ExtResource("mail_gd")]([ExtResource("mail_01_rumbosur_estado"), ExtResource("mail_02_rumbosur_nuevo_alias"), ExtResource("mail_03_gomez_licencia"), ExtResource("mail_04_soporte_camara")])
+contacto_scene = ExtResource("contacto_mail_scene")
+
+[connection signal="pressed" from="Topbar/Desconectar" to="." method="_on_desconectar_pressed"]

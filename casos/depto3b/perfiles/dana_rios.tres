@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Perfil" format=3]
+
+[ext_resource type="Script" path="res://src/Perfiles/perfil.gd" id="perfil"]
+
+[resource]
+script = ExtResource("perfil")
+nombre = "Dana Ríos"
+rol = "Sospechosa"
+edad = "23"
+ocupacion = "Estudiante de música"
+vinculo = "Compañera de departamento"
+notas = "Toca el bajo en una banda que nunca ensaya. Desordenada, endeudada con la tarjeta y con sus compañeras, pero sincera hasta la exageración. El sábado estaba en lo de su vieja, en Moreno."
+final_al_acusar = "Se acusa a una inocente sin pruebas y el cuadro no vuelve a aparecer.\n\n[i]Gracias por intentarlo, agente.[/i]"

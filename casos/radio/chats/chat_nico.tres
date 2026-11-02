@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Chat" format=3]
+
+[ext_resource type="Script" path="res://chat.gd" id="chat"]
+[ext_resource type="Script" path="res://mensaje.gd" id="mensaje"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "wa_nico_21"
+tipo = 0
+titulo = "Nico se fue a las 21"
+texto = "Nico se fue a las 21 al cumpleaños de su sobrino y dejó la consola en reproducción automática. Dice tener veinte fotos familiares desde las nueve y cuarto."
+
+[resource]
+script = ExtResource("chat")
+nombre = "Nico Suárez"
+mensajes = Array[ExtResource("mensaje")]([])
+mensajes_enviables = Array[String](["¿A qué hora se fue de la radio el viernes y cómo dejó la consola?"])
+respuestas = Array[String](["Me fui a las 21 en punto al cumpleaños de mi sobrino y [url=wa_nico_21]dejé la consola en reproducción automática[/url], como avisaba en el mail. Tengo veinte fotos familiares en el salón desde las nueve y cuarto."])
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1")])

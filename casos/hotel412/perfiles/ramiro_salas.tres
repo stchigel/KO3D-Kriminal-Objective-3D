@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Perfil" format=3]
+
+[ext_resource type="Script" path="res://src/Perfiles/perfil.gd" id="perfil"]
+
+[resource]
+script = ExtResource("perfil")
+nombre = "Ramiro Salas"
+rol = "Víctima"
+edad = "58"
+ocupacion = "Empresario, dueño de una constructora"
+vinculo = "Huésped de la habitación 412"
+notas = "Hace diez años que se aloja en el Mirador cuando viene por obras. Café sin azúcar, cuarto piso porque le tiene miedo a las alturas y un sobre en custodia cada noche. Apareció muerto en la 412 el jueves 23 a la mañana."

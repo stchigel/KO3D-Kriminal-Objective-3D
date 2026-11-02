@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Mail" format=3]
+
+[ext_resource type="Script" path="res://mail.gd" id="mail"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[resource]
+script = ExtResource("mail")
+nombre = "Chela de Villa Bosch"
+destinatario = "Radio Vecina"
+fecha = "07/11/2025 23:50"
+asunto = "¿Horacio está bien?"
+mensaje = "Buenas noches, soy Chela, de Villa Bosch, los escucho hace veinticinco años. Perdonen que moleste a esta hora. Hoy Horacio habló de sol y acá diluvia desde la tarde, y después no leyó ni un mensaje. Él nunca hace eso. ¿Está bien? Díganle que lo quiero mucho."

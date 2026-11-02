@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Perfil" format=3]
+
+[ext_resource type="Script" path="res://src/Perfiles/perfil.gd" id="perfil"]
+
+[resource]
+script = ExtResource("perfil")
+nombre = "Martín Duarte"
+rol = "Sospechoso"
+edad = "55"
+ocupacion = "Constructor"
+vinculo = "Socio de Salas"
+notas = "Peleado con Salas por la venta de la empresa y se lo dicen en público. Esa noche estaba en una obra en Rosario."
+final_al_acusar = "La acusación se cae por falta de pruebas en la escena y Vidal queda impune.\n\n[i]Gracias por intentarlo, agente.[/i]"

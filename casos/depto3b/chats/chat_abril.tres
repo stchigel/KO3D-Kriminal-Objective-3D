@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Chat" format=3]
+
+[ext_resource type="Script" path="res://chat.gd" id="chat"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "wa_abril_sabado"
+tipo = 0
+puntos = 1
+titulo = "Abril estuvo en lo de sus padres"
+texto = "Abril pasó el sábado a la tarde en lo de sus padres esperando a Matías, que nunca llegó."
+
+[resource]
+script = ExtResource("chat")
+nombre = "Abril Sosa"
+mensajes_enviables = Array[String](["¿Alguien más tuvo tus llaves esta semana?"])
+respuestas = Array[String](["Se las presté a Mati el jueves porque tenía que esperar al técnico acá, [url=wa_abril_sabado]pero el sábado a la tarde estuve en lo de mis viejos esperándolo y él nunca llegó[/url]."])
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1")])

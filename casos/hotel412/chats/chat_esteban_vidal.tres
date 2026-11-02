@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Chat" format=3]
+
+[ext_resource type="Script" path="res://chat.gd" id="chat"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "wa_esteban_no_subio"
+tipo = 0
+titulo = "Esteban niega haber subido al piso 4"
+texto = "Esteban dice que estuvo toda la madrugada en recepción y que nunca subió al piso 4 ni sacó una llave maestra. Contrastalo con la planilla del office."
+puntos = 3
+
+[sub_resource type="Resource" id="Pista_2"]
+script = ExtResource("pista")
+id = "wa_esteban_faltante"
+tipo = 0
+titulo = "Esteban niega los faltantes"
+texto = "Esteban dice que Salas se confundió al contar la plata y que en su turno nunca faltó un peso. El registro de custodia dice otra cosa."
+puntos = 1
+
+[resource]
+script = ExtResource("chat")
+nombre = "Esteban Vidal"
+mensajes_enviables = Array[String](["¿Salió del mostrador de recepción entre la 1:30 y las 3:00 de la madrugada?", "¿Qué pasó con los faltantes en los sobres de custodia del turno noche?"])
+respuestas = Array[String](["No, estuve toda la madrugada en recepción y [url=wa_esteban_no_subio]en ningún momento subí al piso 4 ni saqué una llave maestra[/url].", "[url=wa_esteban_faltante]El señor Salas se confundió al contar la plata[/url], en mi turno jamás faltó un peso."])
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1"), SubResource("Pista_2")])

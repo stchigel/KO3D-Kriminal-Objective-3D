@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="Mail" format=3]
+
+[ext_resource type="Script" path="res://mail.gd" id="mail"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "mail_camara_office"
+tipo = 2
+titulo = "Cámara del office de servicio"
+texto = "El hotel tiene una cámara en el office de servicio que se mira desde la compu con SeguriCam."
+
+[sub_resource type="Resource" id="Pista_2"]
+script = ExtResource("pista")
+id = "mail_camara_clave"
+tipo = 1
+titulo = "Clave de la cámara del office"
+texto = "La clave de la cámara del office es el número de piso del office más el año de apertura del hotel."
+
+[sub_resource type="Resource" id="Pista_3"]
+script = ExtResource("pista")
+id = "mail_office_piso4"
+tipo = 1
+titulo = "El office está en el piso 4"
+texto = "El office de servicio está en el piso 4, al lado del ascensor de servicio."
+
+[resource]
+script = ExtResource("mail")
+nombre = "Mantenimiento"
+destinatario = "Recepción Hotel Mirador"
+fecha = "17/10/2026 10:20"
+asunto = "Clave nueva de la cámara del office"
+mensaje = "Después del problema de la semana pasada cambiamos la clave de la [url=mail_camara_office]cámara del office de servicio[/url]. [url=mail_camara_clave]Es el número de piso del office + el año de apertura del hotel.[/url] Les recuerdo que [url=mail_office_piso4]el office está en el piso 4[/url], al lado del ascensor de servicio. Por favor, no la compartan con personal externo."
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1"), SubResource("Pista_2"), SubResource("Pista_3")])

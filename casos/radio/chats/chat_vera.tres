@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Chat" format=3]
+
+[ext_resource type="Script" path="res://chat.gd" id="chat"]
+[ext_resource type="Script" path="res://mensaje.gd" id="mensaje"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "wa_vera_no_piso"
+tipo = 0
+puntos = 3
+titulo = "Vera dice que no pisó la radio"
+texto = "Vera asegura que el viernes no pisó el estudio ni tocó la computadora del control. Contradice su mail citando a Horacio a las 20:30."
+
+[sub_resource type="Resource" id="Pista_2"]
+script = ExtResource("pista")
+id = "wa_vera_facturas"
+tipo = 0
+puntos = 2
+titulo = "Vera dice que Horacio se confundía"
+texto = "Vera dice que Horacio se confundía con las facturas y que las cuentas de publicidad estaban en orden."
+
+[resource]
+script = ExtResource("chat")
+nombre = "Vera Castro"
+mensajes = Array[ExtResource("mensaje")]([])
+mensajes_enviables = Array[String](["¿Estuvo en la radio el viernes a la noche?", "¿Qué sabe de los avisos publicitarios que Horacio iba a denunciar el lunes?"])
+respuestas = Array[String](["No, el viernes [url=wa_vera_no_piso]no pisé el estudio en todo el día ni toqué la computadora del control[/url].", "[url=wa_vera_facturas]Horacio estaba grande y se confundía con las facturas[/url], las cuentas de publicidad estaban todas en orden."])
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1"), SubResource("Pista_2")])

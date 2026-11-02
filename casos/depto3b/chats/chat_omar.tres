@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Chat" format=3]
+
+[ext_resource type="Script" path="res://chat.gd" id="chat"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "wa_omar_llaves"
+tipo = 0
+titulo = "Las llaves de portería no salieron"
+texto = "Omar dice que las llaves de portería estuvieron colgadas en su garita toda la tarde y que no se movió de la entrada."
+
+[resource]
+script = ExtResource("chat")
+nombre = "Omar (encargado)"
+mensajes_enviables = Array[String](["¿Alguien le pidió la copia de llaves del 3B el sábado?"])
+respuestas = Array[String](["Nadie, [url=wa_omar_llaves]las llaves de portería estuvieron colgadas en mi garita toda la tarde[/url] y yo no me moví de la entrada."])
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1")])

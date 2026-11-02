@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Mail" format=3]
+
+[ext_resource type="Script" path="res://mail.gd" id="mail"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "mail_volt_demanda"
+tipo = 0
+titulo = "VoltEnergy lo va a demandar"
+texto = "VoltEnergy le avisó a Tomás que, vencido el plazo, inicia acciones legales para recuperar el adelanto de $3.000.000."
+puntos = 3
+
+[resource]
+script = ExtResource("mail")
+nombre = "VoltEnergy — Departamento Legal"
+destinatario = "Tomás Aguirre"
+fecha = "06/10/2025 10:05"
+asunto = "Último aviso — Contrato VE-2291"
+mensaje = "Sr. Tomás Aguirre:\n\nNos dirigimos a usted en relación con el contrato de patrocinio firmado en marzo, por el cual se le abonó un adelanto de $3.000.000 a cambio de 40 menciones mensuales de la marca, de las cuales se cumplieron 6.\n\nHabiéndole enviado tres intimaciones sin respuesta, le informamos que, vencido el plazo, [url=mail_volt_demanda]iniciaremos acciones legales[/url] para recuperar el monto adeudado más los intereses correspondientes.\n\nDepartamento Legal — VoltEnergy"
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1")])

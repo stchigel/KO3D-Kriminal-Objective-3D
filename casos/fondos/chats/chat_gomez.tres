@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Chat" format=3]
+
+[ext_resource type="Script" path="res://chat.gd" id="chat"]
+[ext_resource type="Script" path="res://mensaje.gd" id="mensaje"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "wa_gomez_licencia"
+tipo = 0
+titulo = "Gómez estuvo internado esa semana"
+texto = "Gómez estuvo toda la semana internado y en reposo por la operación de rodilla, y no falta ningún sobre de la caja fuerte."
+
+[resource]
+script = ExtResource("chat")
+nombre = "Gómez"
+mensajes_enviables = Array[String](["¿Alguien abrió la caja de preceptoría esa semana?"])
+respuestas = Array[String](["Imposible que haya sido yo, [url=wa_gomez_licencia]estuve toda esa semana internado y en reposo por la operación de rodilla[/url], y además de la caja fuerte no falta ningún sobre de efectivo."])
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1")])

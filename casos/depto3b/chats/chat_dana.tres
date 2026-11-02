@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Chat" format=3]
+
+[ext_resource type="Script" path="res://chat.gd" id="chat"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "wa_dana_moreno"
+tipo = 0
+titulo = "Dana estuvo en Moreno"
+texto = "Dana pasó el sábado desde el mediodía en la casa de su madre, en Moreno."
+
+[resource]
+script = ExtResource("chat")
+nombre = "Dana Ríos"
+mensajes_enviables = Array[String](["¿Dónde estuviste el sábado 15 a la tarde?"])
+respuestas = Array[String](["En Moreno, [url=wa_dana_moreno]en la casa de mi vieja desde el mediodía[/url]. Debo dos meses de expensas, sí, pero jamás le tocaría un cuadro a Lu."])
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1")])

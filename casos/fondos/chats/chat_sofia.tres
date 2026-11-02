@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Chat" format=3]
+
+[ext_resource type="Script" path="res://chat.gd" id="chat"]
+[ext_resource type="Script" path="res://mensaje.gd" id="mensaje"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "wa_sofia_recibos"
+tipo = 0
+titulo = "Sofía solo juntó efectivo con recibo"
+texto = "Sofía solo juntó el efectivo de la cuota 1 y lo entregó con recibo firmado. Las cuotas 2 y 3 se pagaron por transferencia."
+
+[resource]
+script = ExtResource("chat")
+nombre = "Sofía Rey"
+mensajes_enviables = Array[String](["¿Qué pasó con la plata de las cuotas 2 y 3?"])
+respuestas = Array[String](["Yo solo junté el efectivo de la cuota 1 y [url=wa_sofia_recibos]entregué cada sobre en preceptoría contra recibo firmado en la carpeta de la caja fuerte[/url]. Las cuotas 2 y 3 se pagaron todas por transferencia al alias que pasó Bruno."])
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1")])

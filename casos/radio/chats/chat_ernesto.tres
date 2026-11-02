@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Chat" format=3]
+
+[ext_resource type="Script" path="res://chat.gd" id="chat"]
+[ext_resource type="Script" path="res://mensaje.gd" id="mensaje"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "wa_ernesto_garita"
+tipo = 0
+titulo = "Ernesto estaba en la fábrica"
+texto = "Ernesto fichó entrada a las 18 en la fábrica de Villa Lynch y no salió hasta las 6 de la mañana."
+
+[resource]
+script = ExtResource("chat")
+nombre = "OyenteNocturno77"
+mensajes = Array[ExtResource("mensaje")]([])
+mensajes_enviables = Array[String](["¿Dónde estaba el viernes entre las 20 y las 24?"])
+respuestas = Array[String](["En la garita de la fábrica en Villa Lynch, [url=wa_ernesto_garita]fiché entrada a las 18 y no salí hasta las 6 de la mañana[/url]. Le escribía así a Horacio porque a la noche estoy solo y su programa era mi única compañía."])
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1")])

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Chat" format=3]
+
+[ext_resource type="Script" path="res://chat.gd" id="chat"]
+[ext_resource type="Script" path="res://mensaje.gd" id="mensaje"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "wa_camila_cosas"
+tipo = 0
+titulo = "Camila solo reclamaba sus cosas"
+texto = "Camila dice que solo le escribió para recuperar su campera y sus libros y que esa noche estaba en una entrega de la facultad."
+
+[resource]
+script = ExtResource("chat")
+nombre = "Camila Vera"
+mensajes_enviables = Array[String](["¿Fue al departamento de Tomás el lunes a la noche o el martes?"])
+respuestas = Array[String](["No. Cortamos hace dos meses. [url=wa_camila_cosas]Solo le mandé un mail para que me devuelva mi campera y mis libros[/url], pero esa noche estuve rindiendo una entrega de la facultad."])
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1")])

@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Chat" format=3]
+
+[ext_resource type="Script" path="res://chat.gd" id="chat"]
+[ext_resource type="Script" path="res://mensaje.gd" id="mensaje"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "wa_bruno_alias"
+tipo = 0
+titulo = "Bruno dice no conocer al titular del alias"
+texto = "Bruno asegura que no sabe quién es el titular del alias RUMBO.SUR.PAGOS ni conoce a nadie que lo use. Fijate en Barrio quién lo usa."
+puntos = 2
+
+[sub_resource type="Resource" id="Pista_2"]
+script = ExtResource("pista")
+id = "wa_bruno_edicion"
+tipo = 0
+titulo = "Bruno ordenaba nombres a las 3 de la mañana"
+texto = "Bruno justifica la edición de la planilla de las 03:12 diciendo que ordenaba los nombres de los que transfirieron."
+puntos = 1
+
+[resource]
+script = ExtResource("chat")
+nombre = "Bruno Ale"
+mensajes_enviables = Array[String](["¿De dónde salió el alias RUMBO.SUR.PAGOS que hiciste anotar en el pizarrón?", "¿Por qué editaste la planilla del Drive a las tres de la mañana?"])
+respuestas = Array[String](["Me llegó por correo desde la agencia y yo solo avisé en la reunión. [url=wa_bruno_alias]No tengo idea de quién es el titular de esa cuenta ni conozco a nadie que use ese alias[/url].", "Estaba [url=wa_bruno_edicion]ordenando los nombres de los que habían transferido[/url], nada más."])
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1"), SubResource("Pista_2")])

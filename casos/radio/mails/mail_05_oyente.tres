@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Mail" format=3]
+
+[ext_resource type="Script" path="res://mail.gd" id="mail"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "mail_oyente_escuchando"
+tipo = 3
+titulo = "Siempre escuchando"
+texto = "OyenteNocturno77 escribe que siempre está escuchando, cada viernes, cada palabra."
+
+[resource]
+script = ExtResource("mail")
+nombre = "OyenteNocturno77"
+destinatario = "Radio Vecina"
+fecha = "07/11/2025 22:12"
+asunto = "(sin asunto)"
+mensaje = "[url=mail_oyente_escuchando]Siempre estoy escuchando.[/url] Cada viernes. Cada palabra. Sos lo único que me acompaña."
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1")])

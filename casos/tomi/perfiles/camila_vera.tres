@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Perfil" format=3]
+
+[ext_resource type="Script" path="res://src/Perfiles/perfil.gd" id="perfil"]
+
+[resource]
+script = ExtResource("perfil")
+nombre = "Camila Vera"
+rol = "Sospechosa"
+edad = "22"
+ocupacion = "Estudiante de diseño"
+vinculo = "Ex pareja de Tomás"
+notas = "Cortaron mal hace dos meses. Todavía tiene cosas suyas en el departamento de Tomás."
+final_al_acusar = "La investigación apunta a una inocente y la colecta falsa sigue sumando millones.\n\n[i]Gracias por intentarlo, agente.[/i]"

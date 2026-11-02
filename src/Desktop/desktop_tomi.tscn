@@ -1,0 +1,206 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/Desktop/desktop.gd" id="desktop_gd"]
+[ext_resource type="Texture2D" path="res://assets/kali-linux-wallpaper-v7.png" id="fondo"]
+[ext_resource type="PackedScene" path="res://src/Icono/icono.tscn" id="icono_scene"]
+[ext_resource type="PackedScene" path="res://src/Archivo/archivo.tscn" id="archivo_scene"]
+[ext_resource type="PackedScene" path="res://src/Carpeta/carpeta.tscn" id="carpeta_scene"]
+[ext_resource type="PackedScene" path="res://src/Texto/texto.tscn" id="texto_scene"]
+[ext_resource type="PackedScene" path="res://src/Chat/chat.tscn" id="chat_scene"]
+[ext_resource type="PackedScene" path="res://src/Mail/mail.tscn" id="mail_scene"]
+[ext_resource type="PackedScene" path="res://src/Mail/contactoMail.tscn" id="contacto_mail_scene"]
+[ext_resource type="Script" path="res://chat.gd" id="chat_gd"]
+[ext_resource type="Script" path="res://mail.gd" id="mail_gd"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+[ext_resource type="Texture2D" path="res://assets/iconos/whatsapp.png" id="ico_whatsapp"]
+[ext_resource type="Texture2D" path="res://assets/iconos/gmail.png" id="ico_gmail"]
+[ext_resource type="Texture2D" path="res://assets/iconos/user-trash-full.svg" id="ico_papelera"]
+[ext_resource type="Texture2D" path="res://assets/iconos/text.svg" id="ico_texto"]
+
+[ext_resource type="Resource" path="res://casos/tomi/mails/mail_01_volt_ultimo_aviso.tres" id="mail_01_volt_ultimo_aviso"]
+[ext_resource type="Resource" path="res://casos/tomi/mails/mail_02_camila.tres" id="mail_02_camila"]
+[ext_resource type="Resource" path="res://casos/tomi/mails/mail_03_lucas_reserva.tres" id="mail_03_lucas_reserva"]
+[ext_resource type="Resource" path="res://casos/tomi/mails/mail_04_flor.tres" id="mail_04_flor"]
+[ext_resource type="Resource" path="res://casos/tomi/chats/chat_lucas.tres" id="chat_lucas"]
+[ext_resource type="Resource" path="res://casos/tomi/chats/chat_kaiserx.tres" id="chat_kaiserx"]
+[ext_resource type="Resource" path="res://casos/tomi/chats/chat_camila.tres" id="chat_camila"]
+
+[sub_resource type="Resource" id="Pista_guion_1"]
+script = ExtResource("pista")
+id = "guion_kaiser"
+tipo = 3
+titulo = "Kaiser y sus capturas"
+texto = "Tomás anotó que si Kaiser vuelve a tirar hate lo va a exponer en vivo con capturas guardadas."
+
+[sub_resource type="Resource" id="Pista_guion_2"]
+script = ExtResource("pista")
+id = "guion_sponsor"
+tipo = 0
+puntos = 2
+titulo = "No mencionar lo del sponsor"
+texto = "Tomás escribió que no hable del sponsor y que, si preguntan por Volt, cambie de tema. Lucas le dice que \"se arregla\"."
+
+[sub_resource type="Resource" id="Pista_guion_3"]
+script = ExtResource("pista")
+id = "guion_minecraft"
+tipo = 1
+titulo = "Su primer stream"
+texto = "El primer stream de Tomás fue de Minecraft, en 2019, con tres viewers."
+
+[sub_resource type="Resource" id="Pista_guion_4"]
+script = ExtResource("pista")
+id = "guion_fortnite"
+tipo = 3
+titulo = "El año que explotó"
+texto = "Tomás explotó en 2020, con Fortnite."
+
+[sub_resource type="Resource" id="Pista_guion_5"]
+script = ExtResource("pista")
+id = "guion_madrugar"
+tipo = 0
+puntos = 1
+titulo = "Madrugar el martes"
+texto = "Tomás anotó que cierra temprano porque el martes tiene que madrugar."
+
+[sub_resource type="Resource" id="Pista_guion_6"]
+script = ExtResource("pista")
+id = "guion_chusmeo"
+tipo = 2
+titulo = "Chusmeo"
+texto = "Tomás avisa en Chusmeo cuando no hay stream."
+
+[node name="Desktop" type="Control" node_paths=PackedStringArray("ventanas")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("desktop_gd")
+ventanas = [NodePath("Papelera"), NodePath("Guion"), NodePath("Chat"), NodePath("Mail")]
+
+[node name="Fondo" type="TextureRect" parent="."]
+show_behind_parent = true
+layout_mode = 0
+offset_top = -36.0
+offset_right = 784.0756
+offset_bottom = 454.04727
+scale = Vector2(1.4692461, 1.469246)
+mouse_filter = 2
+texture = ExtResource("fondo")
+expand_mode = 1
+
+[node name="Taskbar" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = 608.0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="Linea" type="ColorRect" parent="Taskbar"]
+layout_mode = 0
+offset_top = -1.0
+offset_right = 1152.0
+
+[node name="Icono" parent="Taskbar" node_paths=PackedStringArray("abrir") instance=ExtResource("icono_scene")]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 48.0
+icono = ExtResource("ico_whatsapp")
+abrir = NodePath("../../Chat")
+
+[node name="Icono2" parent="Taskbar" node_paths=PackedStringArray("abrir") instance=ExtResource("icono_scene")]
+layout_mode = 0
+offset_left = 56.0
+offset_right = 96.0
+icono = ExtResource("ico_gmail")
+abrir = NodePath("../../Mail")
+
+[node name="Topbar" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 24.0
+color = Color(0, 0, 0, 1)
+
+[node name="Linea" type="ColorRect" parent="Topbar"]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 1152.0
+offset_bottom = 25.0
+
+[node name="Label" type="Label" parent="Topbar"]
+layout_mode = 0
+offset_left = 1080.0
+offset_right = 1144.0
+offset_bottom = 24.0
+text = "12:00"
+
+[node name="Desconectar" type="Button" parent="Topbar"]
+layout_mode = 0
+offset_left = 920.0
+offset_right = 1072.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 13
+text = "Desconectar"
+flat = true
+
+[node name="PapeleraIco" parent="." node_paths=PackedStringArray("abrir") instance=ExtResource("archivo_scene")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 40.0
+offset_right = 96.0
+offset_bottom = 120.0
+nom = "Trash"
+icono = ExtResource("ico_papelera")
+abrir = NodePath("../Papelera")
+
+[node name="GuionIco" parent="." node_paths=PackedStringArray("abrir") instance=ExtResource("archivo_scene")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 128.0
+offset_right = 96.0
+offset_bottom = 208.0
+nom = "guion_ultimo_stream.txt"
+icono = ExtResource("ico_texto")
+abrir = NodePath("../Guion")
+
+[node name="Papelera" parent="." instance=ExtResource("carpeta_scene")]
+visible = false
+layout_mode = 0
+offset_left = 136.0
+offset_top = 96.0
+offset_right = 968.0
+offset_bottom = 544.0
+nombre = "Papelera"
+
+[node name="Guion" parent="." instance=ExtResource("texto_scene")]
+visible = false
+layout_mode = 0
+offset_left = 288.0
+offset_top = 152.0
+offset_right = 608.0
+offset_bottom = 600.0
+texto = "GUION STREAM LUNES — \"ESPECIAL 100K\"\n\nARRANQUE (22:00)\n- Saludar a los Frosties del Discord. Nombrar a los mods (Juanchi, Belu, el Tano) que la vienen remando.\n- Agradecer los 100K. No llorar. Bueno, un poquito sí, queda bien.\n- [url=guion_kaiser]Si Kaiser vuelve a tirar hate, lo expongo en vivo.[/url] Tengo las capturas guardadas.\n\nBLOQUE 1 — SORTEO\n- Sorteo de la silla gamer. Revisar que el bot del sorteo ande, la última vez ganó una cuenta de 2 días.\n- [url=guion_sponsor]NO mencionar lo del sponsor, Lucas dice que se arregla.[/url] Si alguien pregunta por Volt, cambiar de tema.\n\nBLOQUE 2 — ANÉCDOTAS\n- Contar la de siempre: mi primer stream fue de [url=guion_minecraft]Minecraft, en 2019[/url], con tres viewers (mi vieja, Flor y Lucas). Mi vieja preguntó en el chat si ya había comido.\n- Recordar: [url=guion_fortnite]el año que exploté fue 2020, con Fortnite.[/url] Mostrar el clip del 1v4.\n- Si el chat pide, contar lo del corte de luz en el torneo. No contar lo del baño.\n\nCIERRE\n- Cerrar temprano, [url=guion_madrugar]mañana martes tengo que madrugar.[/url]\n- Subir el VOD a FrostCloud después del stream, que la otra vez se me borró.\n- Avisar en [url=guion_chusmeo]Chusmeo[/url] que mañana no hay stream. Inventar algo creíble.\n- Dejar a Rocco en lo de Flor antes del martes. IMPORTANTE."
+nombre = "guion_ultimo_stream.txt"
+pistas = Array[ExtResource("pista")]([SubResource("Pista_guion_1"), SubResource("Pista_guion_2"), SubResource("Pista_guion_3"), SubResource("Pista_guion_4"), SubResource("Pista_guion_5"), SubResource("Pista_guion_6")])
+
+[node name="Chat" parent="." instance=ExtResource("chat_scene")]
+visible = false
+layout_mode = 0
+offset_left = 192.0
+offset_top = 56.0
+offset_right = 1024.0
+offset_bottom = 504.0
+chats = Array[ExtResource("chat_gd")]([ExtResource("chat_lucas"), ExtResource("chat_kaiserx"), ExtResource("chat_camila")])
+
+[node name="Mail" parent="." instance=ExtResource("mail_scene")]
+visible = false
+layout_mode = 0
+offset_left = 224.0
+offset_top = 80.0
+offset_right = 928.0
+offset_bottom = 528.0
+mails = Array[ExtResource("mail_gd")]([ExtResource("mail_01_volt_ultimo_aviso"), ExtResource("mail_02_camila"), ExtResource("mail_03_lucas_reserva"), ExtResource("mail_04_flor")])
+contacto_scene = ExtResource("contacto_mail_scene")
+
+[connection signal="pressed" from="Topbar/Desconectar" to="." method="_on_desconectar_pressed"]

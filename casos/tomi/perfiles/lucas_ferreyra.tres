@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Perfil" format=3]
+
+[ext_resource type="Script" path="res://src/Perfiles/perfil.gd" id="perfil"]
+
+[resource]
+script = ExtResource("perfil")
+nombre = "Lucas Ferreyra"
+rol = "Sospechoso"
+edad = "25"
+ocupacion = "Editor de videos"
+vinculo = "Mejor amigo de Tomás y organizador de la colecta"
+notas = "Edita los videos de Tomi desde hace cuatro años. Armó la colecta Encontremos a Tomi."
+final_al_acusar = "Lucas es detenido por la colecta, pero Tomás sigue escondido sin responder por la maniobra.\n\n[i]Gracias por intentarlo, agente.[/i]"

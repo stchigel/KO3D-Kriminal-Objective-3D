@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Mail" format=3]
+
+[ext_resource type="Script" path="res://mail.gd" id="mail"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "mail_cerrajeria_copia"
+tipo = 0
+puntos = 3
+titulo = "Copia de llave retirada por Matías"
+texto = "Cerrajería Rápida avisa que Matías R. retiró una copia de la llave del departamento a nombre de Abril el viernes 14/11 a las 11:40."
+
+[resource]
+script = ExtResource("mail")
+nombre = "Cerrajería Rápida"
+destinatario = "Abril Sosa"
+fecha = "14/11/2025 11:45"
+asunto = "Tu copia está lista"
+mensaje = "Hola, Abril. Te escribimos porque dejaste tu mail en el pedido. Te avisamos que la copia de llave de tu departamento ya fue retirada. [url=mail_cerrajeria_copia]La retiró Matías R., a tu nombre, el viernes 14/11 a las 11:40[/url]. Cualquier inconveniente, nos escribís. ¡Gracias por elegirnos!"
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1")])

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Chat" format=3]
+
+[ext_resource type="Script" path="res://chat.gd" id="chat"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "wa_duarte_rosario"
+tipo = 0
+titulo = "Duarte dormía en Rosario"
+texto = "Duarte admite la pelea con Salas por la constructora, pero dice que esa noche durmió en Rosario porque había hormigonado a las seis de la mañana, con remitos firmados y registro del peaje."
+
+[resource]
+script = ExtResource("chat")
+nombre = "Martín Duarte"
+mensajes_enviables = Array[String](["¿Dónde estaba la noche del miércoles 22 al jueves 23?"])
+respuestas = Array[String](["Estaba discutiendo con Ramiro por la constructora, no lo voy a negar, pero esa noche [url=wa_duarte_rosario]dormí en Rosario porque teníamos hormigonado de obra a las seis de la mañana[/url], están los remitos firmados y el registro del peaje."])
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1")])

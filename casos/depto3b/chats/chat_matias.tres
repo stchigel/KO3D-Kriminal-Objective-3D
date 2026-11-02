@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Chat" format=3]
+
+[ext_resource type="Script" path="res://chat.gd" id="chat"]
+[ext_resource type="Script" path="res://src/Expediente/pista.gd" id="pista"]
+
+[sub_resource type="Resource" id="Pista_1"]
+script = ExtResource("pista")
+id = "wa_matias_copia"
+tipo = 0
+puntos = 2
+titulo = "Matías niega haber hecho una copia"
+texto = "Matías dice que devolvió las llaves sin hacer ninguna copia. Revisá el correo de Cerrajería Rápida en la cuenta de Abril."
+
+[sub_resource type="Resource" id="Pista_2"]
+script = ExtResource("pista")
+id = "wa_matias_usuario"
+tipo = 0
+puntos = 1
+titulo = "Matías usa @mroldan_arte"
+texto = "Matías admite que @mroldan_arte es su usuario para vender cosas usadas."
+
+[resource]
+script = ExtResource("chat")
+nombre = "Matías Roldán"
+mensajes_enviables = Array[String](["¿Qué hizo con las llaves que Abril le prestó el jueves?", "¿Usted usa la cuenta @mroldan_arte en redes y páginas de venta?"])
+respuestas = Array[String](["Estuve en el living esperando al técnico del celular y a la noche se las devolví en la mano [url=wa_matias_copia]sin salir del departamento ni hacer ninguna copia[/url].", "Sí, es mi usuario, pero [url=wa_matias_usuario]solo lo uso para vender zapatillas o alguna bici usada[/url], yo de cuadros no entiendo nada."])
+pistas = Array[ExtResource("pista")]([SubResource("Pista_1"), SubResource("Pista_2")])

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Perfil" format=3]
+
+[ext_resource type="Script" path="res://src/Perfiles/perfil.gd" id="perfil"]
+
+[resource]
+script = ExtResource("perfil")
+nombre = "Rocío Lagos"
+rol = "Sospechosa"
+edad = "38"
+ocupacion = "Jefa de limpieza del Hotel Mirador"
+vinculo = "Entró a la 412 a las 23:00 y encontró el cuerpo"
+notas = "Veinte años en el hotel, dos hijos. Retiró MASTER-1 a las 23:00 y la devolvió a las 23:30."
+final_al_acusar = "Rocío es despedida e imputada injustamente mientras Vidal sigue en su puesto.\n\n[i]Gracias por intentarlo, agente.[/i]"

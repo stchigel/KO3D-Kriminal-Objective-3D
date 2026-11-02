@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Perfil" format=3]
+
+[ext_resource type="Script" path="res://src/Perfiles/perfil.gd" id="perfil"]
+
+[resource]
+script = ExtResource("perfil")
+nombre = "Bruno Ale"
+rol = "Sospechoso"
+edad = "17"
+ocupacion = "Delegado del 5°B"
+vinculo = "Maneja la planilla de cobros del viaje"
+notas = "Carismático y bueno con los números. Fue quien anunció el cambio de alias en la reunión de padres."
+es_culpable = true
+pistas_de_cargo = PackedStringArray("acta_bruno_planilla", "acta_bruno_alias", "mail_rs_desmentido", "wa_bruno_alias", "wa_bruno_edicion", "cam_pizarron_alias", "web_planilla_edicion_bruno", "web_alias_federico", "web_federico_socio")
+puntos_necesarios = 8
+pistas_obligatorias = PackedStringArray()
+final_al_acusar = "Bruno y su primo tienen que devolver la plata desviada, Sofía queda limpia frente a todo el colegio y el 5°B viaja a Bariloche.\n\n[i]Buen trabajo, agente.[/i]"
+final_sin_pruebas = "Bruno fue acusado, pero las pruebas presentadas no alcanzaron para sostener el cargo. Sigue de delegado y el curso pierde el viaje.\n\n[i]Gracias por intentarlo, agente.[/i]"

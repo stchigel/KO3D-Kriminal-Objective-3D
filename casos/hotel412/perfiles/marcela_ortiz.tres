@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Perfil" format=3]
+
+[ext_resource type="Script" path="res://src/Perfiles/perfil.gd" id="perfil"]
+
+[resource]
+script = ExtResource("perfil")
+nombre = "Marcela Ortiz"
+rol = "Sospechosa"
+edad = "52"
+ocupacion = "Gerente general del Hotel Mirador"
+vinculo = "Jefa de Esteban Vidal"
+notas = "Estricta y obsesionada con la reputación del hotel. Sospechaba de los faltantes y le tiene más miedo al escándalo que al robo. No estuvo en el turno noche."
+final_al_acusar = "La acusación se cae por falta de pruebas en la escena y Vidal queda impune.\n\n[i]Gracias por intentarlo, agente.[/i]"

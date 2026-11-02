@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Perfil" format=3]
+
+[ext_resource type="Script" path="res://src/Perfiles/perfil.gd" id="perfil"]
+
+[resource]
+script = ExtResource("perfil")
+nombre = "Sofía Rey"
+rol = "Sospechosa"
+edad = "17"
+ocupacion = "Co-delegada del 5°B"
+vinculo = "Junta el efectivo de las cuotas del viaje"
+notas = "Guarda cada recibo en un folio y lleva una carpeta de colores para todo. Algunos compañeros la ven como la que controla."
+final_al_acusar = "Sancionan a un inocente por un robo en efectivo que nunca existió y el curso pierde el viaje.\n\n[i]Gracias por intentarlo, agente.[/i]"
