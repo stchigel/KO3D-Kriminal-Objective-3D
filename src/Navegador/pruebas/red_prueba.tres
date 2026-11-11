@@ -1,0 +1,175 @@
+[gd_resource type="Resource" script_class="RedSocial" format=3 uid="uid://6cfrouelolf7"]
+
+[ext_resource type="Script" uid="uid://yr81rnj6xhvv" path="res://src/Navegador/Social/red_social.gd" id="1_red"]
+[ext_resource type="Script" uid="uid://gajm70a1rinc" path="res://src/Navegador/Social/perfil_social.gd" id="2_perfil"]
+[ext_resource type="Script" uid="uid://uwsb26kps6yt" path="res://src/Navegador/Social/publicacion.gd" id="3_publicacion"]
+[ext_resource type="Script" uid="uid://blkfjqfrkdtti" path="res://src/Navegador/Social/comentario.gd" id="4_comentario"]
+[ext_resource type="Script" uid="uid://b3ag2k8d33jul" path="res://src/Expediente/pista.gd" id="5_pista"]
+
+[sub_resource type="Resource" id="p_futuro"]
+script = ExtResource("5_pista")
+id = "prueba_barrio_futuro"
+titulo = "Julián insiste con la casa"
+texto = "Julián le dice a Marta que hay que pensar en el futuro, que la casa le queda enorme."
+
+[sub_resource type="Resource" id="c_julian_futuro"]
+script = ExtResource("4_comentario")
+autor = "Julián Ibáñez"
+texto = "Gracias, tía. Igual [url=prueba_barrio_futuro]hay que pensar en el futuro, esa casa te queda enorme[/url]."
+pistas = Array[ExtResource("5_pista")]([SubResource("p_futuro")])
+
+[sub_resource type="Resource" id="c_marta_casa"]
+script = ExtResource("4_comentario")
+autor = "Marta Ibáñez"
+texto = "La casa me queda perfecta, nene."
+
+[sub_resource type="Resource" id="c_nelly_lindos"]
+script = ExtResource("4_comentario")
+autor = "Nelly Ferrari"
+texto = "¡Qué lindos! Julián, cuidala mucho a tu tía."
+
+[sub_resource type="Resource" id="pub_almuerzo"]
+script = ExtResource("3_publicacion")
+fecha = "domingo 07/09"
+texto = "Almuerzo con mi sobrino. Hacía meses que no venía un domingo. Hice los canelones de la abuela y se comió tres. Lo veo flaco, trabaja demasiado. (foto de los dos en la mesa del living)"
+comentarios = Array[ExtResource("4_comentario")]([SubResource("c_julian_futuro"), SubResource("c_marta_casa"), SubResource("c_nelly_lindos")])
+
+[sub_resource type="Resource" id="c_julian_correo"]
+script = ExtResource("4_comentario")
+autor = "Julián Ibáñez"
+texto = "Tía, está en el mail de CamCasa. Buscalo, no es tan difícil."
+
+[sub_resource type="Resource" id="c_nelly_camara"]
+script = ExtResource("4_comentario")
+autor = "Nelly Ferrari"
+texto = "Marti, yo tampoco entiendo nada de eso. Somos dos."
+
+[sub_resource type="Resource" id="p_correo"]
+script = ExtResource("5_pista")
+id = "prueba_barrio_correo"
+tipo = 2
+titulo = "El correo de Marta"
+texto = "Marta abre el correo una sola vez por mes."
+
+[sub_resource type="Resource" id="pub_camara"]
+script = ExtResource("3_publicacion")
+fecha = "04/08"
+texto = "¿Alguien sabe cómo se entra a la camarita desde la compu? Julián me dijo que el número para entrar me llegó en un mail de bienvenida, pero yo [url=prueba_barrio_correo]el correo[/url] lo abro una vez por mes y está lleno de publicidades de colchones."
+pistas = Array[ExtResource("5_pista")]([SubResource("p_correo")])
+comentarios = Array[ExtResource("4_comentario")]([SubResource("c_julian_correo"), SubResource("c_nelly_camara")])
+
+[sub_resource type="Resource" id="p_tijeras"]
+script = ExtResource("5_pista")
+id = "prueba_barrio_tijeras"
+tipo = 3
+titulo = "Sonia se llevó unas tijeras"
+texto = "Sonia devuelve unas tijeras de podar que se llevó sin querer."
+
+[sub_resource type="Resource" id="c_sonia_tijeras"]
+script = ExtResource("4_comentario")
+autor = "Sonia Paredes"
+texto = "Marta, le paso el dato de mi primo Walter, es un genio con las plantas. Y le devuelvo [url=prueba_barrio_tijeras]las tijeras de podar que me llevé sin querer[/url]."
+pistas = Array[ExtResource("5_pista")]([SubResource("p_tijeras")])
+
+[sub_resource type="Resource" id="c_marta_tijeras"]
+script = ExtResource("4_comentario")
+autor = "Marta Ibáñez"
+texto = "¡Con razón no las encontraba por ningún lado!"
+
+[sub_resource type="Resource" id="pub_jardin"]
+script = ExtResource("3_publicacion")
+fecha = "01/09"
+texto = "Busco a alguien que me dé una mano con el jardín los sábados. Las rosas están hechas un desastre y yo ya no me puedo agachar como antes. Pago bien y el mate va de regalo."
+comentarios = Array[ExtResource("4_comentario")]([SubResource("c_sonia_tijeras"), SubResource("c_marta_tijeras")])
+
+[sub_resource type="Resource" id="c_marta_ruiz"]
+script = ExtResource("4_comentario")
+autor = "Marta Ibáñez"
+texto = "Buenas tardes a usted también, Carlos."
+
+[sub_resource type="Resource" id="p_ruiz"]
+script = ExtResource("5_pista")
+id = "prueba_barrio_ruiz"
+tipo = 3
+titulo = "Ruiz amenaza con zoonosis"
+texto = "Carlos Ruiz amenaza con llamar a zoonosis por el gato."
+
+[sub_resource type="Resource" id="pub_ruiz"]
+script = ExtResource("3_publicacion")
+autor = "Carlos Ruiz"
+fecha = "En el muro de Marta"
+texto = "Señora, le aviso por última vez: el gato en mi patio NO. La próxima vez llamo a [url=prueba_barrio_ruiz]zoonosis[/url] y que se arreglen ellos."
+pistas = Array[ExtResource("5_pista")]([SubResource("p_ruiz")])
+comentarios = Array[ExtResource("4_comentario")]([SubResource("c_marta_ruiz")])
+
+[sub_resource type="Resource" id="perfil_marta"]
+script = ExtResource("2_perfil")
+usuario = "MartaDeFlores"
+nombre = "Marta Ibáñez"
+detalle = "Villa Bosch"
+bio = "Gatera de alma, maestra jubilada, cocinera de domingo."
+publicaciones = Array[ExtResource("3_publicacion")]([SubResource("pub_almuerzo"), SubResource("pub_camara"), SubResource("pub_jardin"), SubResource("pub_ruiz")])
+
+[sub_resource type="Resource" id="c_marta_justamente"]
+script = ExtResource("4_comentario")
+autor = "Marta Ibáñez"
+texto = "Justamente por eso."
+
+[sub_resource type="Resource" id="p_llavero"]
+script = ExtResource("5_pista")
+id = "prueba_barrio_llavero"
+titulo = "Llavero rojo y blanco"
+texto = "Julián estrena el llavero rojo y blanco que le regaló Marta para la llave nueva."
+
+[sub_resource type="Resource" id="pub_llavero"]
+script = ExtResource("3_publicacion")
+fecha = "11/09"
+texto = "Estrenando llavero rojo y blanco, regalo de mi tía para [url=prueba_barrio_llavero]la llave nueva[/url]. Dice que es para que no la pierda. Tía, tengo 34 años. (foto de la llave con el llavero)"
+pistas = Array[ExtResource("5_pista")]([SubResource("p_llavero")])
+comentarios = Array[ExtResource("4_comentario")]([SubResource("c_marta_justamente")])
+
+[sub_resource type="Resource" id="pub_semana"]
+script = ExtResource("3_publicacion")
+fecha = "16/09"
+texto = "Semana complicada en el laburo, no me hablen."
+
+[sub_resource type="Resource" id="c_pablo_fuerza"]
+script = ExtResource("4_comentario")
+autor = "Pablo R."
+texto = "Fuerza, Juli."
+
+[sub_resource type="Resource" id="c_nelly_acompano"]
+script = ExtResource("4_comentario")
+autor = "Nelly Ferrari"
+texto = "Te acompaño."
+
+[sub_resource type="Resource" id="pub_dias"]
+script = ExtResource("3_publicacion")
+fecha = "19/09"
+texto = "Días difíciles. Gracias a todos por los mensajes."
+comentarios = Array[ExtResource("4_comentario")]([SubResource("c_pablo_fuerza"), SubResource("c_nelly_acompano")])
+
+[sub_resource type="Resource" id="p_inmobiliaria"]
+script = ExtResource("5_pista")
+id = "prueba_barrio_inmobiliaria"
+titulo = "Julián habló con una inmobiliaria"
+texto = "Julián ya habló con una inmobiliaria por la casa de su tía."
+
+[sub_resource type="Resource" id="pub_inmobiliaria"]
+script = ExtResource("3_publicacion")
+fecha = "22/09"
+texto = "Hay que seguir adelante. Ya hablé con [url=prueba_barrio_inmobiliaria]una inmobiliaria por la casa de la tía[/url]."
+pistas = Array[ExtResource("5_pista")]([SubResource("p_inmobiliaria")])
+
+[sub_resource type="Resource" id="perfil_julian"]
+script = ExtResource("2_perfil")
+usuario = "JulianIbanez"
+nombre = "Julián Ibáñez"
+detalle = "34 años"
+publicaciones = Array[ExtResource("3_publicacion")]([SubResource("pub_llavero"), SubResource("pub_semana"), SubResource("pub_dias"), SubResource("pub_inmobiliaria")])
+
+[resource]
+script = ExtResource("1_red")
+nombre = "Barrio"
+perfil_inicial = SubResource("perfil_marta")
+perfiles = Array[ExtResource("2_perfil")]([SubResource("perfil_julian")])

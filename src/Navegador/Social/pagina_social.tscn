@@ -1,0 +1,51 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/Navegador/Social/pagina_social.gd" id="1_pagina"]
+[ext_resource type="Script" path="res://src/Navegador/Social/texto_resaltable.gd" id="2_texto"]
+
+[node name="PaginaSocial" type="PanelContainer"]
+size_flags_vertical = 3
+script = ExtResource("1_pagina")
+
+[node name="Margen" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Contenido" type="VBoxContainer" parent="Margen"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Red" type="Label" parent="Margen/Contenido"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+
+[node name="Perfil" type="PanelContainer" parent="Margen/Contenido"]
+layout_mode = 2
+
+[node name="Datos" type="VBoxContainer" parent="Margen/Contenido/Perfil"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Nombre" type="Label" parent="Margen/Contenido/Perfil/Datos"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+
+[node name="Detalle" type="Label" parent="Margen/Contenido/Perfil/Datos"]
+modulate = Color(1, 1, 1, 0.6)
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+
+[node name="Bio" type="RichTextLabel" parent="Margen/Contenido/Perfil/Datos"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 15
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+script = ExtResource("2_texto")
+
+[node name="Publicaciones" type="VBoxContainer" parent="Margen/Contenido"]
+layout_mode = 2
+theme_override_constants/separation = 10

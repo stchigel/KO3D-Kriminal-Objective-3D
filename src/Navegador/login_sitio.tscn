@@ -1,0 +1,90 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/Navegador/login_sitio.gd" id="1_login"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fondo"]
+bg_color = Color(0.1254902, 0.1254902, 0.1254902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tarjeta"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 5
+
+[node name="Login" type="Panel"]
+visible = false
+offset_right = 704.0
+offset_bottom = 352.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_fondo")
+script = ExtResource("1_login")
+
+[node name="Tarjeta" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -10.0
+offset_right = 160.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tarjeta")
+
+[node name="Contenido" type="VBoxContainer" parent="Tarjeta"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Titulo" type="Label" parent="Tarjeta/Contenido"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Sitio"
+horizontal_alignment = 1
+
+[node name="Subtitulo" type="Label" parent="Tarjeta/Contenido"]
+modulate = Color(1, 1, 1, 0.6)
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Iniciar sesión"
+horizontal_alignment = 1
+
+[node name="Usuario" type="LineEdit" parent="Tarjeta/Contenido"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+placeholder_text = "Usuario"
+editable = false
+
+[node name="Clave" type="LineEdit" parent="Tarjeta/Contenido"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+placeholder_text = "Contraseña"
+
+[node name="Pista" type="Label" parent="Tarjeta/Contenido"]
+modulate = Color(1, 1, 1, 0.7)
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Pista:"
+autowrap_mode = 3
+
+[node name="Error" type="Label" parent="Tarjeta/Contenido"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.4, 0.4, 1)
+theme_override_font_sizes/font_size = 13
+text = "Contraseña incorrecta"
+
+[node name="Entrar" type="Button" parent="Tarjeta/Contenido"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Entrar"
+
+[connection signal="text_submitted" from="Tarjeta/Contenido/Clave" to="." method="_on_clave_text_submitted"]
+[connection signal="pressed" from="Tarjeta/Contenido/Entrar" to="." method="_on_entrar_pressed"]

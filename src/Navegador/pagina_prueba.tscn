@@ -1,0 +1,37 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/Navegador/pagina_prueba.gd" id="1_pagina"]
+
+[node name="PaginaPrueba" type="MarginContainer"]
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+script = ExtResource("1_pagina")
+
+[node name="Contenido" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Titulo" type="Label" parent="Contenido"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Titulo"
+
+[node name="Direccion" type="Label" parent="Contenido"]
+modulate = Color(1, 1, 1, 0.5)
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "direccion"
+
+[node name="Texto" type="Label" parent="Contenido"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Esta es una pagina de prueba para ver el navegador. El contenido real de cada sitio lo ponen las plantillas de pagina, que todavia no existen.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pulvinar felis sed scelerisque tempor. Curabitur purus nulla, congue non dolor ac, suscipit tempus tellus. Ut auctor nibh vel nibh fermentum condimentum eget vitae risus. Phasellus leo augue, rhoncus placerat ex vitae, consectetur maximus sem.
+
+Aliquam faucibus, lectus eu viverra auctor, odio urna dictum justo, sit amet bibendum diam quam nec est. Sed consectetur tincidunt diam eget congue. Sed vehicula consectetur risus sed efficitur. Phasellus vulputate urna vitae lobortis consectetur. Aenean risus urna, dapibus quis ex nec, vulputate dapibus felis.
+
+Pellentesque faucibus feugiat sem, ut volutpat nisl posuere quis. Curabitur nisi ipsum, semper sit amet lacinia ac, iaculis id mi. Donec fermentum viverra convallis. Aliquam hendrerit nulla vitae bibendum tincidunt. Integer id libero molestie, molestie justo et, blandit mauris. Morbi rutrum metus ipsum."
+autowrap_mode = 3

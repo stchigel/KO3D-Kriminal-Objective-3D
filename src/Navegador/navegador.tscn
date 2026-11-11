@@ -1,0 +1,122 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/Navegador/navegador.gd" id="1_nav"]
+[ext_resource type="PackedScene" path="res://src/Navegador/login_sitio.tscn" id="2_login"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ventana"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="Navegador" type="Panel"]
+offset_right = 704.0
+offset_bottom = 448.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ventana")
+script = ExtResource("1_nav")
+
+[node name="Titulo" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 704.0
+offset_bottom = 32.0
+
+[node name="Label" type="Label" parent="Titulo"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 360.0
+offset_bottom = 32.0
+text = "Navegador"
+vertical_alignment = 1
+
+[node name="Cerrar" type="Button" parent="Titulo"]
+layout_mode = 0
+offset_left = 672.0
+offset_right = 704.0
+offset_bottom = 32.0
+text = "X"
+
+[node name="Barra" type="Control" parent="."]
+anchors_preset = 0
+offset_top = 32.0
+offset_right = 704.0
+offset_bottom = 64.0
+
+[node name="Atras" type="Button" parent="Barra"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 4.0
+offset_right = 40.0
+offset_bottom = 28.0
+disabled = true
+text = "<"
+
+[node name="Adelante" type="Button" parent="Barra"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 4.0
+offset_right = 76.0
+offset_bottom = 28.0
+disabled = true
+text = ">"
+
+[node name="Direccion" type="LineEdit" parent="Barra"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 4.0
+offset_right = 696.0
+offset_bottom = 28.0
+theme_override_font_sizes/font_size = 14
+editable = false
+
+[node name="Marcadores" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 64.0
+offset_right = 696.0
+offset_bottom = 96.0
+vertical_scroll_mode = 0
+
+[node name="Lista" type="HBoxContainer" parent="Marcadores"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Pagina" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_top = 96.0
+offset_right = 704.0
+offset_bottom = 448.0
+horizontal_scroll_mode = 0
+
+[node name="Contenido" type="VBoxContainer" parent="Pagina"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Vacio" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0.5)
+layout_mode = 0
+offset_top = 96.0
+offset_right = 704.0
+offset_bottom = 448.0
+mouse_filter = 2
+text = "Todavía no hay sitios para visitar."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Login" parent="." instance=ExtResource("2_login")]
+layout_mode = 0
+offset_top = 96.0
+offset_right = 704.0
+offset_bottom = 448.0
+
+[connection signal="gui_input" from="Titulo" to="." method="_on_titulo_gui_input"]
+[connection signal="pressed" from="Titulo/Cerrar" to="." method="_on_cerrar_pressed"]
+[connection signal="pressed" from="Barra/Atras" to="." method="atras"]
+[connection signal="pressed" from="Barra/Adelante" to="." method="adelante"]
+[connection signal="acceso_concedido" from="Login" to="." method="_on_login_acceso_concedido"]

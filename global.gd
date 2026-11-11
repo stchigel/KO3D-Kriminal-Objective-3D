@@ -7,8 +7,11 @@ extends Node
 signal pista_agregada(pista: Pista)
 ## Se emite cuando se vacia el expediente (arranque de un caso nuevo).
 signal pistas_limpiadas
+signal sitio_desbloqueado(id: String)
 
 var pistas: Array[Pista] = []
+var sitios_desbloqueados: Array[String] = []
+var sesiones: Array[String] = []
 
 var computadora_desbloqueada: bool = false
 
@@ -61,7 +64,30 @@ func cantidad_pistas() -> int:
 ## Vacia el expediente. Se llama al empezar un caso.
 func limpiar_pistas() -> void:
 	pistas.clear()
+	sitios_desbloqueados.clear()
+	sesiones.clear()
 	pistas_limpiadas.emit()
+
+
+func desbloquear_sitio(id: String) -> bool:
+	if id.is_empty() or sitios_desbloqueados.has(id):
+		return false
+	sitios_desbloqueados.append(id)
+	sitio_desbloqueado.emit(id)
+	return true
+
+
+func tiene_sitio(id: String) -> bool:
+	return sitios_desbloqueados.has(id)
+
+
+func iniciar_sesion(id: String) -> void:
+	if not sesiones.has(id):
+		sesiones.append(id)
+
+
+func tiene_sesion(id: String) -> bool:
+	return sesiones.has(id)
 
 
 func _hora_actual() -> String:

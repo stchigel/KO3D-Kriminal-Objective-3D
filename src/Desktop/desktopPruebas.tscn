@@ -50,6 +50,12 @@
 [ext_resource type="Script" uid="uid://nlvei2uev0na" path="res://src/Desktop/pistatest.gd" id="49_sqtin"]
 [ext_resource type="PackedScene" uid="uid://bfyv1y2v0kdsl" path="res://src/Camara/escenas/oficina.tscn" id="50_oficina"]
 [ext_resource type="Script" uid="uid://b3ag2k8d33jul" path="res://src/Expediente/pista.gd" id="51_n7dhy"]
+[ext_resource type="PackedScene" path="res://src/Navegador/navegador.tscn" id="52_nav"]
+[ext_resource type="Script" uid="uid://5iiy5ld5xk8e" path="res://src/Navegador/sitio.gd" id="53_sitio"]
+[ext_resource type="PackedScene" path="res://src/Navegador/pagina_prueba.tscn" id="54_pagina"]
+[ext_resource type="Texture2D" uid="uid://c8551odu3jwah" path="res://assets/iconos/navegador.svg" id="55_ico_nav"]
+[ext_resource type="PackedScene" path="res://src/Navegador/Social/pagina_social.tscn" id="56_social"]
+[ext_resource type="Resource" path="res://src/Navegador/pruebas/red_prueba.tres" id="57_red"]
 
 [sub_resource type="Resource" id="Resource_mo0rj"]
 script = ExtResource("51_n7dhy")
@@ -76,6 +82,34 @@ fuente = "archivo.txt"
 hora = "4 AM"
 metadata/_custom_type_script = "uid://b3ag2k8d33jul"
 
+[sub_resource type="Resource" id="Resource_blog"]
+script = ExtResource("53_sitio")
+id = "blog"
+titulo = "Blog de Prueba"
+direccion = "microfono-abierto.com.ar"
+pagina_inicial = ExtResource("54_pagina")
+desbloqueado_al_inicio = true
+
+[sub_resource type="Resource" id="Resource_foro"]
+script = ExtResource("53_sitio")
+id = "foro"
+titulo = "Gateros del Oeste"
+direccion = "gaterosdeloeste.com.ar"
+pagina_inicial = ExtResource("54_pagina")
+desbloqueado_al_inicio = true
+usuario = "MartaYPancho"
+clave = "Pancho1403"
+pista_clave = "Tu compañero + el día y mes en que llegó (sin espacios)"
+
+[sub_resource type="Resource" id="Resource_barrio"]
+script = ExtResource("53_sitio")
+id = "barrio"
+titulo = "Barrio"
+direccion = "barrio.com.ar/MartaDeFlores"
+pagina_inicial = ExtResource("56_social")
+datos = ExtResource("57_red")
+desbloqueado_al_inicio = true
+
 [node name="Desktop" type="Control" unique_id=1349076015 node_paths=PackedStringArray("ventanas")]
 layout_mode = 3
 anchors_preset = 15
@@ -84,7 +118,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_m26hj")
-ventanas = [NodePath("Papelera"), NodePath("BorradorMsj"), NodePath("Home"), NodePath("Fotos"), NodePath("Portfolio"), NodePath("Ferreyra"), NodePath("Chat"), NodePath("Mail")]
+ventanas = [NodePath("Papelera"), NodePath("BorradorMsj"), NodePath("Home"), NodePath("Fotos"), NodePath("Portfolio"), NodePath("Ferreyra"), NodePath("Chat"), NodePath("Mail"), NodePath("Navegador")]
 juicioScene = ExtResource("2_howq7")
 
 [node name="GeneradorArchivos" type="Node" parent="." unique_id=760188203]
@@ -129,6 +163,13 @@ offset_left = 56.0
 offset_right = 96.0
 icono = ExtResource("7_1y46s")
 abrir = NodePath("../../Mail")
+
+[node name="Icono3" parent="Taskbar" unique_id=2026452687 node_paths=PackedStringArray("abrir") instance=ExtResource("5_5load")]
+layout_mode = 0
+offset_left = 104.0
+offset_right = 144.0
+icono = ExtResource("55_ico_nav")
+abrir = NodePath("../../Navegador")
 
 [node name="Topbar" type="ColorRect" parent="." unique_id=612272436]
 layout_mode = 0
@@ -607,6 +648,15 @@ offset_right = 459.0
 offset_bottom = 565.0
 texto = "Esa noche vi [url=auto_rojo]un auto rojo estacionado[/url] en la esquina."
 pistas = Array[ExtResource("51_n7dhy")]([SubResource("Resource_x7gcj")])
+
+[node name="Navegador" parent="." unique_id=1956861361 instance=ExtResource("52_nav")]
+visible = false
+layout_mode = 0
+offset_left = 224.0
+offset_top = 80.0
+offset_right = 928.0
+offset_bottom = 528.0
+sitios = Array[ExtResource("53_sitio")]([SubResource("Resource_blog"), SubResource("Resource_foro"), SubResource("Resource_barrio")])
 
 [connection signal="pressed" from="Topbar/Apagar" to="." method="_on_apagar_pressed"]
 [connection signal="pressed" from="Topbar/Panel/Desconectar" to="." method="_on_desconectar_pressed"]
