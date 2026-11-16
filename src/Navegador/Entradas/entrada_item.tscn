@@ -1,0 +1,49 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/Navegador/Entradas/entrada_item.gd" id="1_entrada"]
+[ext_resource type="Script" path="res://src/Navegador/Social/texto_resaltable.gd" id="2_texto"]
+
+[node name="EntradaItem" type="PanelContainer"]
+script = ExtResource("1_entrada")
+
+[node name="Contenido" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Cabecera" type="HBoxContainer" parent="Contenido"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Autor" type="Label" parent="Contenido/Cabecera"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+
+[node name="Valoracion" type="Label" parent="Contenido/Cabecera"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+
+[node name="Fecha" type="Label" parent="Contenido/Cabecera"]
+modulate = Color(1, 1, 1, 0.5)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 13
+horizontal_alignment = 2
+
+[node name="Titulo" type="Label" parent="Contenido"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+autowrap_mode = 3
+
+[node name="Texto" type="RichTextLabel" parent="Contenido"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 15
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+script = ExtResource("2_texto")
+
+[node name="Comentarios" type="VBoxContainer" parent="Contenido"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 6

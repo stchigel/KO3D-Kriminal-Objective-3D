@@ -1,0 +1,65 @@
+[gd_resource type="Resource" script_class="PaginaEntradas" format=3 uid="uid://0gr00umhhu73"]
+
+[ext_resource type="Script" uid="uid://dtc3uqhi4qjdk" path="res://src/Navegador/Entradas/pagina_entradas.gd" id="1_pagina"]
+[ext_resource type="Script" uid="uid://dvqv1txaukel1" path="res://src/Navegador/Entradas/entrada_pagina.gd" id="2_entrada"]
+[ext_resource type="Script" uid="uid://blkfjqfrkdtti" path="res://src/Navegador/Social/comentario.gd" id="3_5s8oh"]
+[ext_resource type="Script" uid="uid://b3ag2k8d33jul" path="res://src/Expediente/pista.gd" id="3_pista"]
+
+[sub_resource type="Resource" id="p_cuenta"]
+script = ExtResource("3_pista")
+id = "prueba_colecta_cuenta"
+titulo = "La colecta se deposita en la cuenta de Lucas"
+texto = "Los fondos de la colecta se depositan en la cuenta de L. Ferreyra."
+
+[sub_resource type="Resource" id="p_ultima"]
+script = ExtResource("3_pista")
+id = "prueba_colecta_ultima"
+titulo = "Última vez que se lo vio"
+texto = "Tomás fue visto por última vez el martes a la 01:50, en su casa."
+
+[sub_resource type="Resource" id="p_amenaza"]
+script = ExtResource("3_pista")
+id = "prueba_colecta_amenaza"
+tipo = 3
+titulo = "La policía investiga a un amenazante"
+texto = "La policía investiga a una persona que lo amenazaba en redes."
+
+[sub_resource type="Resource" id="e_actualizacion1"]
+script = ExtResource("2_entrada")
+titulo = "Actualización 1"
+fecha = "miércoles"
+texto = "Seguimos sin novedades. [url=prueba_colecta_amenaza]La policía investiga a una persona que lo amenazaba en redes.[/url] Por favor, sigan compartiendo."
+pistas = Array[ExtResource("3_pista")]([SubResource("p_amenaza")])
+
+[sub_resource type="Resource" id="p_nube"]
+script = ExtResource("3_pista")
+id = "prueba_colecta_nube"
+tipo = 2
+titulo = "FrostCloud"
+texto = "Lucas revisó FrostCloud, la nube donde Tomás guarda todo."
+
+[sub_resource type="Resource" id="e_actualizacion2"]
+script = ExtResource("2_entrada")
+titulo = "Actualización 2"
+fecha = "jueves"
+texto = "Gracias por los 4 millones. No tengo palabras. Revisé la nube donde Tomi guarda todo, [url=prueba_colecta_nube]FrostCloud[/url], y no hay nada raro. Tomi, si estás leyendo esto, volvé."
+pistas = Array[ExtResource("3_pista")]([SubResource("p_nube")])
+
+[resource]
+script = ExtResource("1_pagina")
+nombre = "Colecta"
+titulo = "ENCONTREMOS A TOMI"
+subtitulo = "Organiza: Lucas Ferreyra, amigo y editor de Tomi"
+descripcion = "Hola a todos. Soy Lucas, el que edita los videos de Tomi desde hace cuatro años y, antes que nada, su amigo. Tomi desapareció la madrugada del martes, después del stream de los 100K. No contesta mensajes, su celular está apagado y en su casa no hay nadie. La familia está destruida y yo también.
+
+Armé esta colecta porque sé lo mucho que lo quieren los Frosties. Los fondos se depositan en [url=prueba_colecta_cuenta]la cuenta de L. Ferreyra[/url] y se van a usar para la búsqueda, abogados y difusión en medios. Voy a ir subiendo cada gasto con su comprobante.
+
+Última vez que se lo vio: [url=prueba_colecta_ultima]martes 01:50, en su casa.[/url]"
+descripcion_pistas = Array[ExtResource("3_pista")]([SubResource("p_cuenta"), SubResource("p_ultima")])
+meta = 5000000
+recaudado = 4300000
+etiqueta_entradas = "Actualizaciones"
+entradas = Array[ExtResource("2_entrada")]([SubResource("e_actualizacion1"), SubResource("e_actualizacion2")])
+color_fondo = Color(0.08, 0.1, 0.14, 1)
+color_tarjeta = Color(0.13, 0.17, 0.23, 1)
+color_acento = Color(0.3, 0.8, 0.75, 1)

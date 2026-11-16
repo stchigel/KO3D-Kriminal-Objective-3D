@@ -1,0 +1,64 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/Navegador/Entradas/pagina_entradas_vista.gd" id="1_pagina"]
+[ext_resource type="Script" path="res://src/Navegador/Social/texto_resaltable.gd" id="2_texto"]
+
+[node name="PaginaEntradasVista" type="PanelContainer"]
+size_flags_vertical = 3
+script = ExtResource("1_pagina")
+
+[node name="Margen" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Contenido" type="VBoxContainer" parent="Margen"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Nombre" type="Label" parent="Margen/Contenido"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+
+[node name="Titulo" type="Label" parent="Margen/Contenido"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+autowrap_mode = 3
+
+[node name="Subtitulo" type="Label" parent="Margen/Contenido"]
+modulate = Color(1, 1, 1, 0.6)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+autowrap_mode = 3
+
+[node name="Descripcion" type="RichTextLabel" parent="Margen/Contenido"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 15
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+script = ExtResource("2_texto")
+
+[node name="Progreso" type="VBoxContainer" parent="Margen/Contenido"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Barra" type="ProgressBar" parent="Margen/Contenido/Progreso"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+show_percentage = false
+
+[node name="Monto" type="Label" parent="Margen/Contenido/Progreso"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+
+[node name="Etiqueta" type="Label" parent="Margen/Contenido"]
+modulate = Color(1, 1, 1, 0.6)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+
+[node name="Entradas" type="VBoxContainer" parent="Margen/Contenido"]
+layout_mode = 2
+theme_override_constants/separation = 10

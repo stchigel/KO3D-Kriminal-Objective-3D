@@ -1,0 +1,23 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/Navegador/Entradas/comentario_entrada.gd" id="1_comentario"]
+[ext_resource type="Script" path="res://src/Navegador/Social/texto_resaltable.gd" id="2_texto"]
+
+[node name="ComentarioEntrada" type="PanelContainer"]
+script = ExtResource("1_comentario")
+
+[node name="Contenido" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Autor" type="Label" parent="Contenido"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+
+[node name="Texto" type="RichTextLabel" parent="Contenido"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+script = ExtResource("2_texto")
