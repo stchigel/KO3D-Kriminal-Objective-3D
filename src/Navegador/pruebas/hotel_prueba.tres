@@ -1,0 +1,65 @@
+[gd_resource type="Resource" script_class="PaginaInformativa" format=3 uid="uid://bahsb58tjgrwx"]
+
+[ext_resource type="Script" uid="uid://bgritxwcgfmde" path="res://src/Navegador/Informativa/pagina_informativa.gd" id="1_pagina"]
+[ext_resource type="Script" uid="uid://c504ujvdlvmhn" path="res://src/Navegador/Informativa/seccion_informativa.gd" id="2_seccion"]
+[ext_resource type="Script" uid="uid://b3ag2k8d33jul" path="res://src/Expediente/pista.gd" id="3_pista"]
+
+[sub_resource type="Resource" id="p_apertura"]
+script = ExtResource("3_pista")
+id = "prueba_hotel_apertura"
+tipo = 1
+titulo = "El hotel abrió en 1987"
+texto = "El Hotel Mirador está abierto desde 1987."
+
+[sub_resource type="Resource" id="p_renovado"]
+script = ExtResource("3_pista")
+id = "prueba_hotel_renovado"
+tipo = 3
+titulo = "Renovado en 2015"
+texto = "El hotel fue renovado en 2015."
+
+[sub_resource type="Resource" id="p_suite"]
+script = ExtResource("3_pista")
+id = "prueba_hotel_suite"
+tipo = 1
+titulo = "Suite Presidencial 701"
+texto = "La Suite Presidencial es la habitación 701."
+
+[sub_resource type="Resource" id="s_habitaciones"]
+script = ExtResource("2_seccion")
+encabezado = "Nuestras habitaciones"
+lista = Array[String](["Estándar — cómoda y funcional, ideal para estadías cortas.", "Superior — con balcón y vista parcial al río.", "[url=prueba_hotel_suite]Suite Presidencial 701[/url] — nuestra joya: dos ambientes, hidromasaje y vista panorámica."])
+pistas = Array[ExtResource("3_pista")]([SubResource("p_suite")])
+
+[sub_resource type="Resource" id="p_ortiz"]
+script = ExtResource("3_pista")
+id = "prueba_hotel_ortiz"
+tipo = 3
+titulo = "Gerente general: Marcela Ortiz"
+texto = "Marcela Ortiz es la gerente general, con 20 años en hotelería."
+
+[sub_resource type="Resource" id="p_vidal"]
+script = ExtResource("3_pista")
+id = "prueba_hotel_vidal"
+tipo = 1
+titulo = "Gerente nocturno: Esteban Vidal"
+texto = "Esteban Vidal es el gerente nocturno del hotel."
+
+[sub_resource type="Resource" id="s_equipo"]
+script = ExtResource("2_seccion")
+encabezado = "Nuestro equipo"
+lista = Array[String](["Gerente general: [url=prueba_hotel_ortiz]Marcela Ortiz[/url] — 20 años en hotelería", "Gerente nocturno: [url=prueba_hotel_vidal]Esteban Vidal[/url] — \"La noche es mi especialidad\"", "Jefa de limpieza: Rocío Lagos", "Chef: Hernán Quiroga"])
+pistas = Array[ExtResource("3_pista")]([SubResource("p_ortiz"), SubResource("p_vidal")])
+
+[resource]
+script = ExtResource("1_pagina")
+titulo = "HOTEL MIRADOR"
+lema = "Su casa frente al río"
+introduccion = "[url=prueba_hotel_apertura]Abierto desde 1987[/url] · [url=prueba_hotel_renovado]Renovado en 2015[/url]
+
+Desde hace casi cuarenta años, el Mirador recibe a viajeros de negocios y familias que buscan tranquilidad a pocos minutos del centro. Nuestro desayuno casero, con medialunas horneadas cada mañana, es famoso en toda la ciudad."
+pistas = Array[ExtResource("3_pista")]([SubResource("p_apertura"), SubResource("p_renovado")])
+secciones = Array[ExtResource("2_seccion")]([SubResource("s_habitaciones"), SubResource("s_equipo")])
+color_fondo = Color(0.12, 0.11, 0.1, 1)
+color_tarjeta = Color(0.19, 0.17, 0.15, 1)
+color_acento = Color(0.78, 0.6, 0.25, 1)

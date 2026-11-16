@@ -57,7 +57,9 @@
 [ext_resource type="PackedScene" path="res://src/Navegador/Social/pagina_social.tscn" id="56_social"]
 [ext_resource type="Resource" uid="uid://6cfrouelolf7" path="res://src/Navegador/pruebas/red_prueba.tres" id="57_red"]
 [ext_resource type="PackedScene" path="res://src/Navegador/Entradas/pagina_entradas_vista.tscn" id="58_entradas"]
-[ext_resource type="Resource" path="res://src/Navegador/pruebas/colecta_prueba.tres" id="59_colecta"]
+[ext_resource type="Resource" uid="uid://0gr00umhhu73" path="res://src/Navegador/pruebas/colecta_prueba.tres" id="59_colecta"]
+[ext_resource type="PackedScene" path="res://src/Navegador/Informativa/pagina_informativa_vista.tscn" id="60_informativa"]
+[ext_resource type="Resource" path="res://src/Navegador/pruebas/hotel_prueba.tres" id="61_hotel"]
 
 [sub_resource type="Resource" id="Resource_mo0rj"]
 script = ExtResource("51_n7dhy")
@@ -119,6 +121,15 @@ titulo = "Encontremos a Tomi"
 direccion = "colecta.com.ar/encontremos-a-tomi"
 pagina_inicial = ExtResource("58_entradas")
 datos = ExtResource("59_colecta")
+desbloqueado_al_inicio = true
+
+[sub_resource type="Resource" id="Resource_hotel"]
+script = ExtResource("53_sitio")
+id = "hotel"
+titulo = "Hotel Mirador"
+direccion = "hotelmirador.com.ar"
+pagina_inicial = ExtResource("60_informativa")
+datos = ExtResource("61_hotel")
 desbloqueado_al_inicio = true
 
 [node name="Desktop" type="Control" unique_id=1349076015 node_paths=PackedStringArray("ventanas")]
@@ -667,7 +678,7 @@ offset_left = 224.0
 offset_top = 80.0
 offset_right = 928.0
 offset_bottom = 528.0
-sitios = Array[ExtResource("53_sitio")]([SubResource("Resource_blog"), SubResource("Resource_foro"), SubResource("Resource_barrio"), SubResource("Resource_colecta")])
+sitios = Array[ExtResource("53_sitio")]([SubResource("Resource_blog"), SubResource("Resource_foro"), SubResource("Resource_barrio"), SubResource("Resource_colecta"), SubResource("Resource_hotel")])
 
 [connection signal="pressed" from="Topbar/Apagar" to="." method="_on_apagar_pressed"]
 [connection signal="pressed" from="Topbar/Panel/Desconectar" to="." method="_on_desconectar_pressed"]

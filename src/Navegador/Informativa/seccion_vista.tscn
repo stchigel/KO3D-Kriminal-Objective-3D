@@ -1,0 +1,25 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/Navegador/Informativa/seccion_vista.gd" id="1_seccion"]
+[ext_resource type="Script" path="res://src/Navegador/Social/texto_resaltable.gd" id="2_texto"]
+
+[node name="SeccionVista" type="PanelContainer"]
+script = ExtResource("1_seccion")
+
+[node name="Contenido" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Encabezado" type="Label" parent="Contenido"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+autowrap_mode = 3
+
+[node name="Texto" type="RichTextLabel" parent="Contenido"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 15
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+script = ExtResource("2_texto")
