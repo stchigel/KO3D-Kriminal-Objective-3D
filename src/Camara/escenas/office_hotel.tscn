@@ -1,0 +1,478 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://node_3d.gd" id="script"]
+[ext_resource type="Script" path="res://src/Camara/pista_clickeable.gd" id="pista"]
+
+[sub_resource type="Environment" id="env"]
+background_mode = 1
+background_color = Color(0.04, 0.04, 0.05, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.7, 0.68, 0.64, 1)
+ambient_light_energy = 0.65
+tonemap_mode = 2
+adjustment_enabled = true
+adjustment_saturation = 0.7
+
+[sub_resource type="StandardMaterial3D" id="Mat_piso"]
+albedo_color = Color(0.55, 0.55, 0.52, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_pared"]
+albedo_color = Color(0.75, 0.78, 0.68, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_madera"]
+albedo_color = Color(0.45, 0.3, 0.18, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_negro"]
+albedo_color = Color(0.1, 0.1, 0.1, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_gris"]
+albedo_color = Color(0.3, 0.3, 0.32, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_blanco"]
+albedo_color = Color(0.95, 0.95, 0.92, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_laton"]
+albedo_color = Color(0.78, 0.62, 0.25, 1)
+metallic = 0.7
+roughness = 0.35
+
+[sub_resource type="StandardMaterial3D" id="Mat_azul"]
+albedo_color = Color(0.2, 0.35, 0.6, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_amarillo"]
+albedo_color = Color(0.95, 0.85, 0.3, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_marron"]
+albedo_color = Color(0.35, 0.2, 0.1, 1)
+
+[sub_resource type="BoxMesh" id="Mesh_0"]
+material = SubResource("Mat_piso")
+size = Vector3(6, 0.1, 5)
+
+[sub_resource type="BoxMesh" id="Mesh_1"]
+material = SubResource("Mat_pared")
+size = Vector3(6.2, 3, 0.1)
+
+[sub_resource type="BoxMesh" id="Mesh_2"]
+material = SubResource("Mat_pared")
+size = Vector3(0.1, 3, 5)
+
+[sub_resource type="BoxMesh" id="Mesh_3"]
+material = SubResource("Mat_madera")
+size = Vector3(1.6, 0.05, 0.7)
+
+[sub_resource type="BoxMesh" id="Mesh_4"]
+material = SubResource("Mat_madera")
+size = Vector3(0.05, 0.73, 0.05)
+
+[sub_resource type="BoxMesh" id="Mesh_5"]
+material = SubResource("Mat_gris")
+size = Vector3(0.45, 0.06, 0.45)
+
+[sub_resource type="BoxMesh" id="Mesh_6"]
+material = SubResource("Mat_gris")
+size = Vector3(0.45, 0.5, 0.05)
+
+[sub_resource type="BoxMesh" id="Mesh_7"]
+material = SubResource("Mat_negro")
+size = Vector3(0.04, 0.45, 0.04)
+
+[sub_resource type="BoxMesh" id="Mesh_8"]
+material = SubResource("Mat_madera")
+size = Vector3(0.04, 0.6, 0.9)
+
+[sub_resource type="CylinderMesh" id="Mesh_9"]
+material = SubResource("Mat_laton")
+top_radius = 0.01
+bottom_radius = 0.01
+height = 0.07
+
+[sub_resource type="BoxMesh" id="Mesh_10"]
+material = SubResource("Mat_laton")
+size = Vector3(0.02, 0.18, 0.04)
+
+[sub_resource type="BoxMesh" id="Mesh_11"]
+material = SubResource("Mat_blanco")
+size = Vector3(0.01, 0.04, 0.12)
+
+[sub_resource type="BoxMesh" id="Mesh_12"]
+material = SubResource("Mat_blanco")
+size = Vector3(0.01, 0.12, 0.6)
+
+[sub_resource type="BoxMesh" id="Mesh_13"]
+material = SubResource("Mat_marron")
+size = Vector3(0.26, 0.01, 0.36)
+
+[sub_resource type="BoxMesh" id="Mesh_14"]
+material = SubResource("Mat_blanco")
+size = Vector3(0.22, 0.004, 0.3)
+
+[sub_resource type="CylinderMesh" id="Mesh_15"]
+material = SubResource("Mat_negro")
+top_radius = 0.006
+bottom_radius = 0.006
+height = 0.14
+
+[sub_resource type="BoxMesh" id="Mesh_16"]
+material = SubResource("Mat_negro")
+size = Vector3(0.45, 0.3, 0.03)
+
+[sub_resource type="BoxMesh" id="Mesh_17"]
+material = SubResource("Mat_gris")
+size = Vector3(0.05, 0.17, 0.04)
+
+[sub_resource type="CylinderMesh" id="Mesh_18"]
+material = SubResource("Mat_blanco")
+top_radius = 0.14
+bottom_radius = 0.14
+height = 0.03
+
+[sub_resource type="CylinderMesh" id="Mesh_19"]
+material = SubResource("Mat_negro")
+top_radius = 0.155
+bottom_radius = 0.155
+height = 0.02
+
+[sub_resource type="BoxMesh" id="Mesh_20"]
+material = SubResource("Mat_negro")
+size = Vector3(0.01, 0.1, 0.005)
+
+[sub_resource type="BoxMesh" id="Mesh_21"]
+material = SubResource("Mat_negro")
+size = Vector3(0.07, 0.01, 0.005)
+
+[sub_resource type="BoxMesh" id="Mesh_22"]
+material = SubResource("Mat_gris")
+size = Vector3(0.5, 0.05, 0.9)
+
+[sub_resource type="BoxMesh" id="Mesh_23"]
+material = SubResource("Mat_azul")
+size = Vector3(0.5, 0.8, 0.03)
+
+[sub_resource type="BoxMesh" id="Mesh_24"]
+material = SubResource("Mat_blanco")
+size = Vector3(0.3, 0.15, 0.3)
+
+[sub_resource type="CylinderMesh" id="Mesh_25"]
+material = SubResource("Mat_azul")
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.2
+
+[sub_resource type="BoxMesh" id="Mesh_26"]
+material = SubResource("Mat_amarillo")
+size = Vector3(0.02, 0.2, 0.1)
+
+[sub_resource type="BoxMesh" id="Mesh_27"]
+material = SubResource("Mat_negro")
+size = Vector3(0.005, 0.05, 0.04)
+
+[sub_resource type="BoxMesh" id="Mesh_28"]
+material = SubResource("Mat_blanco")
+size = Vector3(0.005, 0.05, 0.08)
+
+[sub_resource type="CylinderMesh" id="Mesh_29"]
+material = SubResource("Mat_gris")
+top_radius = 0.18
+bottom_radius = 0.15
+height = 0.4
+
+[sub_resource type="CylinderMesh" id="Mesh_30"]
+material = SubResource("Mat_negro")
+top_radius = 0.16
+bottom_radius = 0.16
+height = 0.01
+
+[sub_resource type="BoxMesh" id="Mesh_31"]
+material = SubResource("Mat_marron")
+size = Vector3(0.1, 0.01, 0.06)
+
+[sub_resource type="CylinderMesh" id="Mesh_32"]
+material = SubResource("Mat_blanco")
+top_radius = 0.035
+bottom_radius = 0.03
+height = 0.1
+
+[sub_resource type="BoxShape3D" id="Shape_0"]
+size = Vector3(0.15, 0.7, 1)
+
+[sub_resource type="BoxShape3D" id="Shape_1"]
+size = Vector3(0.4, 0.1, 0.45)
+
+[sub_resource type="BoxShape3D" id="Shape_2"]
+size = Vector3(0.5, 1.4, 0.35)
+
+[sub_resource type="BoxShape3D" id="Shape_3"]
+size = Vector3(0.6, 1, 1)
+
+[sub_resource type="BoxShape3D" id="Shape_4"]
+size = Vector3(0.45, 0.5, 0.45)
+
+[node name="Office" type="Node3D"]
+script = ExtResource("script")
+pitch_min_deg = -80
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("env")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5736, 0.8192, 0, -0.8192, 0.5736, 0, 3, 2)
+light_energy = 0.5
+shadow_enabled = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7, -0.3)
+light_energy = 0.9
+shadow_enabled = true
+omni_range = 8
+light_color = Color(1, 0.95, 0.85, 1)
+
+[node name="Habitacion" type="Node3D" parent="."]
+
+[node name="Piso" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+mesh = SubResource("Mesh_0")
+
+[node name="ParedFondo" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -2.55)
+mesh = SubResource("Mesh_1")
+
+[node name="ParedIzquierda" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.05, 1.5, 0)
+mesh = SubResource("Mesh_2")
+
+[node name="ParedDerecha" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.05, 1.5, 0)
+mesh = SubResource("Mesh_2")
+
+[node name="Escritorio" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -2.12)
+mesh = SubResource("Mesh_3")
+
+[node name="Pata1" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.365, -2.42)
+mesh = SubResource("Mesh_4")
+
+[node name="Pata2" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.365, -2.42)
+mesh = SubResource("Mesh_4")
+
+[node name="Pata3" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.365, -1.82)
+mesh = SubResource("Mesh_4")
+
+[node name="Pata4" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.365, -1.82)
+mesh = SubResource("Mesh_4")
+
+[node name="SillaAsiento" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, 0.48, -1.5)
+mesh = SubResource("Mesh_5")
+
+[node name="SillaRespaldo" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, 0.76, -1.3)
+mesh = SubResource("Mesh_6")
+
+[node name="SillaPata1" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.12, 0.225, -1.68)
+mesh = SubResource("Mesh_7")
+
+[node name="SillaPata2" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.48, 0.225, -1.68)
+mesh = SubResource("Mesh_7")
+
+[node name="SillaPata3" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.12, 0.225, -1.32)
+mesh = SubResource("Mesh_7")
+
+[node name="SillaPata4" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.48, 0.225, -1.32)
+mesh = SubResource("Mesh_7")
+
+[node name="Pistas" type="Node3D" parent="."]
+
+[node name="Tablero" type="Area3D" parent="Pistas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.97, 1.5, -0.3)
+script = ExtResource("pista")
+id = "cam_tablero_master2"
+tipo = 0
+puntos = 2
+titulo = "Falta MASTER-2 en el tablero"
+texto = "Un tablero de madera con ganchos numerados y etiquetas plastificadas. MASTER-1 está colgada en su lugar. El gancho de MASTER-2 está vacío. Debajo, un cartel: \"Toda llave maestra se firma en la planilla. SIN EXCEPCIÓN.\""
+fuente = "SeguriCam - Tablero"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistas/Tablero"]
+shape = SubResource("Shape_0")
+
+[node name="Tabla" type="MeshInstance3D" parent="Pistas/Tablero"]
+mesh = SubResource("Mesh_8")
+
+[node name="Gancho1" type="MeshInstance3D" parent="Pistas/Tablero"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 0.04, 0.1, -0.2)
+mesh = SubResource("Mesh_9")
+
+[node name="Gancho2" type="MeshInstance3D" parent="Pistas/Tablero"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 0.04, 0.1, 0.2)
+mesh = SubResource("Mesh_9")
+
+[node name="LlaveMaster1" type="MeshInstance3D" parent="Pistas/Tablero"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0, -0.2)
+mesh = SubResource("Mesh_10")
+
+[node name="Etiqueta1" type="MeshInstance3D" parent="Pistas/Tablero"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0.2, -0.2)
+mesh = SubResource("Mesh_11")
+
+[node name="Etiqueta2" type="MeshInstance3D" parent="Pistas/Tablero"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0.2, 0.2)
+mesh = SubResource("Mesh_11")
+
+[node name="Cartel" type="MeshInstance3D" parent="Pistas/Tablero"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, -0.22, 0)
+mesh = SubResource("Mesh_12")
+
+[node name="Planilla" type="Area3D" parent="Pistas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0.775, -2.05)
+script = ExtResource("pista")
+id = "cam_planilla_ev"
+tipo = 4
+puntos = 5
+titulo = "MASTER-2 retirada por \"E.V.\" a las 02:15"
+texto = "Planilla de llaves maestras, completada con la hora del reloj de pared. MASTER-1 — retiró: Rocío L. — 23:00 — devuelta: 23:30. MASTER-2 — retiró: \"E.V.\" — 02:15 — sin devolver."
+fuente = "SeguriCam - Escritorio"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistas/Planilla"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, 0.03, 0)
+shape = SubResource("Shape_1")
+
+[node name="Tablilla" type="MeshInstance3D" parent="Pistas/Planilla"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.005, 0)
+mesh = SubResource("Mesh_13")
+
+[node name="Hoja" type="MeshInstance3D" parent="Pistas/Planilla"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.012, 0.01)
+mesh = SubResource("Mesh_14")
+
+[node name="Birome" type="MeshInstance3D" parent="Pistas/Planilla"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 0.18, 0.012, 0)
+mesh = SubResource("Mesh_15")
+
+[node name="Reloj" type="Area3D" parent="Pistas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 0.775, -2.2)
+script = ExtResource("pista")
+id = "cam_reloj_pared"
+tipo = 0
+puntos = 3
+titulo = "El reloj de pared y el del sistema no coinciden"
+texto = "Un reloj redondo de pared, de esos de oficina. Marca 03:10. En la terminal que está al lado, la pantalla del sistema marca 02:30."
+fuente = "SeguriCam - Escritorio"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistas/Reloj"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65, -0.12)
+shape = SubResource("Shape_2")
+
+[node name="Terminal" type="MeshInstance3D" parent="Pistas/Reloj"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32, -0.05)
+mesh = SubResource("Mesh_16")
+
+[node name="PieTerminal" type="MeshInstance3D" parent="Pistas/Reloj"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.085, -0.05)
+mesh = SubResource("Mesh_17")
+
+[node name="MarcoReloj" type="MeshInstance3D" parent="Pistas/Reloj"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.2, -0.285)
+mesh = SubResource("Mesh_19")
+
+[node name="Esfera" type="MeshInstance3D" parent="Pistas/Reloj"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.2, -0.27)
+mesh = SubResource("Mesh_18")
+
+[node name="AgujaLarga" type="MeshInstance3D" parent="Pistas/Reloj"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24, -0.252)
+mesh = SubResource("Mesh_20")
+
+[node name="AgujaCorta" type="MeshInstance3D" parent="Pistas/Reloj"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, 1.2, -0.252)
+mesh = SubResource("Mesh_21")
+
+[node name="Carrito" type="Area3D" parent="Pistas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, 0, -0.6)
+script = ExtResource("pista")
+id = "cam_carrito_guantes"
+tipo = 3
+titulo = "Guantes con una mancha oscura"
+texto = "Un carrito con toallas dobladas, rollos de papel y frascos de productos. Unos guantes de goma con una mancha oscura cuelgan de un costado. Enganchada del manubrio, la tarjeta ROCÍO-L."
+fuente = "SeguriCam - Carrito"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistas/Carrito"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("Shape_3")
+
+[node name="Base" type="MeshInstance3D" parent="Pistas/Carrito"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = SubResource("Mesh_22")
+
+[node name="Estante" type="MeshInstance3D" parent="Pistas/Carrito"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+mesh = SubResource("Mesh_22")
+
+[node name="LadoA" type="MeshInstance3D" parent="Pistas/Carrito"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, -0.44)
+mesh = SubResource("Mesh_23")
+
+[node name="LadoB" type="MeshInstance3D" parent="Pistas/Carrito"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0.44)
+mesh = SubResource("Mesh_23")
+
+[node name="Toallas" type="MeshInstance3D" parent="Pistas/Carrito"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, -0.2)
+mesh = SubResource("Mesh_24")
+
+[node name="Frasco" type="MeshInstance3D" parent="Pistas/Carrito"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, 0.2)
+mesh = SubResource("Mesh_25")
+
+[node name="Guantes" type="MeshInstance3D" parent="Pistas/Carrito"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.26, 0.6, 0.15)
+mesh = SubResource("Mesh_26")
+
+[node name="Mancha" type="MeshInstance3D" parent="Pistas/Carrito"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.272, 0.58, 0.15)
+mesh = SubResource("Mesh_27")
+
+[node name="Tarjeta" type="MeshInstance3D" parent="Pistas/Carrito"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.255, 0.75, -0.3)
+mesh = SubResource("Mesh_28")
+
+[node name="Cesto" type="Area3D" parent="Pistas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0, 1.1)
+script = ExtResource("pista")
+id = "cam_cesto_envoltorio"
+tipo = 3
+titulo = "Envoltorio del minibar de la 412"
+texto = "Un cesto de metal casi lleno. Arriba de todo, un envoltorio de chocolate del minibar de la 412, doblado prolijo, y un vaso de café de la cafetería de la esquina."
+fuente = "SeguriCam - Cesto"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistas/Cesto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("Shape_4")
+
+[node name="Balde" type="MeshInstance3D" parent="Pistas/Cesto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+mesh = SubResource("Mesh_29")
+
+[node name="Basura" type="MeshInstance3D" parent="Pistas/Cesto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38, 0)
+mesh = SubResource("Mesh_30")
+
+[node name="Envoltorio" type="MeshInstance3D" parent="Pistas/Cesto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, 0.39, 0.02)
+mesh = SubResource("Mesh_31")
+
+[node name="Vaso" type="MeshInstance3D" parent="Pistas/Cesto"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07, 0.43, -0.03)
+mesh = SubResource("Mesh_32")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9272, 0.3746, 0, -0.3746, 0.9272, 0, 2.55, 2.3)
+fov = 60
