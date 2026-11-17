@@ -1,0 +1,421 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://node_3d.gd" id="script"]
+[ext_resource type="Script" path="res://src/Camara/pista_clickeable.gd" id="pista"]
+
+[sub_resource type="Environment" id="env"]
+background_mode = 1
+background_color = Color(0.04, 0.04, 0.05, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.7, 0.68, 0.64, 1)
+ambient_light_energy = 0.65
+tonemap_mode = 2
+adjustment_enabled = true
+adjustment_saturation = 0.7
+
+[sub_resource type="StandardMaterial3D" id="Mat_piso"]
+albedo_color = Color(0.36, 0.25, 0.17, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_pared"]
+albedo_color = Color(0.45, 0.5, 0.6, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_madera"]
+albedo_color = Color(0.85, 0.82, 0.75, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_negro"]
+albedo_color = Color(0.1, 0.1, 0.1, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_gris"]
+albedo_color = Color(0.3, 0.3, 0.32, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_blanco"]
+albedo_color = Color(0.95, 0.95, 0.92, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_amarillo"]
+albedo_color = Color(0.95, 0.85, 0.3, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_rojo"]
+albedo_color = Color(0.82, 0.1, 0.12, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_celeste"]
+albedo_color = Color(0.45, 0.75, 0.95, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_naranja"]
+albedo_color = Color(0.9, 0.45, 0.1, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_verde"]
+albedo_color = Color(0.2, 0.6, 0.3, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_azul"]
+albedo_color = Color(0.3, 0.45, 0.7, 1)
+
+[sub_resource type="BoxMesh" id="Mesh_0"]
+material = SubResource("Mat_piso")
+size = Vector3(6, 0.1, 5)
+
+[sub_resource type="BoxMesh" id="Mesh_1"]
+material = SubResource("Mat_pared")
+size = Vector3(6.2, 3, 0.1)
+
+[sub_resource type="BoxMesh" id="Mesh_2"]
+material = SubResource("Mat_pared")
+size = Vector3(0.1, 3, 5)
+
+[sub_resource type="BoxMesh" id="Mesh_3"]
+material = SubResource("Mat_negro")
+size = Vector3(1.8, 0.05, 0.7)
+
+[sub_resource type="BoxMesh" id="Mesh_4"]
+material = SubResource("Mat_negro")
+size = Vector3(0.05, 0.73, 0.05)
+
+[sub_resource type="BoxMesh" id="Mesh_5"]
+material = SubResource("Mat_negro")
+size = Vector3(0.22, 0.5, 0.5)
+
+[sub_resource type="BoxMesh" id="Mesh_6"]
+material = SubResource("Mat_rojo")
+size = Vector3(0.55, 0.1, 0.55)
+
+[sub_resource type="BoxMesh" id="Mesh_7"]
+material = SubResource("Mat_rojo")
+size = Vector3(0.55, 0.8, 0.08)
+
+[sub_resource type="BoxMesh" id="Mesh_8"]
+material = SubResource("Mat_madera")
+size = Vector3(0.04, 2.2, 1.6)
+
+[sub_resource type="BoxMesh" id="Mesh_9"]
+material = SubResource("Mat_madera")
+size = Vector3(0.6, 2.2, 0.04)
+
+[sub_resource type="BoxMesh" id="Mesh_10"]
+material = SubResource("Mat_madera")
+size = Vector3(0.6, 0.04, 1.64)
+
+[sub_resource type="CylinderMesh" id="Mesh_11"]
+material = SubResource("Mat_gris")
+top_radius = 0.012
+bottom_radius = 0.012
+height = 1.52
+
+[sub_resource type="BoxMesh" id="Mesh_12"]
+material = SubResource("Mat_negro")
+size = Vector3(0.38, 0.012, 0.012)
+
+[sub_resource type="BoxMesh" id="Mesh_13"]
+material = SubResource("Mat_amarillo")
+size = Vector3(0.36, 0.62, 0.09)
+
+[sub_resource type="BoxMesh" id="Mesh_14"]
+material = SubResource("Mat_celeste")
+size = Vector3(0.34, 0.15, 0.3)
+
+[sub_resource type="BoxMesh" id="Mesh_15"]
+material = SubResource("Mat_negro")
+size = Vector3(0.9, 0.5, 0.04)
+
+[sub_resource type="BoxMesh" id="Mesh_16"]
+material = SubResource("Mat_gris")
+size = Vector3(0.06, 0.25, 0.04)
+
+[sub_resource type="BoxMesh" id="Mesh_17"]
+material = SubResource("Mat_gris")
+size = Vector3(0.6, 0.03, 0.18)
+
+[sub_resource type="BoxMesh" id="Mesh_18"]
+material = SubResource("Mat_amarillo")
+size = Vector3(0.09, 0.09, 0.005)
+
+[sub_resource type="BoxMesh" id="Mesh_19"]
+material = SubResource("Mat_blanco")
+size = Vector3(0.34, 0.04, 0.08)
+
+[sub_resource type="BoxMesh" id="Mesh_20"]
+material = SubResource("Mat_blanco")
+size = Vector3(0.045, 0.035, 0.05)
+
+[sub_resource type="BoxMesh" id="Mesh_21"]
+material = SubResource("Mat_naranja")
+size = Vector3(0.006, 0.8, 0.55)
+
+[sub_resource type="BoxMesh" id="Mesh_22"]
+material = SubResource("Mat_rojo")
+size = Vector3(0.004, 0.03, 0.25)
+
+[sub_resource type="BoxMesh" id="Mesh_23"]
+material = SubResource("Mat_verde")
+size = Vector3(0.006, 0.8, 0.55)
+
+[sub_resource type="CylinderMesh" id="Mesh_24"]
+material = SubResource("Mat_azul")
+top_radius = 0.38
+bottom_radius = 0.38
+height = 0.15
+
+[sub_resource type="BoxMesh" id="Mesh_25"]
+material = SubResource("Mat_verde")
+size = Vector3(0.14, 0.03, 0.04)
+
+[sub_resource type="BoxMesh" id="Mesh_26"]
+material = SubResource("Mat_negro")
+size = Vector3(0.05, 0.45, 0.05)
+
+[sub_resource type="BoxShape3D" id="Shape_0"]
+size = Vector3(0.7, 2.25, 1.65)
+
+[sub_resource type="BoxShape3D" id="Shape_1"]
+size = Vector3(1, 0.72, 0.5)
+
+[sub_resource type="BoxShape3D" id="Shape_2"]
+size = Vector3(0.38, 0.14, 0.32)
+
+[sub_resource type="BoxShape3D" id="Shape_3"]
+size = Vector3(0.1, 0.88, 0.64)
+
+[sub_resource type="BoxShape3D" id="Shape_4"]
+size = Vector3(0.9, 0.25, 0.9)
+
+[node name="Cuarto" type="Node3D"]
+script = ExtResource("script")
+pitch_min_deg = -80
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("env")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5736, 0.8192, 0, -0.8192, 0.5736, 0, 3, 2)
+light_energy = 0.5
+shadow_enabled = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7, -0.3)
+light_energy = 0.9
+shadow_enabled = true
+omni_range = 8
+light_color = Color(1, 0.9, 0.75, 1)
+
+[node name="Habitacion" type="Node3D" parent="."]
+
+[node name="Piso" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+mesh = SubResource("Mesh_0")
+
+[node name="ParedFondo" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -2.55)
+mesh = SubResource("Mesh_1")
+
+[node name="ParedIzquierda" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.05, 1.5, 0)
+mesh = SubResource("Mesh_2")
+
+[node name="ParedDerecha" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.05, 1.5, 0)
+mesh = SubResource("Mesh_2")
+
+[node name="Escritorio" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -2.12)
+mesh = SubResource("Mesh_3")
+
+[node name="Pata1" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.85, 0.365, -2.42)
+mesh = SubResource("Mesh_4")
+
+[node name="Pata2" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.85, 0.365, -2.42)
+mesh = SubResource("Mesh_4")
+
+[node name="Pata3" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.85, 0.365, -1.82)
+mesh = SubResource("Mesh_4")
+
+[node name="Pata4" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.85, 0.365, -1.82)
+mesh = SubResource("Mesh_4")
+
+[node name="Gabinete" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.12, 0.25, -2.15)
+mesh = SubResource("Mesh_5")
+
+[node name="SillaAsiento" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, -1.2)
+mesh = SubResource("Mesh_6")
+
+[node name="SillaRespaldo" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.95, -0.95)
+mesh = SubResource("Mesh_7")
+
+[node name="SillaPata1" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.22, 0.225, -1.42)
+mesh = SubResource("Mesh_26")
+
+[node name="SillaPata2" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.78, 0.225, -1.42)
+mesh = SubResource("Mesh_26")
+
+[node name="SillaPata3" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.22, 0.225, -0.98)
+mesh = SubResource("Mesh_26")
+
+[node name="SillaPata4" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.78, 0.225, -0.98)
+mesh = SubResource("Mesh_26")
+
+[node name="PosterVerde" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.993, 1.7, -1.5)
+mesh = SubResource("Mesh_23")
+
+[node name="Pistas" type="Node3D" parent="."]
+
+[node name="Placard" type="Area3D" parent="Pistas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7, 0, -0.3)
+script = ExtResource("pista")
+id = "cam_placard_valija"
+tipo = 0
+puntos = 3
+titulo = "Falta la valija azul"
+texto = "El placard está abierto de par en par, con perchas vacías y una pila de remeras de merch sin vender. No está la valija azul. Faltan también varias camperas de abrigo; quedó solo una de verano."
+fuente = "Webcam - Placard"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistas/Placard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+shape = SubResource("Shape_0")
+
+[node name="Fondo" type="MeshInstance3D" parent="Pistas/Placard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.28, 1.1, 0)
+mesh = SubResource("Mesh_8")
+
+[node name="LadoIzq" type="MeshInstance3D" parent="Pistas/Placard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, -0.8)
+mesh = SubResource("Mesh_9")
+
+[node name="LadoDer" type="MeshInstance3D" parent="Pistas/Placard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0.8)
+mesh = SubResource("Mesh_9")
+
+[node name="Techo" type="MeshInstance3D" parent="Pistas/Placard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 0)
+mesh = SubResource("Mesh_10")
+
+[node name="Barral" type="MeshInstance3D" parent="Pistas/Placard"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.82, 0)
+mesh = SubResource("Mesh_11")
+
+[node name="Percha1" type="MeshInstance3D" parent="Pistas/Placard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.78, -0.35)
+mesh = SubResource("Mesh_12")
+
+[node name="Percha2" type="MeshInstance3D" parent="Pistas/Placard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.78, 0)
+mesh = SubResource("Mesh_12")
+
+[node name="Percha3" type="MeshInstance3D" parent="Pistas/Placard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.78, 0.35)
+mesh = SubResource("Mesh_12")
+
+[node name="Campera" type="MeshInstance3D" parent="Pistas/Placard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47, -0.62)
+mesh = SubResource("Mesh_13")
+
+[node name="Remeras" type="MeshInstance3D" parent="Pistas/Placard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.075, -0.45)
+mesh = SubResource("Mesh_14")
+
+[node name="Monitor" type="Area3D" parent="Pistas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.775, -2.15)
+script = ExtResource("pista")
+id = "cam_postit_mail"
+tipo = 2
+titulo = "Post-it en el monitor"
+texto = "El monitor está apagado y el teclado tiene una capa fina de polvo. Pegado en el borde del monitor hay un post-it escrito con marcador azul: \"mail → nombre del perro + número de camiseta\"."
+fuente = "Webcam - Escritorio"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistas/Monitor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.34, 0.05)
+shape = SubResource("Shape_1")
+
+[node name="Pantalla" type="MeshInstance3D" parent="Pistas/Monitor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.1)
+mesh = SubResource("Mesh_15")
+
+[node name="Pie" type="MeshInstance3D" parent="Pistas/Monitor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, -0.1)
+mesh = SubResource("Mesh_16")
+
+[node name="PostIt" type="MeshInstance3D" parent="Pistas/Monitor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38, 0.32, -0.077)
+mesh = SubResource("Mesh_18")
+
+[node name="Teclado" type="MeshInstance3D" parent="Pistas/Monitor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0.015, 0.17)
+mesh = SubResource("Mesh_17")
+
+[node name="Cargador" type="Area3D" parent="Pistas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0.775, -2.28)
+script = ExtResource("pista")
+id = "cam_cargador"
+tipo = 0
+titulo = "Cargador sin el celular"
+texto = "En la zapatilla eléctrica llena de cables hay un cargador de celular enchufado, sin el celular. Al lado, los auriculares gamer colgados de su soporte."
+fuente = "Webcam - Escritorio"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistas/Cargador"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0.08)
+shape = SubResource("Shape_2")
+
+[node name="Zapatilla" type="MeshInstance3D" parent="Pistas/Cargador"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+mesh = SubResource("Mesh_19")
+
+[node name="CargadorCelu" type="MeshInstance3D" parent="Pistas/Cargador"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07, 0.055, 0)
+mesh = SubResource("Mesh_20")
+
+[node name="Poster" type="Area3D" parent="Pistas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.99, 1.7, -0.5)
+script = ExtResource("pista")
+id = "cam_poster_kaiser"
+tipo = 3
+titulo = "Póster con KaiserX tachado"
+texto = "Entre dos pósters de videojuegos hay uno de un torneo donde aparece KaiserX. Su cara está tachada con marcador rojo."
+fuente = "Webcam - Pared"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistas/Poster"]
+shape = SubResource("Shape_3")
+
+[node name="Lamina" type="MeshInstance3D" parent="Pistas/Poster"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("Mesh_21")
+
+[node name="TachonA" type="MeshInstance3D" parent="Pistas/Poster"]
+transform = Transform3D(1, 0, 0, 0, 0.7071, -0.7071, 0, 0.7071, 0.7071, -0.006, 0.1, 0.05)
+mesh = SubResource("Mesh_22")
+
+[node name="TachonB" type="MeshInstance3D" parent="Pistas/Poster"]
+transform = Transform3D(1, 0, 0, 0, 0.7071, 0.7071, 0, -0.7071, 0.7071, -0.006, 0.1, 0.05)
+mesh = SubResource("Mesh_22")
+
+[node name="Cucha" type="Area3D" parent="Pistas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, 1.15)
+script = ExtResource("pista")
+id = "cam_cucha_rocco"
+tipo = 3
+titulo = "La cucha de Rocco"
+texto = "Una cucha acolchada con huellitas estampadas, vacía. Tiene el nombre \"ROCCO\" pintado a mano en el costado y un hueso de goma mordido."
+fuente = "Webcam - Piso"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistas/Cucha"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+shape = SubResource("Shape_4")
+
+[node name="Base" type="MeshInstance3D" parent="Pistas/Cucha"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.075, 0)
+mesh = SubResource("Mesh_24")
+
+[node name="Hueso" type="MeshInstance3D" parent="Pistas/Cucha"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.165, 0.05)
+mesh = SubResource("Mesh_25")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9272, 0.3746, 0, -0.3746, 0.9272, 0, 2.55, 2.3)
+fov = 60

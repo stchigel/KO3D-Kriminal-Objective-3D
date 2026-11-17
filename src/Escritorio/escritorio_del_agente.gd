@@ -1,10 +1,10 @@
 extends Control
 
 const ESCENA_FINAL := preload("res://src/Final/final.tscn")
-const FONDO_LUCES_ENCENDIDAS := preload("res://assets/fondos/LucesEncendidas.jpg")
-const FONDO_LUCES_APAGADAS := preload("res://assets/fondos/LucesApagadas.jpg")
-const FONDO_SOLO_LAMPARA := preload("res://assets/fondos/LuzEscritorioEncendida.jpg")
-const FONDO_SOLO_TUBO := preload("res://assets/fondos/LuzParedEncendida.jpg")
+const FONDO_LUCES_ENCENDIDAS := preload("res://assets/fondos/LucesEncendidas.png")
+const FONDO_LUCES_APAGADAS := preload("res://assets/fondos/LucesApagadas.png")
+const FONDO_SOLO_LAMPARA := preload("res://assets/fondos/LuzEscritorioEncendida.png")
+const FONDO_SOLO_TUBO := preload("res://assets/fondos/LuzParedEncendida.png" )
 
 @export_group("Luces")
 @export var lampara_encendida: bool = false

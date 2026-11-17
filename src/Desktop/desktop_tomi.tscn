@@ -16,6 +16,9 @@
 [ext_resource type="Texture2D" path="res://assets/iconos/gmail.png" id="ico_gmail"]
 [ext_resource type="Texture2D" path="res://assets/iconos/user-trash-full.svg" id="ico_papelera"]
 [ext_resource type="Texture2D" path="res://assets/iconos/text.svg" id="ico_texto"]
+[ext_resource type="PackedScene" path="res://src/Camara/camara.tscn" id="camara_scene"]
+[ext_resource type="PackedScene" path="res://src/Camara/escenas/cuarto_tomi.tscn" id="cuarto_tomi"]
+[ext_resource type="Texture2D" path="res://assets/iconos/multimedia-photo-viewer.svg" id="ico_camara"]
 
 [ext_resource type="Resource" path="res://casos/tomi/mails/mail_01_volt_ultimo_aviso.tres" id="mail_01_volt_ultimo_aviso"]
 [ext_resource type="Resource" path="res://casos/tomi/mails/mail_02_camila.tres" id="mail_02_camila"]
@@ -77,7 +80,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("desktop_gd")
-ventanas = [NodePath("Papelera"), NodePath("Guion"), NodePath("Chat"), NodePath("Mail")]
+ventanas = [NodePath("Papelera"), NodePath("Guion"), NodePath("Chat"), NodePath("Mail"), NodePath("Camara")]
 
 [node name="Fondo" type="TextureRect" parent="."]
 show_behind_parent = true
@@ -164,6 +167,16 @@ nom = "guion_ultimo_stream.txt"
 icono = ExtResource("ico_texto")
 abrir = NodePath("../Guion")
 
+[node name="CamaraIco" parent="." node_paths=PackedStringArray("abrir") instance=ExtResource("archivo_scene")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 216.0
+offset_right = 96.0
+offset_bottom = 296.0
+nom = "Webcam"
+icono = ExtResource("ico_camara")
+abrir = NodePath("../Camara")
+
 [node name="Papelera" parent="." instance=ExtResource("carpeta_scene")]
 visible = false
 layout_mode = 0
@@ -202,5 +215,15 @@ offset_right = 928.0
 offset_bottom = 528.0
 mails = Array[ExtResource("mail_gd")]([ExtResource("mail_01_volt_ultimo_aviso"), ExtResource("mail_02_camila"), ExtResource("mail_03_lucas_reserva"), ExtResource("mail_04_flor")])
 contacto_scene = ExtResource("contacto_mail_scene")
+
+[node name="Camara" parent="." instance=ExtResource("camara_scene")]
+visible = false
+layout_mode = 0
+offset_left = 160.0
+offset_top = 72.0
+offset_right = 992.0
+offset_bottom = 520.0
+nombre = "Webcam - Cuarto de Tomi"
+escena = ExtResource("cuarto_tomi")
 
 [connection signal="pressed" from="Topbar/Desconectar" to="." method="_on_desconectar_pressed"]
