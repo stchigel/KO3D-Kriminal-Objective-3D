@@ -44,3 +44,9 @@ func texto_del_final(elegidas: Array[Pista]) -> String:
 	if es_culpable and not pruebas_alcanzan(elegidas) and not final_sin_pruebas.is_empty():
 		return final_sin_pruebas
 	return final_al_acusar
+
+
+func texto_de_pistas_insuficientes() -> String:
+	if not final_sin_pruebas.is_empty():
+		return final_sin_pruebas
+	return "%s quedó bajo sospecha, pero no fueron suficientes pistas para sostener la acusación. El caso quedó sin resolver.\n\n[i]Gracias por intentarlo, agente.[/i]" % nombre
