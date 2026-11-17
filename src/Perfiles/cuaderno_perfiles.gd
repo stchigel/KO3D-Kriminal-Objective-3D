@@ -174,6 +174,13 @@ func _presentar_la_acusacion() -> void:
 	acusacion_confirmada.emit(perfiles[pagina], elegidas)
 
 
+func perfil_culpable() -> Perfil:
+	for perfil in perfiles:
+		if perfil.es_culpable:
+			return perfil
+	return null
+
+
 func _mostrar_pagina() -> void:
 	var hay_perfiles := not perfiles.is_empty()
 	contenido.visible = hay_perfiles
