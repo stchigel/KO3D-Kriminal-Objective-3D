@@ -156,11 +156,16 @@ func _fijar_el_tamano_del_monitor(avance: float) -> void:
 
 
 func al_acusar(perfil: Perfil, pruebas: Array[Pista]) -> void:
+	var culpable: Perfil = cuaderno_perfiles.perfil_culpable()
+	var evaluado: Perfil = culpable if culpable != null else perfil
 	var final = ESCENA_FINAL.instantiate()
-	final.texto = perfil.texto_del_final(pruebas)
 	final.correcto = perfil.gana_la_acusacion(pruebas)
-	if perfil.puntos_necesarios > 0:
-		final.puntaje = "Puntaje: %d / %d" % [perfil.puntos_de(pruebas), perfil.puntos_necesarios]
+	if evaluado.puntos_necesarios > 0 and not evaluado.pruebas_alcanzan(pruebas):
+		final.texto = perfil.texto_de_pistas_insuficientes()
+	else:
+		final.texto = perfil.texto_del_final(pruebas)
+	if evaluado.puntos_necesarios > 0:
+		final.puntaje = "Puntaje: %d / %d" % [evaluado.puntos_de(pruebas), evaluado.puntos_necesarios]
 	var actual := get_tree().current_scene
 	get_tree().root.add_child(final)
 	get_tree().current_scene = final
