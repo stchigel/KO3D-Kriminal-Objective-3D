@@ -1,0 +1,529 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://node_3d.gd" id="script"]
+[ext_resource type="Script" path="res://src/Camara/pista_clickeable.gd" id="pista"]
+
+[sub_resource type="Environment" id="env"]
+background_mode = 1
+background_color = Color(0.04, 0.04, 0.05, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.6, 0.6, 0.68, 1)
+ambient_light_energy = 0.55
+tonemap_mode = 2
+adjustment_enabled = true
+adjustment_saturation = 0.7
+
+[sub_resource type="StandardMaterial3D" id="Mat_piso"]
+albedo_color = Color(0.35, 0.3, 0.27, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_pared"]
+albedo_color = Color(0.55, 0.6, 0.62, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_madera"]
+albedo_color = Color(0.45, 0.3, 0.18, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_negro"]
+albedo_color = Color(0.1, 0.1, 0.1, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_gris"]
+albedo_color = Color(0.4, 0.4, 0.42, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_blanco"]
+albedo_color = Color(0.95, 0.95, 0.92, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_celeste"]
+albedo_color = Color(0.6, 0.8, 0.95, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_rojo"]
+albedo_color = Color(0.75, 0.15, 0.15, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_rojo_apagado"]
+albedo_color = Color(0.3, 0.08, 0.08, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_verde_luz"]
+albedo_color = Color(0.3, 1, 0.3, 1)
+emission_enabled = true
+emission = Color(0.2, 0.9, 0.2, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_marron"]
+albedo_color = Color(0.5, 0.32, 0.18, 1)
+
+[sub_resource type="BoxMesh" id="Mesh_0"]
+material = SubResource("Mat_piso")
+size = Vector3(6, 0.1, 5)
+
+[sub_resource type="BoxMesh" id="Mesh_1"]
+material = SubResource("Mat_pared")
+size = Vector3(6.2, 3, 0.1)
+
+[sub_resource type="BoxMesh" id="Mesh_2"]
+material = SubResource("Mat_pared")
+size = Vector3(0.1, 3, 5)
+
+[sub_resource type="BoxMesh" id="Mesh_3"]
+material = SubResource("Mat_madera")
+size = Vector3(0.06, 2.1, 0.9)
+
+[sub_resource type="BoxMesh" id="Mesh_4"]
+material = SubResource("Mat_gris")
+size = Vector3(0.05, 0.04, 0.12)
+
+[sub_resource type="BoxMesh" id="Mesh_5"]
+material = SubResource("Mat_madera")
+size = Vector3(2.4, 0.05, 0.8)
+
+[sub_resource type="BoxMesh" id="Mesh_6"]
+material = SubResource("Mat_madera")
+size = Vector3(0.05, 0.73, 0.05)
+
+[sub_resource type="BoxMesh" id="Mesh_7"]
+material = SubResource("Mat_negro")
+size = Vector3(1, 0.08, 0.45)
+
+[sub_resource type="CylinderMesh" id="Mesh_8"]
+material = SubResource("Mat_gris")
+top_radius = 0.025
+bottom_radius = 0.025
+height = 0.03
+
+[sub_resource type="BoxMesh" id="Mesh_9"]
+material = SubResource("Mat_blanco")
+size = Vector3(0.12, 0.005, 0.03)
+
+[sub_resource type="BoxMesh" id="Mesh_10"]
+material = SubResource("Mat_verde_luz")
+size = Vector3(0.05, 0.02, 0.03)
+
+[sub_resource type="BoxMesh" id="Mesh_11"]
+material = SubResource("Mat_rojo_apagado")
+size = Vector3(0.05, 0.02, 0.03)
+
+[sub_resource type="BoxMesh" id="Mesh_12"]
+material = SubResource("Mat_celeste")
+size = Vector3(0.2, 0.12, 0.02)
+
+[sub_resource type="CylinderMesh" id="Mesh_13"]
+material = SubResource("Mat_negro")
+top_radius = 0.08
+bottom_radius = 0.08
+height = 0.03
+
+[sub_resource type="BoxMesh" id="Mesh_14"]
+material = SubResource("Mat_gris")
+size = Vector3(0.03, 0.5, 0.03)
+
+[sub_resource type="CylinderMesh" id="Mesh_15"]
+material = SubResource("Mat_negro")
+top_radius = 0.04
+bottom_radius = 0.04
+height = 0.16
+
+[sub_resource type="SphereMesh" id="Mesh_16"]
+material = SubResource("Mat_gris")
+radius = 0.055
+height = 0.11
+
+[sub_resource type="BoxMesh" id="Mesh_17"]
+material = SubResource("Mat_blanco")
+size = Vector3(0.07, 0.1, 0.005)
+
+[sub_resource type="CylinderMesh" id="Mesh_18"]
+material = SubResource("Mat_blanco")
+top_radius = 0.045
+bottom_radius = 0.045
+height = 0.1
+
+[sub_resource type="CylinderMesh" id="Mesh_19"]
+material = SubResource("Mat_marron")
+top_radius = 0.04
+bottom_radius = 0.04
+height = 0.005
+
+[sub_resource type="BoxMesh" id="Mesh_20"]
+material = SubResource("Mat_rojo")
+size = Vector3(0.025, 0.015, 0.005)
+
+[sub_resource type="CylinderMesh" id="Mesh_21"]
+material = SubResource("Mat_madera")
+top_radius = 0.25
+bottom_radius = 0.25
+height = 0.04
+
+[sub_resource type="CylinderMesh" id="Mesh_22"]
+material = SubResource("Mat_madera")
+top_radius = 0.03
+bottom_radius = 0.03
+height = 1.75
+
+[sub_resource type="BoxMesh" id="Mesh_23"]
+material = SubResource("Mat_madera")
+size = Vector3(0.3, 0.03, 0.03)
+
+[sub_resource type="BoxMesh" id="Mesh_24"]
+material = SubResource("Mat_marron")
+size = Vector3(0.42, 0.7, 0.15)
+
+[sub_resource type="BoxMesh" id="Mesh_25"]
+material = SubResource("Mat_rojo")
+size = Vector3(0.28, 0.12, 0.01)
+
+[sub_resource type="BoxMesh" id="Mesh_26"]
+material = SubResource("Mat_madera")
+size = Vector3(0.05, 1.2, 1.3)
+
+[sub_resource type="BoxMesh" id="Mesh_27"]
+material = SubResource("Mat_celeste")
+size = Vector3(0.02, 1.05, 0.55)
+
+[sub_resource type="BoxMesh" id="Mesh_28"]
+material = SubResource("Mat_negro")
+size = Vector3(0.02, 1.05, 0.55)
+
+[sub_resource type="BoxMesh" id="Mesh_29"]
+material = SubResource("Mat_gris")
+size = Vector3(0.45, 0.05, 0.5)
+
+[sub_resource type="BoxMesh" id="Mesh_30"]
+material = SubResource("Mat_gris")
+size = Vector3(0.45, 0.45, 0.06)
+
+[sub_resource type="BoxMesh" id="Mesh_31"]
+material = SubResource("Mat_negro")
+size = Vector3(0.04, 0.04, 0.45)
+
+[sub_resource type="BoxMesh" id="Mesh_32"]
+material = SubResource("Mat_blanco")
+size = Vector3(0.21, 0.005, 0.3)
+
+[sub_resource type="BoxShape3D" id="Shape_0"]
+size = Vector3(0.6, 1.9, 0.6)
+
+[sub_resource type="BoxShape3D" id="Shape_1"]
+size = Vector3(0.25, 0.8, 0.25)
+
+[sub_resource type="BoxShape3D" id="Shape_2"]
+size = Vector3(0.15, 0.15, 0.15)
+
+[sub_resource type="BoxShape3D" id="Shape_3"]
+size = Vector3(1.05, 0.25, 0.5)
+
+[sub_resource type="BoxShape3D" id="Shape_4"]
+size = Vector3(0.5, 1.25, 1.35)
+
+[sub_resource type="BoxShape3D" id="Shape_5"]
+size = Vector3(1.1, 0.5, 1.3)
+
+[node name="EstudioRadio" type="Node3D"]
+script = ExtResource("script")
+pitch_min_deg = -80
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("env")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5736, 0.8192, 0, -0.8192, 0.5736, 0, 3, 2)
+light_energy = 0.4
+shadow_enabled = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7, -0.3)
+light_energy = 0.8
+shadow_enabled = true
+omni_range = 8
+light_color = Color(1, 0.95, 0.85, 1)
+
+[node name="Habitacion" type="Node3D" parent="."]
+
+[node name="Piso" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+mesh = SubResource("Mesh_0")
+
+[node name="ParedFondo" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -2.55)
+mesh = SubResource("Mesh_1")
+
+[node name="ParedIzquierda" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.05, 1.5, 0)
+mesh = SubResource("Mesh_2")
+
+[node name="ParedDerecha" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.05, 1.5, 0)
+mesh = SubResource("Mesh_2")
+
+[node name="Puerta" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.99, 1.05, 0.6)
+mesh = SubResource("Mesh_3")
+
+[node name="Picaporte" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.94, 1, 0.25)
+mesh = SubResource("Mesh_4")
+
+[node name="Mesa" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -2.05)
+mesh = SubResource("Mesh_5")
+
+[node name="Pata1" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.15, 0.365, -2.4)
+mesh = SubResource("Mesh_6")
+
+[node name="Pata2" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15, 0.365, -2.4)
+mesh = SubResource("Mesh_6")
+
+[node name="Pata3" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.15, 0.365, -1.7)
+mesh = SubResource("Mesh_6")
+
+[node name="Pata4" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15, 0.365, -1.7)
+mesh = SubResource("Mesh_6")
+
+[node name="Pistas" type="Node3D" parent="."]
+
+[node name="Perchero" type="Area3D" parent="Pistas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.45, 0, -1.6)
+script = ExtResource("pista")
+id = "cam_perchero_campera"
+tipo = 0
+puntos = 2
+titulo = "Solo cuelga la campera de Horacio"
+texto = "Un perchero de pie, de madera, con un cartel colgado que dice \"EN EL AIRE — NO ENTRAR\". Solo cuelga la campera de Horacio, una de corderoy marrón con coderas."
+fuente = "Cámara estudio - Puerta"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistas/Perchero"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
+shape = SubResource("Shape_0")
+
+[node name="Base" type="MeshInstance3D" parent="Pistas/Perchero"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+mesh = SubResource("Mesh_21")
+
+[node name="Palo" type="MeshInstance3D" parent="Pistas/Perchero"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+mesh = SubResource("Mesh_22")
+
+[node name="Gancho1" type="MeshInstance3D" parent="Pistas/Perchero"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+mesh = SubResource("Mesh_23")
+
+[node name="Gancho2" type="MeshInstance3D" parent="Pistas/Perchero"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0, 1.7, 0)
+mesh = SubResource("Mesh_23")
+
+[node name="Campera" type="MeshInstance3D" parent="Pistas/Perchero"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0.1)
+mesh = SubResource("Mesh_24")
+
+[node name="Cartel" type="MeshInstance3D" parent="Pistas/Perchero"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0.035)
+mesh = SubResource("Mesh_25")
+
+[node name="Microfono" type="Area3D" parent="Pistas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.775, -1.95)
+script = ExtResource("pista")
+id = "cam_credencial_lu44"
+tipo = 1
+titulo = "Credencial: código de emisora LU44"
+texto = "Un micrófono viejo, con la esponja gastada de tanto uso. Colgada del brazo del micrófono está la credencial de Horacio, plastificada y con una foto de hace veinte años: \"Radio Vecina — código de emisora LU44\"."
+fuente = "Cámara estudio - Consola"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistas/Microfono"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38, 0)
+shape = SubResource("Shape_1")
+
+[node name="Base" type="MeshInstance3D" parent="Pistas/Microfono"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.015, 0)
+mesh = SubResource("Mesh_13")
+
+[node name="Brazo" type="MeshInstance3D" parent="Pistas/Microfono"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.28, 0)
+mesh = SubResource("Mesh_14")
+
+[node name="Mic" type="MeshInstance3D" parent="Pistas/Microfono"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+mesh = SubResource("Mesh_15")
+
+[node name="Esponja" type="MeshInstance3D" parent="Pistas/Microfono"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.72, 0)
+mesh = SubResource("Mesh_16")
+
+[node name="Credencial" type="MeshInstance3D" parent="Pistas/Microfono"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0.025)
+mesh = SubResource("Mesh_17")
+
+[node name="Taza" type="Area3D" parent="Pistas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 0.775, -1.85)
+script = ExtResource("pista")
+id = "cam_taza_labial"
+tipo = 0
+puntos = 3
+titulo = "Taza con marca de labial rojo"
+texto = "Una taza de café con el logo de la radio, a medio tomar y fría. Tiene una marca de labial rojo en el borde."
+fuente = "Cámara estudio - Consola"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistas/Taza"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, 0)
+shape = SubResource("Shape_2")
+
+[node name="Cuerpo" type="MeshInstance3D" parent="Pistas/Taza"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+mesh = SubResource("Mesh_18")
+
+[node name="Cafe" type="MeshInstance3D" parent="Pistas/Taza"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.096, 0)
+mesh = SubResource("Mesh_19")
+
+[node name="Labial" type="MeshInstance3D" parent="Pistas/Taza"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.088, 0.046)
+mesh = SubResource("Mesh_20")
+
+[node name="Consola" type="Area3D" parent="Pistas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.775, -2.05)
+script = ExtResource("pista")
+id = "cam_consola_automatica"
+tipo = 0
+puntos = 2
+titulo = "La consola estaba en reproducción automática"
+texto = "Una consola llena de perillas y botones con cinta de papel escrita a mano: \"Mic 1\", \"Tel\", \"NO TOCAR\". Está encendida la luz de \"REPRODUCCIÓN AUTOMÁTICA\". La de \"EN VIVO\" está apagada. En la pantallita de la consola se lee: \"Último reproducido — carpeta Audios\"."
+fuente = "Cámara estudio - Consola"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistas/Consola"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+shape = SubResource("Shape_3")
+
+[node name="Cuerpo" type="MeshInstance3D" parent="Pistas/Consola"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)
+mesh = SubResource("Mesh_7")
+
+[node name="Perilla1" type="MeshInstance3D" parent="Pistas/Consola"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0.095, 0.05)
+mesh = SubResource("Mesh_8")
+
+[node name="Perilla2" type="MeshInstance3D" parent="Pistas/Consola"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.095, 0.05)
+mesh = SubResource("Mesh_8")
+
+[node name="Perilla3" type="MeshInstance3D" parent="Pistas/Consola"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0.095, 0.05)
+mesh = SubResource("Mesh_8")
+
+[node name="Perilla4" type="MeshInstance3D" parent="Pistas/Consola"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.095, 0.05)
+mesh = SubResource("Mesh_8")
+
+[node name="Perilla5" type="MeshInstance3D" parent="Pistas/Consola"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0.095, -0.08)
+mesh = SubResource("Mesh_8")
+
+[node name="Perilla6" type="MeshInstance3D" parent="Pistas/Consola"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.095, -0.08)
+mesh = SubResource("Mesh_8")
+
+[node name="Perilla7" type="MeshInstance3D" parent="Pistas/Consola"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0.095, -0.08)
+mesh = SubResource("Mesh_8")
+
+[node name="Cinta1" type="MeshInstance3D" parent="Pistas/Consola"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.0825, 0.15)
+mesh = SubResource("Mesh_9")
+
+[node name="Cinta2" type="MeshInstance3D" parent="Pistas/Consola"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0825, 0.15)
+mesh = SubResource("Mesh_9")
+
+[node name="Cinta3" type="MeshInstance3D" parent="Pistas/Consola"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.0825, 0.15)
+mesh = SubResource("Mesh_9")
+
+[node name="LuzAutomatica" type="MeshInstance3D" parent="Pistas/Consola"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 0.09, 0.05)
+mesh = SubResource("Mesh_10")
+
+[node name="LuzEnVivo" type="MeshInstance3D" parent="Pistas/Consola"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 0.09, -0.08)
+mesh = SubResource("Mesh_11")
+
+[node name="Pantallita" type="MeshInstance3D" parent="Pistas/Consola"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14, -0.17)
+mesh = SubResource("Mesh_12")
+
+[node name="Ventana" type="Area3D" parent="Pistas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.98, 1.6, -0.6)
+script = ExtResource("pista")
+id = "cam_ventana_abierta"
+tipo = 3
+titulo = "La ventana está entreabierta"
+texto = "La ventana está entreabierta. Por el hueco entra la humedad de la calle. Da a un patio interno, tres metros más abajo, lleno de cajones de la ferretería."
+fuente = "Cámara estudio - Ventana"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistas/Ventana"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0, 0)
+shape = SubResource("Shape_4")
+
+[node name="Marco" type="MeshInstance3D" parent="Pistas/Ventana"]
+mesh = SubResource("Mesh_26")
+
+[node name="Vidrio" type="MeshInstance3D" parent="Pistas/Ventana"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.02, 0, -0.3)
+mesh = SubResource("Mesh_27")
+
+[node name="Hueco" type="MeshInstance3D" parent="Pistas/Ventana"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.02, 0, 0.3)
+mesh = SubResource("Mesh_28")
+
+[node name="HojaAbierta" type="MeshInstance3D" parent="Pistas/Ventana"]
+transform = Transform3D(0.7071, 0, -0.7071, 0, 1, 0, 0.7071, 0, 0.7071, -0.224, 0, 0.381)
+mesh = SubResource("Mesh_27")
+
+[node name="Silla" type="Area3D" parent="Pistas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0, -1)
+script = ExtResource("pista")
+id = "cam_silla_caida"
+tipo = 3
+titulo = "Silla caída al lado de la consola"
+texto = "Una silla caída al lado de la consola. Cerca, desparramadas, hojas de la pauta del programa."
+fuente = "Cámara estudio - Piso"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistas/Silla"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0.2)
+shape = SubResource("Shape_5")
+
+[node name="Respaldo" type="MeshInstance3D" parent="Pistas/Silla"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0.25)
+mesh = SubResource("Mesh_29")
+
+[node name="Asiento" type="MeshInstance3D" parent="Pistas/Silla"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.225, -0.03)
+mesh = SubResource("Mesh_30")
+
+[node name="Pata1" type="MeshInstance3D" parent="Pistas/Silla"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19, 0.05, -0.285)
+mesh = SubResource("Mesh_31")
+
+[node name="Pata2" type="MeshInstance3D" parent="Pistas/Silla"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19, 0.05, -0.285)
+mesh = SubResource("Mesh_31")
+
+[node name="Pata3" type="MeshInstance3D" parent="Pistas/Silla"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19, 0.4, -0.285)
+mesh = SubResource("Mesh_31")
+
+[node name="Pata4" type="MeshInstance3D" parent="Pistas/Silla"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19, 0.4, -0.285)
+mesh = SubResource("Mesh_31")
+
+[node name="Hoja1" type="MeshInstance3D" parent="Pistas/Silla"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 0.003, 0.3)
+mesh = SubResource("Mesh_32")
+
+[node name="Hoja2" type="MeshInstance3D" parent="Pistas/Silla"]
+transform = Transform3D(0.866, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866, 0.45, 0.003, 0.5)
+mesh = SubResource("Mesh_32")
+
+[node name="Hoja3" type="MeshInstance3D" parent="Pistas/Silla"]
+transform = Transform3D(0.866, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866, 0.05, 0.003, 0.75)
+mesh = SubResource("Mesh_32")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9272, 0.3746, 0, -0.3746, 0.9272, 0, 2.55, 2.3)
+fov = 60

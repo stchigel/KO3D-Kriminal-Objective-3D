@@ -1,0 +1,417 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://node_3d.gd" id="script"]
+[ext_resource type="Script" path="res://src/Camara/pista_clickeable.gd" id="pista"]
+
+[sub_resource type="Environment" id="env"]
+background_mode = 1
+background_color = Color(0.04, 0.04, 0.05, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.7, 0.68, 0.64, 1)
+ambient_light_energy = 0.65
+tonemap_mode = 2
+adjustment_enabled = true
+adjustment_saturation = 0.7
+
+[sub_resource type="StandardMaterial3D" id="Mat_piso"]
+albedo_color = Color(0.55, 0.38, 0.22, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_tabla"]
+albedo_color = Color(0.62, 0.45, 0.28, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_pared"]
+albedo_color = Color(0.85, 0.75, 0.35, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_claro"]
+albedo_color = Color(0.97, 0.92, 0.62, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_verde"]
+albedo_color = Color(0.2, 0.45, 0.25, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_blanco"]
+albedo_color = Color(0.95, 0.95, 0.92, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_gris"]
+albedo_color = Color(0.4, 0.4, 0.42, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_negro"]
+albedo_color = Color(0.1, 0.1, 0.1, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_terracota"]
+albedo_color = Color(0.7, 0.35, 0.2, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_tierra"]
+albedo_color = Color(0.3, 0.2, 0.12, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_planta"]
+albedo_color = Color(0.3, 0.5, 0.25, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_amarillo"]
+albedo_color = Color(0.85, 0.7, 0.2, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_azul"]
+albedo_color = Color(0.15, 0.15, 0.35, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_plateado"]
+albedo_color = Color(0.8, 0.8, 0.85, 1)
+metallic = 0.6
+
+[sub_resource type="StandardMaterial3D" id="Mat_sillon"]
+albedo_color = Color(0.35, 0.35, 0.45, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_manta"]
+albedo_color = Color(0.85, 0.5, 0.2, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_campera"]
+albedo_color = Color(0.15, 0.2, 0.3, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_barro"]
+albedo_color = Color(0.25, 0.17, 0.1, 1)
+
+[sub_resource type="BoxMesh" id="Mesh_0"]
+material = SubResource("Mat_piso")
+size = Vector3(6, 0.1, 5)
+
+[sub_resource type="BoxMesh" id="Mesh_1"]
+material = SubResource("Mat_pared")
+size = Vector3(6.2, 3, 0.1)
+
+[sub_resource type="BoxMesh" id="Mesh_2"]
+material = SubResource("Mat_pared")
+size = Vector3(0.1, 3, 5)
+
+[sub_resource type="BoxMesh" id="Mesh_3"]
+material = SubResource("Mat_tabla")
+size = Vector3(0.6, 0.02, 0.12)
+
+[sub_resource type="BoxMesh" id="Mesh_4"]
+material = SubResource("Mat_verde")
+size = Vector3(0.06, 2.1, 0.9)
+
+[sub_resource type="BoxMesh" id="Mesh_5"]
+material = SubResource("Mat_blanco")
+size = Vector3(0.01, 0.2, 0.35)
+
+[sub_resource type="BoxMesh" id="Mesh_6"]
+material = SubResource("Mat_gris")
+size = Vector3(0.03, 0.2, 0.08)
+
+[sub_resource type="BoxMesh" id="Mesh_7"]
+material = SubResource("Mat_gris")
+size = Vector3(0.05, 0.04, 0.12)
+
+[sub_resource type="BoxMesh" id="Mesh_8"]
+material = SubResource("Mat_negro")
+size = Vector3(0.035, 0.03, 0.015)
+
+[sub_resource type="CylinderMesh" id="Mesh_9"]
+material = SubResource("Mat_terracota")
+top_radius = 0.15
+bottom_radius = 0.12
+height = 0.25
+
+[sub_resource type="CylinderMesh" id="Mesh_10"]
+material = SubResource("Mat_tierra")
+top_radius = 0.14
+bottom_radius = 0.14
+height = 0.01
+
+[sub_resource type="SphereMesh" id="Mesh_11"]
+material = SubResource("Mat_planta")
+radius = 0.18
+height = 0.25
+
+[sub_resource type="BoxMesh" id="Mesh_12"]
+material = SubResource("Mat_amarillo")
+size = Vector3(0.08, 0.01, 0.025)
+
+[sub_resource type="BoxMesh" id="Mesh_13"]
+material = SubResource("Mat_claro")
+size = Vector3(1, 1.3, 0.01)
+
+[sub_resource type="BoxMesh" id="Mesh_14"]
+material = SubResource("Mat_gris")
+size = Vector3(0.02, 0.02, 0.04)
+
+[sub_resource type="BoxMesh" id="Mesh_15"]
+material = SubResource("Mat_negro")
+size = Vector3(0.75, 1, 0.03)
+
+[sub_resource type="BoxMesh" id="Mesh_16"]
+material = SubResource("Mat_azul")
+size = Vector3(0.65, 0.9, 0.01)
+
+[sub_resource type="BoxMesh" id="Mesh_17"]
+material = SubResource("Mat_blanco")
+size = Vector3(0.5, 0.12, 0.005)
+
+[sub_resource type="BoxMesh" id="Mesh_18"]
+material = SubResource("Mat_plateado")
+size = Vector3(0.3, 0.03, 0.005)
+
+[sub_resource type="BoxMesh" id="Mesh_19"]
+material = SubResource("Mat_sillon")
+size = Vector3(0.9, 0.4, 2)
+
+[sub_resource type="BoxMesh" id="Mesh_20"]
+material = SubResource("Mat_sillon")
+size = Vector3(0.25, 0.5, 2)
+
+[sub_resource type="BoxMesh" id="Mesh_21"]
+material = SubResource("Mat_sillon")
+size = Vector3(0.9, 0.25, 0.2)
+
+[sub_resource type="BoxMesh" id="Mesh_22"]
+material = SubResource("Mat_manta")
+size = Vector3(0.6, 0.03, 0.8)
+
+[sub_resource type="BoxMesh" id="Mesh_23"]
+material = SubResource("Mat_campera")
+size = Vector3(0.55, 0.08, 0.3)
+
+[sub_resource type="BoxMesh" id="Mesh_24"]
+material = SubResource("Mat_planta")
+size = Vector3(0.06, 0.02, 0.08)
+
+[sub_resource type="BoxMesh" id="Mesh_25"]
+material = SubResource("Mat_barro")
+size = Vector3(0.12, 0.005, 0.25)
+
+[sub_resource type="BoxShape3D" id="Shape_0"]
+size = Vector3(0.15, 0.3, 0.2)
+
+[sub_resource type="BoxShape3D" id="Shape_1"]
+size = Vector3(0.4, 0.6, 0.4)
+
+[sub_resource type="BoxShape3D" id="Shape_2"]
+size = Vector3(1, 1.3, 0.1)
+
+[sub_resource type="BoxShape3D" id="Shape_3"]
+size = Vector3(0.8, 1.05, 0.1)
+
+[sub_resource type="BoxShape3D" id="Shape_4"]
+size = Vector3(0.6, 0.2, 0.4)
+
+[sub_resource type="BoxShape3D" id="Shape_5"]
+size = Vector3(0.9, 0.1, 0.9)
+
+[node name="Living3B" type="Node3D"]
+script = ExtResource("script")
+pitch_min_deg = -80
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("env")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5736, 0.8192, 0, -0.8192, 0.5736, 0, 3, 2)
+light_energy = 0.5
+shadow_enabled = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7, -0.3)
+light_energy = 0.9
+shadow_enabled = true
+omni_range = 8
+light_color = Color(1, 0.97, 0.9, 1)
+
+[node name="Habitacion" type="Node3D" parent="."]
+
+[node name="Piso" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+mesh = SubResource("Mesh_0")
+
+[node name="Tabla1" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 0.01, 0.6)
+mesh = SubResource("Mesh_3")
+
+[node name="Tabla2" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.01, -0.9)
+mesh = SubResource("Mesh_3")
+
+[node name="ParedFondo" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -2.55)
+mesh = SubResource("Mesh_1")
+
+[node name="ParedIzquierda" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.05, 1.5, 0)
+mesh = SubResource("Mesh_2")
+
+[node name="ParedDerecha" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.05, 1.5, 0)
+mesh = SubResource("Mesh_2")
+
+[node name="Puerta" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.99, 1.05, 0.3)
+mesh = SubResource("Mesh_4")
+
+[node name="CartelPuerta" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.955, 1.6, 0.3)
+mesh = SubResource("Mesh_5")
+
+[node name="SillonBase" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.45, 0.2, -0.3)
+mesh = SubResource("Mesh_19")
+
+[node name="SillonRespaldo" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.78, 0.6, -0.3)
+mesh = SubResource("Mesh_20")
+
+[node name="SillonBrazo1" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.45, 0.5, -1.2)
+mesh = SubResource("Mesh_21")
+
+[node name="SillonBrazo2" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.45, 0.5, 0.6)
+mesh = SubResource("Mesh_21")
+
+[node name="Manta" type="MeshInstance3D" parent="Habitacion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, 0.415, 0.1)
+mesh = SubResource("Mesh_22")
+
+[node name="Pistas" type="Node3D" parent="."]
+
+[node name="Cerradura" type="Area3D" parent="Pistas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.94, 1, 0)
+script = ExtResource("pista")
+id = "cam_cerradura_intacta"
+tipo = 0
+titulo = "La cerradura no fue forzada"
+texto = "Una puerta de madera pintada de verde, con un cartel que dice \"3B — tocá fuerte que el timbre no anda\". La cerradura está intacta, sin marcas de haber sido forzada."
+fuente = "Cámara living - Puerta"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistas/Cerradura"]
+shape = SubResource("Shape_0")
+
+[node name="Placa" type="MeshInstance3D" parent="Pistas/Cerradura"]
+mesh = SubResource("Mesh_6")
+
+[node name="Picaporte" type="MeshInstance3D" parent="Pistas/Cerradura"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, -0.05, 0)
+mesh = SubResource("Mesh_7")
+
+[node name="Ojo" type="MeshInstance3D" parent="Pistas/Cerradura"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.005, 0.05, 0)
+mesh = SubResource("Mesh_8")
+
+[node name="Maceta" type="Area3D" parent="Pistas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65, 0, 1.15)
+script = ExtResource("pista")
+id = "cam_maceta_llave"
+tipo = 3
+titulo = "Llave de repuesto bajo la maceta"
+texto = "Una maceta con un potus medio mustio, al lado de la puerta. Debajo de la maceta hay una llave de repuesto. Tiene tierra seca encima y una telaraña chiquita."
+fuente = "Cámara living - Puerta"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistas/Maceta"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+shape = SubResource("Shape_1")
+
+[node name="Cuerpo" type="MeshInstance3D" parent="Pistas/Maceta"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+mesh = SubResource("Mesh_9")
+
+[node name="Tierra" type="MeshInstance3D" parent="Pistas/Maceta"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.245, 0)
+mesh = SubResource("Mesh_10")
+
+[node name="Potus" type="MeshInstance3D" parent="Pistas/Maceta"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36, 0)
+mesh = SubResource("Mesh_11")
+
+[node name="Llave" type="MeshInstance3D" parent="Pistas/Maceta"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17, 0.005, 0.03)
+mesh = SubResource("Mesh_12")
+
+[node name="Rectangulo" type="Area3D" parent="Pistas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 1.6, -2.49)
+script = ExtResource("pista")
+id = "cam_pared_cuadro"
+tipo = 0
+titulo = "Ahí estaba el cuadro"
+texto = "La pared del living está pintada de amarillo, un poco sucia por el sol. Hay un rectángulo más claro, grande: ahí estaba el cuadro. El clavo sigue en su lugar."
+fuente = "Cámara living - Pared"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistas/Rectangulo"]
+shape = SubResource("Shape_2")
+
+[node name="Marca" type="MeshInstance3D" parent="Pistas/Rectangulo"]
+mesh = SubResource("Mesh_13")
+
+[node name="Clavo" type="MeshInstance3D" parent="Pistas/Rectangulo"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0.02)
+mesh = SubResource("Mesh_14")
+
+[node name="Poster" type="Area3D" parent="Pistas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 1.6, -2.48)
+script = ExtResource("pista")
+id = "cam_poster_niebla"
+tipo = 1
+titulo = "Póster firmado de Niebla Norte"
+texto = "Un póster enmarcado de un recital, con fecha de hace tres años. Es de la banda Niebla Norte, firmado con marcador plateado: \"para Dani, gracias por gritar tanto\"."
+fuente = "Cámara living - Pared"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistas/Poster"]
+shape = SubResource("Shape_3")
+
+[node name="Marco" type="MeshInstance3D" parent="Pistas/Poster"]
+mesh = SubResource("Mesh_15")
+
+[node name="Lamina" type="MeshInstance3D" parent="Pistas/Poster"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.02)
+mesh = SubResource("Mesh_16")
+
+[node name="Titulo" type="MeshInstance3D" parent="Pistas/Poster"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0.027)
+mesh = SubResource("Mesh_17")
+
+[node name="Firma" type="MeshInstance3D" parent="Pistas/Poster"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, -0.3, 0.027)
+mesh = SubResource("Mesh_18")
+
+[node name="Campera" type="Area3D" parent="Pistas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.35, 0.665, -1.2)
+script = ExtResource("pista")
+id = "cam_campera_hombre"
+tipo = 3
+titulo = "Campera de hombre en el sillón"
+texto = "Un sillón de tres cuerpos con una manta tejida. Hay una campera de hombre, talle grande, tirada en el apoyabrazos. Tiene un paquete de chicles en el bolsillo."
+fuente = "Cámara living - Sillón"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistas/Campera"]
+shape = SubResource("Shape_4")
+
+[node name="Cuerpo" type="MeshInstance3D" parent="Pistas/Campera"]
+mesh = SubResource("Mesh_23")
+
+[node name="Chicles" type="MeshInstance3D" parent="Pistas/Campera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12, 0.05, 0.05)
+mesh = SubResource("Mesh_24")
+
+[node name="Barro" type="Area3D" parent="Pistas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1, 0, 0.3)
+script = ExtResource("pista")
+id = "cam_barro_puerta"
+tipo = 3
+titulo = "Marcas de barro cerca de la puerta"
+texto = "Un piso de parquet con varias tablas flojas. Hay marcas de barro cerca de la puerta, secas, como de hace unos días."
+fuente = "Cámara living - Piso"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistas/Barro"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03, 0)
+shape = SubResource("Shape_5")
+
+[node name="Marca1" type="MeshInstance3D" parent="Pistas/Barro"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.003, -0.2)
+mesh = SubResource("Mesh_25")
+
+[node name="Marca2" type="MeshInstance3D" parent="Pistas/Barro"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.003, 0.15)
+mesh = SubResource("Mesh_25")
+
+[node name="Marca3" type="MeshInstance3D" parent="Pistas/Barro"]
+transform = Transform3D(0.866, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866, 0.25, 0.003, -0.1)
+mesh = SubResource("Mesh_25")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9272, 0.3746, 0, -0.3746, 0.9272, 0, 2.55, 2.3)
+fov = 60

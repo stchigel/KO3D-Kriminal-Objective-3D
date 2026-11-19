@@ -17,6 +17,9 @@
 [ext_resource type="Texture2D" path="res://assets/iconos/user-trash-full.svg" id="ico_papelera"]
 [ext_resource type="Texture2D" path="res://assets/iconos/text.svg" id="ico_texto"]
 [ext_resource type="Texture2D" path="res://assets/iconos/folder-blue-home.svg" id="ico_usuario"]
+[ext_resource type="PackedScene" path="res://src/Camara/camara.tscn" id="camara_scene"]
+[ext_resource type="PackedScene" path="res://src/Camara/escenas/living_3b.tscn" id="living_3b"]
+[ext_resource type="Texture2D" path="res://assets/iconos/multimedia-photo-viewer.svg" id="ico_camara"]
 [ext_resource type="Resource" path="res://casos/depto3b/chats/chat_matias.tres" id="chat_matias"]
 [ext_resource type="Resource" path="res://casos/depto3b/chats/chat_abril.tres" id="chat_abril"]
 [ext_resource type="Resource" path="res://casos/depto3b/chats/chat_dana.tres" id="chat_dana"]
@@ -134,7 +137,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("desktop_gd")
-ventanas = [NodePath("Papelera"), NodePath("Reglas"), NodePath("Chat"), NodePath("Mail"), NodePath("CuentaDana"), NodePath("CuentaAbril"), NodePath("CuentaLucia"), NodePath("ChatAbril"), NodePath("Tarjeta"), NodePath("NotasAbril"), NodePath("NotasLucia")]
+ventanas = [NodePath("Papelera"), NodePath("Reglas"), NodePath("Chat"), NodePath("Mail"), NodePath("CuentaDana"), NodePath("CuentaAbril"), NodePath("CuentaLucia"), NodePath("ChatAbril"), NodePath("Tarjeta"), NodePath("NotasAbril"), NodePath("NotasLucia"), NodePath("Camara")]
 
 [node name="Fondo" type="TextureRect" parent="."]
 show_behind_parent = true
@@ -256,6 +259,16 @@ nom = "Lucía"
 contra = "saldemar"
 icono = ExtResource("ico_usuario")
 abrir = NodePath("../CuentaLucia")
+
+[node name="CamaraIco" parent="." node_paths=PackedStringArray("abrir") instance=ExtResource("archivo_scene")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 480.0
+offset_right = 96.0
+offset_bottom = 560.0
+nom = "Cámara living"
+icono = ExtResource("ico_camara")
+abrir = NodePath("../Camara")
 
 [node name="Papelera" parent="." instance=ExtResource("carpeta_scene")]
 visible = false
@@ -406,5 +419,15 @@ offset_bottom = 600.0
 texto = "CUADROS 2025\n\n\"Agua quieta nº 3\" — óleo sobre tela, 80 × 60. Lo terminé en octubre, después de cuatro meses. Es el mejor que hice. Todavía me da un poco de pena venderlo, pero con eso pago el alquiler de un año y el taller.\n\n[url=lucia_sin_venta]No lo subí a ninguna página de venta.[/url] No quiero que ande dando vueltas por internet. La única foto está en [url=lucia_lienzo]mi Lienzo[/url], y ni siquiera se ve entero. Solo lo sabe la galería y los que vinieron a casa a verlo: las chicas, mis viejos, Mati (el novio de Abri) y el profe Julio.\n\nPendientes:\n– Comprar bastidores\n– [url=lucia_luz_pasillo]Pedirle a Omar que arregle la luz del pasillo[/url], que me da miedo subir de noche\n– Terminar la serie de acuarelas para el parcial"
 nombre = "notas_lucia.txt"
 pistas = Array[ExtResource("pista")]([SubResource("Pista_NotasLucia_1"), SubResource("Pista_NotasLucia_2"), SubResource("Pista_NotasLucia_3")])
+
+[node name="Camara" parent="." instance=ExtResource("camara_scene")]
+visible = false
+layout_mode = 0
+offset_left = 160.0
+offset_top = 72.0
+offset_right = 992.0
+offset_bottom = 520.0
+nombre = "Cámara - Living 3B"
+escena = ExtResource("living_3b")
 
 [connection signal="pressed" from="Topbar/Desconectar" to="." method="_on_desconectar_pressed"]

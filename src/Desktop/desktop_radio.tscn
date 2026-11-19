@@ -25,6 +25,9 @@
 [ext_resource type="Resource" path="res://casos/radio/chats/chat_nico.tres" id="chat_nico"]
 [ext_resource type="Resource" path="res://casos/radio/chats/chat_ernesto.tres" id="chat_ernesto"]
 [ext_resource type="Texture2D" path="res://assets/iconos/folder-blue.svg" id="ico_carpeta"]
+[ext_resource type="PackedScene" path="res://src/Camara/camara.tscn" id="camara_scene"]
+[ext_resource type="PackedScene" path="res://src/Camara/escenas/estudio_radio.tscn" id="estudio_radio"]
+[ext_resource type="Texture2D" path="res://assets/iconos/multimedia-photo-viewer.svg" id="ico_camara"]
 
 [sub_resource type="Resource" id="Pista_pauta_1"]
 script = ExtResource("pista")
@@ -108,7 +111,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("desktop_gd")
-ventanas = [NodePath("Papelera"), NodePath("Pauta"), NodePath("Audios"), NodePath("Registro"), NodePath("Transcripcion"), NodePath("Chat"), NodePath("Mail")]
+ventanas = [NodePath("Papelera"), NodePath("Pauta"), NodePath("Audios"), NodePath("Registro"), NodePath("Transcripcion"), NodePath("Chat"), NodePath("Mail"), NodePath("Camara")]
 
 [node name="Fondo" type="TextureRect" parent="."]
 show_behind_parent = true
@@ -206,6 +209,16 @@ contra = "973LU44"
 icono = ExtResource("ico_carpeta")
 abrir = NodePath("../Audios")
 
+[node name="CamaraIco" parent="." node_paths=PackedStringArray("abrir") instance=ExtResource("archivo_scene")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 304.0
+offset_right = 96.0
+offset_bottom = 384.0
+nom = "Cámara estudio"
+icono = ExtResource("ico_camara")
+abrir = NodePath("../Camara")
+
 [node name="Papelera" parent="." instance=ExtResource("carpeta_scene")]
 visible = false
 layout_mode = 0
@@ -295,5 +308,15 @@ offset_right = 928.0
 offset_bottom = 528.0
 mails = Array[ExtResource("mail_gd")]([ExtResource("mail_01_horacio_duenos"), ExtResource("mail_02_vera_horacio"), ExtResource("mail_03_nico_viernes"), ExtResource("mail_04_chela"), ExtResource("mail_05_oyente")])
 contacto_scene = ExtResource("contacto_mail_scene")
+
+[node name="Camara" parent="." instance=ExtResource("camara_scene")]
+visible = false
+layout_mode = 0
+offset_left = 160.0
+offset_top = 72.0
+offset_right = 992.0
+offset_bottom = 520.0
+nombre = "Cámara - Estudio"
+escena = ExtResource("estudio_radio")
 
 [connection signal="pressed" from="Topbar/Desconectar" to="." method="_on_desconectar_pressed"]
